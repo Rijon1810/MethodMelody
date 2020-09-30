@@ -144,8 +144,9 @@ export default function Landing(){
 
            
             {/* Start Single Slide */}
-            <div class="embed-responsive embed-responsive-16by9 "> 
-                <VideoTag autoPlay={`${true}`} muted={`${true}`} playsInline={`${true}`} loop={`${true}`}  src={`${"/assets/images/service/home-video-1.mp4"}`} poster={`${"/assets/images/bg/bg-image-24.jpg"}`} />
+            <div class="embed-responsive embed-responsive-21by9 "> 
+                <VideoTag autoPlay={`${true}`} muted={`${true}`} playsInline={`${true}`} loop={`${true}`}  
+                src={`${"/assets/images/service/video.mp4"}`} poster={`${"/assets/images/bg/bg-image-24.jpg"}`} />
             </div>               
             {/* End Single Slide */}
  
