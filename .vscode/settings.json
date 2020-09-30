@@ -3,7 +3,22 @@
     "workbench.colorTheme": "Material Theme",
     "kite.showWelcomeNotificationOnStartup": false,
     "python.showStartPage": false,
-    "workbench.startupEditor": "newUntitledFile",
+    "yaml.schemas": {
+        "file:///c%3A/Users/shane/.vscode/extensions/atlassian.atlascode-2.8.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "atlascode.bitbucket.enabled": true,
+    "atlascode.jira.enabled": true,
+    "atlascode.jira.jqlList": [
+        {
+            "id": "0ee73464-d7a4-4876-8550-68c155b4ff3d",
+            "enabled": true,
+            "name": "My ferntechsolutions Issues",
+            "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+            "siteId": "45939d13-fcf6-4a63-8ec9-6bb440720213",
+            "monitor": true
+        }
+    ],
+    "workbench.startupEditor": "readme",
     "files.exclude": {
         "**/.db": true,
         "**/.env": true
@@ -34,15 +49,19 @@
         "statusBarItem.remoteBackground": "#00BCD4"
     },
     "materialTheme.accent": "Cyan",
-    "terminal.integrated.fontFamily": "Consolas, 'Courier New'",
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
     "editor.fontSize": 15,
-    "editor.fontWeight": "300", // Light
-    "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.fontWeight": "300",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.languageServer": "Microsoft",
+    "atlascode.jira.lastCreateSiteAndProject": {
+        "siteId": "45939d13-fcf6-4a63-8ec9-6bb440720213",
+        "projectKey": "AB"
     },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.autoSave": "off",
 }
