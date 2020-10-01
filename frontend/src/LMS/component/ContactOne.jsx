@@ -17,7 +17,7 @@ class ContactOne extends Component{
                     <div className="row row--35 align-items-start">
                         <div className="col-lg-6 order-2 order-lg-1">
                             <div className="section-title text-left mb--50">
-                                <h2 className="title">Contact Us.</h2>
+                                <h3 className="title">Contact Us.</h3>
                                 <p className="description">For any queries regarding the Platform, Subscription Process, Account Registration, etc. You can also reach us via <br></br><a href="tel:+8801923088574">01923 088574</a> or email:
                                     <a href="mailto:admin@example.com"> admin@example.com</a> </p>
                             </div>
