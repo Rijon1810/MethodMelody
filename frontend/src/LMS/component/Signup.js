@@ -4,12 +4,14 @@ import { Grid, Box } from "@material-ui/core";
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      rnName: "",
       rnEmail: "",
       rnPassword: "",
+      rnConfirmPassword: "",
     };
   }
   render() {
@@ -29,13 +31,26 @@ class Login extends Component {
           <div className="contact-form--1 col-xl-6 col-lg-6 col-md-6 col-sm-6">
             <div className="  order-2 order-lg-1">
               <div className="section-title text-left mb--50">
-                <h3 className="title">Login to your account.</h3>
+                <h3 className="title">Create a new account.</h3>
                 <p className="description">
-                  Please enter your registered email and password for login.
+                  Please enter all the information for your accounts.
                   <br></br>
                 </p>
               </div>
               <form>
+                <label htmlFor="item01">
+                  <input
+                    type="name"
+                    name="text"
+                    id="item01"
+                    value={this.state.rnName}
+                    onChange={(e) => {
+                      this.setState({ rnName: e.target.value });
+                    }}
+                    placeholder="Your full name"
+                  />
+                </label>
+
                 <label htmlFor="item02">
                   <input
                     type="text"
@@ -54,11 +69,24 @@ class Login extends Component {
                     type="password"
                     name="password"
                     id="item03"
-                    value={this.state.rnSubject}
+                    value={this.state.rnPassword}
                     onChange={(e) => {
                       this.setState({ rnPassword: e.target.value });
                     }}
                     placeholder="Your password"
+                  />
+                </label>
+
+                <label htmlFor="item04">
+                  <input
+                    type="password"
+                    name="confirm password"
+                    id="item04"
+                    value={this.state.rnConfirmPassword}
+                    onChange={(e) => {
+                      this.setState({ rnConfirmPassword: e.target.value });
+                    }}
+                    placeholder="Confirm password"
                   />
                 </label>
 
@@ -75,7 +103,7 @@ class Login extends Component {
                 <div className=" text-right blog-btn mt_sm--10 mt_md--10">
                   <a href="/signup" className="btn-transparent rn-btn-dark">
                     <br />
-                    <span>Don't have an account? Signup</span>
+                    <span>Already have an account? Login</span>
                   </a>
                 </div>
               </form>
@@ -87,4 +115,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default Signup;
