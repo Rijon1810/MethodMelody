@@ -18,7 +18,7 @@ import { Grid } from "@material-ui/core";
 
 //importing custom components
 import Header from "./component/Header.jsx";
-import Footer from "./component/FooterTwo.jsx";
+import Footer from "./component/Footer.jsx";
 import { slideSlick } from "./page-demo/script";
 import Portfolio from "./component/Portfolio.jsx";
 import CounterOne from "./component/CounterOne.jsx";
@@ -26,6 +26,7 @@ import ContactOne from "./component/ContactOne.jsx";
 import BlogContent from "./component/BlogContent.jsx";
 import Team from "./component/Team.jsx";
 import Testimonial from "./component/TestimonialOne.jsx";
+import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
 
 //importing custom scripts
 import axios from "./api/Config";
@@ -39,7 +40,7 @@ const SlideList = [
     title: "Mike Portnoy",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
-    buttonText: "Contact Us",
+    buttonText: "Let's Get Started",
     buttonLink: "/contact",
   },
   {
@@ -49,7 +50,7 @@ const SlideList = [
     title: "Eric CLapton",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
-    buttonText: "Contact Us",
+    buttonText: "Let's Get Started",
     buttonLink: "/contact",
   },
   {
@@ -59,7 +60,7 @@ const SlideList = [
     title: "Justin Chancellor",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
-    buttonText: "Contact Us",
+    buttonText: "Let's Get Started",
     buttonLink: "/contact",
   },
 ];
@@ -178,6 +179,14 @@ export default function Landing() {
       </div>
       {/* End Portfolio Area */}
 
+      {/* Start Service Area  */}
+      <div className="service-area ptb--80  bg_image bg_image--3">
+        <div className="container">
+          <ServiceTwo />
+        </div>
+      </div>
+      {/* End Service Area  */}
+
       {/* Start Single Slide */}
       <div class="embed-responsive embed-responsive-21by9 ">
         <VideoTag
@@ -281,8 +290,8 @@ export default function Landing() {
       </div>
       {/* End Blog Area */}
 
-      <div>
-          <Testimonial/>
+      <div className="col-lg-12">
+        <Testimonial />
       </div>
 
       {/* Start Team Area  */}
@@ -501,7 +510,7 @@ export default function Landing() {
       {/* Start Faq Area */}
 
       {/* Start Contact Form Area */}
-      <div className="portfolio-area pb--120 " style={{ paddingTop: "15ch" }}>
+      <div className="portfolio-area pb--120 " style={{ paddingTop: "10ch" }}>
         <ContactOne />
       </div>
       {/* End Contact Form Area */}
