@@ -3,6 +3,7 @@ import { Grid, Box } from "@material-ui/core";
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
+import PageHelmet from "./Helmet.jsx";
 
 class Login extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Login extends Component {
   render() {
     return (
       <div className="active-dark">
+        <PageHelmet pageTitle="Login" />
         <Header
           headertransparent="header--transparent"
           colorblack="color--black"

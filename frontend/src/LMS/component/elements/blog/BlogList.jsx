@@ -1,0 +1,50 @@
+import React, { Component, Fragment } from "react";
+import BlogContent from "./BlogContent.jsx";
+
+class BLogList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      courseList: props.courseList,
+    };
+  }
+  render() {
+    const PostList = BlogContent.slice(0, 6);
+    return (
+      <Fragment>
+        <div className="row">
+          {console.log(
+            "course list size in BlogList.js= " + this.state.courseList.length
+          )}
+          {this.props.courseList.map((course) => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-12" key={course._id}>
+              <div className="blog blog-style--1">
+                <div className="thumbnail">
+                  <a href="/blog-details">
+                    <img
+                      className="w-100"
+                      src={`http://162.0.231.67/` + course.thumbnail}
+                      alt="Blog Images"
+                    />
+                  </a>
+                </div>
+                <div className="content">
+                  <p className="blogtype">{course.catagory}</p>
+                  <h4 className="title">
+                    <a href="/blog-details">{course.title}</a>
+                  </h4>
+                  <div className="blog-btn">
+                    <a className="rn-btn text-white" href="/blog-details">
+                      View Course
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Fragment>
+    );
+  }
+}
+export default BLogList;

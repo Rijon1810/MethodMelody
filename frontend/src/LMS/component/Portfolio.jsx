@@ -103,7 +103,7 @@ class Portfolio extends Component {
                       </h4>
                       <div className="portfolio-button">
                         <a className="rn-btn" href="/portfolio-details">
-                          View more
+                          View Course
                         </a>
                       </div>
                     </div>

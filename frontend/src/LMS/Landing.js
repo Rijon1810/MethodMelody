@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import Slider from "react-slick";
 import ScrollToTop from "react-scroll-up";
@@ -23,7 +24,7 @@ import { slideSlick } from "./page-demo/script";
 import Portfolio from "./component/Portfolio.jsx";
 import CounterOne from "./component/CounterOne.jsx";
 import ContactOne from "./component/ContactOne.jsx";
-import BlogContent from "./component/BlogContent.jsx";
+// import BlogContent from "./component/elements/blog/BlogContent.jsx";
 import Team from "./component/Team.jsx";
 import Testimonial from "./component/TestimonialOne.jsx";
 import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
@@ -69,7 +70,9 @@ export default function Landing() {
   //hooks
   const [instructorList, setInstructorList] = useState([]);
 
-  const PostList = BlogContent.slice(0, 4);
+  let history = useHistory();
+
+  // const PostList = BlogContent.slice(0, 4);
 
   // life-cycle methods
   useEffect(() => {
@@ -94,6 +97,11 @@ export default function Landing() {
             instructorList.length
         );
       });
+  }
+
+  // view all course handler
+  function handleViewAllCourse() {
+    history.push("/courses", { courses: "all" });
   }
 
   return (
@@ -168,10 +176,7 @@ export default function Landing() {
           style={{ marginTop: "15ch" }}
         >
           <Grid item>
-            <a
-              className="rn-btn"
-              href="https://themeforest.net/checkout/from_item/25457315?license=regular"
-            >
+            <a className="rn-btn" onClick={handleViewAllCourse}>
               View all courses
             </a>
           </Grid>
@@ -290,9 +295,11 @@ export default function Landing() {
       </div>
       {/* End Blog Area */}
 
+      {/* Start Student Feedback */}
       <div className="col-lg-12">
         <Testimonial />
       </div>
+      {/* End Student Feedback */}
 
       {/* Start Team Area  */}
       <div className="rn-team-area ptb--120 bg_color--5">

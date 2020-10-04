@@ -3,6 +3,7 @@ import { Grid, Box } from "@material-ui/core";
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
+import PageHelmet from "./Helmet.jsx";
 
 class Signup extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Signup extends Component {
   render() {
     return (
       <div className="active-dark">
+         <PageHelmet pageTitle="Sign Up" />
         <Header
           headertransparent="header--transparent"
           colorblack="color--black"
@@ -26,7 +28,7 @@ class Signup extends Component {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          minHeight="100vh"
+          minHeight="120vh"
         >
           <div className="contact-form--1 col-xl-6 col-lg-6 col-md-6 col-sm-6">
             <div className="  order-2 order-lg-1">
@@ -101,7 +103,7 @@ class Signup extends Component {
                 </button>
 
                 <div className=" text-right blog-btn mt_sm--10 mt_md--10">
-                  <a href="/signup" className="btn-transparent rn-btn-dark">
+                  <a href="/login" className="btn-transparent rn-btn-dark">
                     <br />
                     <span>Already have an account? Login</span>
                   </a>

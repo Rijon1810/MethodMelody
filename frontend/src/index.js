@@ -65,6 +65,7 @@ import * as serviceWorker from "./serviceWorker";
 // Coustom Components
 import Login from "./LMS/component/Login";
 import Signup from "./LMS/component/Signup";
+import CourseList from "./LMS/component/CourseList";
 
 class Root extends Component {
   render() {
@@ -277,6 +278,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/signup`}
             component={Signup}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/courses`}
+            component={CourseList}
           />
           <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
           <Route component={error404} />
