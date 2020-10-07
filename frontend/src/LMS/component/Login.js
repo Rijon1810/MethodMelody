@@ -5,6 +5,9 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
+import auth from "../routes/auth";
+import axios from "../api/Config";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +16,28 @@ class Login extends Component {
       rnPassword: "",
     };
   }
+  userLogin(data) {
+    axios
+      .post("user/login/", data, {
+        headers: {
+          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+          "Content-type": "application/json",
+        },
+      })
+      .then((res) => {
+        auth.login(
+          res.data.v_token,
+          res.data.email,
+          res.data.name,
+          res.data.id,
+          res.data.course
+        );
+      })
+      .catch((res) => {
+        auth.logout();
+      });
+  }
+
   render() {
     return (
       <div className="active-dark">
@@ -70,6 +95,10 @@ class Login extends Component {
                   value="submit"
                   name="submit"
                   id="mc-embedded-subscribe"
+                  onClick={(e) => {
+                    const { rnEmail, rnPassword } = this.state;
+                    this.userLogin({ email: rnEmail, password: rnPassword });
+                  }}
                 >
                   Submit
                 </button>
