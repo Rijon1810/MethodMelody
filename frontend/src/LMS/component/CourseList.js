@@ -19,7 +19,7 @@ export default function CourseList(props) {
   const [courseList, setCourseList] = useState([]);
   const [featuredCourseList, setFeaturedCourseList] = useState([]);
   const [currentCourseList, setCurrentCourseList] = useState(1);
-  const [coursesPerPage, setCoursesPerPage] = useState(4);
+  const [coursesPerPage, setCoursesPerPage] = useState(8);
   const [popularCourseList, setPopularCourseList] = useState([]);
 
   // life-cycle methods
@@ -85,7 +85,7 @@ export default function CourseList(props) {
     var finalList = [];
     for (let i = 0; i < 6; i++) {
       finalList.push(temp[i]);
-      console.log(temp[i].sold);
+      console.log(finalList[i].sold);
     }
 
     setPopularCourseList(finalList);
@@ -113,7 +113,7 @@ export default function CourseList(props) {
         logoname="logo.png"
       />
       {/* Start All Course Area */}
-      <div className="container">
+      <div className="container pt--50">
         <div className="row">
           <div className="col-lg-6">
             <div className="section-title">
@@ -160,7 +160,7 @@ export default function CourseList(props) {
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
-                <div className="slick-space-gutter--15 slickdot--20">
+                <div className="slick-space-gutter--15 slickdot--10">
                   <Slider {...slickDot}>
                     {featuredCourseList.map((featuredCourse) => (
                       <div className="portfolio" key={featuredCourse._id}>
@@ -183,7 +183,7 @@ export default function CourseList(props) {
                             </h4>
                             <div className="portfolio-button">
                               <a className="rn-btn" href="/portfolio-details">
-                                Case Study
+                                View Course
                               </a>
                             </div>
                           </div>
@@ -218,7 +218,7 @@ export default function CourseList(props) {
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
-                <div className="slick-space-gutter--15 slickdot--20">
+                <div className="slick-space-gutter--15 slickdot--10">
                   <Slider {...slickDot}>
                     {popularCourseList.map((popularCourse) => (
                       <div className="portfolio" key={popularCourse._id}>
