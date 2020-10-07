@@ -62,6 +62,8 @@ import PricingTable from "./blocks/PricingTable";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
+import { ProtectedRoute } from "./LMS/routes/protected.route";
+
 // Coustom Components
 import Login from "./LMS/component/Login";
 import Signup from "./LMS/component/Signup";
