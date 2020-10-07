@@ -7,6 +7,8 @@ import Pagination from "./elements/common/Pagination.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import PageHelmet from "./Helmet.jsx";
 import Footer from "./Footer.jsx";
+import Slider from "react-slick";
+import { slickDot, portfolioSlick2 } from "../page-demo/script";
 
 //importing custom scripts
 import axios from "../api/Config";
@@ -15,13 +17,16 @@ import { Grid } from "@material-ui/core";
 export default function CourseList(props) {
   //hooks
   const [courseList, setCourseList] = useState([]);
+  const [featuredCourseList, setFeaturedCourseList] = useState([]);
   const [currentCourseList, setCurrentCourseList] = useState(1);
-  const [coursesPerPage, setCoursesPerPage] = useState(8);
+  const [coursesPerPage, setCoursesPerPage] = useState(4);
+  const [popularCourseList, setPopularCourseList] = useState([]);
 
   // life-cycle methods
 
   useEffect(() => {
     getAllCourses();
+    getFeaturedCourses();
   }, []);
 
   // custom functions
@@ -37,10 +42,54 @@ export default function CourseList(props) {
       .then((res) => {
         const courses = res.data;
         setCourseList(courses);
+        getPopularCourses(res.data);
         console.log(
           "all course list size fetched in CourseList: " + courses.length
         );
       });
+  }
+
+  // get featured course list
+  function getFeaturedCourses() {
+    axios
+      .get("course/featured/", {
+        headers: {
+          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+        },
+      })
+      .then((res, err) => {
+        const featuredList = res.data;
+        setFeaturedCourseList(featuredList);
+        console.log("course list fetched in home: " + res.data.length);
+      });
+  }
+
+  // get best selling course list
+  function getPopularCourses(list) {
+    //function to sort popular course list
+    function compare(a, b) {
+      // a should come before b in the sorted order
+      if (a.sold < b.sold) {
+        return 1;
+        // a should come after b in the sorted order
+      } else if (a.sold > b.sold) {
+        return -1;
+        // a and b are the same
+      } else {
+        return 0;
+      }
+    }
+    var temp = list;
+    temp.sort(compare);
+
+    var finalList = [];
+    for (let i = 0; i < 6; i++) {
+      finalList.push(temp[i]);
+      console.log(temp[i].sold);
+    }
+
+    setPopularCourseList(finalList);
+    console.log("top seller course = " + temp[0].title);
   }
 
   //get current courses
@@ -53,7 +102,8 @@ export default function CourseList(props) {
 
   //change page
   const paginate = (courseNumbers) => setCurrentCourseList(courseNumbers);
-
+  let title = "All Courses",
+    description = `${courseList.length} in-depth courses to subscribe`;
   return (
     <div className="active-dark">
       <PageHelmet pageTitle="All Courses" />
@@ -62,9 +112,19 @@ export default function CourseList(props) {
         colorblack="color--black"
         logoname="logo.png"
       />
+      {/* Start All Course Area */}
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6">
+            <div className="section-title">
+              <h3>{title}</h3>
+              <p className="theme-gradient">{description}</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      {/* Start Blog Area */}
-      <div className="rn-blog-area ptb--10 bg_color--5">
+      <div className="rn-blog-area pt--50 bg_color--5">
         <div className="container">
           <BlogList courseList={currentCourses} />
           <div className="row mt--20">
@@ -75,11 +135,127 @@ export default function CourseList(props) {
                 totalCourses={courseList.length}
                 paginate={paginate}
               />
-              {/* End Pagination Area */}
             </div>
           </div>
         </div>
       </div>
+      {/* End All Course Area */}
+
+      {/* Start Featured Course Area */}
+      <div className="container pt--100">
+        <div className="row">
+          <div className="col-lg-6">
+            <div className="section-title">
+              <h3>Featured Courses</h3>
+              <p className="theme-gradient">
+                You can also choose to start with one of our featured courses.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="portfolio-area pb--140 bg_color--5">
+        <div className="rn-slick-dot">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="slick-space-gutter--15 slickdot--20">
+                  <Slider {...slickDot}>
+                    {featuredCourseList.map((featuredCourse) => (
+                      <div className="portfolio" key={featuredCourse._id}>
+                        <div className="thumbnail-inner">
+                          <img
+                            src={
+                              "http://162.0.231.67/" + featuredCourse.thumbnail
+                            }
+                            width="100%"
+                          ></img>
+                          {/* <div className={`bg-blr-image ${value.image}`}></div> */}
+                        </div>
+                        <div className="content">
+                          <div className="inner">
+                            <p>{featuredCourse.catagory}</p>
+                            <h4>
+                              <a href="/portfolio-details">
+                                {featuredCourse.title}
+                              </a>
+                            </h4>
+                            <div className="portfolio-button">
+                              <a className="rn-btn" href="/portfolio-details">
+                                Case Study
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End Featured Course Area */}
+
+      {/* Start Best Seller Course Area */}
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6">
+            <div className="section-title">
+              <h3>Popular Courses</h3>
+              <p className="theme-gradient">
+                Our most subscribed courses till date.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="portfolio-area pb--140 bg_color--5">
+        <div className="rn-slick-dot">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="slick-space-gutter--15 slickdot--20">
+                  <Slider {...slickDot}>
+                    {popularCourseList.map((popularCourse) => (
+                      <div className="portfolio" key={popularCourse._id}>
+                        <div className="thumbnail-inner">
+                          <img
+                            src={
+                              "http://162.0.231.67/" + popularCourse.thumbnail
+                            }
+                            width="100%"
+                          ></img>
+                          {/* <div className={`bg-blr-image ${value.image}`}></div> */}
+                        </div>
+                        <div className="content">
+                          <div className="inner">
+                            <p>{popularCourse.catagory}</p>
+                            <h4>
+                              <a href="/portfolio-details">
+                                {popularCourse.title}
+                              </a>
+                            </h4>
+                            <div className="portfolio-button">
+                              <a className="rn-btn" href="/portfolio-details">
+                                Case Study
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* {End Best Seller Course Area} */}
       <Footer />
     </div>
   );
