@@ -46,7 +46,7 @@ class ServiceTwo extends Component {
           <div className="col-lg-4 col-12">
             <div className="section-title mt--30 mt_md--5 mt_mobile--5 mb_mobile--10">
               <h3 className="title">{title}</h3>
-              <p>{description}</p>
+              <p className="theme-gradient">{description}</p>
               <div className="service-btn">
                 <a className="btn-transparent rn-btn-dark" href="/service">
                   <span className="text">View Details</span>

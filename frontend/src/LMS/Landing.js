@@ -184,13 +184,13 @@ export default function Landing() {
       </div>
       {/* End Portfolio Area */}
 
-      {/* Start Service Area  */}
+      {/* Start Course Category Area  */}
       <div className="service-area ptb--80  bg_image bg_image--3">
         <div className="container">
           <ServiceTwo />
         </div>
       </div>
-      {/* End Service Area  */}
+      {/* End Course Category Area  */}
 
       {/* Start Single Slide */}
       <div class="embed-responsive embed-responsive-21by9 ">

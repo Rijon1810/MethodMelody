@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 //custom components
-import Header from "./Header.jsx";
+import Header from "./HeaderFive.jsx";
 import BlogList from "./elements/blog/BlogList";
 import Pagination from "./elements/common/Pagination.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import PageHelmet from "./Helmet.jsx";
+import Footer from "./Footer.jsx";
 
 //importing custom scripts
 import axios from "../api/Config";
@@ -13,28 +14,17 @@ import { Grid } from "@material-ui/core";
 
 export default function CourseList(props) {
   //hooks
-  const [callingComponent, setCallingComponent] = useState(
-    props.location.state.courses
-  );
-
   const [courseList, setCourseList] = useState([]);
+  const [currentCourseList, setCurrentCourseList] = useState(1);
+  const [coursesPerPage, setCoursesPerPage] = useState(8);
 
   // life-cycle methods
 
   useEffect(() => {
-    getCourseType();
+    getAllCourses();
   }, []);
 
   // custom functions
-
-  // get course list type
-  function getCourseType() {
-    switch (callingComponent) {
-      case "all":
-        getAllCourses();
-        break;
-    }
-  }
 
   // get courses list
   function getAllCourses() {
@@ -53,6 +43,17 @@ export default function CourseList(props) {
       });
   }
 
+  //get current courses
+  const indexOfLastCourse = currentCourseList * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = courseList.slice(
+    indexOfFirstCourse,
+    indexOfLastCourse
+  );
+
+  //change page
+  const paginate = (courseNumbers) => setCurrentCourseList(courseNumbers);
+
   return (
     <div className="active-dark">
       <PageHelmet pageTitle="All Courses" />
@@ -61,22 +62,25 @@ export default function CourseList(props) {
         colorblack="color--black"
         logoname="logo.png"
       />
-      {/* Start Breadcrump Area */}
-      <Breadcrumb title={"All Courses"} />
-      {/* End Breadcrump Area */}
+
       {/* Start Blog Area */}
       <div className="rn-blog-area ptb--10 bg_color--5">
         <div className="container">
-          <BlogList courseList={courseList} />
+          <BlogList courseList={currentCourses} />
           <div className="row mt--20">
             <div className="col-lg-12">
               {/* Start Pagination Area */}
-              <Pagination />
+              <Pagination
+                coursePerPage={coursesPerPage}
+                totalCourses={courseList.length}
+                paginate={paginate}
+              />
               {/* End Pagination Area */}
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
