@@ -165,7 +165,7 @@ export default function Landing() {
       {/* End Slider Area   */}
 
       {/* Start Featured Course Area Area */}
-      <div className="portfolio-area ptb--120">
+      <div className="portfolio-area pt--120">
         <div className="portfolio-sacousel-inner mb--55">
           <Portfolio />
         </div>
@@ -185,7 +185,7 @@ export default function Landing() {
       {/* End Portfolio Area */}
 
       {/* Start Course Category Area  */}
-      <div className="service-area ptb--80  bg_image bg_image--3">
+      <div className="service-area pt--50 pb--80  bg_image bg_image--3">
         <div className="container">
           <ServiceTwo />
         </div>
@@ -227,7 +227,7 @@ export default function Landing() {
 
       {/* Start Featured Instructor Area */}
       <div
-        className="rn-blog-area pt--120  mb-dec--30"
+        className="rn-blog-area pt--50  mb-dec--30"
         style={{ paddingBottom: "15ch" }}
       >
         <div className="container">
@@ -296,13 +296,13 @@ export default function Landing() {
       {/* End Blog Area */}
 
       {/* Start Student Feedback */}
-      <div className="col-lg-12">
+      <div className="col-lg-12 pt--50">
         <Testimonial />
       </div>
       {/* End Student Feedback */}
 
       {/* Start Team Area  */}
-      <div className="rn-team-area ptb--120 bg_color--5">
+      <div className="rn-team-area pt--120 bg_color--5">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
@@ -323,7 +323,7 @@ export default function Landing() {
       {/* End Team Area  */}
 
       {/* Start Faq Area */}
-      <div className="pv-feaq-area  ptb--120">
+      <div className="pv-feaq-area  pt--120">
         <div className="container">
           <div className="row">
             <div className="col-lg-8 offset-lg-2">

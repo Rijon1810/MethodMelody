@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import ScrollToTop from "react-scroll-up";
+import { FiChevronUp } from "react-icons/fi";
 
 //custom components
 import Header from "./HeaderFive.jsx";
@@ -12,10 +14,11 @@ import { slickDot, portfolioSlick2 } from "../page-demo/script";
 
 //importing custom scripts
 import axios from "../api/Config";
-import { Grid } from "@material-ui/core";
+import { Grid, Link, Avatar } from "@material-ui/core";
 
 export default function CourseList(props) {
   //hooks
+  const [instructorList, setInstructorList] = useState([]);
   const [courseList, setCourseList] = useState([]);
   const [featuredCourseList, setFeaturedCourseList] = useState([]);
   const [currentCourseList, setCurrentCourseList] = useState(1);
@@ -30,6 +33,24 @@ export default function CourseList(props) {
   }, []);
 
   // custom functions
+
+  // get instructor list
+  function getAllInstructors() {
+    axios
+      .get("instructor/", {
+        headers: {
+          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+        },
+      })
+      .then((res) => {
+        const instructors = res.data;
+        setInstructorList(instructors);
+        console.log(
+          "all instructor list size fetched in CourseList: " +
+            instructors.length
+        );
+      });
+  }
 
   // get courses list
   function getAllCourses() {
@@ -104,6 +125,31 @@ export default function CourseList(props) {
   const paginate = (courseNumbers) => setCurrentCourseList(courseNumbers);
   let title = "All Courses",
     description = `${courseList.length} in-depth courses to subscribe`;
+
+  //constants
+  const categoryList = [
+    "Guitar",
+    "Acoustic Fingerstyle Guitar",
+    "Drums",
+    "Piano/Keyboard",
+    "Sound Engineering",
+  ];
+
+  const levelList = ["Basic", "Intermediate", "Advance", "Pro", "Mastro"];
+
+  const moduleList = [
+    "Module 1",
+    "Module 2",
+    "Module 3",
+    "Module 4",
+    "Module 5",
+  ];
+
+  //custom styles
+  const mystyle = {
+    width: "35ch",
+  };
+
   return (
     <div className="active-dark">
       <PageHelmet pageTitle="All Courses" />
@@ -112,6 +158,62 @@ export default function CourseList(props) {
         colorblack="color--black"
         logoname="logo.png"
       />
+
+      <div className="col-lg-9 col-md-8 col-6">
+        <div className="header-right justify-content-end">
+          <nav className="mainmenunav d-lg-block">
+            <ul className="mainmenu">
+              <li className="has-droupdown">
+                <Link to="#">Courses</Link>
+                <ul className="submenu" style={mystyle}>
+                  {categoryList.map((category) => (
+                    <li>
+                      <Link to="/service">
+                        <Grid item>{category}</Grid>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li className="has-droupdown">
+                <Link to="#">Level</Link>
+                <ul className="submenu" style={mystyle}>
+                  {levelList.map((level) => (
+                    <li>
+                      <Link to="/service">
+                        <Grid item>{level}</Grid>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li className="has-droupdown">
+                <Link to="#">Module</Link>
+                <ul className="submenu" style={mystyle}>
+                  {moduleList.map((module) => (
+                    <li>
+                      <Link to="/service">
+                        <Grid item>{module}</Grid>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li className="has-droupdown">
+                <Link to="#">Instructor</Link>
+                <ul className="submenu" style={mystyle}>
+                  {instructorList.map((instructor) => (
+                    <li>
+                      <Link to="/service">{instructor.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
       {/* Start All Course Area */}
       <div className="container pt--50">
         <div className="row">
@@ -241,7 +343,7 @@ export default function CourseList(props) {
                             </h4>
                             <div className="portfolio-button">
                               <a className="rn-btn" href="/portfolio-details">
-                                Case Study
+                                View Course
                               </a>
                             </div>
                           </div>
@@ -256,6 +358,15 @@ export default function CourseList(props) {
         </div>
       </div>
       {/* {End Best Seller Course Area} */}
+
+      {/* Start Back To Top */}
+      <div className="backto-top">
+        <ScrollToTop showUnder={160}>
+          <FiChevronUp />
+        </ScrollToTop>
+      </div>
+      {/* End Back To Top */}
+
       <Footer />
     </div>
   );
