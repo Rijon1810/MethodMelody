@@ -15,6 +15,7 @@ import { slickDot, portfolioSlick2 } from "../page-demo/script";
 //importing custom scripts
 import axios from "../api/Config";
 import { Grid, Link, Avatar } from "@material-ui/core";
+import { ExpandMore } from "@material-ui/icons";
 
 export default function CourseList(props) {
   //hooks
@@ -113,6 +114,8 @@ export default function CourseList(props) {
     console.log("top seller course = " + temp[0].title);
   }
 
+  // get filtered courses
+
   //get current courses
   const indexOfLastCourse = currentCourseList * coursesPerPage;
   const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
@@ -159,48 +162,63 @@ export default function CourseList(props) {
         logoname="logo.png"
       />
 
-      <div className="col-lg-9 col-md-8 col-6">
-        <div className="header-right justify-content-end">
+      <div className="container mb--50 mt--50">
+        <div className="section-title">
+          <h3>Filter By </h3>
+        </div>
+        <div className="header-left d-flex align-items-center">
           <nav className="mainmenunav d-lg-block">
             <ul className="mainmenu">
               <li className="has-droupdown">
-                <Link to="#">Courses</Link>
+                <Link to="#">
+                  Courses
+                  <ExpandMore />
+                </Link>
                 <ul className="submenu" style={mystyle}>
                   {categoryList.map((category) => (
                     <li>
-                      <Link to="/service">
-                        <Grid item>{category}</Grid>
+                      <Link
+                        to="#"
+                        // onClick={}
+                      >
+                        {" "}
+                        {category}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </li>
               <li className="has-droupdown">
-                <Link to="#">Level</Link>
+                <Link to="#">
+                  Level
+                  <ExpandMore />
+                </Link>
                 <ul className="submenu" style={mystyle}>
                   {levelList.map((level) => (
                     <li>
-                      <Link to="/service">
-                        <Grid item>{level}</Grid>
-                      </Link>
+                      <Link to="/service">{level}</Link>
                     </li>
                   ))}
                 </ul>
               </li>
               <li className="has-droupdown">
-                <Link to="#">Module</Link>
+                <Link to="#">
+                  Module
+                  <ExpandMore />
+                </Link>
                 <ul className="submenu" style={mystyle}>
                   {moduleList.map((module) => (
                     <li>
-                      <Link to="/service">
-                        <Grid item>{module}</Grid>
-                      </Link>
+                      <Link to="/service">{module}</Link>
                     </li>
                   ))}
                 </ul>
               </li>
               <li className="has-droupdown">
-                <Link to="#">Instructor</Link>
+                <Link to="#">
+                  Instructor
+                  <ExpandMore />
+                </Link>
                 <ul className="submenu" style={mystyle}>
                   {instructorList.map((instructor) => (
                     <li>
