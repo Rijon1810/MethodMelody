@@ -15,7 +15,7 @@ import { slickDot, portfolioSlick2 } from "../page-demo/script";
 //importing custom scripts
 import axios from "../api/Config";
 import { Grid, Link, Avatar } from "@material-ui/core";
-import { ExpandMore } from "@material-ui/icons";
+import { ArrowDropDown, FilterList } from "@material-ui/icons";
 
 export default function CourseList(props) {
   //hooks
@@ -25,6 +25,12 @@ export default function CourseList(props) {
   const [currentCourseList, setCurrentCourseList] = useState(1);
   const [coursesPerPage, setCoursesPerPage] = useState(8);
   const [popularCourseList, setPopularCourseList] = useState([]);
+
+  // filters
+  const [selectedCategory, selectCategory] = useState("");
+  const [selectedLevel, selectLevel] = useState("");
+  const [selectedModule, selectModule] = useState("");
+  const [selectedInstructor, selectInstructor] = useState("");
 
   // life-cycle methods
 
@@ -150,7 +156,7 @@ export default function CourseList(props) {
 
   //custom styles
   const mystyle = {
-    width: "35ch",
+    cursor: "pointer",
   };
 
   return (
@@ -162,73 +168,105 @@ export default function CourseList(props) {
         logoname="logo.png"
       />
 
-      <div className="container mb--50 mt--50">
-        <div className="section-title">
-          <h3>Filter By </h3>
+      <div className="container mb--50 mt--50 row-sm-9">
+        <div className="header-left d-flex align-items-center">
+          <h4>
+            Filter By <FilterList />
+          </h4>
         </div>
         <div className="header-left d-flex align-items-center">
-          <nav className="mainmenunav d-lg-block">
-            <ul className="mainmenu">
-              <li className="has-droupdown">
-                <Link to="#">
-                  Courses
-                  <ExpandMore />
-                </Link>
-                <ul className="submenu" style={mystyle}>
-                  {categoryList.map((category) => (
-                    <li>
-                      <Link
-                        to="#"
-                        // onClick={}
-                      >
-                        {" "}
-                        {category}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-              <li className="has-droupdown">
-                <Link to="#">
-                  Level
-                  <ExpandMore />
-                </Link>
-                <ul className="submenu" style={mystyle}>
-                  {levelList.map((level) => (
-                    <li>
-                      <Link to="/service">{level}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-              <li className="has-droupdown">
-                <Link to="#">
-                  Module
-                  <ExpandMore />
-                </Link>
-                <ul className="submenu" style={mystyle}>
-                  {moduleList.map((module) => (
-                    <li>
-                      <Link to="/service">{module}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-              <li className="has-droupdown">
-                <Link to="#">
-                  Instructor
-                  <ExpandMore />
-                </Link>
-                <ul className="submenu" style={mystyle}>
-                  {instructorList.map((instructor) => (
-                    <li>
-                      <Link to="/service">{instructor.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            </ul>
-          </nav>
+          <span class="border border-light rounded-lg pl--50 pr--50">
+            <nav className="mainmenunav d-lg-block">
+              <ul className="mainmenu">
+                <li className="has-droupdown" style={mystyle}>
+                  <Link to="#">
+                    Courses <ArrowDropDown />
+                  </Link>
+                  <ul className="submenu">
+                    {categoryList.map((category) => (
+                      <li>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            selectCategory(category);
+                            console.log(`category selected: ${category}`);
+                          }}
+                        >
+                          {" "}
+                          {category}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li className="has-droupdown">
+                  <Link to="#">
+                    Level
+                    <ArrowDropDown />
+                  </Link>
+                  <ul className="submenu" style={mystyle}>
+                    {levelList.map((level) => (
+                      <li>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            selectLevel(level);
+                            console.log(`level selected: ${level}`);
+                          }}
+                        >
+                          {level}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li className="has-droupdown">
+                  <Link to="#">
+                    Module
+                    <ArrowDropDown />
+                  </Link>
+                  <ul className="submenu" style={mystyle}>
+                    {moduleList.map((module) => (
+                      <li>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            selectModule(module);
+                            console.log(`module selected: ${module}`);
+                          }}
+                        >
+                          {module}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li className="has-droupdown">
+                  <Link to="#">
+                    Instructor
+                    <ArrowDropDown />
+                  </Link>
+                  <ul className="submenu" style={mystyle}>
+                    {instructorList.map((instructor) => (
+                      <li>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            selectInstructor(instructor._id);
+                            console.log(
+                              `instructor seleected: ${instructor._id}`
+                            );
+                          }}
+                        >
+                          {instructor.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </span>
         </div>
       </div>
 
