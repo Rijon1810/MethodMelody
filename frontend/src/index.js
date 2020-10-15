@@ -68,6 +68,7 @@ import { ProtectedRoute } from "./LMS/routes/protected.route";
 import Login from "./LMS/component/Login";
 import Signup from "./LMS/component/Signup";
 import CourseList from "./LMS/component/CourseList";
+import CourseView from "./LMS/component/CourseView";
 
 class Root extends Component {
   render() {
@@ -285,6 +286,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/courses`}
             component={CourseList}
+          />
+           <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/courseview`}
+            component={CourseView}
           />
           <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
           <Route component={error404} />
