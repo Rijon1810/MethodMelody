@@ -199,7 +199,7 @@ export default function CourseList(props) {
                     ))}
                   </ul>
                 </li>
-                <li className="has-droupdown">
+                <li className="has-droupdown"style={mystyle}>
                   <Link to="#">
                     Level
                     <ArrowDropDown />
@@ -220,7 +220,7 @@ export default function CourseList(props) {
                     ))}
                   </ul>
                 </li>
-                <li className="has-droupdown">
+                <li className="has-droupdown"style={mystyle}>
                   <Link to="#">
                     Module
                     <ArrowDropDown />
@@ -241,7 +241,7 @@ export default function CourseList(props) {
                     ))}
                   </ul>
                 </li>
-                <li className="has-droupdown">
+                <li className="has-droupdown"style={mystyle}>
                   <Link to="#">
                     Instructor
                     <ArrowDropDown />
