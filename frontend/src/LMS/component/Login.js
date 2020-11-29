@@ -16,7 +16,10 @@ class Login extends Component {
       rnPassword: "",
     };
   }
-  userLogin(data) {
+
+  userLogin(event) {
+    event.preventDefault();
+    const data = { email: this.state.rnEmail, password: this.state.rnPassword };
     axios
       .post("user/login/", data, {
         headers: {
@@ -25,6 +28,7 @@ class Login extends Component {
         },
       })
       .then((res) => {
+        console.log(res);
         auth.login(
           res.data.v_token,
           res.data.email,
@@ -95,10 +99,7 @@ class Login extends Component {
                   value="submit"
                   name="submit"
                   id="mc-embedded-subscribe"
-                  onClick={(e) => {
-                    const { rnEmail, rnPassword } = this.state;
-                    this.userLogin({ email: rnEmail, password: rnPassword });
-                  }}
+                  onClick={(event) => this.userLogin(event)}
                 >
                   Submit
                 </button>
