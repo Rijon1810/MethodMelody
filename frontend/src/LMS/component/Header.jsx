@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FiX, FiMenu } from "react-icons/fi";
+import {
+  LocalLibraryOutlined,
+  PowerSettingsNewOutlined,
+  AccountCircleOutlined,
+  ForumOutlined,
+} from "@material-ui/icons";
 
 //importing custom scripts
 import axios from "../api/Config";
@@ -193,31 +199,67 @@ class Header extends Component {
                 <li className="has-droupdown">
                   <Link to="/courseview">Cart</Link>
                 </li>
-                {/* <li className="has-droupdown"><Link to="#" >Blocks</Link>
-                                    <ul className="submenu">
-                                        <li><Link to="/portfolio">Portfolio</Link></li>
-                                        <li><Link to="/team">Team</Link></li>
-                                        <li><Link to="/service">Service</Link></li>
-                                        <li><Link to="/video-popup">Video Popup</Link></li>
-                                        <li><Link to="/progressbar">Progressbar</Link></li>
-                                        <li><Link to="/gallery">Gallery</Link></li>
-                                        <li><Link to="/counters">Counters</Link></li>
-                                        <li><Link to="/blog">Blog List</Link></li>
-                                        <li><Link to="/clint-logo">Clint Logo</Link></li>
-                                        <li><Link to="/contact-form">Contact Form</Link></li>
-                                        <li><Link to="/google-map">Google Map</Link></li>
-                                        <li><Link to="/columns">Columns</Link></li>
-                                        <li><Link to="/pricing-table">Pricing Table</Link></li>
-                                    </ul>
-                                </li> */}
-                {/* <li><Link to="/contact" >Contact</Link></li> */}
+                {localStorage.getItem("name") ? (
+                  <li className="has-droupdown">
+                    <Link to="#">{localStorage.getItem("name")}</Link>
+                    <ul className="submenu" style={mystyle}>
+                      <li>
+                        {" "}
+                        <Link to="/service">
+                          <Grid container direction="row" alignItems="center">
+                            <Grid item style={{ marginRight: 10 }}>
+                              <LocalLibraryOutlined />
+                            </Grid>
+                            <Grid item>Classroom</Grid>
+                          </Grid>
+                        </Link>
+                      </li>
+                      <li>
+                        {" "}
+                        <Link to="/service">
+                          <Grid container direction="row" alignItems="center">
+                            <Grid item style={{ marginRight: 10 }}>
+                              <AccountCircleOutlined />
+                            </Grid>
+                            <Grid item>Profile</Grid>
+                          </Grid>
+                        </Link>
+                      </li>
+                      <li>
+                        {" "}
+                        <Link to="/service">
+                          <Grid container direction="row" alignItems="center">
+                            <Grid item style={{ marginRight: 10 }}>
+                              <ForumOutlined />
+                            </Grid>
+                            <Grid item>Messages</Grid>
+                          </Grid>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/service">
+                          <Grid container direction="row" alignItems="center">
+                            <Grid item style={{ marginRight: 10 }}>
+                              <PowerSettingsNewOutlined />
+                            </Grid>
+                            <Grid item>Log Out</Grid>
+                          </Grid>
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                ) : null}
               </ul>
             </nav>
-            <div className="header-btn">
-              <a className="rn-btn" href="/login">
-                <span>login</span>
-              </a>
-            </div>
+            {localStorage.getItem("name") === null && (
+              <div className="header-btn">
+                {console.log(localStorage.getItem("name"))}
+                <a className="rn-btn" href="/login">
+                  <span>Login</span>
+                </a>
+              </div>
+            )}
+
             {/* Start Humberger Menu  */}
             <div className="humberger-menu d-block d-lg-none pl--20">
               <span

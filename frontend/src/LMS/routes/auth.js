@@ -13,6 +13,7 @@ class Auth {
     localStorage.setItem("id", id);
     localStorage.setItem("v_auth", "OK");
     localStorage.setItem("course", course);
+    
   }
 
   logout() {
