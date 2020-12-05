@@ -3,9 +3,28 @@ import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 let TeamContent = [
   {
+    images: "04",
+    title: "Arko Newaz Mahmood",
+    designation: "Founder, CEO",
+    socialNetwork: [
+      {
+        icon: <FaFacebookF />,
+        url: "#",
+      },
+      {
+        icon: <FaLinkedinIn />,
+        url: "#",
+      },
+      {
+        icon: <FaTwitter />,
+        url: "#",
+      },
+    ],
+  },
+  {
     images: "01",
-    title: "Jone Due",
-    designation: "Sr. Web Developer",
+    title: "Shabaz Lohan",
+    designation: "COO",
     socialNetwork: [
       {
         icon: <FaFacebookF />,
@@ -23,8 +42,8 @@ let TeamContent = [
   },
   {
     images: "02",
-    title: "Fatima Asrafi",
-    designation: "Front-end Engineer",
+    title: "Nazif Muhammad Irad",
+    designation: "Creative Head",
     socialNetwork: [
       {
         icon: <FaFacebookF />,
@@ -38,8 +57,8 @@ let TeamContent = [
   },
   {
     images: "03",
-    title: "Al-Amin Bali",
-    designation: "Sr. Graphic Designer",
+    title: "Fahad Hossain",
+    designation: "Production Manager",
     socialNetwork: [
       {
         icon: <FaFacebookF />,

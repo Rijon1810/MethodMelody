@@ -23,11 +23,7 @@ class Login extends Component {
     return (
       <div className="active-dark">
         <PageHelmet pageTitle="Login" />
-        <Header
-          headertransparent="header--transparent"
-          colorblack="color--black"
-          logoname="logo.png"
-        />
+        <Header from="login"/>
         <Box
           display="flex"
           justifyContent="center"
@@ -97,7 +93,7 @@ class Login extends Component {
             </div>
           </div>
         </Box>
-        <Footer />
+  
       </div>
     );
   }

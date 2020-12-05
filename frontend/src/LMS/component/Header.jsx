@@ -6,6 +6,8 @@ import {
   PowerSettingsNewOutlined,
   AccountCircleOutlined,
   ForumOutlined,
+  ShoppingCartOutlined,
+  HomeOutlined,
 } from "@material-ui/icons";
 
 //importing custom scripts
@@ -110,35 +112,8 @@ class Header extends Component {
         };
       }
     }
-    const { logo, color = "default-color" } = this.props;
-    let logoUrl;
-    if (logo === "light") {
-      logoUrl = (
-        <img src="/assets/images/logo/logo-light.png" alt="Digital Agency" />
-      );
-    } else if (logo === "dark") {
-      logoUrl = (
-        <img src="/assets/images/logo/logo-dark.png" alt="Digital Agency" />
-      );
-    } else if (logo === "symbol-dark") {
-      logoUrl = (
-        <img
-          src="/assets/images/logo/logo-symbol-dark.png"
-          alt="Digital Agency"
-        />
-      );
-    } else if (logo === "symbol-light") {
-      logoUrl = (
-        <img
-          src="/assets/images/logo/logo-symbol-light.png"
-          alt="Digital Agency"
-        />
-      );
-    } else {
-      logoUrl = (
-        <img src="/assets/images/logo/logo-white.png" alt="Digital Agency" />
-      );
-    }
+
+    var color = "default-color";
 
     return (
       <header
@@ -147,109 +122,146 @@ class Header extends Component {
         <div className="header-wrapper" id="header-wrapper">
           <div className="header-left">
             <div className="logo">
-              <a href="/">{logoUrl}</a>
+              <a href="/">
+                <img
+                  src="/assets/images/logo/logo-white.png"
+                  alt="Digital Agency"
+                />
+              </a>
             </div>
           </div>
           <div className="header-right">
             <nav className="mainmenunav d-lg-block">
-              <ul className="mainmenu">
-                <li className="has-droupdown">
-                  <Link to="#">Courses</Link>
-                  <ul className="submenu" style={mystyle}>
-                    {categoryList.map((category) => (
-                      <li>
-                        <Link to="/service">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              {" "}
-                              <Avatar alt={category.alt} src={category.src} />
-                            </Grid>
-                            <Grid item>{category.primary}</Grid>
-                          </Grid>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li className="has-droupdown">
-                  <Link to="/service">Musicians</Link>
-                  <ul className="submenu" style={mystyle}>
-                    {this.state.instructorList.map((instructor) => (
-                      <li>
-                        <Link to="/service">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              {" "}
-                              <Avatar
-                                alt={instructor.name}
-                                src={"http://162.0.231.67/" + instructor.photo}
-                              />
-                            </Grid>
-                            <Grid item>{instructor.name}</Grid>
-                          </Grid>
-                        </Link>
-                      </li>
-                    ))}
-                    {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
-                                        <li><Link to="/service-details">Service Details</Link></li> */}
-                  </ul>
-                </li>
-                {/* <li><Link to="/about" >About</Link></li> */}
-
-                <li className="has-droupdown">
-                  <Link to="/courseview">Cart</Link>
-                </li>
-                {localStorage.getItem("name") ? (
+              {this.props.from === "landing" && (
+                <ul className="mainmenu">
                   <li className="has-droupdown">
-                    <Link to="#">{localStorage.getItem("name")}</Link>
+                    <Link to="#">Courses</Link>
                     <ul className="submenu" style={mystyle}>
-                      <li>
-                        {" "}
-                        <Link to="/service">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              <LocalLibraryOutlined />
+                      {categoryList.map((category) => (
+                        <li>
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                {" "}
+                                <Avatar alt={category.alt} src={category.src} />
+                              </Grid>
+                              <Grid item>{category.primary}</Grid>
                             </Grid>
-                            <Grid item>Classroom</Grid>
-                          </Grid>
-                        </Link>
-                      </li>
-                      <li>
-                        {" "}
-                        <Link to="/service">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              <AccountCircleOutlined />
-                            </Grid>
-                            <Grid item>Profile</Grid>
-                          </Grid>
-                        </Link>
-                      </li>
-                      <li>
-                        {" "}
-                        <Link to="/service">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              <ForumOutlined />
-                            </Grid>
-                            <Grid item>Messages</Grid>
-                          </Grid>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/service">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              <PowerSettingsNewOutlined />
-                            </Grid>
-                            <Grid item>Log Out</Grid>
-                          </Grid>
-                        </Link>
-                      </li>
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   </li>
-                ) : null}
-              </ul>
+                  <li className="has-droupdown">
+                    <Link to="/service">Musicians</Link>
+                    <ul className="submenu" style={mystyle}>
+                      {this.state.instructorList.map((instructor) => (
+                        <li>
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                {" "}
+                                <Avatar
+                                  alt={instructor.name}
+                                  src={
+                                    "http://162.0.231.67/" + instructor.photo
+                                  }
+                                />
+                              </Grid>
+                              <Grid item>{instructor.name}</Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                      ))}
+                      {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
+                                        <li><Link to="/service-details">Service Details</Link></li> */}
+                    </ul>
+                  </li>
+                  {/* <li><Link to="/about" >About</Link></li> */}
+
+                  <li className="has-droupdown">
+                    <Link to="/courseview">
+                      <Grid container direction="row" alignItems="center">
+                        <Grid item style={{ marginRight: 10 }}>
+                          <ShoppingCartOutlined />
+                        </Grid>
+                        <Grid item>Cart</Grid>
+                      </Grid>
+                    </Link>
+                  </li>
+                  {localStorage.getItem("name") ? (
+                    <li className="has-droupdown">
+                      <Link to="#">
+                        <Grid container direction="row" alignItems="center">
+                          <Grid item style={{ marginRight: 10 }}>
+                            <AccountCircleOutlined />
+                          </Grid>
+                          <Grid item> {localStorage.getItem("name")}</Grid>
+                        </Grid>
+                      </Link>
+                      <ul className="submenu" style={mystyle}>
+                        <li>
+                          {" "}
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                <LocalLibraryOutlined />
+                              </Grid>
+                              <Grid item>Classroom</Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                        <li>
+                          {" "}
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                <AccountCircleOutlined />
+                              </Grid>
+                              <Grid item>Profile</Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                        <li>
+                          {" "}
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                <ForumOutlined />
+                              </Grid>
+                              <Grid item>Messages</Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="#">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                <PowerSettingsNewOutlined />
+                              </Grid>
+                              <Grid item>Log Out</Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                  ) : null}
+                </ul>
+              )}
+              {this.props.from === "login" && (
+                <ul className="mainmenu">
+                  <li className="has-droupdown">
+                    <Link to="/">
+                      <Grid container direction="row">
+                        <Grid item style={{ marginRight: 10 }}>
+                          <HomeOutlined />
+                        </Grid>
+                        <Grid item> Home</Grid>
+                      </Grid>
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </nav>
             {localStorage.getItem("name") === null && (
               <div className="header-btn">
