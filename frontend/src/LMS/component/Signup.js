@@ -5,6 +5,9 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
+import { useSelector, connect } from "react-redux";
+import { signUp } from "../../actions";
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,7 @@ class Signup extends Component {
   render() {
     return (
       <div className="active-dark">
-         <PageHelmet pageTitle="Sign Up" />
+        <PageHelmet pageTitle="Sign Up" />
         <Header
           headertransparent="header--transparent"
           colorblack="color--black"
@@ -98,6 +101,15 @@ class Signup extends Component {
                   value="submit"
                   name="submit"
                   id="mc-embedded-subscribe"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    this.props.signUpfn({
+                      name: this.state.rnName,
+                      confirmedPassword: this.state.rnConfirmPassword,
+                      email: this.state.rnEmail,
+                      password: this.state.rnPassword,
+                    });
+                  }}
                 >
                   Submit
                 </button>
@@ -117,4 +129,9 @@ class Signup extends Component {
     );
   }
 }
-export default Signup;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUpfn: (data) => dispatch(signUp(data)),
+  };
+};
+export default connect(null, mapDispatchToProps)(signUp);
