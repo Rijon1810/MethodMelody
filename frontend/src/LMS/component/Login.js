@@ -5,8 +5,8 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
-import auth from "../routes/auth";
-import axios from "../api/Config";
+import { useSelector, connect } from "react-redux";
+import { isLogged } from "../../actions";
 
 class Login extends Component {
   constructor(props) {
@@ -15,31 +15,8 @@ class Login extends Component {
       rnEmail: "",
       rnPassword: "",
     };
-  }
-
-  userLogin(event) {
-    event.preventDefault();
-    const data = { email: this.state.rnEmail, password: this.state.rnPassword };
-    axios
-      .post("user/login/", data, {
-        headers: {
-          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-          "Content-type": "application/json",
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        auth.login(
-          res.data.v_token,
-          res.data.email,
-          res.data.name,
-          res.data.id,
-          res.data.course
-        );
-      })
-      .catch((res) => {
-        auth.logout();
-      });
+    // const dispatch = useDispatch();
+    // const logged_in = useSelector((state) => state.isLogged);
   }
 
   render() {
@@ -99,7 +76,13 @@ class Login extends Component {
                   value="submit"
                   name="submit"
                   id="mc-embedded-subscribe"
-                  onClick={(event) => this.userLogin(event)}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    this.props.signIn({
+                      email: this.state.rnEmail,
+                      password: this.state.rnPassword,
+                    });
+                  }}
                 >
                   Submit
                 </button>
@@ -119,4 +102,9 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (data) => dispatch(isLogged(data)),
+  };
+};
+export default connect(null, mapDispatchToProps)(Login);

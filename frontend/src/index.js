@@ -70,6 +70,17 @@ import Signup from "./LMS/component/Signup";
 import CourseList from "./LMS/component/CourseList";
 import CourseView from "./LMS/component/CourseView";
 
+import { createStore } from "redux";
+
+import { Provider } from "react-redux";
+
+import allReducers from "./reducers";
+
+const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
 class Root extends Component {
   render() {
     return (
@@ -287,7 +298,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/courses`}
             component={CourseList}
           />
-           <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/courseview`}
             component={CourseView}
@@ -300,5 +311,10 @@ class Root extends Component {
   }
 }
 
-ReactDOM.render(<Root />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <Root />
+  </Provider>,
+  document.getElementById("root")
+);
 serviceWorker.register();
