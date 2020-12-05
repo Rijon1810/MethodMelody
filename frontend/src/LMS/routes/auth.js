@@ -6,24 +6,24 @@ class Auth {
   }
 
   login(v_token, email, type, name, id, course) {
-    this.authenticated = true;
+    //   this.authenticated = true;
     localStorage.setItem("v_token", v_token);
-    localStorage.setItem("email", email);
-    localStorage.setItem("type", type);
-    localStorage.setItem("name", name);
-    localStorage.setItem("id", id);
-    localStorage.setItem("v_auth", "OK");
-    localStorage.setItem("course", course);
+    //   localStorage.setItem("email", email);
+    //   localStorage.setItem("type", type);
+    //   localStorage.setItem("name", name);
+    //   localStorage.setItem("id", id);
+    //   localStorage.setItem("v_auth", "OK");
+    //   localStorage.setItem("course", course);
   }
 
   logout() {
-    this.authenticated = false;
+    //   this.authenticated = false;
     localStorage.removeItem("v_token");
-    localStorage.removeItem("name");
-    localStorage.removeItem("id");
-    localStorage.removeItem("email");
-    localStorage.removeItem("v_auth");
-    // localStorage.removeItem("course", course);
+    //   localStorage.removeItem("name");
+    //   localStorage.removeItem("id");
+    //   localStorage.removeItem("email");
+    //   localStorage.removeItem("v_auth");
+    //   // localStorage.removeItem("course", course);
   }
 
   isAuthenticated() {

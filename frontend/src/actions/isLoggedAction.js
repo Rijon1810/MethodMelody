@@ -17,12 +17,12 @@ export const isLogged = (data) => (dispatch) => {
         payload: res,
       });
       auth.login(
-        res.data.v_token,
-        res.data.email,
-        res.data.type,
-        res.data.name,
-        res.data.id,
-        res.data.course
+        res.data.v_token
+        //   res.data.email,
+        //   res.data.type,
+        //   res.data.name,
+        //   res.data.id,
+        //   res.data.course
       );
     })
     .catch((res) => {
