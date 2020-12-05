@@ -5,7 +5,7 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, connect } from "react-redux";
 import { isLogged } from "../../actions";
 
 class Login extends Component {
@@ -15,11 +15,11 @@ class Login extends Component {
       rnEmail: "",
       rnPassword: "",
     };
+    // const dispatch = useDispatch();
+    // const logged_in = useSelector((state) => state.isLogged);
   }
 
   render() {
-    const dispatch = useDispatch();
-    const logged_in = useSelector((state) => state.isLogged);
     return (
       <div className="active-dark">
         <PageHelmet pageTitle="Login" />
@@ -76,14 +76,13 @@ class Login extends Component {
                   value="submit"
                   name="submit"
                   id="mc-embedded-subscribe"
-                  onClick={() =>
-                    dispatch(
-                      isLogged({
-                        email: this.state.rnEmail,
-                        password: this.state.rnPassword,
-                      })
-                    )
-                  }
+                  onClick={(event) => {
+                    event.preventDefault();
+                    this.props.signIn({
+                      email: this.state.rnEmail,
+                      password: this.state.rnPassword,
+                    });
+                  }}
                 >
                   Submit
                 </button>
@@ -103,4 +102,9 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (data) => dispatch(isLogged(data)),
+  };
+};
+export default connect(null, mapDispatchToProps)(Login);

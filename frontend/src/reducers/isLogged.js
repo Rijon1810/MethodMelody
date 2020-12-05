@@ -25,7 +25,9 @@ const loggedReducer = (state = false, action) => {
         .catch((res) => {
           auth.logout();
         });
-      return !state;
+      return true;
+    case "SIGN_OUT":
+      return false;
     default:
       return state;
   }
