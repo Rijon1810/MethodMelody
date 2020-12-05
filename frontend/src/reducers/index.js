@@ -1,11 +1,8 @@
-import loggedReducer from "./isLogged";
-import signUpReducer from "./signUp";
-
 import { combineReducers } from "redux";
 
+import loggedReducer from "./isLoggedReducer";
 const allReducers = combineReducers({
   isLogged: loggedReducer,
-  signUp: signUpReducer,
 });
 
 export default allReducers;

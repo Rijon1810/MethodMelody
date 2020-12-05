@@ -70,16 +70,8 @@ import Signup from "./LMS/component/Signup";
 import CourseList from "./LMS/component/CourseList";
 import CourseView from "./LMS/component/CourseView";
 
-import { createStore } from "redux";
-
 import { Provider } from "react-redux";
-
-import allReducers from "./reducers";
-
-const store = createStore(
-  allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import { store } from "./store";
 
 class Root extends Component {
   render() {
@@ -293,7 +285,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/signup`}
             component={Signup}
           />
-          <Route
+          <ProtectedRoute
             exact
             path={`${process.env.PUBLIC_URL}/courses`}
             component={CourseList}

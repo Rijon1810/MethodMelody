@@ -5,8 +5,8 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
-import { useSelector, connect } from "react-redux";
-import { isLogged } from "../../actions";
+import { connect } from "react-redux";
+import { isLogged } from "../../actions/isLoggedAction";
 
 class Login extends Component {
   constructor(props) {
@@ -15,10 +15,7 @@ class Login extends Component {
       rnEmail: "",
       rnPassword: "",
     };
-    // const dispatch = useDispatch();
-    // const logged_in = useSelector((state) => state.isLogged);
   }
-
   render() {
     return (
       <div className="active-dark">
@@ -78,7 +75,7 @@ class Login extends Component {
                   id="mc-embedded-subscribe"
                   onClick={(event) => {
                     event.preventDefault();
-                    this.props.signIn({
+                    this.props.isLogged({
                       email: this.state.rnEmail,
                       password: this.state.rnPassword,
                     });
@@ -102,9 +99,9 @@ class Login extends Component {
     );
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signIn: (data) => dispatch(isLogged(data)),
-  };
-};
-export default connect(null, mapDispatchToProps)(Login);
+
+const mapStateToProps = (state) => ({
+  isLogged: state.isLogged.loginData,
+});
+
+export default connect(mapStateToProps, { isLogged })(Login);

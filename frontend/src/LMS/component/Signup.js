@@ -5,8 +5,8 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
-import { useSelector, connect } from "react-redux";
-import { signUp } from "../../actions";
+import { connect } from "react-redux";
+// import { signUp } from "../../actions";
 
 class Signup extends Component {
   constructor(props) {
@@ -129,9 +129,10 @@ class Signup extends Component {
     );
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signUpfn: (data) => dispatch(signUp(data)),
-  };
-};
-export default connect(null, mapDispatchToProps)(signUp);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     signUpfn: (data) => dispatch(signUp(data)),
+//   };
+// };
+// export default connect(null, mapDispatchToProps)(signUp);
+export default Signup;
