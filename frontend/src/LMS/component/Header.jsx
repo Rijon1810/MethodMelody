@@ -115,6 +115,10 @@ class Header extends Component {
 
     var color = "default-color";
 
+    function logout() {
+      localStorage.clear();
+    }
+
     return (
       <header
         className={`header-area formobile-menu header--transparent ${color}`}
@@ -235,12 +239,22 @@ class Header extends Component {
                         </li>
                         <li>
                           <Link to="#">
-                            <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10 }}>
-                                <PowerSettingsNewOutlined />
+                            <span
+                              onClick={() => {
+                                logout();
+                              }}
+                            >
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid item style={{ marginRight: 10 }}>
+                                  <PowerSettingsNewOutlined />
+                                </Grid>
+                                <Grid item>Log Out</Grid>
                               </Grid>
-                              <Grid item>Log Out</Grid>
-                            </Grid>
+                            </span>
                           </Link>
                         </li>
                       </ul>
@@ -251,14 +265,14 @@ class Header extends Component {
               {this.props.from === "login" && (
                 <ul className="mainmenu">
                   <li className="has-droupdown">
-                    <Link to="/">
+                    <a href="/">
                       <Grid container direction="row">
                         <Grid item style={{ marginRight: 10 }}>
                           <HomeOutlined />
                         </Grid>
                         <Grid item> Home</Grid>
                       </Grid>
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               )}
