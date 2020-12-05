@@ -262,7 +262,8 @@ class Header extends Component {
                   ) : null}
                 </ul>
               )}
-              {this.props.from === "login" && (
+              {(this.props.from === "login" ||
+                this.props.from === "signup") && (
                 <ul className="mainmenu">
                   <li className="has-droupdown">
                     <a href="/">
@@ -277,14 +278,16 @@ class Header extends Component {
                 </ul>
               )}
             </nav>
-            {localStorage.getItem("name") === null && (
-              <div className="header-btn">
-                {console.log(localStorage.getItem("name"))}
-                <a className="rn-btn" href="/login">
-                  <span>Login</span>
-                </a>
-              </div>
-            )}
+            {localStorage.getItem("name") === null &&
+              this.props.from !== "login" &&
+              this.props.from !== "signup" && (
+                <div className="header-btn">
+                  {console.log(localStorage.getItem("name"))}
+                  <a className="rn-btn" href="/login">
+                    <span>Login</span>
+                  </a>
+                </div>
+              )}
 
             {/* Start Humberger Menu  */}
             <div className="humberger-menu d-block d-lg-none pl--20">
