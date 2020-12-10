@@ -6,8 +6,8 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
-import { useSelector, connect } from "react-redux";
-import { signUp } from "../../actions";
+import { connect } from "react-redux";
+// import { signUp } from "../../actions";
 
 class Signup extends Component {
   constructor(props) {

@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import { portfolioSlick2 } from "../page-demo/script";
 
+import { connect } from "react-redux";
+import { getCourse } from "../../actions/getCourseAction";
+
 //importing custom scripts
-import axios from "../api/Config";
 
 // const PortfolioList = [
 //     {
@@ -45,26 +47,9 @@ class Portfolio extends Component {
       courseList: [],
     };
   }
-
-  // my dunctions
-  //get all courses from server later it will be list all featured courses
-  getCourses() {
-    axios
-      .get("course/featured/", {
-        headers: {
-          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-        },
-      })
-      .then((res, err) => {
-        const courseList = res.data;
-        this.setState({ courseList: courseList });
-        console.log("course list fetched in home: " + res.data.length);
-      });
-  }
-
   // life-cycle methods
   componentWillMount() {
-    this.getCourses();
+    // this.getCourses();
   }
 
   render() {
@@ -85,13 +70,13 @@ class Portfolio extends Component {
           </div>
           <div className="portfolio-slick-activation mt--70 mt_sm--40">
             <Slider {...portfolioSlick2}>
-              {this.state.courseList.map((course) => (
+              {this.props.courseList.map((course) => (
                 <div className="portfolio" key={course._id}>
                   <div className="thumbnail-inner">
                     {/* <div className={`thumbnail ${"http://162.0.231.67"+course.thumbnail}`}></div>
                                         <div className={`bg-blr-image ${"http://162.0.231.67"+course.thumbnail}`}></div> */}
                     <img
-                      src={"http://162.0.231.67/" + course.thumbnail}
+                      src={"http://63.250.33.174/" + course.thumbnail}
                       width="100%"
                     />
                   </div>
@@ -117,4 +102,11 @@ class Portfolio extends Component {
     );
   }
 }
-export default Portfolio;
+
+const mapStateToProps = (state) => ({
+  courseList: state.getCourse.courseList,
+});
+
+
+export default connect(mapStateToProps, { getCourse })(Portfolio);
+

@@ -1,11 +1,13 @@
-import loggedReducer from "./isLogged";
-import signUpReducer from "./signUp";
-
 import { combineReducers } from "redux";
+
+import loggedReducer from "./isLoggedReducer";
+import getInstructorReducer from "./getInstructorReducer";
+import getCourseReducer from "./getCourseReducer";
 
 const allReducers = combineReducers({
   isLogged: loggedReducer,
-  signUp: signUpReducer,
+  getInstructor: getInstructorReducer,
+  getCourse: getCourseReducer,
 });
 
 export default allReducers;
