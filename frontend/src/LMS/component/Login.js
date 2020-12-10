@@ -101,7 +101,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isLogged: state.isLogged.loginData,
+  isLogged: state.isLogged.payload,
 });
 
 export default connect(mapStateToProps, { isLogged })(Login);

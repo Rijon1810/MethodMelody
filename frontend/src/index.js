@@ -72,6 +72,8 @@ import CourseView from "./LMS/component/CourseView";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { Datastore } from "./store";
+
 
 class Root extends Component {
   render() {

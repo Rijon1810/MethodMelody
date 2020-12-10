@@ -29,8 +29,10 @@ import Team from "./component/Team.jsx";
 import Testimonial from "./component/TestimonialOne.jsx";
 import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
 
-//importing custom scripts
-import axios from "./api/Config";
+import { useSelector, useDispatch } from "react-redux";
+import { getInstructor } from "../actions/getInstructorAction";
+import { getCourse } from "../actions/getCourseAction";
+
 
 //constants
 const SlideList = [
@@ -67,37 +69,25 @@ const SlideList = [
 ];
 
 export default function Landing() {
-  //hooks
-  const [instructorList, setInstructorList] = useState([]);
+  const instructorList = useSelector(
+    (state) => state.getInstructor.instructorList
+  );
+  const length = useSelector((state) => state.getInstructor.length);
+
+  const dispatch = useDispatch();
 
   let history = useHistory();
 
   // const PostList = BlogContent.slice(0, 4);
-
+  // dispatch(getInstructor());
   // life-cycle methods
+  // alert(instructorList);
+  // const instructorLists = useSelector((state) => state.login);
+
   useEffect(() => {
-    getInstructors();
-  }, []);
-
-  // my functions
-
-  // get all instructor list from server later it will be list of all featured instructors
-  function getInstructors() {
-    axios
-      .get("instructor/featured/", {
-        headers: {
-          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-        },
-      })
-      .then((res) => {
-        const instructorList = res.data;
-        setInstructorList(instructorList);
-        console.log(
-          "featured instructor list size fetched in Landing: " +
-            instructorList.length
-        );
-      });
-  }
+    dispatch(getInstructor());
+    dispatch(getCourse());
+  }, [dispatch]);
 
   // view all course handler
   function handleViewAllCourse() {
@@ -249,6 +239,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="row mt--60 mt_sm--40">
+            {console.log(JSON.stringify(instructorList))}
             {instructorList.map((instructor) => (
               <div className="col-lg-4 col-md-4 col-12" key={instructor._id}>
                 <div className="blog blog-style--1">
@@ -256,7 +247,7 @@ export default function Landing() {
                     <a href="/blog-details">
                       <img
                         className="w-100"
-                        src={`http://162.0.231.67/${instructor.photo}`}
+                        src={`http://63.250.33.174/${instructor.photo}`}
                         alt="Blog Images"
                       />
                     </a>

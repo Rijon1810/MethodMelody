@@ -16,6 +16,7 @@ import { slickDot, portfolioSlick2 } from "../page-demo/script";
 import axios from "../api/Config";
 import { Grid, Link, Avatar } from "@material-ui/core";
 import { ArrowDropDown, FilterList } from "@material-ui/icons";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function CourseList(props) {
   //hooks
@@ -32,6 +33,11 @@ export default function CourseList(props) {
   const [selectedModule, selectModule] = useState("");
   const [selectedInstructor, selectInstructor] = useState("");
 
+  const getAllCourse = useSelector((state) => state.getCourse.courseList);
+
+  const getFeaturedCourse = useSelector(
+    (state) => state.getCourse.featuredCourseList
+  );
   // life-cycle methods
 
   useEffect(() => {
@@ -42,54 +48,37 @@ export default function CourseList(props) {
   // custom functions
 
   // get instructor list
-  function getAllInstructors() {
-    axios
-      .get("instructor/", {
-        headers: {
-          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-        },
-      })
-      .then((res) => {
-        const instructors = res.data;
-        setInstructorList(instructors);
-        console.log(
-          "all instructor list size fetched in CourseList: " +
-            instructors.length
-        );
-      });
-  }
+  // function getAllInstructors() {
+  //   axios
+  //     .get("instructor/", {
+  //       headers: {
+  //         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       const instructors = res.data;
+  //       setInstructorList(instructors);
+  //       console.log(
+  //         "all instructor list size fetched in CourseList: " +
+  //           instructors.length
+  //       );
+  //     });
+  // }
 
   // get courses list
   function getAllCourses() {
-    axios
-      .get("course/", {
-        headers: {
-          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-        },
-      })
-      .then((res) => {
-        const courses = res.data;
-        setCourseList(courses);
-        getPopularCourses(res.data);
-        console.log(
-          "all course list size fetched in CourseList: " + courses.length
-        );
-      });
+    const courses = getAllCourse;
+    setCourseList(courses);
+    getPopularCourses(getAllCourse);
+    console.log(
+      "all course list size fetched in CourseList: " + getAllCourse
+    );
   }
 
   // get featured course list
   function getFeaturedCourses() {
-    axios
-      .get("course/featured/", {
-        headers: {
-          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-        },
-      })
-      .then((res, err) => {
-        const featuredList = res.data;
-        setFeaturedCourseList(featuredList);
-        console.log("course list fetched in home: " + res.data.length);
-      });
+    setFeaturedCourseList(getFeaturedCourse);
+    console.log("course list fetched in home: " + getFeaturedCourse);
   }
 
   // get best selling course list
@@ -111,7 +100,7 @@ export default function CourseList(props) {
     temp.sort(compare);
 
     var finalList = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < temp.length; i++) {
       finalList.push(temp[i]);
       console.log(finalList[i].sold);
     }
@@ -199,7 +188,7 @@ export default function CourseList(props) {
                     ))}
                   </ul>
                 </li>
-                <li className="has-droupdown"style={mystyle}>
+                <li className="has-droupdown" style={mystyle}>
                   <Link to="#">
                     Level
                     <ArrowDropDown />
@@ -220,7 +209,7 @@ export default function CourseList(props) {
                     ))}
                   </ul>
                 </li>
-                <li className="has-droupdown"style={mystyle}>
+                <li className="has-droupdown" style={mystyle}>
                   <Link to="#">
                     Module
                     <ArrowDropDown />
@@ -241,7 +230,7 @@ export default function CourseList(props) {
                     ))}
                   </ul>
                 </li>
-                <li className="has-droupdown"style={mystyle}>
+                <li className="has-droupdown" style={mystyle}>
                   <Link to="#">
                     Instructor
                     <ArrowDropDown />
@@ -325,7 +314,7 @@ export default function CourseList(props) {
                         <div className="thumbnail-inner">
                           <img
                             src={
-                              "http://162.0.231.67/" + featuredCourse.thumbnail
+                              "http://63.250.33.174/" + featuredCourse.thumbnail
                             }
                             width="100%"
                           ></img>

@@ -3,7 +3,9 @@ import thunk from "redux-thunk";
 import allReducers from "./reducers";
 import { loadState, saveState } from "./localStorage";
 
-const initialState = loadState();
+// const initialState = loadState();
+const initialState = {};
+
 
 const middleware = [thunk];
 
@@ -16,6 +18,6 @@ export const store = createStore(
   )
 );
 
-store.subscribe(() => {
-  saveState(store.getState());
-});
+// store.subscribe(() => {
+//   saveState(store.getState());
+// });

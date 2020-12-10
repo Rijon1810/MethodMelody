@@ -1,32 +1,27 @@
 import axios from "../LMS/api/Config";
-import auth from "../LMS/routes/auth";
-import { IS_LOGGED } from "./types";
+import { GET_INSTRUCTOR } from "./types";
 
-export const isLogged = (data) => (dispatch) => {
-  console.log(data);
+export const getInstructor = () => (dispatch) => {
   axios
-    .post("user/login/", data, {
+    .get("instructor/", {
       headers: {
         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-        "Content-type": "application/json",
       },
     })
     .then((res) => {
       dispatch({
-        type: IS_LOGGED,
+        type: GET_INSTRUCTOR,
         payload: res.data,
-        login: true,
+        length: res.data.length,
       });
-      auth.login(
-        res.data.v_token
-      );
     })
-    .catch((res) => {
+    .catch((err) => {
       dispatch({
-        type: IS_LOGGED,
+        type: GET_INSTRUCTOR,
         payload: [],
-        login: false,
+        length: 0,
       });
-      auth.logout();
+      console.log(err);
     });
+    return "True"
 };

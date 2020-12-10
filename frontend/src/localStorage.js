@@ -1,14 +1,14 @@
-import auth from "../LMS/routes/auth";
+import auth from "./LMS/routes/auth";
 
 export const loadState = () => {
   try {
-    if (auth.isAuthenticated()) {
-      const serializedState = localStorage.getItem("state");
-      if (serializedState === null) {
-        return undefined;
-      }
-      return JSON.parse(serializedState);
+    // if (auth.isAuthenticated()) {
+    const serializedState = localStorage.getItem("state");
+    if (serializedState === null) {
+      return undefined;
     }
+    return JSON.parse(serializedState);
+    // }
   } catch (err) {
     return undefined;
   }
