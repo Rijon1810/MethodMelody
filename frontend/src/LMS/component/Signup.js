@@ -22,11 +22,7 @@ class Signup extends Component {
     return (
       <div className="active-dark">
         <PageHelmet pageTitle="Sign Up" />
-        <Header
-          headertransparent="header--transparent"
-          colorblack="color--black"
-          logoname="logo.png"
-        />
+        <Header from="signup" />
         <Box
           display="flex"
           justifyContent="center"
@@ -129,10 +125,12 @@ class Signup extends Component {
     );
   }
 }
+
+export default Signup;
+
 // const mapDispatchToProps = (dispatch) => {
 //   return {
 //     signUpfn: (data) => dispatch(signUp(data)),
 //   };
 // };
 // export default connect(null, mapDispatchToProps)(signUp);
-export default Signup;

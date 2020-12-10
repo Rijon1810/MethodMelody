@@ -97,9 +97,7 @@ export default function Landing() {
   return (
     <div className="active-dark">
       <Header
-        headertransparent="header--transparent"
-        colorblack="color--black"
-        logoname="logo.png"
+        from="landing"
       />
 
       {/* Start Slider Area   */}
@@ -307,7 +305,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="row">
-            <Team column="col-lg-4 col-md-6 col-sm-6 col-12" />
+            <Team column="col-lg-3 col-md-6 col-sm-6 col-12" />
           </div>
         </div>
       </div>

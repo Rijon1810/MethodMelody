@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FiX, FiMenu } from "react-icons/fi";
+import {
+  LocalLibraryOutlined,
+  PowerSettingsNewOutlined,
+  AccountCircleOutlined,
+  ForumOutlined,
+  ShoppingCartOutlined,
+  HomeOutlined,
+} from "@material-ui/icons";
 
 //importing custom scripts
 import axios from "../api/Config";
@@ -104,34 +112,11 @@ class Header extends Component {
         };
       }
     }
-    const { logo, color = "default-color" } = this.props;
-    let logoUrl;
-    if (logo === "light") {
-      logoUrl = (
-        <img src="/assets/images/logo/logo-light.png" alt="Digital Agency" />
-      );
-    } else if (logo === "dark") {
-      logoUrl = (
-        <img src="/assets/images/logo/logo-dark.png" alt="Digital Agency" />
-      );
-    } else if (logo === "symbol-dark") {
-      logoUrl = (
-        <img
-          src="/assets/images/logo/logo-symbol-dark.png"
-          alt="Digital Agency"
-        />
-      );
-    } else if (logo === "symbol-light") {
-      logoUrl = (
-        <img
-          src="/assets/images/logo/logo-symbol-light.png"
-          alt="Digital Agency"
-        />
-      );
-    } else {
-      logoUrl = (
-        <img src="/assets/images/logo/logo-white.png" alt="Digital Agency" />
-      );
+
+    var color = "default-color";
+
+    function logout() {
+      localStorage.clear();
     }
 
     return (
@@ -141,83 +126,169 @@ class Header extends Component {
         <div className="header-wrapper" id="header-wrapper">
           <div className="header-left">
             <div className="logo">
-              <a href="/">{logoUrl}</a>
+              <a href="/">
+                <img
+                  src="/assets/images/logo/logo-white.png"
+                  alt="Digital Agency"
+                />
+              </a>
             </div>
           </div>
           <div className="header-right">
             <nav className="mainmenunav d-lg-block">
-              <ul className="mainmenu">
-                <li className="has-droupdown">
-                  <Link to="#">Courses</Link>
-                  <ul className="submenu" style={mystyle}>
-                    {categoryList.map((category) => (
-                      <li>
-                        <Link to="/service">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              {" "}
-                              <Avatar alt={category.alt} src={category.src} />
+              {this.props.from === "landing" && (
+                <ul className="mainmenu">
+                  <li className="has-droupdown">
+                    <Link to="#">Courses</Link>
+                    <ul className="submenu" style={mystyle}>
+                      {categoryList.map((category) => (
+                        <li>
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                {" "}
+                                <Avatar alt={category.alt} src={category.src} />
+                              </Grid>
+                              <Grid item>{category.primary}</Grid>
                             </Grid>
-                            <Grid item>{category.primary}</Grid>
-                          </Grid>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li className="has-droupdown">
-                  <Link to="/service">Musicians</Link>
-                  <ul className="submenu" style={mystyle}>
-                    {this.state.instructorList.map((instructor) => (
-                      <li>
-                        <Link to="/service">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              {" "}
-                              <Avatar
-                                alt={instructor.name}
-                                src={"http://162.0.231.67/" + instructor.photo}
-                              />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                  <li className="has-droupdown">
+                    <Link to="/service">Musicians</Link>
+                    <ul className="submenu" style={mystyle}>
+                      {this.state.instructorList.map((instructor) => (
+                        <li>
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                {" "}
+                                <Avatar
+                                  alt={instructor.name}
+                                  src={
+                                    "http://162.0.231.67/" + instructor.photo
+                                  }
+                                />
+                              </Grid>
+                              <Grid item>{instructor.name}</Grid>
                             </Grid>
-                            <Grid item>{instructor.name}</Grid>
-                          </Grid>
-                        </Link>
-                      </li>
-                    ))}
-                    {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
+                          </Link>
+                        </li>
+                      ))}
+                      {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
                                         <li><Link to="/service-details">Service Details</Link></li> */}
-                  </ul>
-                </li>
-                {/* <li><Link to="/about" >About</Link></li> */}
+                    </ul>
+                  </li>
+                  {/* <li><Link to="/about" >About</Link></li> */}
 
-                <li className="has-droupdown">
-                  <Link to="/courseview">Cart</Link>
-                </li>
-                {/* <li className="has-droupdown"><Link to="#" >Blocks</Link>
-                                    <ul className="submenu">
-                                        <li><Link to="/portfolio">Portfolio</Link></li>
-                                        <li><Link to="/team">Team</Link></li>
-                                        <li><Link to="/service">Service</Link></li>
-                                        <li><Link to="/video-popup">Video Popup</Link></li>
-                                        <li><Link to="/progressbar">Progressbar</Link></li>
-                                        <li><Link to="/gallery">Gallery</Link></li>
-                                        <li><Link to="/counters">Counters</Link></li>
-                                        <li><Link to="/blog">Blog List</Link></li>
-                                        <li><Link to="/clint-logo">Clint Logo</Link></li>
-                                        <li><Link to="/contact-form">Contact Form</Link></li>
-                                        <li><Link to="/google-map">Google Map</Link></li>
-                                        <li><Link to="/columns">Columns</Link></li>
-                                        <li><Link to="/pricing-table">Pricing Table</Link></li>
-                                    </ul>
-                                </li> */}
-                {/* <li><Link to="/contact" >Contact</Link></li> */}
-              </ul>
+                  <li className="has-droupdown">
+                    <Link to="/courseview">
+                      <Grid container direction="row" alignItems="center">
+                        <Grid item style={{ marginRight: 10 }}>
+                          <ShoppingCartOutlined />
+                        </Grid>
+                        <Grid item>Cart</Grid>
+                      </Grid>
+                    </Link>
+                  </li>
+                  {localStorage.getItem("name") ? (
+                    <li className="has-droupdown">
+                      <Link to="#">
+                        <Grid container direction="row" alignItems="center">
+                          <Grid item style={{ marginRight: 10 }}>
+                            <AccountCircleOutlined />
+                          </Grid>
+                          <Grid item> {localStorage.getItem("name")}</Grid>
+                        </Grid>
+                      </Link>
+                      <ul className="submenu" style={mystyle}>
+                        <li>
+                          {" "}
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                <LocalLibraryOutlined />
+                              </Grid>
+                              <Grid item>Classroom</Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                        <li>
+                          {" "}
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                <AccountCircleOutlined />
+                              </Grid>
+                              <Grid item>Profile</Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                        <li>
+                          {" "}
+                          <Link to="/service">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                <ForumOutlined />
+                              </Grid>
+                              <Grid item>Messages</Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="#">
+                            <span
+                              onClick={() => {
+                                logout();
+                              }}
+                            >
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid item style={{ marginRight: 10 }}>
+                                  <PowerSettingsNewOutlined />
+                                </Grid>
+                                <Grid item>Log Out</Grid>
+                              </Grid>
+                            </span>
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                  ) : null}
+                </ul>
+              )}
+              {(this.props.from === "login" ||
+                this.props.from === "signup") && (
+                <ul className="mainmenu">
+                  <li className="has-droupdown">
+                    <a href="/">
+                      <Grid container direction="row">
+                        <Grid item style={{ marginRight: 10 }}>
+                          <HomeOutlined />
+                        </Grid>
+                        <Grid item> Home</Grid>
+                      </Grid>
+                    </a>
+                  </li>
+                </ul>
+              )}
             </nav>
-            <div className="header-btn">
-              <a className="rn-btn" href="/login">
-                <span>login</span>
-              </a>
-            </div>
+            {localStorage.getItem("name") === null &&
+              this.props.from !== "login" &&
+              this.props.from !== "signup" && (
+                <div className="header-btn">
+                  {console.log(localStorage.getItem("name"))}
+                  <a className="rn-btn" href="/login">
+                    <span>Login</span>
+                  </a>
+                </div>
+              )}
+
             {/* Start Humberger Menu  */}
             <div className="humberger-menu d-block d-lg-none pl--20">
               <span
