@@ -17,8 +17,9 @@ class Auth {
   }
 
   logout() {
-    //   this.authenticated = false;
     localStorage.removeItem("v_token");
+    localStorage.clear();
+    //   this.authenticated = false;
     //   localStorage.removeItem("name");
     //   localStorage.removeItem("id");
     //   localStorage.removeItem("email");

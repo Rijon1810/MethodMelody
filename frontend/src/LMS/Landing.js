@@ -33,7 +33,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getInstructor } from "../actions/getInstructorAction";
 import { getCourse } from "../actions/getCourseAction";
 
-
 //constants
 const SlideList = [
   {
@@ -96,9 +95,7 @@ export default function Landing() {
 
   return (
     <div className="active-dark">
-      <Header
-        from="landing"
-      />
+      <Header from="landing" />
 
       {/* Start Slider Area   */}
       <div className="slider-wrapper">

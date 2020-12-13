@@ -10,8 +10,10 @@ import {
   HomeOutlined,
 } from "@material-ui/icons";
 
-//importing custom scripts
-import axios from "../api/Config";
+import { connect } from "react-redux";
+import { isLogged } from "../../actions/isLoggedAction";
+import { logOut } from "../../actions/logOutAction";
+import { useSelector, useDispatch } from "react-redux";
 
 //importing material components
 import { Avatar, Grid } from "@material-ui/core";
@@ -73,27 +75,27 @@ class Header extends Component {
   // my functions
 
   // get all instructor list from server later it will be list of all featured instructors
-  getInstructors() {
-    axios
-      .get("instructor/", {
-        headers: {
-          "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-        },
-      })
-      .then((res) => {
-        const instructorList = res.data;
-        // setInstructorList(instructorList);
-        this.setState({ instructorList: instructorList });
-        console.log(
-          "instructor list size fetched in navbar: " + instructorList.length
-        );
-      });
-  }
+  // getInstructors() {
+  //   axios
+  //     .get("instructor/", {
+  //       headers: {
+  //         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       const instructorList = res.data;
+  //       // setInstructorList(instructorList);
+  //       this.setState({ instructorList: instructorList });
+  //       console.log(
+  //         "instructor list size fetched in navbar: " + instructorList.length
+  //       );
+  //     });
+  // }
 
   // life-cycle methods
-  componentWillMount() {
-    this.getInstructors();
-  }
+  // componentWillMount() {
+  //   this.getInstructors();
+  // }
 
   render() {
     //custom styles
@@ -115,9 +117,9 @@ class Header extends Component {
 
     var color = "default-color";
 
-    function logout() {
-      localStorage.clear();
-    }
+    // function logout() {
+    //   localStorage.clear();
+    // }
 
     return (
       <header
@@ -193,20 +195,24 @@ class Header extends Component {
                       </Grid>
                     </Link>
                   </li>
-                  {localStorage.getItem("name") ? (
+                  {this.props.loginStatus ? (
                     <li className="has-droupdown">
                       <Link to="#">
+               
                         <Grid container direction="row" alignItems="center">
                           <Grid item style={{ marginRight: 10 }}>
                             <AccountCircleOutlined />
                           </Grid>
-                          <Grid item> {localStorage.getItem("name")}</Grid>
+                          <Grid item>
+                            {" "}
+                          </Grid>
                         </Grid>
+                   
                       </Link>
                       <ul className="submenu" style={mystyle}>
                         <li>
                           {" "}
-                          <Link to="/service">
+                          <Link to="/service" className="rn-btn">
                             <Grid container direction="row" alignItems="center">
                               <Grid item style={{ marginRight: 10 }}>
                                 <LocalLibraryOutlined />
@@ -241,7 +247,7 @@ class Header extends Component {
                           <Link to="#">
                             <span
                               onClick={() => {
-                                logout();
+                                this.props.logOut();
                               }}
                             >
                               <Grid
@@ -280,7 +286,8 @@ class Header extends Component {
             </nav>
             {localStorage.getItem("name") === null &&
               this.props.from !== "login" &&
-              this.props.from !== "signup" && (
+              this.props.from !== "signup" &&
+              this.props.loginStatus === false && (
                 <div className="header-btn">
                   {console.log(localStorage.getItem("name"))}
                   <a className="rn-btn" href="/login">
@@ -310,4 +317,11 @@ class Header extends Component {
     );
   }
 }
-export default Header;
+
+const mapStateToProps = (state) => ({
+  isLogged: state.isLogged.payload,
+  loginStatus: state.isLogged.login,
+  logOut: state.logOut
+});
+
+export default connect(mapStateToProps, { isLogged, logOut })(Header);
