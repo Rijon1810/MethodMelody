@@ -74,7 +74,6 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { Datastore } from "./store";
 
-
 class Root extends Component {
   render() {
     return (
@@ -105,7 +104,6 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/paralax`}
             component={Paralax}
           />
-
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/digital-agency`}
@@ -176,7 +174,6 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/corporate-business`}
             component={CorporateBusiness}
           />
-
           {/* Element Layot */}
           <Route
             exact
@@ -213,7 +210,6 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/blog-details`}
             component={BlogDetails}
           />
-
           {/* Blocks Elements  */}
           <Route
             exact
@@ -275,7 +271,6 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/pricing-table`}
             component={PricingTable}
           />
-
           {/* Custom Routes */}
           <Route
             exact

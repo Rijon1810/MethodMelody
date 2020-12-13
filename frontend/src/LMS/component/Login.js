@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Box } from "@material-ui/core";
+import PropTypes from 'prop-types'
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
@@ -7,6 +8,7 @@ import PageHelmet from "./Helmet.jsx";
 
 import { connect } from "react-redux";
 import { isLogged } from "../../actions/isLoggedAction";
+import Landing from "../Landing.js";
 
 class Login extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class Login extends Component {
     return (
       <div className="active-dark">
         <PageHelmet pageTitle="Login" />
-        <Header from="login"/>
+        <Header from="login" />
         <Box
           display="flex"
           justifyContent="center"
@@ -75,6 +77,8 @@ class Login extends Component {
                       email: this.state.rnEmail,
                       password: this.state.rnPassword,
                     });
+                    // this.props.loginStatus ? console.log("success") : console.log("not success");
+                    // this.props.loginStatus ? <Redirect to="/" /> : <Rredirect to='/'/>;
                   }}
                 >
                   Submit
@@ -83,21 +87,28 @@ class Login extends Component {
                 <div className=" text-right blog-btn mt_sm--10 mt_md--10">
                   <a href="/signup" className="btn-transparent rn-btn-dark">
                     <br />
-                    <span>Don't have an account? Signup</span>
+                    <span>
+                      Don't have an account? Signup
+                      {/* {console.log("aaaaaaaaaaaaaaaaaa" + this.props.isLogged.name)} */}
+                    </span>
                   </a>
                 </div>
               </form>
             </div>
           </div>
         </Box>
-  
       </div>
     );
   }
 }
 
+Login.propTypes = {
+  userData: PropTypes.array.isRequired
+}
+
 const mapStateToProps = (state) => ({
   isLogged: state.isLogged.payload,
+  loginStatus: state.isLogged.login,
 });
 
 export default connect(mapStateToProps, { isLogged })(Login);
