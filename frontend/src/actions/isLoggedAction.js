@@ -3,7 +3,6 @@ import auth from "../LMS/routes/auth";
 import { IS_LOGGED } from "./types";
 
 export const isLogged = (data) => (dispatch) => {
-  console.log(data);
   axios
     .post("user/login/", data, {
       headers: {
@@ -17,9 +16,7 @@ export const isLogged = (data) => (dispatch) => {
         payload: res.data,
         login: true,
       });
-      auth.login(
-        res.data.v_token
-      );
+      auth.login(res.data.v_token);
     })
     .catch((res) => {
       dispatch({
