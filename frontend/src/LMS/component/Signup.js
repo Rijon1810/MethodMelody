@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Grid, Box } from "@material-ui/core";
+import { Grid, Box, IconButton, Avatar } from "@material-ui/core";
+import { Person } from "@material-ui/icons";
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
@@ -37,6 +38,15 @@ class Signup extends Component {
                   Please enter all the information for your accounts.
                   <br></br>
                 </p>
+              </div>
+              <div className="d-flex justify-content-start   theme-gradient">
+                <IconButton>
+                  <Avatar
+                    // style={{ width: "100px", height: "100px" }}
+                    variant="rounded"
+                    src="/assets/images/demo/demo-user.png"
+                  ></Avatar>
+                </IconButton>
               </div>
               <form>
                 <label htmlFor="item01">

@@ -54,7 +54,7 @@ class Portfolio extends Component {
 
   render() {
     let title = "Our Courses",
-      description = `${this.state.courseList.length} in-depth courses to subscribe`;
+      description = `${this.props.courseList.length} in-depth courses to subscribe`;
     return (
       <React.Fragment>
         <div className="portfolio-wrapper">
@@ -84,10 +84,11 @@ class Portfolio extends Component {
                     <div className="inner">
                       <h5>{course.catagory + " course"}</h5>
                       <h4>
-                        <a href="/portfolio-details">{course.title}</a>
+                        <a  href="/portfolio-details">{course.title}</a>
                       </h4>
+                      <h5>{course.subtitle}</h5>
                       <div className="portfolio-button">
-                        <a className="rn-btn" href="/portfolio-details">
+                        <a className="rn-btn" href="/courseview">
                           View Course
                         </a>
                       </div>
@@ -107,6 +108,4 @@ const mapStateToProps = (state) => ({
   courseList: state.getCourse.courseList,
 });
 
-
 export default connect(mapStateToProps, { getCourse })(Portfolio);
-
