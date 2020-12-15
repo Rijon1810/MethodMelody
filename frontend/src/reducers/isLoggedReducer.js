@@ -1,4 +1,4 @@
-import { IS_LOGGED, IS_LOGGED_OUT } from "../actions/types";
+import { IS_LOGGED, IS_LOGGED_OUT, SIGN_UP } from "../actions/types";
 
 const initialState = {
   payload: [],
@@ -11,6 +11,8 @@ const loggedReducer = (state = initialState, action) => {
       return { ...state, payload: action.payload, login: action.login };
     case IS_LOGGED_OUT:
       return { ...state, payload: [], login: action.login };
+    case SIGN_UP:
+      return { ...state, payload: action.payload, login: action.login };
     default:
       return { ...state };
   }

@@ -7,7 +7,7 @@ import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
 import { connect } from "react-redux";
-// import { signUp } from "../../actions";
+import { signUp } from "../../actions/signUpAction";
 
 class Signup extends Component {
   constructor(props) {
@@ -17,6 +17,8 @@ class Signup extends Component {
       rnEmail: "",
       rnPassword: "",
       rnConfirmPassword: "",
+      rnPhoto: "",
+      rnDob: "",
     };
   }
   render() {
@@ -51,8 +53,8 @@ class Signup extends Component {
               <form>
                 <label htmlFor="item01">
                   <input
-                    type="name"
-                    name="text"
+                    type="text"
+                    name="name"
                     id="item01"
                     value={this.state.rnName}
                     onChange={(e) => {
@@ -61,7 +63,6 @@ class Signup extends Component {
                     placeholder="Your full name"
                   />
                 </label>
-
                 <label htmlFor="item02">
                   <input
                     type="text"
@@ -100,7 +101,19 @@ class Signup extends Component {
                     placeholder="Confirm password"
                   />
                 </label>
-
+                <label htmlFor="item05">
+                  <input
+                    type="file"
+                    name="image"
+                    id="item05"
+                    value={this.state.rnPhoto}
+                    onChange={(e) => {
+                      alert(e.target.files[0]);
+                      this.setState({ rnPhoto: e.target.files[0] });
+                    }}
+                    placeholder="upload picture"
+                  />
+                </label>
                 <button
                   className="rn-button-style--2 btn-solid"
                   type="submit"
@@ -109,11 +122,12 @@ class Signup extends Component {
                   id="mc-embedded-subscribe"
                   onClick={(event) => {
                     event.preventDefault();
-                    this.props.signUpfn({
+                    this.props.signUp({
                       name: this.state.rnName,
                       confirmedPassword: this.state.rnConfirmPassword,
                       email: this.state.rnEmail,
                       password: this.state.rnPassword,
+                      photo: this.state.rnPhoto,
                     });
                   }}
                 >
@@ -136,11 +150,6 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = (state) => ({});
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     signUpfn: (data) => dispatch(signUp(data)),
-//   };
-// };
-// export default connect(null, mapDispatchToProps)(signUp);
+export default connect(mapStateToProps, { signUp })(Signup);
