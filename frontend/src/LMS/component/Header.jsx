@@ -13,7 +13,6 @@ import {
 import { connect } from "react-redux";
 import { isLogged } from "../../actions/isLoggedAction";
 import { logOut } from "../../actions/logOutAction";
-import { useSelector, useDispatch } from "react-redux";
 
 //importing material components
 import { Avatar, Grid } from "@material-ui/core";
@@ -23,30 +22,27 @@ const categoryList = [
   {
     primary: "Guitar",
     alt: "Guitar",
-    src:
-      "https://img.pngio.com/guitar-icon-png-268713-free-icons-library-guitar-icon-png-200_200.jpg",
+    src:"assets/images/icons/guitar-electric.png",
   },
   {
     primary: "Acoustic Fingerstyle Guitar",
     alt: "Acoustic Fingerstyle guitar",
-    src: "https://static.thenounproject.com/png/481944-200.png",
+    src: "assets/images/icons/acoustic-guitar.png",
   },
   {
     primary: "Drums",
     alt: "Drums",
-    src: "https://icon-library.com/images/drum-kit-icon/drum-kit-icon-17.jpg",
+    src: "assets/images/icons/drums.png",
   },
   {
     primary: "Piano/Keyboard",
     alt: "Piano/Keyboard",
-    src:
-      "https://lh3.googleusercontent.com/proxy/pxsl32UASnnENpKGiHho8ZWUhA-HWa06SYjdN9E_pxc24blCS4sDTxMECflBJ-ahVgCjkySVwlkI1CNsf54dUMSwW8i0UgzPppuE-gj7ZSdlHpTy5Rn4",
+    src:"assets/images/icons/piano.png",
   },
   {
     primary: "Sound Engineering",
     alt: "Sound Engineering",
-    src:
-      "https://p7.hiclipart.com/preview/719/512/1002/recording-studio-audio-mixing-audio-mixers-audio-mastering-computer-icons-audio-mixer.jpg",
+    src:"assets/images/icons/sound-engineering.png",
   },
 ];
 
@@ -107,6 +103,12 @@ class Header extends Component {
     //custom styles
     const mystyle = {
       width: "35ch",
+      background:"#101010"
+    };
+
+    const avatar = {
+      width: "45px",
+      height: "45px"
     };
 
     var elements = document.querySelectorAll(".has-droupdown > a");
@@ -155,9 +157,9 @@ class Header extends Component {
                             <Grid container direction="row" alignItems="center">
                               <Grid item style={{ marginRight: 10 }}>
                                 {" "}
-                                <Avatar alt={category.alt} src={category.src} />
+                                <Avatar alt={category.alt} src={`${process.env.PUBLIC_URL}/${category.src}`} style={avatar}/>
                               </Grid>
-                              <Grid item>{category.primary}</Grid>
+                              <Grid item style={{color:"#fff"}}>{category.primary}</Grid>
                             </Grid>
                           </Link>
                         </li>
@@ -165,9 +167,9 @@ class Header extends Component {
                     </ul>
                   </li>
                   <li className="has-droupdown">
-                    <Link to="/service">Musicians</Link>
+                    <Link to="#">Musicians</Link>
                     <ul className="submenu" style={mystyle}>
-                      {this.state.instructorList.map((instructor) => (
+                      {this.props.instructorList.map((instructor) => (
                         <li>
                           <Link to="/service">
                             <Grid container direction="row" alignItems="center">
@@ -176,11 +178,12 @@ class Header extends Component {
                                 <Avatar
                                   alt={instructor.name}
                                   src={
-                                    "http://162.0.231.67/" + instructor.photo
+                                    "http://63.250.33.174/" + instructor.photo
                                   }
+                                  style={avatar}
                                 />
                               </Grid>
-                              <Grid item>{instructor.name}</Grid>
+                              <Grid item style={{color:"#fff"}}>{instructor.name}</Grid>
                             </Grid>
                           </Link>
                         </li>
@@ -195,7 +198,7 @@ class Header extends Component {
                     <Link to="/courseview">
                       <Grid container direction="row" alignItems="center">
                         <Grid item style={{ marginRight: 10 }}>
-                          <ShoppingCartOutlined />
+                          <ShoppingCartOutlined/>
                         </Grid>
                         <Grid item>Cart</Grid>
                       </Grid>
@@ -214,23 +217,23 @@ class Header extends Component {
                       </Link>
                       <ul className="submenu" style={mystyle}>
                         <li>
-                          <Link to="/service" className="rn-btn">
+                          <Link to="/service">
                             <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10 }}>
+                              <Grid item style={{ marginRight: 10, color:"#f9004c" }}>
                                 <LocalLibraryOutlined />
                               </Grid>
-                              <Grid item>Classroom</Grid>
+                              <Grid item style={{color:"#fff"}}>Classroom</Grid>
                             </Grid>
                           </Link>
                         </li>
                         <li>
                           {" "}
-                          <Link to="/service">
+                          <Link to="/service" >
                             <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10 }}>
+                              <Grid item style={{ marginRight: 10, color:"#f9004c" }}>
                                 <AccountCircleOutlined />
                               </Grid>
-                              <Grid item>Profile</Grid>
+                              <Grid item style={{color:"#fff"}}>Profile</Grid>
                             </Grid>
                           </Link>
                         </li>
@@ -238,10 +241,10 @@ class Header extends Component {
                           {" "}
                           <Link to="/service">
                             <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10 }}>
+                              <Grid item style={{ marginRight: 10, color:"#f9004c"}}>
                                 <ForumOutlined />
                               </Grid>
-                              <Grid item>Messages</Grid>
+                              <Grid item style={{color:"#fff"}}>Messages</Grid>
                             </Grid>
                           </Link>
                         </li>
@@ -257,10 +260,10 @@ class Header extends Component {
                                 direction="row"
                                 alignItems="center"
                               >
-                                <Grid item style={{ marginRight: 10 }}>
-                                  <PowerSettingsNewOutlined />
+                                <Grid item style={{ marginRight: 10, color:"#f9004c" }}>
+                                  <PowerSettingsNewOutlined/>
                                 </Grid>
-                                <Grid item>Log Out</Grid>
+                                <Grid item style={{color:"#fff"}}>Log Out</Grid>
                               </Grid>
                             </span>
                           </Link>
@@ -325,6 +328,7 @@ const mapStateToProps = (state) => {
     login_data: state.isLogged.payload,
     loginStatus: state.isLogged.login,
     logOut: state.logOut,
+    instructorList: state.getInstructor.instructorList,
   };
 };
 
