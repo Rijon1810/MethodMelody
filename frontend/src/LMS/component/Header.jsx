@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FiX, FiMenu } from "react-icons/fi";
 import {
   LocalLibraryOutlined,
@@ -61,8 +61,14 @@ class Header extends Component {
     });
     this.state = {
       instructorList: [],
+      loginInfo: props.isLogged,
     };
   }
+
+  routeChange = (path) => {
+    let history = useHistory();
+    history.push(path);
+  };
 
   menuTrigger() {
     document.querySelector(".header-wrapper").classList.toggle("menu-open");
@@ -198,20 +204,16 @@ class Header extends Component {
                   {this.props.loginStatus ? (
                     <li className="has-droupdown">
                       <Link to="#">
-               
                         <Grid container direction="row" alignItems="center">
                           <Grid item style={{ marginRight: 10 }}>
                             <AccountCircleOutlined />
                           </Grid>
-                          <Grid item>
-                            {" "}
-                          </Grid>
+                          <Grid item> {this.props.login_data.name}</Grid>
+                          <Grid item> </Grid>
                         </Grid>
-                   
                       </Link>
                       <ul className="submenu" style={mystyle}>
                         <li>
-                          {" "}
                           <Link to="/service" className="rn-btn">
                             <Grid container direction="row" alignItems="center">
                               <Grid item style={{ marginRight: 10 }}>
@@ -318,10 +320,12 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  isLogged: state.isLogged.payload,
-  loginStatus: state.isLogged.login,
-  logOut: state.logOut
-});
+const mapStateToProps = (state) => {
+  return {
+    login_data: state.isLogged.payload,
+    loginStatus: state.isLogged.login,
+    logOut: state.logOut,
+  };
+};
 
 export default connect(mapStateToProps, { isLogged, logOut })(Header);
