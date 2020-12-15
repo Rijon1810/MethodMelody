@@ -12,34 +12,39 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 app.use(
-	"/storage/thumbnail",
-	express.static(path.join(__dirname, "../backend/storage/thumbnail"))
+  "/storage/thumbnail",
+  express.static(path.join(__dirname, "../backend/storage/thumbnail"))
 );
 
 app.use(
-	"/storage/video",
-	express.static(path.join(__dirname, "../backend/storage/video"))
+  "/storage/video",
+  express.static(path.join(__dirname, "../backend/storage/video"))
 );
 
 app.use(
-	"/storage/photo",
-	express.static(path.join(__dirname, "../backend/storage/photo"))
+  "/storage/photo",
+  express.static(path.join(__dirname, "../backend/storage/photo"))
 );
 
 app.use(
-	"/storage/document",
-	express.static(path.join(__dirname, "../backend/storage/document"))
+  "/storage/document",
+  express.static(path.join(__dirname, "../backend/storage/document"))
+);
+
+app.use(
+  "/storage/store",
+  express.static(path.join(__dirname, "../backend/storage/store"))
 );
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
 });
 const connection = mongoose.connection;
 connection.once("open", () => {
-	console.log("MongoDB database connection established successfully");
+  console.log("MongoDB database connection established successfully");
 });
 
 const courseRouter = require("./routes/course");
@@ -59,9 +64,9 @@ app.use(`/api/${process.env.API_VERSION}/course`, apiAuth, courseRouter);
 app.use(`/api/${process.env.API_VERSION}/user`, loginRouter);
 app.use(`/api/${process.env.API_VERSION}/video`, apiAuth, videoRouter);
 app.use(
-	`/api/${process.env.API_VERSION}/instructor`,
-	apiAuth,
-	instructorRouter
+  `/api/${process.env.API_VERSION}/instructor`,
+  apiAuth,
+  instructorRouter
 );
 app.use(`/api/${process.env.API_VERSION}/document`, apiAuth, documentRouter);
 app.use(`/api/${process.env.API_VERSION}/contact`, apiAuth, contactRouter);
@@ -70,14 +75,13 @@ app.use(`/api/${process.env.API_VERSION}/buy`, apiAuth, buyRouter);
 app.use(`/api/${process.env.API_VERSION}/featured`, apiAuth, featuredRouter);
 app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, soldRouter);
 
-
 app.get("/storage(/*)?", (req, res) => {
-	res.sendStatus(403);
+  res.sendStatus(403);
 });
 app.get("/", function (req, res) {
-	res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
 
 app.listen(port, () => {
-	console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}`);
 });
