@@ -284,7 +284,7 @@ class Header extends Component {
                 </ul>
               )}
             </nav>
-            {localStorage.getItem("name") === null &&
+            {
               this.props.from !== "login" &&
               this.props.from !== "signup" &&
               this.props.loginStatus === false && (

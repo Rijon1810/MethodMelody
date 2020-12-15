@@ -314,12 +314,12 @@ export default function Landing() {
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
               <div className="section-title text-left pb--30">
-                <h2 className="theme-gradient">Do you have any Question</h2>
+                <h3 className="theme-gradient">Do you have any Question</h3>
               </div>
             </div>
           </div>
           <div className="row" style={{ color: "#fff" }}>
-            <div className="col-lg-8 offset-lg-2">
+            <div className="col-lg-6 offset-lg-2">
               <div className="faq-area">
                 <Accordion className="accodion-style--1" preExpanded={"0"}>
                   <AccordionItem>

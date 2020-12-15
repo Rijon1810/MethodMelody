@@ -17,10 +17,10 @@ class ContactOne extends Component {
     return (
       <div className="contact-form--1">
         <div className="container">
-          <div className="row row--35 align-items-start">
-            <div className="col-lg-6 order-2 order-lg-1">
+          <div className="row row--35 align-items-center ">
+            <div className="col-lg-8 order-2 order-lg-1 offset-lg-2">
               <div className="section-title text-left mb--50">
-                <h3 className="title">Contact Us.</h3>
+                <h3 className="title theme-gradient">Contact Us.</h3>
                 <p className="description">
                   For any queries regarding the Platform, Subscription Process,
                   Account Registration, etc. You can also reach us via <br></br>
@@ -92,11 +92,7 @@ class ContactOne extends Component {
                 </form>
               </div>
             </div>
-            <div className="col-lg-6 order-1 order-lg-2">
-              <div>
-                <GoogleMap />
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>
