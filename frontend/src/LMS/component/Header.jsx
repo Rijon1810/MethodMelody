@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FiX, FiMenu } from "react-icons/fi";
 import {
   LocalLibraryOutlined,
@@ -64,6 +64,11 @@ class Header extends Component {
       loginInfo: props.isLogged,
     };
   }
+
+  routeChange = (path) => {
+    let history = useHistory();
+    history.push(path);
+  };
 
   menuTrigger() {
     document.querySelector(".header-wrapper").classList.toggle("menu-open");

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Box } from "@material-ui/core";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
@@ -18,7 +19,16 @@ class Login extends Component {
       rnPassword: "",
     };
   }
+
+  routeChange = () => {
+    // let history = useHistory();
+    // history.push(path);
+  };
+
   render() {
+    if (this.props.loginStatus) {
+      return <Redirect to={"/"} />;
+    }
     return (
       <div className="active-dark">
         <PageHelmet pageTitle="Login" />
@@ -71,14 +81,15 @@ class Login extends Component {
                   value="submit"
                   name="submit"
                   id="mc-embedded-subscribe"
-                  onClick={(event) => {
+                  onClick={async (event) => {
                     event.preventDefault();
-                    this.props.isLogged({
+                    await this.props.isLogged({
                       email: this.state.rnEmail,
                       password: this.state.rnPassword,
                     });
-                    // this.props.loginStatus ? console.log("success") : console.log("not success");
-                    // this.props.loginStatus ? <Redirect to="/" /> : <Rredirect to='/'/>;
+                    this.props.loginStatus
+                      ? this.props.history.push("/")
+                      : this.props.history.push("/login");
                   }}
                 >
                   Submit
@@ -87,10 +98,7 @@ class Login extends Component {
                 <div className=" text-right blog-btn mt_sm--10 mt_md--10">
                   <a href="/signup" className="btn-transparent rn-btn-dark">
                     <br />
-                    <span>
-                      Don't have an account? Signup
-                      {/* {console.log("aaaaaaaaaaaaaaaaaa" + this.props.isLogged.name)} */}
-                    </span>
+                    <span>Don't have an account? Signup</span>
                   </a>
                 </div>
               </form>
@@ -103,8 +111,8 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  userData: PropTypes.array.isRequired
-}
+  userData: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   isLogged: state.isLogged.payload,
