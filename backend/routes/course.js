@@ -61,7 +61,28 @@ router
   )
   .route("/add")
   .post((req, res) => {
-    // res.status(200).json(req.files.videos);
+    let videos_object = [];
+    req.files.videos.forEach((video) => {
+      videos_object.push({
+        originalname: video.originalname,
+        filename: video.filename,
+        path: video.path,
+        size: parseInt((video.size / 1024 / 1024).toFixed(2)),
+        published: true,
+      });
+    });
+
+    let documents_object = [];
+    req.files.documents.forEach((document) => {
+      documents_object.push({
+        originalname: document.originalname,
+        filename: document.filename,
+        path: document.path,
+        size: parseInt((document.size / 1024 / 1024).toFixed(2)),
+        published: true,
+      });
+    });
+
     const title = req.body.title;
     const subtitle = req.body.subtitle;
     const desc = req.body.desc;
@@ -69,7 +90,7 @@ router
     const level = req.body.level;
     const sublevel = req.body.sublevel;
     const thumbnail = req.files.thumbnail[0].path;
-    const videos = req.files.videos;
+    const videos = videos_object;
     const instructor = req.body.instructor;
     const topic = req.body.topic;
     const preRequisite = req.body.preRequisite;
@@ -77,7 +98,7 @@ router
     const nextCourses = req.body.nextCourses;
     const relatedCourse = req.body.relatedCourse;
     const courseHour = req.body.courseHour;
-    const documents = req.files.documents;
+    const documents = documents_object;
     const price = req.body.price;
     const validity = req.body.validity;
     const studentReviews = req.body.studentReviews;
