@@ -114,17 +114,17 @@ router.route(`/login`).post((req, res) => {
                 res.header("auth-token", token);
                 return res.status(200).json({
                   id: docs[0]._id,
-				  type: docs[0].type,
-				  course: docs[0].course, 
-				  previousCourse: docs[0].previousCourse,
-				  name: docs[0].name,
-				  photo: docs[0].photo,
-				  age: docs[0].age,
-				  phone: docs[0].phone,
+                  type: docs[0].type,
+                  course: docs[0].course,
+                  previousCourse: docs[0].previousCourse,
+                  name: docs[0].name,
+                  photo: docs[0].photo,
+                  age: docs[0].age,
+                  phone: docs[0].phone,
                   address: docs[0].address,
-				  email: docs[0].email,
-				  createdAt: docs[0].createdAt,
-				  updatedAt: docs[0].updatedAt,
+                  email: docs[0].email,
+                  createdAt: docs[0].createdAt,
+                  updatedAt: docs[0].updatedAt,
                 });
               }
             );
@@ -157,12 +157,13 @@ router
     if (error) return res.status(400).send(error.details[0].message);
 
     const name = req.body.name;
-    const photo = req.file.path;
-    const age = req.body.age;
-    const phone = req.body.phone;
-    const address = req.body.address;
     const email = req.body.email;
     const password = req.body.password;
+    const photo = req.file.path;
+    const dob = req.body.dob;
+    const phone = req.body.phone;
+    const address = req.body.address;
+
     const course = req.body.course;
     const previousCourse = req.body.previousCourse;
 
@@ -172,16 +173,16 @@ router
       } else {
         bcrypt.hash(password, 10, (err, hash) => {
           if (err) {
-            return res.status(500).json({ error: err });
+            return res.status(400).json({ error: err });
           } else {
             const newUser = new User({
               name,
-              photo,
-              age,
-              phone,
-              address,
               email,
               password: hash,
+              photo,
+              dob,
+              phone,
+              address,
               course,
               previousCourse,
             });

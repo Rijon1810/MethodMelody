@@ -7,7 +7,7 @@ var UserSchema = new Schema(
 		type: { type: Number, default: 4 },
 		name: { type: String },
 		photo: { type: String },
-		age: { type: String },
+		dob: { type: String },
 		phone: { type: String },
 		address: { type: String },
 		email: {
