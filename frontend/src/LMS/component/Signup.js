@@ -19,6 +19,9 @@ class Signup extends Component {
       rnConfirmPassword: "",
       rnPhoto: "",
       rnDob: "",
+      rnPhone: "",
+      rnAddress: "",
+      rnPhotoSnap: "",
     };
   }
   render() {
@@ -44,9 +47,9 @@ class Signup extends Component {
               <div className="d-flex justify-content-start   theme-gradient">
                 <IconButton>
                   <Avatar
-                    // style={{ width: "100px", height: "100px" }}
+                    style={{ width: "100px", height: "100px" }}
                     variant="rounded"
-                    src="/assets/images/demo/demo-user.png"
+                    src={this.state.rnPhotoSnap}
                   ></Avatar>
                 </IconButton>
               </div>
@@ -106,12 +109,59 @@ class Signup extends Component {
                     type="file"
                     name="image"
                     id="item05"
-                    value={this.state.rnPhoto}
-                    onChange={(e) => {
-                      alert(e.target.files[0]);
-                      this.setState({ rnPhoto: e.target.files[0] });
+                    value={this.state.rnPhotoSnap.name}
+                    ref={this.state.rnPhotoSnap.name}
+                    onChange={async (e) => {
+                      e.preventDefault();
+                      let file = await e.target.files[0];
+                      this.setState({ rnPhoto: file });
+
+                      if (file) {
+                        let reader = new FileReader();
+                        reader.onload = (e) => {
+                          this.setState({ rnPhotoSnap: e.target.result });
+                        };
+                        reader.readAsDataURL(file);
+                      }
                     }}
                     placeholder="upload picture"
+                  />
+                </label>
+                <label htmlFor="item06">
+                  <input
+                    type="text"
+                    name="dob"
+                    id="item06"
+                    value={this.state.rnDob}
+                    onChange={(e) => {
+                      this.setState({ rnDob: e.target.value });
+                    }}
+                    placeholder="Enter your Date of Birth"
+                  />
+                </label>
+                <label htmlFor="item07">
+                  <input
+                    type="text "
+                    pattern="[0-9]*"
+                    name="phone"
+                    id="item07"
+                    value={this.state.rnPhone}
+                    onChange={(e) => {
+                      this.setState({ rnPhone: e.target.value });
+                    }}
+                    placeholder="Phone Number"
+                  />
+                </label>
+                <label htmlFor="item08">
+                  <textarea
+                    type="text"
+                    name="address"
+                    id="item08"
+                    value={this.state.rnAddress}
+                    onChange={(e) => {
+                      this.setState({ rnAddress: e.target.value });
+                    }}
+                    placeholder="Address"
                   />
                 </label>
                 <button
@@ -120,15 +170,19 @@ class Signup extends Component {
                   value="submit"
                   name="submit"
                   id="mc-embedded-subscribe"
-                  onClick={(event) => {
+                  onClick={async (event) => {
                     event.preventDefault();
-                    this.props.signUp({
-                      name: this.state.rnName,
-                      confirmedPassword: this.state.rnConfirmPassword,
-                      email: this.state.rnEmail,
-                      password: this.state.rnPassword,
-                      photo: this.state.rnPhoto,
-                    });
+                    let fd = new FormData();
+                    fd.append("name", this.state.rnName);
+                    fd.append("email", this.state.rnEmail);
+                    fd.append("password", this.state.rnPassword);
+                    fd.append("confirmPassword", this.state.rnConfirmPassword);
+                    fd.append("photo", this.state.rnPhoto);
+                    fd.append("dob", this.state.rnDob);
+                    fd.append("phone", this.state.rnPhone);
+                    fd.append("address", this.state.rnAddress);
+                    
+                    await this.props.signUp(fd);
                   }}
                 >
                   Submit
