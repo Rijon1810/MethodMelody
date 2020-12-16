@@ -181,8 +181,11 @@ class Signup extends Component {
                     fd.append("dob", this.state.rnDob);
                     fd.append("phone", this.state.rnPhone);
                     fd.append("address", this.state.rnAddress);
-                    
+
                     await this.props.signUp(fd);
+                    this.props.create_user_status.message === "user added!"
+                      ? this.props.history.push("/login")
+                      : this.props.history.push("/signup");
                   }}
                 >
                   Submit
@@ -204,6 +207,8 @@ class Signup extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  create_user_status: state.isLogged.payload,
+});
 
 export default connect(mapStateToProps, { signUp })(Signup);
