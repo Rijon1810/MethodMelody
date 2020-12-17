@@ -32,6 +32,7 @@ import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { getInstructor } from "../actions/getInstructorAction";
 import { getCourse } from "../actions/getCourseAction";
+import { getAnalytics } from "../actions/getAnalyticsAction";
 
 //constants
 const SlideList = [
@@ -86,6 +87,7 @@ export default function Landing() {
   useEffect(() => {
     dispatch(getInstructor());
     dispatch(getCourse());
+    dispatch(getAnalytics());
   }, [dispatch]);
 
   // view all course handler

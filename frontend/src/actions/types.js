@@ -4,5 +4,7 @@ export const GET_INSTRUCTOR = "GET_INSTRUCTOR";
 export const GET_COURSE = "GET_COURSE";
 export const GET_FEATURED_COURSE = "GET_FEATURED_COURSE";
 export const SIGN_UP = "SIGN_UP";
+export const ANALYTICS = "ANALYTICS";
+
 
 
