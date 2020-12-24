@@ -40,7 +40,7 @@ import ServiceDetails from "./elements/ServiceDetails";
 import About from "./elements/About";
 import Contact from "./elements/Contact";
 import PortfolioDetails from "./elements/PortfolioDetails";
-import Blog from "./elements/Blog";
+import Blog from "./LMS/component/elements/Blog.jsx";
 import BlogDetails from "./elements/BlogDetails";
 import error404 from "./elements/error404";
 

@@ -158,7 +158,7 @@ export default function Landing() {
 
       {/* Start Featured Course Area Area */}
       <div
-        className="rn-blog-area pt--50  mb-dec--30"
+        className="rn-blog-area pt--100  mb-dec--30"
         style={{ paddingBottom: "15ch" }}
       >
         <div className="container">
@@ -213,14 +213,14 @@ export default function Landing() {
        {/* End featured course Area */}
 
       {/* Start Course Category Area  */}
-      <div className="service-area pt--50 pb--80  bg_image bg_image--3">
+      <div className="service-area pb--100">
         <div className="container">
           <ServiceTwo />
         </div>
       </div>
       {/* End Course Category Area  */}
 
-      {/* Start Single Slide */}
+      {/* Start How Platform Works Video */}
       <Grid container justify="center" direction="row">
         <Grid item lg={8}>
         <div class="embed-responsive embed-responsive-21by9">
@@ -237,7 +237,7 @@ export default function Landing() {
         </Grid>
       </Grid>
       
-      {/* End Single Slide */}
+      {/* End How Platform Works Video */}
 
       {/* Start CounterUp Area */}
       <div

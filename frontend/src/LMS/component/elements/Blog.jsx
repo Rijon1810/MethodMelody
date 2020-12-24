@@ -1,29 +1,30 @@
 import React, { Component } from "react";
-import PageHelmet from "../component/common/Helmet";
-import Breadcrumb from "../elements/common/Breadcrumb";
+import PageHelmet from "../Helmet.jsx";
+import Breadcrumb from "./common/Breadcrumb.jsx";
 import Pagination from "../elements/common/Pagination";
-import CourseList from "../elements/blog/CourseList";
+import BlogList from "../elements/blog/BlogList";
 import ScrollToTop from 'react-scroll-up';
 import { FiChevronUp } from "react-icons/fi";
-import Header from "../component/header/Header";
-import Footer from "../component/footer/Footer";
+import Header from "../Header.jsx";
+import Footer from "../Footer.jsx";
+
+import { connect } from "react-redux";
+import { getCourse } from "../../../actions/getCourseAction";
 
 class Blog extends Component{
     render(){
         return(
-            <React.Fragment>
-                <PageHelmet pageTitle='Blog' />
-
-                <Header headertransparent="header--transparent" colorblack="color--black" logoname="logo.png" />
+            <div className="active-dark">
+                <Header from="landing" />
                 {/* Start Breadcrump Area */}
-                <Breadcrumb title={'Blog List'}   />
+                <Breadcrumb title={'All Courses'}   />
                 {/* End Breadcrump Area */}
 
 
                 {/* Start Blog Area */}
                 <div className="rn-blog-area ptb--120 bg_color--1">
                     <div className="container">
-                        <CourseList />
+                        <BlogList />
                         <div className="row mt--20">
                             <div className="col-lg-12">
                                 {/* Start Pagination Area */}
@@ -45,8 +46,14 @@ class Blog extends Component{
                 
                 <Footer /> 
 
-            </React.Fragment>
+            </div>
         )
     }
 }
-export default Blog;
+
+
+const mapStateToProps = (state) => ({
+    courseList: state.getCourse.courseList,
+  });
+  
+export default connect(mapStateToProps, { getCourse })(Blog);
