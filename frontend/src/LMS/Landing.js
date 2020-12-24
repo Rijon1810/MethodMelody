@@ -288,7 +288,7 @@ export default function Landing() {
               <div className="col-lg-4 col-md-4 col-12" key={instructor._id}>
                 <div className="blog blog-style--1">
                   <div className="thumbnail">
-                    <a href="/instructorlist">
+                    <a href="/instructorview">
                       <img
                         className="w-100"
                         src={`http://63.250.33.174/${instructor.photo}`}
@@ -302,7 +302,7 @@ export default function Landing() {
                       <a href="/instructorview">{instructor.name}</a>
                     </h4>
                     <div className="blog-btn">
-                      <a className="rn-btn text-white" href="/instructorlist">
+                      <a className="rn-btn text-white" href="/instructorview">
                         Read More
                       </a>
                     </div>
