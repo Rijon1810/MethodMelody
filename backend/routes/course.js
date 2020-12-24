@@ -55,6 +55,7 @@ router
   .use(
     process.fields([
       { name: "thumbnail", maxCount: 1 },
+      { name: "banner", maxCount: 1 },
       { name: "videos", maxCount: 15 },
       { name: "documents", maxCount: 15 },
     ])
@@ -90,6 +91,7 @@ router
     const level = req.body.level;
     const sublevel = req.body.sublevel;
     const thumbnail = req.files.thumbnail[0].path;
+    const banner = req.files.banner[0].path;
     const videos = videos_object;
     const instructor = req.body.instructor;
     const topic = req.body.topic;
@@ -111,6 +113,7 @@ router
       level,
       sublevel,
       thumbnail,
+      banner,
       videos,
       instructor,
       topic,

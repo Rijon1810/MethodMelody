@@ -78,7 +78,7 @@ app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, soldRouter);
 app.get("/storage(/*)?", (req, res) => {
   res.sendStatus(403);
 });
-app.get("/", function (req, res) {
+app.get("(/*)?", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
 
