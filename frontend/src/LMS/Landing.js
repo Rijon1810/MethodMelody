@@ -276,7 +276,7 @@ export default function Landing() {
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
-                <a className="btn-transparent rn-btn-dark" href="/blog">
+                <a className="btn-transparent rn-btn-dark" href="/instructorlist">
                   <span className="text">View All Instructors</span>
                 </a>
               </div>
@@ -288,7 +288,7 @@ export default function Landing() {
               <div className="col-lg-4 col-md-4 col-12" key={instructor._id}>
                 <div className="blog blog-style--1">
                   <div className="thumbnail">
-                    <a href="/blog-details">
+                    <a href="/instructorlist">
                       <img
                         className="w-100"
                         src={`http://63.250.33.174/${instructor.photo}`}
@@ -299,10 +299,10 @@ export default function Landing() {
                   <div className="content">
                     {/* <p className="blogtype">{instructor.bio}</p> */}
                     <h4 className="title">
-                      <a href="/blog-details">{instructor.name}</a>
+                      <a href="/instructorview">{instructor.name}</a>
                     </h4>
                     <div className="blog-btn">
-                      <a className="rn-btn text-white" href="/blog-details">
+                      <a className="rn-btn text-white" href="/instructorlist">
                         Read More
                       </a>
                     </div>
@@ -311,21 +311,7 @@ export default function Landing() {
               </div>
             ))}
           </div>
-          <Grid
-            container
-            justify="center"
-            className="header-btn"
-            style={{ marginTop: "5ch" }}
-          >
-            <Grid item>
-              <a
-                className="rn-btn"
-                href="https://themeforest.net/checkout/from_item/25457315?license=regular"
-              >
-                View all instructors
-              </a>
-            </Grid>
-          </Grid>
+         
         </div>
       </div>
       {/* End Blog Area */}

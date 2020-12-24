@@ -41,6 +41,7 @@ import About from "./elements/About";
 import Contact from "./elements/Contact";
 import PortfolioDetails from "./elements/PortfolioDetails";
 import Blog from "./LMS/component/elements/Blog.jsx";
+import InstructorList from "./LMS/component/elements/blog/InstructorView.jsx";
 import BlogDetails from "./elements/BlogDetails";
 import error404 from "./elements/error404";
 
@@ -204,6 +205,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/blog`}
             component={Blog}
+          />
+           <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/instructorlist`}
+            component={InstructorList}
           />
           <Route
             exact
