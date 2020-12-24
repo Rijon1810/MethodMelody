@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import BlogContent from "./BlogContent.jsx";
 
+import { connect } from "react-redux";
+import { getCourse } from "../../../../actions/getCourseAction";
+
 class BLogList extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +26,7 @@ class BLogList extends Component {
                   <a href="/blog-details">
                     <img
                       className="w-100"
-                      src={`http://162.0.231.67/` + course.thumbnail}
+                      src={`http://63.250.33.174/` + course.thumbnail}
                       alt="Blog Images"
                     />
                   </a>
@@ -47,4 +50,8 @@ class BLogList extends Component {
     );
   }
 }
-export default BLogList;
+const mapStateToProps = (state) => ({
+  courseList: state.getCourse.courseList,
+});
+
+export default connect(mapStateToProps, { getCourse })(BLogList);

@@ -72,6 +72,11 @@ export default function Landing() {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
+
+  const courseList = useSelector(
+    (state) => state.getCourse.courseList
+  );
+
   const length = useSelector((state) => state.getInstructor.length);
 
   const dispatch = useDispatch();
@@ -152,24 +157,60 @@ export default function Landing() {
       {/* End Slider Area   */}
 
       {/* Start Featured Course Area Area */}
-      <div className="portfolio-area pt--120">
-        <div className="portfolio-sacousel-inner mb--55">
-          <Portfolio />
+      <div
+        className="rn-blog-area pt--50  mb-dec--30"
+        style={{ paddingBottom: "15ch" }}
+      >
+        <div className="container">
+          <div className="row align-items-end">
+            <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+              <div className="section-title text-left">
+                <h3>Our Courses</h3>
+                <p className="theme-gradient">
+                  Start with any of our {courseList.length} in-depth featured courses
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+              <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
+                <a className="btn-transparent rn-btn-dark" href="/blog">
+                  <span className="text">View All Courses</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="row mt--60 mt_sm--40">
+            {console.log(JSON.stringify(courseList))}
+            {courseList.map((course) => (
+              <div className="col-lg-3 col-md-4 col-12" key={course._id}>
+                <div className="blog blog-style--1">
+                  <div className="thumbnail">
+                    <a href="/courseview">
+                      <img
+                        className="w-100"
+                        src={`http://63.250.33.174/${course.thumbnail}`}
+                        alt="Blog Images"
+                      />
+                    </a>
+                  </div>
+                  <div className="content">
+                    {/* <p className="blogtype">{instructor.bio}</p> */}
+                    <h4 className="title">
+                      <a href="/courseview">{course.title}</a>
+                    </h4>
+                    <div className="blog-btn">
+                      <a className="rn-btn text-white" href="/courseview">
+                        View Details
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <Grid
-          container
-          justify="center"
-          className="header-btn"
-          style={{ marginTop: "15ch" }}
-        >
-          <Grid item>
-            <a className="rn-btn" onClick={handleViewAllCourse}>
-              View all courses
-            </a>
-          </Grid>
-        </Grid>
       </div>
-      {/* End Portfolio Area */}
+       {/* End featured course Area */}
 
       {/* Start Course Category Area  */}
       <div className="service-area pt--50 pb--80  bg_image bg_image--3">
@@ -180,7 +221,9 @@ export default function Landing() {
       {/* End Course Category Area  */}
 
       {/* Start Single Slide */}
-      <div class="embed-responsive embed-responsive-21by9 ">
+      <Grid container justify="center" direction="row">
+        <Grid item lg={8}>
+        <div class="embed-responsive embed-responsive-21by9">
         <VideoTag
           autoPlay={`${true}`}
           muted={`${true}`}
@@ -190,6 +233,10 @@ export default function Landing() {
           poster={`${"/assets/images/bg/bg-image-24.jpg"}`}
         />
       </div>
+      
+        </Grid>
+      </Grid>
+      
       {/* End Single Slide */}
 
       {/* Start CounterUp Area */}
