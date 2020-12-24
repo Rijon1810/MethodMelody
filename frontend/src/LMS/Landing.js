@@ -182,7 +182,7 @@ export default function Landing() {
           <div className="row mt--60 mt_sm--40">
             {console.log(JSON.stringify(courseList))}
             {courseList.map((course) => (
-              <div className="col-lg-3 col-md-4 col-12" key={course._id}>
+              <div className="col-lg-4 col-md-4 col-12" key={course._id}>
                 <div className="blog blog-style--1">
                   <div className="thumbnail">
                     <a href="/courseview">
