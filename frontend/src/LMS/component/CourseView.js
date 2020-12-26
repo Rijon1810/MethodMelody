@@ -13,10 +13,11 @@ import {
 } from "@material-ui/core";
 
 //custom components
-import Header from "./HeaderFive.jsx";
+import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 import Footer from "./Footer.jsx";
 import ReactPlayer from "./ReactPlayer";
+import Breadcrumb from "./elements/common/Breadcrumb.jsx"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,14 +73,12 @@ export default function CourseView(props) {
     <div className="active-dark">
       <PageHelmet pageTitle="Course" />
       <Header
-        headertransparent="header--transparent"
-        colorblack="color--black"
-        logoname="logo.png"
-      />
+        from="landing"/>
+      <Breadcrumb from="courseview"/>
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <h3>Intro to Acoustic Guitar</h3>
+            <h3 className="theme-gradient">Intro to Acoustic Guitar</h3>
           </div>
           <div className="col-lg-9">
             <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} />
