@@ -182,7 +182,7 @@ export default function Landing() {
           <div className="row mt--60 mt_sm--40">
             {console.log(JSON.stringify(courseList))}
             {courseList.map((course) => (
-              <div className="col-lg-4 col-md-4 col-12" key={course._id}>
+              <div className="col-lg-3 col-md-4 col-12" key={course._id}>
                 <div className="blog blog-style--1">
                   <div className="thumbnail">
                     <a href="/courseview">
@@ -285,7 +285,7 @@ export default function Landing() {
           <div className="row mt--60 mt_sm--40">
             {console.log(JSON.stringify(instructorList))}
             {instructorList.map((instructor) => (
-              <div className="col-lg-4 col-md-4 col-12" key={instructor._id}>
+              <div className="col-lg-3 col-md-4 col-12" key={instructor._id}>
                 <div className="blog blog-style--1">
                   <div className="thumbnail">
                     <a href="/instructorview">
@@ -336,7 +336,7 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row align-self-center">
             <Team column="col-lg-3 col-md-6 col-sm-6 col-12" />
           </div>
         </div>

@@ -7,11 +7,11 @@ const TestimonialOne = () => {
         <Tabs>
           <TabPanel>
             <div className="rn-testimonial-content text-center">
-              <div className="inner">
-                <p>
+              <div className="text-white">
+                <h3>
                   This is my Go To place to learn how to play a song or
                   technique correctly.
-                </p>
+                </h3>
               </div>
               <div className="author-info">
                 <h6>
@@ -23,11 +23,11 @@ const TestimonialOne = () => {
 
           <TabPanel>
             <div className="rn-testimonial-content text-center">
-              <div className="inner">
-                <p>
+              <div className="text-white">
+                <h3>
                   All of the lessons that I’ve purchased have been accurate and
                   well explained.
-                </p>
+                </h3>
               </div>
               <div className="author-info">
                 <h6>
@@ -38,12 +38,12 @@ const TestimonialOne = () => {
           </TabPanel>
           <TabPanel>
             <div className="rn-testimonial-content text-center">
-              <div className="inner">
-                <p>
+              <div className="text-white">
+                <h3>
                   Exceptional tutors, excellent products, excellent customer
                   service – six stars out of five! Why? 'Cause six is one more
                   than five :).
-                </p>
+                </h3>
               </div>
               <div className="author-info">
                 <h6>
@@ -56,8 +56,8 @@ const TestimonialOne = () => {
 
           <TabPanel>
             <div className="rn-testimonial-content text-center">
-              <div className="inner">
-                <p>Everything is great. I am pleased to be on your site.</p>
+              <div className="text-white">
+                <h3>Everything is great. I am pleased to be on your site.</h3>
               </div>
               <div className="author-info">
                 <h6>
@@ -68,8 +68,8 @@ const TestimonialOne = () => {
           </TabPanel>
           <TabPanel>
             <div className="rn-testimonial-content text-center">
-              <div className="inner">
-                <p>Great product easy to follow with excellent tutors</p>
+              <div className="text-white">
+                <h3>Great product easy to follow with excellent tutors</h3>
               </div>
               <div className="author-info">
                 <h6>
@@ -81,11 +81,11 @@ const TestimonialOne = () => {
 
           <TabPanel>
             <div className="rn-testimonial-content text-center">
-              <div className="inner">
-                <p>
+              <div className="text-white">
+                <h3>
                   The best online teaching resource for guitarists! Subscribe
                   now, you won't regret it!
-                </p>
+                </h3>
               </div>
               <div className="author-info">
                 <h6>
@@ -97,8 +97,8 @@ const TestimonialOne = () => {
           </TabPanel>
           <TabPanel>
             <div className="rn-testimonial-content text-center">
-              <div className="inner">
-                <p>Great tutors and easy to follow lessons.</p>
+              <div className="text-white">
+                <h3>Great tutors and easy to follow lessons.</h3>
               </div>
               <div className="author-info">
                 <h6>
@@ -111,8 +111,8 @@ const TestimonialOne = () => {
 
           <TabPanel>
             <div className="rn-testimonial-content text-center">
-              <div className="inner">
-                <p>You get what "It Says On The Tin", and rapid response!!!</p>
+              <div className="text-white">
+                <h3>You get what "It Says On The Tin", and rapid response!!!</h3>
               </div>
               <div className="author-info">
                 <h6>

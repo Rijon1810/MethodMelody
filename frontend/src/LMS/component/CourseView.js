@@ -63,6 +63,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#f9004d",
     marginRight: theme.spacing(2),
   },
+  large: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
 }));
 
 const lessonName = [
@@ -82,6 +86,9 @@ export default function CourseView(props) {
   const classes = useStyles();
 
   const courseList = useSelector((state) => state.getCourse.courseList);
+  const instructorList = useSelector(
+    (state) => state.getInstructor.instructorList
+  );
 
   const topicList = useStyles((state) => state.getCourse.courseList[0].topic);
   return (
@@ -95,19 +102,41 @@ export default function CourseView(props) {
             <h3 className="fontWeight500" style={{ paddingTop: "2ch" }}>
               {courseList[0].title}
             </h3>
-            <p
-              className="fontWeight500"
-              style={{ paddingBottom: "2ch" }}
-              className="theme-gradient"
-            >
+            <p className="fontWeight500" className="theme-gradient">
               {" "}
               {courseList[0].subtitle}
             </p>
+            <div className="row align-items-center pb--60">
+              <div className="col-lg-1">
+                {" "}
+                <Avatar
+                  alt={instructorList[0].name}
+                  src={"http://63.250.33.174/" + instructorList[0].photo}
+                  className={classes.large}
+                  // style={avatar}
+                />
+              </div>
+              <div className="col-lg-11">
+                <p className="text-white">{instructorList[0].name}</p>
+              </div>
+            </div>
           </div>
-          <div className="header-btn col-lg-4 align-self-center" style={{ paddingTop: "2ch" }}>
-            <a className="rn-btn" href="/login">
-              <span>Get the course</span>
-            </a>
+
+          <div
+            className="header-btn col-lg-4 align-self-center"
+            style={{ paddingTop: "2ch" }}
+          >
+            <p className="text-white text-lg-right">
+              Subscribe for 30 Days with just
+            </p>
+            <p className="text-white text-lg-right">
+              BDT {courseList[0].price}
+            </p>
+            <div className="d-flex flex-row-reverse">
+              <a className="rn-btn" href="/login">
+                <span>Get Enrolled !</span>
+              </a>
+            </div>
           </div>
           <div className="col-lg-9">
             <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} />
@@ -137,7 +166,9 @@ export default function CourseView(props) {
                 <div className="row">
                   <div className="col-lg-9">
                     <div className="single-column">
-                      <h3 className="tilte theme-gradient">Description</h3>
+                      <h3 className="tilte theme-gradient">
+                        About this course
+                      </h3>
                       <p className="text-white text-justify">
                         {courseList[0].desc}
                       </p>
