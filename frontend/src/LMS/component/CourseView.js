@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import ScrollToTop from "react-scroll-up";
 import { FiChevronUp } from "react-icons/fi";
-import { PlayArrow, Lock, FilterNone } from "@material-ui/icons";
+import {
+  PlayArrow,
+  Lock,
+  FilterNone,
+  OndemandVideo,
+  VerifiedUser,
+  Timer,
+  Description,
+  Smartphone,
+} from "@material-ui/icons";
 import {
   makeStyles,
   List,
@@ -73,6 +82,8 @@ export default function CourseView(props) {
   const classes = useStyles();
 
   const courseList = useSelector((state) => state.getCourse.courseList);
+
+  const topicList = useStyles((state) => state.getCourse.courseList[0].topic);
   return (
     <div className="active-dark">
       <PageHelmet pageTitle="Course" />
@@ -80,7 +91,7 @@ export default function CourseView(props) {
       <Breadcrumb from="courseview" />
       <div className="container">
         <div className="row">
-          <div className="col-lg-12 section-title">
+          <div className="col-lg-8 section-title">
             <h3 className="fontWeight500" style={{ paddingTop: "2ch" }}>
               {courseList[0].title}
             </h3>
@@ -92,6 +103,11 @@ export default function CourseView(props) {
               {" "}
               {courseList[0].subtitle}
             </p>
+          </div>
+          <div className="header-btn col-lg-4 align-self-center" style={{ paddingTop: "2ch" }}>
+            <a className="rn-btn" href="/login">
+              <span>Get the course</span>
+            </a>
           </div>
           <div className="col-lg-9">
             <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} />
@@ -119,44 +135,74 @@ export default function CourseView(props) {
             <div className="rn-columns-area ptb--60">
               <div className="container">
                 <div className="row">
-                  <div className="col-lg-12">
+                  <div className="col-lg-9">
                     <div className="single-column">
                       <h3 className="tilte theme-gradient">Description</h3>
-                      <p className="text-white">{courseList[0].desc}</p>
+                      <p className="text-white text-justify">
+                        {courseList[0].desc}
+                      </p>
+                    </div>
+                    {/* Start What You Will Learn Area */}
+                    <div className="list-style--1 text-white pt--60">
+                      <h3 className="tilte theme-gradient">
+                        What will you learn?
+                      </h3>
+                      <ul>
+                        {courseList[0].topic.map((top) => {
+                          return <li>{top}</li>;
+                        })}
+                      </ul>
+                    </div>
+                    {/* End What You Will Learn Area */}
+                  </div>
+                  <div className="col-lg-3">
+                    <div className="single-column">
+                      <h3 className="tilte theme-gradient">
+                        This course includes
+                      </h3>
+                      <ul className="list-style--1 text-white">
+                        <li>
+                          <OndemandVideo />
+                          {courseList[0].courseHour} hours on-demand video
+                        </li>
+                        <li>
+                          <Description />4 reference documents
+                        </li>
+                        <li>
+                          <VerifiedUser />
+                          Certificate of completion
+                        </li>
+                        <li>
+                          <Timer />
+                          30 days full subscription
+                        </li>
+                        <li>
+                          <Smartphone />
+                          Access on mobile
+                        </li>
+                      </ul>
+                      {/* Start Course Requirements */}
+                      <h3 className="tilte theme-gradient pt--60">
+                        Requirements
+                      </h3>
+                      <ul className="list-style--1 text-white">
+                        {courseList[0].requirements.map((requirement) => {
+                          return (
+                            <li>
+                              <FilterNone className /> {requirement}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      {/* End Course Requirements */}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             {/* End Course Description Area */}
-
-            {/* Start Course Requirements */}
-
-            <div className="rn-columns-area pb--60">
-              <div className="container">
-                <div className="row">
-                  <div className="col-lg-12">
-                    <div className="single-column">
-                      <h3 className="tilte theme-gradient">Requirements</h3>
-                      <ul className="list-style--1 text-white">
-                        {courseList[0].requirements.map((requirement) => {
-                          return (
-                            <li>
-                              <FilterNone /> {requirement}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* End Course Requirements */}
           </main>
         </div>
-        {/* </div> */}
       </div>
       {/* Start Back To Top */}
       <div className="backto-top">
