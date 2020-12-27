@@ -11,6 +11,7 @@ var CourseSchema = new Schema(
     level: { type: String },
     sublevel: { type: String },
     thumbnail: { type: String },
+    banner: { type: String },
     videos: [{ type: Object }],
     instructor: {
       type: Schema.Types.ObjectId,
@@ -33,6 +34,7 @@ var CourseSchema = new Schema(
     sold: { type: Number, default: 0 },
     featured: { type: Boolean, default: false },
     published: { type: Boolean, default: true },
+    whoFor: [{ type: String }],
   },
   { timestamps: true }
 );

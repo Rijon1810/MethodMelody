@@ -33,6 +33,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getInstructor } from "../actions/getInstructorAction";
 import { getCourse } from "../actions/getCourseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
+import { getSelectedCourseId } from "../actions/getSelectedIdAction";
+import { getSelectedInstructorId } from "../actions/getSelectedIdAction";
 
 //constants
 const SlideList = [
@@ -73,9 +75,7 @@ export default function Landing() {
     (state) => state.getInstructor.instructorList
   );
 
-  const courseList = useSelector(
-    (state) => state.getCourse.courseList
-  );
+  const courseList = useSelector((state) => state.getCourse.courseList);
 
   const length = useSelector((state) => state.getInstructor.length);
 
@@ -167,7 +167,8 @@ export default function Landing() {
               <div className="section-title text-left">
                 <h3>Our Courses</h3>
                 <p className="theme-gradient">
-                  Start with any of our {courseList.length} in-depth featured courses
+                  Start with any of our {courseList.length} in-depth featured
+                  courses
                 </p>
               </div>
             </div>
@@ -191,17 +192,20 @@ export default function Landing() {
                         src={`http://63.250.33.174/${course.thumbnail}`}
                         alt="Blog Images"
                       />
+                      {dispatch(getSelectedCourseId(course))}
                     </a>
                   </div>
                   <div className="content">
                     {/* <p className="blogtype">{instructor.bio}</p> */}
                     <h4 className="title">
                       <a href="/courseview">{course.title}</a>
+                      {dispatch(getSelectedCourseId(course))}
                     </h4>
                     <div className="blog-btn">
                       <a className="rn-btn text-white" href="/courseview">
                         View Details
                       </a>
+                      {dispatch(getSelectedCourseId(course))}
                     </div>
                   </div>
                 </div>
@@ -210,7 +214,7 @@ export default function Landing() {
           </div>
         </div>
       </div>
-       {/* End featured course Area */}
+      {/* End featured course Area */}
 
       {/* Start Course Category Area  */}
       <div className="service-area pb--100">
@@ -223,20 +227,19 @@ export default function Landing() {
       {/* Start How Platform Works Video */}
       <Grid container justify="center" direction="row">
         <Grid item lg={8}>
-        <div class="embed-responsive embed-responsive-21by9">
-        <VideoTag
-          autoPlay={`${true}`}
-          muted={`${true}`}
-          playsInline={`${true}`}
-          loop={`${true}`}
-          src={`${"/assets/images/service/video.mp4"}`}
-          poster={`${"/assets/images/bg/bg-image-24.jpg"}`}
-        />
-      </div>
-      
+          <div class="embed-responsive embed-responsive-21by9">
+            <VideoTag
+              autoPlay={`${true}`}
+              muted={`${true}`}
+              playsInline={`${true}`}
+              loop={`${true}`}
+              src={`${"/assets/images/service/video.mp4"}`}
+              poster={`${"/assets/images/bg/bg-image-24.jpg"}`}
+            />
+          </div>
         </Grid>
       </Grid>
-      
+
       {/* End How Platform Works Video */}
 
       {/* Start CounterUp Area */}
@@ -276,7 +279,10 @@ export default function Landing() {
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
-                <a className="btn-transparent rn-btn-dark" href="/instructorlist">
+                <a
+                  className="btn-transparent rn-btn-dark"
+                  href="/instructorlist"
+                >
                   <span className="text">View All Instructors</span>
                 </a>
               </div>
@@ -294,24 +300,26 @@ export default function Landing() {
                         src={`http://63.250.33.174/${instructor.photo}`}
                         alt="Blog Images"
                       />
+                      {dispatch(getSelectedInstructorId(instructor))}
                     </a>
                   </div>
                   <div className="content">
                     {/* <p className="blogtype">{instructor.bio}</p> */}
                     <h4 className="title">
                       <a href="/instructorview">{instructor.name}</a>
+                      {dispatch(getSelectedInstructorId(instructor))}
                     </h4>
                     <div className="blog-btn">
                       <a className="rn-btn text-white" href="/instructorview">
                         Read More
                       </a>
+                      {dispatch(getSelectedInstructorId(instructor))}
                     </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-         
         </div>
       </div>
       {/* End Blog Area */}
