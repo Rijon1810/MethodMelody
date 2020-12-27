@@ -105,6 +105,7 @@ router
     const validity = req.body.validity;
     const studentReviews = req.body.studentReviews;
     const certificate = req.body.certificate;
+    const whoFor = req.body.whoFor;
     const newCourse = new Course({
       title,
       subtitle,
@@ -127,6 +128,7 @@ router
       validity,
       studentReviews,
       certificate,
+      whoFor,
     });
     newCourse
       .save()
@@ -316,20 +318,33 @@ router.route("/:courseId").get((req, res) => {
 });
 
 //UPDATE by ID
-router.route("/:courseId").put((req, res) => {
-  const id = req.params.courseId;
-  var query = req.body;
-  if (req.file) query["thumbnail"] = req.file.path;
-  Course.findByIdAndUpdate(id, { $set: query }, { useFindAndModify: false })
-    .then((doc) => {
-      if (doc) {
-        res.status(200).json(`Course Updated Successfully!`);
-      } else {
-        res.status(404).json(`Course Update Failed!`);
-      }
-    })
-    .catch((err) => res.status(400).json("Error: " + err));
-});
+router
+  .use(
+    process.fields([
+      { name: "thumbnail", maxCount: 1 },
+      { name: "banner", maxCount: 1 },
+      { name: "videos", maxCount: 15 },
+      { name: "documents", maxCount: 15 },
+    ])
+  )
+  .route("/:courseId")
+  .post((req, res) => {
+    const id = req.params.courseId;
+    var query = req.body;
+    if (req.files.thumbnail) query["thumbnail"] = req.files.thumbnail[0].path;
+    if (req.files.banner) query["banner"] = req.files.banner[0].path;
+    if (req.files.videos) query["videos"] = req.files.videos[0].path;
+    if (req.files.documents) query["documents"] = req.files.documents[0].path;
+    Course.findByIdAndUpdate(id, { $set: query }, { useFindAndModify: false })
+      .then((doc) => {
+        if (doc) {
+          res.status(200).json(`Course Updated Successfully!`);
+        } else {
+          res.status(404).json(`Course Update Failed!`);
+        }
+      })
+      .catch((err) => res.status(400).json("Error: " + err));
+  });
 
 //DELETE
 router.route("/:courseId").delete((req, res) => {

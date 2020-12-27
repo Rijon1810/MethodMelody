@@ -5,6 +5,7 @@ var InstructorSchema = new Schema(
 	{
 		name: { type: String },
 		photo: { type: String },
+		banner: { type: String },
 		bio: { type: String },
 		earnings: { type: Number, default: 0 },
 		teaches: [{ type: String }],
