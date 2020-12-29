@@ -3,6 +3,8 @@ const multer = require("multer");
 const path = require("path");
 const Mongoose = require("mongoose");
 const Course = require("../models/Course.model");
+const Video = require("../models/Video.model");
+const Document = require("../models/Document.model");
 const Analytics = require("../models/Analytics.model");
 const Featured = require("../models/Featured.model");
 
@@ -64,24 +66,28 @@ router
   .post((req, res) => {
     let videos_object = [];
     req.files.videos.forEach((video) => {
-      videos_object.push({
-        originalname: video.originalname,
-        filename: video.filename,
-        path: video.path,
-        size: parseInt((video.size / 1024 / 1024).toFixed(2)),
-        published: true,
-      });
+      videos_object.push(
+        new Video({
+          originalname: video.originalname,
+          filename: video.filename,
+          path: video.path,
+          size: parseInt((video.size / 1024 / 1024).toFixed(2)),
+          published: true,
+        })
+      );
     });
 
     let documents_object = [];
     req.files.documents.forEach((document) => {
-      documents_object.push({
-        originalname: document.originalname,
-        filename: document.filename,
-        path: document.path,
-        size: parseInt((document.size / 1024 / 1024).toFixed(2)),
-        published: true,
-      });
+      documents_object.push(
+        new Document({
+          originalname: document.originalname,
+          filename: document.filename,
+          path: document.path,
+          size: parseInt((document.size / 1024 / 1024).toFixed(2)),
+          published: true,
+        })
+      );
     });
 
     const title = req.body.title;
