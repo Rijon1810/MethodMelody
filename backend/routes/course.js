@@ -334,9 +334,36 @@ router.route("/:courseId").post((req, res) => {
   if (req.files.thumbnail)
     special_query["thumbnail"] = req.files.thumbnail[0].path;
   if (req.files.banner) special_query["banner"] = req.files.banner[0].path;
-  if (req.files.videos) special_query["videos"] = req.files.videos[0].path;
-  if (req.files.documents)
-    special_query["documents"] = req.files.documents[0].path;
+  if (req.files.videos) {
+    let videos_object = [];
+    req.files.videos.forEach((video) => {
+      videos_object.push(
+        new Video({
+          originalname: video.originalname,
+          filename: video.filename,
+          path: video.path,
+          size: parseInt((video.size / 1024 / 1024).toFixed(2)),
+          published: true,
+        })
+      );
+    });
+    special_query["videos"] = videos_object;
+  }
+  if (req.files.documents) {
+    let documents_object = [];
+    req.files.documents.forEach((document) => {
+      documents_object.push(
+        new Document({
+          originalname: document.originalname,
+          filename: document.filename,
+          path: document.path,
+          size: parseInt((document.size / 1024 / 1024).toFixed(2)),
+          published: true,
+        })
+      );
+    });
+    special_query["documents"] = documents_object;
+  }
   Course.findByIdAndUpdate(
     id,
     { $set: special_query },

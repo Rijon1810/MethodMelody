@@ -20,7 +20,7 @@ import {
   Divider,
   Avatar,
 } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //custom components
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
@@ -29,6 +29,7 @@ import ReactPlayer from "./ReactPlayer";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 
 import Column from "../../blocks/Columns.jsx";
+import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,12 +72,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CourseView(props) {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const selectedCourse = useSelector(
     (state) => state.getSelectedId.getSelectedCourseId
   );
   const selectedInstructor = useSelector(
     (state) => state.getSelectedId.getSelectedInstructorId
+  );
+  const selectedLesson = useSelector(
+    (state) => state.getSelectedId.getCurrentVideoIndex
   );
 
   return (
@@ -127,13 +132,22 @@ export default function CourseView(props) {
             </div>
           </div>
           <div className="col-lg-9">
-            <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} />
+            <ReactPlayer
+              url={"http://63.250.33.174/" + selectedCourse.videos[0].path}
+            />
+            {/* <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} /> */}
           </div>
           <div className="col-lg-3">
             <div className={classes.root}>
               <List component="nav" aria-label="main mailbox folders">
-                {selectedCourse.topic.map((lesson) => (
-                  <ListItem button className={classes.ListItem}>
+                {selectedCourse.topic.map((lesson, index) => (
+                  <ListItem
+                    button
+                    className={classes.ListItem}
+                    onClick={async (event) => {
+                      dispatch(getCurrentVideoIndex(index));
+                    }}
+                  >
                     <Avatar className={classes.Avatar}>
                       <PlayArrow className={classes.Icon} />
                     </Avatar>
