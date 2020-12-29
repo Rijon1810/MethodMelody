@@ -69,28 +69,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const lessonName = [
-  "Introduction",
-  "What you'll learn?",
-  "Holding Your 'Guitar' properly",
-  "Navigating the Fretboard",
-  "Strumming Techniques",
-  "Demystifying Chords",
-  "Playing Advanced Chords",
-  "Finding Your Sound",
-  "Technique: Developing Speed",
-  "Improvisation",
-];
-
 export default function CourseView(props) {
   const classes = useStyles();
 
-  const courseList = useSelector((state) => state.getCourse.courseList);
-  const instructorList = useSelector(
-    (state) => state.getInstructor.instructorList
+  const selectedCourse = useSelector(
+    (state) => state.getSelectedId.getSelectedCourseId
+  );
+  const selectedInstructor = useSelector(
+    (state) => state.getSelectedId.getSelectedInstructorId
   );
 
-  const topicList = useStyles((state) => state.getCourse.courseList[0].topic);
   return (
     <div className="active-dark">
       <PageHelmet pageTitle="Course" />
@@ -100,24 +88,24 @@ export default function CourseView(props) {
         <div className="row">
           <div className="col-lg-8 section-title">
             <h3 className="fontWeight500" style={{ paddingTop: "2ch" }}>
-              {courseList[0].title}
+              {selectedCourse.title}
             </h3>
             <p className="fontWeight500" className="theme-gradient">
               {" "}
-              {courseList[0].subtitle}
+              {selectedCourse.subtitle}
             </p>
             <div className="row align-items-center pb--60">
               <div className="col-lg-1">
                 {" "}
                 <Avatar
-                  alt={instructorList[0].name}
-                  src={"http://63.250.33.174/" + instructorList[0].photo}
+                  alt={selectedInstructor.name}
+                  src={"http://63.250.33.174/" + selectedInstructor.photo}
                   className={classes.large}
                   // style={avatar}
                 />
               </div>
               <div className="col-lg-11">
-                <p className="text-white">{instructorList[0].name}</p>
+                <p className="text-white">{selectedInstructor.name}</p>
               </div>
             </div>
           </div>
@@ -130,7 +118,7 @@ export default function CourseView(props) {
               Subscribe for 30 Days with just
             </p>
             <p className="text-white text-lg-right">
-              BDT {courseList[0].price}
+              BDT {selectedCourse.price}
             </p>
             <div className="d-flex flex-row-reverse">
               <a className="rn-btn" href="/login">
@@ -144,7 +132,7 @@ export default function CourseView(props) {
           <div className="col-lg-3">
             <div className={classes.root}>
               <List component="nav" aria-label="main mailbox folders">
-                {lessonName.map((lesson) => (
+                {selectedCourse.topic.map((lesson) => (
                   <ListItem button className={classes.ListItem}>
                     <Avatar className={classes.Avatar}>
                       <PlayArrow className={classes.Icon} />
@@ -170,7 +158,7 @@ export default function CourseView(props) {
                         About this course
                       </h3>
                       <p className="text-white text-justify">
-                        {courseList[0].desc}
+                        {selectedCourse.desc}
                       </p>
                     </div>
                     {/* Start What You Will Learn Area */}
@@ -179,7 +167,7 @@ export default function CourseView(props) {
                         What will you learn?
                       </h3>
                       <ul>
-                        {courseList[0].topic.map((top) => {
+                        {selectedCourse.topic.map((top) => {
                           return <li>{top}</li>;
                         })}
                       </ul>
@@ -194,7 +182,7 @@ export default function CourseView(props) {
                       <ul className="list-style--1 text-white">
                         <li>
                           <OndemandVideo />
-                          {courseList[0].courseHour} hours on-demand video
+                          {selectedCourse.courseHour} hours on-demand video
                         </li>
                         <li>
                           <Description />4 reference documents
@@ -217,7 +205,7 @@ export default function CourseView(props) {
                         Requirements
                       </h3>
                       <ul className="list-style--1 text-white">
-                        {courseList[0].requirements.map((requirement) => {
+                        {selectedCourse.requirements.map((requirement) => {
                           return (
                             <li>
                               <FilterNone className /> {requirement}
