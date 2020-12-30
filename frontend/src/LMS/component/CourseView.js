@@ -133,14 +133,14 @@ export default function CourseView(props) {
           </div>
           <div className="col-lg-9">
             <ReactPlayer
-              url={"http://63.250.33.174/" + selectedCourse.videos[0].path}
+              url={"http://63.250.33.174/" + selectedCourse.videos[selectedLesson].path}
             />
             {/* <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} /> */}
           </div>
           <div className="col-lg-3">
             <div className={classes.root}>
               <List component="nav" aria-label="main mailbox folders">
-                {selectedCourse.topic.map((lesson, index) => (
+                {selectedCourse.videos.map((lesson, index) => (
                   <ListItem
                     button
                     className={classes.ListItem}
@@ -152,7 +152,7 @@ export default function CourseView(props) {
                       <PlayArrow className={classes.Icon} />
                     </Avatar>
                     <ListItemText
-                      primary={lesson}
+                      primary={lesson.originalname}
                       className={classes.ListItemText}
                     />
                   </ListItem>

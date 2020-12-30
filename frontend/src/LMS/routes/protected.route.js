@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import Landing from "../Landing";
 import auth from "./auth";
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
@@ -11,13 +12,10 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
 					return <Component {...props} />;
 				} else {
 					return (
-						<Redirect
-							to={{
-								pathname: "/",
-								state: {
-									from: props.location,
-								},
-							}}
+						<Route
+							exact
+							path={`${process.env.PUBLIC_URL}/`}
+							component={Landing}
 						/>
 					);
 				}
