@@ -250,7 +250,7 @@ router.route("/:instructorId").post((req, res) => {
   }
   if (req.files.photo) special_query["photo"] = req.files.photo[0].path;
   if (req.files.banner) special_query["banner"] = req.files.banner[0].path;
-  Instructor.findByIdAndUpdate(id, { $set: query }, { useFindAndModify: false })
+  Instructor.findByIdAndUpdate(id, { $set: special_query }, { useFindAndModify: false })
     .then((doc) => {
       if (doc) {
         res.status(200).json(`Instructor Updated Successfully!`);
