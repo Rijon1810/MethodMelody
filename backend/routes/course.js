@@ -3,6 +3,8 @@ const multer = require("multer");
 const path = require("path");
 const Mongoose = require("mongoose");
 const Course = require("../models/Course.model");
+const Video = require("../models/Video.model");
+const Document = require("../models/Document.model");
 const Analytics = require("../models/Analytics.model");
 const Featured = require("../models/Featured.model");
 
@@ -64,24 +66,28 @@ router
   .post((req, res) => {
     let videos_object = [];
     req.files.videos.forEach((video) => {
-      videos_object.push({
-        originalname: video.originalname,
-        filename: video.filename,
-        path: video.path,
-        size: parseInt((video.size / 1024 / 1024).toFixed(2)),
-        published: true,
-      });
+      videos_object.push(
+        new Video({
+          originalname: video.originalname,
+          filename: video.filename,
+          path: video.path,
+          size: parseInt((video.size / 1024 / 1024).toFixed(2)),
+          published: true,
+        })
+      );
     });
 
     let documents_object = [];
     req.files.documents.forEach((document) => {
-      documents_object.push({
-        originalname: document.originalname,
-        filename: document.filename,
-        path: document.path,
-        size: parseInt((document.size / 1024 / 1024).toFixed(2)),
-        published: true,
-      });
+      documents_object.push(
+        new Document({
+          originalname: document.originalname,
+          filename: document.filename,
+          path: document.path,
+          size: parseInt((document.size / 1024 / 1024).toFixed(2)),
+          published: true,
+        })
+      );
     });
 
     const title = req.body.title;
@@ -318,33 +324,60 @@ router.route("/:courseId").get((req, res) => {
 });
 
 //UPDATE by ID
-router
-  .use(
-    process.fields([
-      { name: "thumbnail", maxCount: 1 },
-      { name: "banner", maxCount: 1 },
-      { name: "videos", maxCount: 15 },
-      { name: "documents", maxCount: 15 },
-    ])
+router.route("/:courseId").post((req, res) => {
+  const id = req.params.courseId;
+  var query = req.body;
+  var special_query = {};
+  for (var key in query) {
+    special_query[key] = `${query[key]}`;
+  }
+  if (req.files.thumbnail)
+    special_query["thumbnail"] = req.files.thumbnail[0].path;
+  if (req.files.banner) special_query["banner"] = req.files.banner[0].path;
+  if (req.files.videos) {
+    let videos_object = [];
+    req.files.videos.forEach((video) => {
+      videos_object.push(
+        new Video({
+          originalname: video.originalname,
+          filename: video.filename,
+          path: video.path,
+          size: parseInt((video.size / 1024 / 1024).toFixed(2)),
+          published: true,
+        })
+      );
+    });
+    special_query["videos"] = videos_object;
+  }
+  if (req.files.documents) {
+    let documents_object = [];
+    req.files.documents.forEach((document) => {
+      documents_object.push(
+        new Document({
+          originalname: document.originalname,
+          filename: document.filename,
+          path: document.path,
+          size: parseInt((document.size / 1024 / 1024).toFixed(2)),
+          published: true,
+        })
+      );
+    });
+    special_query["documents"] = documents_object;
+  }
+  Course.findByIdAndUpdate(
+    id,
+    { $set: special_query },
+    { useFindAndModify: false }
   )
-  .route("/:courseId")
-  .post((req, res) => {
-    const id = req.params.courseId;
-    var query = req.body;
-    if (req.files.thumbnail) query["thumbnail"] = req.files.thumbnail[0].path;
-    if (req.files.banner) query["banner"] = req.files.banner[0].path;
-    if (req.files.videos) query["videos"] = req.files.videos[0].path;
-    if (req.files.documents) query["documents"] = req.files.documents[0].path;
-    Course.findByIdAndUpdate(id, { $set: query }, { useFindAndModify: false })
-      .then((doc) => {
-        if (doc) {
-          res.status(200).json(`Course Updated Successfully!`);
-        } else {
-          res.status(404).json(`Course Update Failed!`);
-        }
-      })
-      .catch((err) => res.status(400).json("Error: " + err));
-  });
+    .then((doc) => {
+      if (doc) {
+        res.status(200).json(`Course Updated Successfully!`);
+      } else {
+        res.status(404).json(`Course Update Failed!`);
+      }
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 
 //DELETE
 router.route("/:courseId").delete((req, res) => {

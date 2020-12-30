@@ -1,8 +1,13 @@
-import { GET_SELECTED_COURSE_ID, GET_SELECTED_INSTRUCTOR_ID } from "../actions/types";
+import {
+  GET_SELECTED_COURSE_ID,
+  GET_SELECTED_INSTRUCTOR_ID,
+  GET_SELECTED_LESSON_ID,
+} from "../actions/types";
 
 const initialState = {
   getSelectedCourseId: {},
   getSelectedInstructorId: {},
+  getCurrentVideoIndex: 0,
 };
 
 const getSelectedIdReducer = (state = initialState, action) => {
@@ -16,6 +21,11 @@ const getSelectedIdReducer = (state = initialState, action) => {
       return {
         ...state,
         getSelectedInstructorId: action.payload,
+      };
+    case GET_SELECTED_LESSON_ID:
+      return {
+        ...state,
+        getCurrentVideoIndex: action.payload,
       };
     default:
       return { ...state };

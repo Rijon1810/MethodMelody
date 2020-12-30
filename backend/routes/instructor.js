@@ -241,33 +241,25 @@ router.route("/:instructorId").get((req, res) => {
 });
 
 //UPDATE by ID
-router
-  .use(
-    photo.fields([
-      { name: "photo", maxCount: 1 },
-      { name: "banner", maxCount: 1 },
-    ])
-  )
-  .route("/:instructorId")
-  .post((req, res) => {
-    const id = req.params.instructorId;
-    var query = req.body;
-	if (req.files.photo) query["photo"] = req.files.photo[0].path;
-    if (req.files.banner) query["banner"] = req.files.banner[0].path;
-    Instructor.findByIdAndUpdate(
-      id,
-      { $set: query },
-      { useFindAndModify: false }
-    )
-      .then((doc) => {
-        if (doc) {
-          res.status(200).json(`Instructor Updated Successfully!`);
-        } else {
-          res.status(404).json(`Instructor Update Failed!`);
-        }
-      })
-      .catch((err) => res.status(400).json("Error: " + err));
-  });
+router.route("/:instructorId").post((req, res) => {
+  const id = req.params.instructorId;
+  var query = req.body;
+  var special_query = {};
+  for (var key in query) {
+    special_query[key] = `${query[key]}`;
+  }
+  if (req.files.photo) special_query["photo"] = req.files.photo[0].path;
+  if (req.files.banner) special_query["banner"] = req.files.banner[0].path;
+  Instructor.findByIdAndUpdate(id, { $set: query }, { useFindAndModify: false })
+    .then((doc) => {
+      if (doc) {
+        res.status(200).json(`Instructor Updated Successfully!`);
+      } else {
+        res.status(404).json(`Instructor Update Failed!`);
+      }
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 
 //DELETE by ID
 router.route("/:instructorId").delete((req, res) => {

@@ -183,7 +183,13 @@ export default function Landing() {
           <div className="row mt--60 mt_sm--40">
             {console.log(JSON.stringify(courseList))}
             {courseList.map((course) => (
-              <div className="col-lg-3 col-md-4 col-12" key={course._id}>
+              <div
+                className="col-lg-3 col-md-4 col-12"
+                key={course._id}
+                onClick={async (event) => {
+                  dispatch(getSelectedCourseId(course));
+                }}
+              >
                 <div className="blog blog-style--1">
                   <div className="thumbnail">
                     <a href="/courseview">
@@ -192,20 +198,18 @@ export default function Landing() {
                         src={`http://63.250.33.174/${course.thumbnail}`}
                         alt="Blog Images"
                       />
-                      {dispatch(getSelectedCourseId(course))}
                     </a>
                   </div>
                   <div className="content">
                     {/* <p className="blogtype">{instructor.bio}</p> */}
                     <h4 className="title">
                       <a href="/courseview">{course.title}</a>
-                      {dispatch(getSelectedCourseId(course))}
                     </h4>
+
                     <div className="blog-btn">
                       <a className="rn-btn text-white" href="/courseview">
                         View Details
                       </a>
-                      {dispatch(getSelectedCourseId(course))}
                     </div>
                   </div>
                 </div>

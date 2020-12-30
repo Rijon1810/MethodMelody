@@ -2,16 +2,11 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var VideoSchema = new Schema({
-	title: { type: String },
-	desc: { type: String },
-	file: { type: String },
-	duration: { type: String },
-	eligibility: { type: String },
-	course: [{ type: Schema.Types.ObjectId }],
-	instructor: {
-		type: Schema.Types.ObjectId,
-	},
-	document: [{ type: Schema.Types.ObjectId }],
+	originalname: { type: String },
+	filename: { type: String },
+	path: { type: String },
+	size: { type: String },
+	published: { type: String },
 });
 
 module.exports = mongoose.model("Video", VideoSchema);
