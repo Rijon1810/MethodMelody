@@ -33,8 +33,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getInstructor } from "../actions/getInstructorAction";
 import { getCourse } from "../actions/getCourseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
-import { getSelectedCourseId } from "../actions/getSelectedIdAction";
-import { getSelectedInstructorId } from "../actions/getSelectedIdAction";
+import {
+  getSelectedCourseId,
+  getSelectedInstructorId,
+  getCurrentVideoIndex,
+} from "../actions/getSelectedIdAction";
 
 //constants
 const SlideList = [
@@ -93,6 +96,7 @@ export default function Landing() {
     dispatch(getInstructor());
     dispatch(getCourse());
     dispatch(getAnalytics());
+    dispatch(getCurrentVideoIndex(0));
   }, [dispatch]);
 
   // view all course handler
@@ -181,7 +185,6 @@ export default function Landing() {
             </div>
           </div>
           <div className="row mt--60 mt_sm--40">
-            {console.log(JSON.stringify(courseList))}
             {courseList.map((course) => (
               <div
                 className="col-lg-3 col-md-4 col-12"
@@ -293,7 +296,6 @@ export default function Landing() {
             </div>
           </div>
           <div className="row mt--60 mt_sm--40">
-            {console.log(JSON.stringify(instructorList))}
             {instructorList.map((instructor) => (
               <div className="col-lg-3 col-md-4 col-12" key={instructor._id}>
                 <div className="blog blog-style--1">
