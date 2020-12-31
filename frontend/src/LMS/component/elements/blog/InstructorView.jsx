@@ -64,6 +64,31 @@ class InstructorList extends Component {
                       <p className="description text-white">
                         {this.props.instructor.bio}
                       </p>
+                      <ul className="text-white mt--50 list-group">
+                        <span style={{color: "#000"}}>
+                        <li className="mr--50">
+                          <p className="text-white">
+                            <SiBandsintown className="mr--10" />
+                            Band: {this.props.instructor.band}
+                          </p>
+                        </li>
+                        <li className="mr--50">
+                          <p className="text-white">
+                          <GiTeacher className="mr--10" />
+                          Teaches: {this.props.instructor.teaches}
+                          </p>
+                        </li>
+                        <li>
+                          <p className="text-white">
+                          <FiClock className="mr--10" />
+                          Since:{" "}
+                          {new Date(
+                            this.props.instructor.createdAt
+                          ).toDateString()}
+                          </p>
+                        </li>
+                        </span>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -72,6 +97,10 @@ class InstructorList extends Component {
           </div>
         </div>
         {/* End About Area  */}
+
+        {/* <div className="col-lg-12">
+          <div className="text-center ptb--50"></div>
+        </div> */}
 
         {/* Start Back To Top */}
         <div className="backto-top">
