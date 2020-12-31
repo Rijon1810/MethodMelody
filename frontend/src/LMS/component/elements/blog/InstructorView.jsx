@@ -12,7 +12,7 @@ import Footer from "../../Footer.jsx";
 
 import { connect } from "react-redux";
 
-import Breadcrumb from "../common/Breadcrumb.jsx"
+import Breadcrumb from "../common/Breadcrumb.jsx";
 
 class InstructorList extends Component {
   constructor() {
@@ -40,30 +40,38 @@ class InstructorList extends Component {
       <React.Fragment>
         <PageHelmet pageTitle="Blog Details" />
         <Header from="landing" />
-        <Breadcrumb from="instructorview"/>
-         {/* Start About Area  */}
-         <div className="rn-about-area ptb--120 bg_color--4">
-                    <div className="rn-about-wrapper">
-                        <div className="container">
-                            <div className="row row--35 align-items-center">
-                                <div className="col-lg-5">
-                                    <div className="thumbnail">
-                                        <img className="w-100" src={`http://63.250.33.174/${this.props.instructor.photo}`} alt="About Images"/>
-                                    </div>
-                                </div>
-                                <div className="col-lg-7">
-                                    <div className="about-inner inner">
-                                        <div className="section-title">
-                                            <h2 className="title theme-gradient">{this.props.instructor.name}</h2>
-                                            <p className="description text-white">{this.props.instructor.bio}</p>
-                                        </div>
-                                   </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <Breadcrumb from="instructorview" />
+        {/* Start About Area  */}
+        <div className="rn-about-area ptb--120 bg_color--6">
+          <div className="rn-about-wrapper">
+            <div className="container">
+              <div className="row row--35 align-items-center">
+                <div className="col-lg-5">
+                  <div className="thumbnail">
+                    <img
+                      className="w-100"
+                      src={`http://63.250.33.174/${this.props.instructor.photo}`}
+                      alt="About Images"
+                    />
+                  </div>
                 </div>
-                {/* End About Area  */}
+                <div className="col-lg-7">
+                  <div className="about-inner inner">
+                    <div className="section-title">
+                      <h2 className="title theme-gradient">
+                        {this.props.instructor.name}
+                      </h2>
+                      <p className="description text-white">
+                        {this.props.instructor.bio}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* End About Area  */}
 
         {/* Start Back To Top */}
         <div className="backto-top">
