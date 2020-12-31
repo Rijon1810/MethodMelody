@@ -4,7 +4,7 @@ import { getInstructor } from "../../actions/getInstructorAction";
 import { Fab } from "@material-ui/core";
 import { Add, Remove } from "@material-ui/icons";
 
-class ContactThree extends Component {
+class UpdateCourseForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,10 +21,10 @@ class ContactThree extends Component {
           <div className="row row--35 align-items-start">
             <div className="col-lg-12 order-2 order-lg-1">
               <div className="section-title text-left theme-gradient">
-                <h4 className="title">Upload Course</h4>
+                <h4 className="title">Update Course</h4>
               </div>
               <p className="text-muted">
-                All the fields are rquired for successful course upload
+                All the fields are optionel, can update any number of fields as needed.
               </p>
               <div className="form-wrapper">
                 <form>
@@ -39,7 +39,7 @@ class ContactThree extends Component {
                           onChange={(e) => {
                             this.setState({ rnName: e.target.value });
                           }}
-                          placeholder="Title *"
+                          placeholder="Title "
                         />
                       </label>
                     </div>
@@ -53,7 +53,7 @@ class ContactThree extends Component {
                           onChange={(e) => {
                             this.setState({ rnEmail: e.target.value });
                           }}
-                          placeholder="Subtitle *"
+                          placeholder="Subtitle "
                         />
                       </label>
                     </div>
@@ -67,52 +67,7 @@ class ContactThree extends Component {
                           onChange={(e) => {
                             this.setState({ rnSubject: e.target.value });
                           }}
-                          placeholder="Course Hour *"
-                        />
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-lg-4">
-                      <label htmlFor="item03">
-                        <input
-                          type="text"
-                          name="subject"
-                          id="item03"
-                          value={this.state.rnSubject}
-                          onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
-                          }}
-                          placeholder="Price *"
-                        />
-                      </label>
-                    </div>
-                    <div className="col-lg-4">
-                      <label htmlFor="item03">
-                        <input
-                          type="text"
-                          name="subject"
-                          id="item03"
-                          value={this.state.rnSubject}
-                          onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
-                          }}
-                          placeholder="Requirements *"
-                        />
-                      </label>
-                    </div>
-                    <div className="col-lg-4">
-                      <label htmlFor="item03">
-                        <input
-                          type="text"
-                          name="subject"
-                          id="item03"
-                          value={this.state.rnSubject}
-                          onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
-                          }}
-                          placeholder="Topics *"
+                          placeholder="Course Hour "
                         />
                       </label>
                     </div>
@@ -129,7 +84,52 @@ class ContactThree extends Component {
                           onChange={(e) => {
                             this.setState({ rnSubject: e.target.value });
                           }}
-                          placeholder="Who this course is for *"
+                          placeholder="Price "
+                        />
+                      </label>
+                    </div>
+                    <div className="col-lg-4">
+                      <label htmlFor="item03">
+                        <input
+                          type="text"
+                          name="subject"
+                          id="item03"
+                          value={this.state.rnSubject}
+                          onChange={(e) => {
+                            this.setState({ rnSubject: e.target.value });
+                          }}
+                          placeholder="Requirements "
+                        />
+                      </label>
+                    </div>
+                    <div className="col-lg-4">
+                      <label htmlFor="item03">
+                        <input
+                          type="text"
+                          name="subject"
+                          id="item03"
+                          value={this.state.rnSubject}
+                          onChange={(e) => {
+                            this.setState({ rnSubject: e.target.value });
+                          }}
+                          placeholder="Topics "
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <label htmlFor="item03">
+                        <input
+                          type="text"
+                          name="subject"
+                          id="item03"
+                          value={this.state.rnSubject}
+                          onChange={(e) => {
+                            this.setState({ rnSubject: e.target.value });
+                          }}
+                          placeholder="Who this course is for "
                         />
                       </label>
                     </div>
@@ -139,9 +139,9 @@ class ContactThree extends Component {
                     <div className="col-lg-4">
                       <div className="form-group">
                         <label for="exampleFormControlFile1">
-                          Select Instructor *
+                          Select Instructor 
                         </label>
-                        <label for="instructor *">
+                        <label for="instructor ">
                           <select className="form-control">
                             {this.props.instructorList.map((instructor) => (
                               <option>{instructor.name}</option>
@@ -153,9 +153,9 @@ class ContactThree extends Component {
                     <div className="col-lg-4">
                       <div className="form-group">
                         <label for="exampleFormControlFile1">
-                          Feature Course *
+                          Feature Course 
                         </label>
-                        <label for="featured *">
+                        <label for="featured ">
                           <select className="form-control">
                             <option>Yes</option>
                             <option>No</option>
@@ -180,7 +180,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="Thumbnail *"
+                            placeholder="Thumbnail "
                           />
                         </label>
                       </div>
@@ -199,7 +199,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="Document *"
+                            placeholder="Document "
                           />
                         </label>
                       </div>
@@ -215,19 +215,19 @@ class ContactThree extends Component {
                       onChange={(e) => {
                         this.setState({ rnMessage: e.target.value });
                       }}
-                      placeholder="Description *"
+                      placeholder="Description "
                     />
                   </label>
                   <div className="section-title text-left theme-gradient pt--60">
-                    <h4 className="title">Upload Lesson</h4>
+                    <h4 className="title">Update Lesson</h4>
                   </div>
                   <p className="text-muted">
-                    Atleast one lesson is rquired for successful course upload
+                    The new videos will replace the previous videos
                   </p>
                   <div className="row">
                     <div className="col-lg-4">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">Lessons 1 *</label>
+                        <label for="exampleFormControlFile1">Lessons 1 </label>
                         <label htmlFor="item03">
                           <input
                             type="file"
@@ -237,7 +237,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -254,7 +254,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -272,7 +272,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -291,7 +291,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -308,7 +308,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -325,7 +325,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -344,7 +344,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -361,7 +361,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -378,7 +378,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -397,7 +397,7 @@ class ContactThree extends Component {
                             onChange={(e) => {
                               this.setState({ rnSubject: e.target.value });
                             }}
-                            placeholder="lesson *"
+                            placeholder="lesson "
                           />
                         </label>
                       </div>
@@ -423,7 +423,7 @@ class ContactThree extends Component {
                     name="submit"
                     id="mc-embedded-subscribe"
                   >
-                    Update
+                    Upload
                   </button>
                 </form>
               </div>
@@ -439,4 +439,4 @@ const mapStateToProps = (state) => ({
   instructorList: state.getInstructor.instructorList,
 });
 
-export default connect(mapStateToProps, { getInstructor })(ContactThree);
+export default connect(mapStateToProps, { getInstructor })(UpdateCourseForm);
