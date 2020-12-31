@@ -12,7 +12,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import {
   ImportContacts,
-  MoveToInbox,
+  Dashboard,
   AssignmentInd,
   AccountCircleOutlined,
   AccountCircleTwoTone,
@@ -21,7 +21,9 @@ import {
   Mail,
   PieChart,
   Assessment,
+  HomeOutlined,
 } from "@material-ui/icons";
+import Admin from "../Admin";
 
 const drawerWidth = 240;
 
@@ -36,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    background: "black",
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -43,6 +46,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PermanentDrawerLeft() {
   const classes = useStyles();
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+    console.log(index + " clicked");
+
+    switch(index){
+       
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -55,78 +68,105 @@ export default function PermanentDrawerLeft() {
         anchor="left"
       >
         <div className={classes.toolbar} />
-
         <List>
-          <ListItem button key="addcourse">
+          <ListItem
+            button
+            key="Home"
+            onClick={(event) => handleListItemClick(event, 0)}
+            selected={selectedIndex === 0}
+          >
             <ListItemIcon>
-              <ImportContacts />
+              <Dashboard style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="Add New Course" />
-          </ListItem>
-          <ListItem button key="addinstructor">
-            <ListItemIcon>
-              <AssignmentInd />
-            </ListItemIcon>
-            <ListItemText primary="Add New Instructor" />
-          </ListItem>
-          <ListItem button key="addinstructor">
-            <ListItemIcon>
-              <AccountCircle />
-            </ListItemIcon>
-            <ListItemText primary="Add New User" />
+            <ListItemText primary="Dashboard" style={{ color: "#fff" }} />
           </ListItem>
         </List>
-        <Divider />
+        <Divider style={{ background: "#1d1e24" }} />
+        <List>
+          <ListItem
+            button
+            key="addcourse"
+            onClick={(event) => handleListItemClick(event, 1)}
+            selected={selectedIndex === 1}
+          >
+            <ListItemIcon>
+              <ImportContacts style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText primary="Add New Course" style={{ color: "#fff" }} />
+          </ListItem>
+          <ListItem button key="addinstructor">
+            <ListItemIcon>
+              <AssignmentInd style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText
+              primary="Add New Instructor"
+              style={{ color: "#fff" }}
+            />
+          </ListItem>
+          <ListItem button key="addinstructor">
+            <ListItemIcon>
+              <AccountCircle style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText primary="Add New User" style={{ color: "#fff" }} />
+          </ListItem>
+        </List>
+        <Divider style={{ background: "#1d1e24" }} />
         {/* Update Section Start*/}
         <List>
           <ListItem button key="updatecourse">
             <ListItemIcon>
-              <ImportContacts />
+              <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="Update Course" />
+            <ListItemText primary="Update Course" style={{ color: "#fff" }} />
           </ListItem>
           <ListItem button key="updateinstructor">
             <ListItemIcon>
-              <AssignmentInd />
+              <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="Update Instructor" />
+            <ListItemText
+              primary="Update Instructor"
+              style={{ color: "#fff" }}
+            />
           </ListItem>
         </List>
         {/* Update Section End*/}
-        <Divider />
+        <Divider style={{ background: "#1d1e24" }} />
         <List>
           <ListItem button key="updatecourse">
             <ListItemIcon>
-              <ImportContacts />
+              <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="View Courses" />
+            <ListItemText primary="View Courses" style={{ color: "#fff" }} />
           </ListItem>
           <ListItem button key="updateinstructor">
             <ListItemIcon>
-              <AssignmentInd />
+              <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="View Instructors" />
+            <ListItemText
+              primary="View Instructors"
+              style={{ color: "#fff" }}
+            />
           </ListItem>
           <ListItem button key="updateinstructor">
             <ListItemIcon>
-              <AccountCircleRounded />
+              <AccountCircleRounded style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="View Users" />
+            <ListItemText primary="View Users" style={{ color: "#fff" }} />
           </ListItem>
           <ListItem button key="updateinstructor">
             <ListItemIcon>
-              <Mail />
+              <Mail style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="View Messages" />
+            <ListItemText primary="View Messages" style={{ color: "#fff" }} />
           </ListItem>
         </List>
-        <Divider />
+        <Divider style={{ background: "#1d1e24" }} />
         <List>
           <ListItem button key="updatecourse">
             <ListItemIcon>
-              <Assessment />
+              <Assessment style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="Site Analytics" />
+            <ListItemText primary="Site Analytics" style={{ color: "#fff" }} />
           </ListItem>
         </List>
       </Drawer>

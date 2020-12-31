@@ -28,14 +28,14 @@ function Admin() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <PageHelmet pageTitle="Service" />
+      <PageHelmet pageTitle="Admin Panel" />
 
       <main className={classes.content}>
         <Header from="admin" />
 
         <Breadcrumb from="admin" />
 
-        {/* Start Columns Area  */}
+        {/* Start Stat Area  */}
         <div className="rn-columns-area ptb--50 bg_color--6">
           <div className="container">
             <div className="row">
@@ -80,7 +80,7 @@ function Admin() {
             </div>
           </div>
         </div>
-        {/* Start Columns Area  */}
+        {/* Start Stat Area  */}
 
         {/* Start Back To Top */}
         <div className="backto-top">
