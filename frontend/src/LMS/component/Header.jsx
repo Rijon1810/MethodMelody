@@ -147,72 +147,98 @@ class Header extends Component {
           </div>
           <div className="header-right">
             <nav className="mainmenunav d-lg-block">
-              {this.props.from === "landing" && (
+              {(this.props.from === "landing" ||
+                this.props.from === "admin") && (
                 <ul className="mainmenu">
-                  <li className="has-droupdown">
-                    <Link to="#">Courses</Link>
-                    <ul className="submenu" style={mystyle}>
-                      {categoryList.map((category) => (
-                        <li>
-                          <Link to="/service">
-                            <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10 }}>
-                                {" "}
-                                <Avatar
-                                  alt={category.alt}
-                                  src={`${process.env.PUBLIC_URL}/${category.src}`}
-                                  style={avatar}
-                                />
+                  {this.props.from !== "admin" && (
+                    <li className="has-droupdown">
+                      <Link to="#">Courses</Link>
+                      <ul className="submenu" style={mystyle}>
+                        {categoryList.map((category) => (
+                          <li>
+                            <Link to="/service">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid item style={{ marginRight: 10 }}>
+                                  {" "}
+                                  <Avatar
+                                    alt={category.alt}
+                                    src={`${process.env.PUBLIC_URL}/${category.src}`}
+                                    style={avatar}
+                                  />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  {category.primary}
+                                </Grid>
                               </Grid>
-                              <Grid item style={{ color: "#fff" }}>
-                                {category.primary}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  )}
+                  {this.props.from !== "admin" && (
+                    <li className="has-droupdown">
+                      <Link to="#">Musicians</Link>
+                      <ul className="submenu" style={mystyle}>
+                        {this.props.instructorList.map((instructor) => (
+                          <li>
+                            <Link to="/service">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid item style={{ marginRight: 10 }}>
+                                  {" "}
+                                  <Avatar
+                                    alt={instructor.name}
+                                    src={
+                                      "http://63.250.33.174/" + instructor.photo
+                                    }
+                                    style={avatar}
+                                  />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  {instructor.name}
+                                </Grid>
                               </Grid>
-                            </Grid>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                  <li className="has-droupdown">
-                    <Link to="#">Musicians</Link>
-                    <ul className="submenu" style={mystyle}>
-                      {this.props.instructorList.map((instructor) => (
-                        <li>
-                          <Link to="/service">
-                            <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10 }}>
-                                {" "}
-                                <Avatar
-                                  alt={instructor.name}
-                                  src={
-                                    "http://63.250.33.174/" + instructor.photo
-                                  }
-                                  style={avatar}
-                                />
-                              </Grid>
-                              <Grid item style={{ color: "#fff" }}>
-                                {instructor.name}
-                              </Grid>
-                            </Grid>
-                          </Link>
-                        </li>
-                      ))}
-                      {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
-                                        <li><Link to="/service-details">Service Details</Link></li> */}
-                    </ul>
-                  </li>
+                            </Link>
+                          </li>
+                        ))}
+                        {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
+                      <li><Link to="/service-details">Service Details</Link></li> */}
+                      </ul>
+                    </li>
+                  )}
                   {/* <li><Link to="/about" >About</Link></li> */}
-
-                  <li className="has-droupdown">
-                    <Link to="/courseview">
+                  {this.props.from !== "admin" ? (
+                    <li className="has-droupdown">
+                      <Link to="/courseview">
+                        <Grid container direction="row" alignItems="center">
+                          <Grid item style={{ marginRight: 10 }}>
+                            <ShoppingCartOutlined />
+                          </Grid>
+                          <Grid item>Cart</Grid>
+                        </Grid>
+                      </Link>
+                    </li>
+                  ):(
+                    <li className="has-droupdown">
+                    <Link to="/">
                       <Grid container direction="row" alignItems="center">
                         <Grid item style={{ marginRight: 10 }}>
-                          <ShoppingCartOutlined />
+                          <HomeOutlined />
                         </Grid>
-                        <Grid item>Cart</Grid>
+                        <Grid item>Home</Grid>
                       </Grid>
                     </Link>
                   </li>
+                  )}
+
                   {this.props.loginStatus ? (
                     <li className="has-droupdown">
                       <Link to="#">
@@ -319,7 +345,7 @@ class Header extends Component {
                       {this.props.user_type == 1 && (
                         <ul className="submenu" style={mystyle}>
                           <li>
-                            <Link to="/service">
+                            <Link to="/admin">
                               <Grid
                                 container
                                 direction="row"
