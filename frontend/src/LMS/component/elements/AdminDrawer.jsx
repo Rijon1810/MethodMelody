@@ -23,6 +23,7 @@ import {
   Assessment,
   HomeOutlined,
 } from "@material-ui/icons";
+import { GrUserAdmin } from "react-icons/gr";
 import Admin from "../Admin";
 
 const drawerWidth = 240;
@@ -167,6 +168,27 @@ export default function PermanentDrawerLeft() {
               <Assessment style={{ color: "#f9004d" }} />
             </ListItemIcon>
             <ListItemText primary="Site Analytics" style={{ color: "#fff" }} />
+          </ListItem>
+        </List>
+        <Divider style={{ background: "#1d1e24" }} />
+        <List>
+          <ListItem button key="createadmin">
+            <ListItemIcon>
+              <AssignmentInd style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText primary="Create Admin Account" style={{ color: "#fff" }} />
+          </ListItem>
+          <ListItem button key="createinstructor">
+            <ListItemIcon>
+              <AssignmentInd style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText primary="Create Instructor Account" style={{ color: "#fff" }} />
+          </ListItem>
+          <ListItem button key="createcontentdeveloper">
+            <ListItemIcon>
+              <AssignmentInd style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText primary="Create Content Uploader Account" style={{ color: "#fff" }} />
           </ListItem>
         </List>
       </Drawer>

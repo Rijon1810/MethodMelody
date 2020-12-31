@@ -15,7 +15,7 @@ import AdminDrawer from "./elements/AdminDrawer.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 
-import Form from "./ContactThree.jsx";
+import Form from "./AddInstructorForm.jsx";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AddCourse() {
+function AddInstructor() {
   const analytics_data = useSelector(
     (state) => state.getAnalytics.getAnalytics
   );
@@ -56,4 +56,4 @@ function AddCourse() {
     </React.Fragment>
   );
 }
-export default AddCourse;
+export default AddInstructor;
