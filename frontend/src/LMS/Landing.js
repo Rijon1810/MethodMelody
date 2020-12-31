@@ -297,24 +297,40 @@ export default function Landing() {
             {instructorList.map((instructor) => (
               <div className="col-lg-3 col-md-4 col-12" key={instructor._id}>
                 <div className="blog blog-style--1">
-                  <div className="thumbnail">
+                  <div
+                    className="thumbnail"
+                    onClick={async (event) => {
+                      dispatch(getSelectedInstructorId(instructor));
+                    }}
+                  >
                     <a href="/instructorview">
                       <img
                         className="w-100"
                         src={`http://63.250.33.174/${instructor.photo}`}
                         alt="Blog Images"
                       />
-                      {dispatch(getSelectedInstructorId(instructor))}
                     </a>
                   </div>
                   <div className="content">
                     {/* <p className="blogtype">{instructor.bio}</p> */}
                     <h4 className="title">
-                      <a href="/instructorview">{instructor.name}</a>
-                      {dispatch(getSelectedInstructorId(instructor))}
+                      <a
+                        href="/instructorview"
+                        onClick={async (event) => {
+                          dispatch(getSelectedInstructorId(instructor));
+                        }}
+                      >
+                        {instructor.name}
+                      </a>
                     </h4>
                     <div className="blog-btn">
-                      <a className="rn-btn text-white" href="/instructorview">
+                      <a
+                        className="rn-btn text-white"
+                        href="/instructorview"
+                        onClick={async (event) => {
+                          dispatch(getSelectedInstructorId(instructor));
+                        }}
+                      >
                         Read More
                       </a>
                       {dispatch(getSelectedInstructorId(instructor))}

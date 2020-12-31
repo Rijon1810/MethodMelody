@@ -71,6 +71,7 @@ import Login from "./LMS/component/Login";
 import Signup from "./LMS/component/Signup";
 import CourseList from "./LMS/component/CourseList";
 import CourseView from "./LMS/component/CourseView";
+import Admin from "./LMS/component/Admin.jsx";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -303,6 +304,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/courseview`}
             component={CourseView}
+          />
+             <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/admin`}
+            component={Admin}
           />
           <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
           <Route component={error404} />

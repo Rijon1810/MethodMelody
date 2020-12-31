@@ -228,6 +228,20 @@ export default function CourseView(props) {
                         })}
                       </ul>
                       {/* End Course Requirements */}
+                      {/* Start Course Who For */}
+                      <h3 className="tilte theme-gradient pt--60">
+                        Who this course is for
+                      </h3>
+                      <ul className="list-style--1 text-white">
+                        {selectedCourse.whoFor.map((who) => {
+                          return (
+                            <li>
+                              <FilterNone className /> {who}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      {/* End Course Who For */}
                     </div>
                   </div>
                 </div>

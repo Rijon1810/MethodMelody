@@ -8,6 +8,7 @@ import {
   ForumOutlined,
   ShoppingCartOutlined,
   HomeOutlined,
+  Dashboard,
 } from "@material-ui/icons";
 
 import { connect } from "react-redux";
@@ -22,7 +23,7 @@ const categoryList = [
   {
     primary: "Guitar",
     alt: "Guitar",
-    src:"assets/images/icons/guitar-electric.png",
+    src: "assets/images/icons/guitar-electric.png",
   },
   {
     primary: "Acoustic Fingerstyle Guitar",
@@ -37,12 +38,12 @@ const categoryList = [
   {
     primary: "Piano/Keyboard",
     alt: "Piano/Keyboard",
-    src:"assets/images/icons/piano.png",
+    src: "assets/images/icons/piano.png",
   },
   {
     primary: "Sound Engineering",
     alt: "Sound Engineering",
-    src:"assets/images/icons/sound-engineering.png",
+    src: "assets/images/icons/sound-engineering.png",
   },
 ];
 
@@ -103,12 +104,12 @@ class Header extends Component {
     //custom styles
     const mystyle = {
       width: "35ch",
-      background:"#101010"
+      background: "#101010",
     };
 
     const avatar = {
       width: "45px",
-      height: "45px"
+      height: "45px",
     };
 
     var elements = document.querySelectorAll(".has-droupdown > a");
@@ -146,64 +147,98 @@ class Header extends Component {
           </div>
           <div className="header-right">
             <nav className="mainmenunav d-lg-block">
-              {this.props.from === "landing" && (
+              {(this.props.from === "landing" ||
+                this.props.from === "admin") && (
                 <ul className="mainmenu">
-                  <li className="has-droupdown">
-                    <Link to="#">Courses</Link>
-                    <ul className="submenu" style={mystyle}>
-                      {categoryList.map((category) => (
-                        <li>
-                          <Link to="/service">
-                            <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10 }}>
-                                {" "}
-                                <Avatar alt={category.alt} src={`${process.env.PUBLIC_URL}/${category.src}`} style={avatar}/>
+                  {this.props.from !== "admin" && (
+                    <li className="has-droupdown">
+                      <Link to="#">Courses</Link>
+                      <ul className="submenu" style={mystyle}>
+                        {categoryList.map((category) => (
+                          <li>
+                            <Link to="/service">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid item style={{ marginRight: 10 }}>
+                                  {" "}
+                                  <Avatar
+                                    alt={category.alt}
+                                    src={`${process.env.PUBLIC_URL}/${category.src}`}
+                                    style={avatar}
+                                  />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  {category.primary}
+                                </Grid>
                               </Grid>
-                              <Grid item style={{color:"#fff"}}>{category.primary}</Grid>
-                            </Grid>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                  <li className="has-droupdown">
-                    <Link to="#">Musicians</Link>
-                    <ul className="submenu" style={mystyle}>
-                      {this.props.instructorList.map((instructor) => (
-                        <li>
-                          <Link to="/service">
-                            <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10 }}>
-                                {" "}
-                                <Avatar
-                                  alt={instructor.name}
-                                  src={
-                                    "http://63.250.33.174/" + instructor.photo
-                                  }
-                                  style={avatar}
-                                />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  )}
+                  {this.props.from !== "admin" && (
+                    <li className="has-droupdown">
+                      <Link to="#">Musicians</Link>
+                      <ul className="submenu" style={mystyle}>
+                        {this.props.instructorList.map((instructor) => (
+                          <li>
+                            <Link to="/service">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid item style={{ marginRight: 10 }}>
+                                  {" "}
+                                  <Avatar
+                                    alt={instructor.name}
+                                    src={
+                                      "http://63.250.33.174/" + instructor.photo
+                                    }
+                                    style={avatar}
+                                  />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  {instructor.name}
+                                </Grid>
                               </Grid>
-                              <Grid item style={{color:"#fff"}}>{instructor.name}</Grid>
-                            </Grid>
-                          </Link>
-                        </li>
-                      ))}
-                      {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
-                                        <li><Link to="/service-details">Service Details</Link></li> */}
-                    </ul>
-                  </li>
+                            </Link>
+                          </li>
+                        ))}
+                        {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
+                      <li><Link to="/service-details">Service Details</Link></li> */}
+                      </ul>
+                    </li>
+                  )}
                   {/* <li><Link to="/about" >About</Link></li> */}
-
-                  <li className="has-droupdown">
-                    <Link to="/courseview">
+                  {this.props.from !== "admin" ? (
+                    <li className="has-droupdown">
+                      <Link to="/courseview">
+                        <Grid container direction="row" alignItems="center">
+                          <Grid item style={{ marginRight: 10 }}>
+                            <ShoppingCartOutlined />
+                          </Grid>
+                          <Grid item>Cart</Grid>
+                        </Grid>
+                      </Link>
+                    </li>
+                  ):(
+                    <li className="has-droupdown">
+                    <Link to="/">
                       <Grid container direction="row" alignItems="center">
                         <Grid item style={{ marginRight: 10 }}>
-                          <ShoppingCartOutlined/>
+                          <HomeOutlined />
                         </Grid>
-                        <Grid item>Cart</Grid>
+                        <Grid item>Home</Grid>
                       </Grid>
                     </Link>
                   </li>
+                  )}
+
                   {this.props.loginStatus ? (
                     <li className="has-droupdown">
                       <Link to="#">
@@ -215,60 +250,149 @@ class Header extends Component {
                           <Grid item> </Grid>
                         </Grid>
                       </Link>
-                      <ul className="submenu" style={mystyle}>
-                        <li>
-                          <Link to="/service">
-                            <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10, color:"#f9004c" }}>
-                                <LocalLibraryOutlined />
-                              </Grid>
-                              <Grid item style={{color:"#fff"}}>Classroom</Grid>
-                            </Grid>
-                          </Link>
-                        </li>
-                        <li>
-                          {" "}
-                          <Link to="/service" >
-                            <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10, color:"#f9004c" }}>
-                                <AccountCircleOutlined />
-                              </Grid>
-                              <Grid item style={{color:"#fff"}}>Profile</Grid>
-                            </Grid>
-                          </Link>
-                        </li>
-                        <li>
-                          {" "}
-                          <Link to="/service">
-                            <Grid container direction="row" alignItems="center">
-                              <Grid item style={{ marginRight: 10, color:"#f9004c"}}>
-                                <ForumOutlined />
-                              </Grid>
-                              <Grid item style={{color:"#fff"}}>Messages</Grid>
-                            </Grid>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <span
-                              onClick={() => {
-                                this.props.logOut();
-                              }}
-                            >
+                      {this.props.user_type == 4 && (
+                        <ul className="submenu" style={mystyle}>
+                          <li>
+                            <Link to="/service">
                               <Grid
                                 container
                                 direction="row"
                                 alignItems="center"
                               >
-                                <Grid item style={{ marginRight: 10, color:"#f9004c" }}>
-                                  <PowerSettingsNewOutlined/>
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <LocalLibraryOutlined />
                                 </Grid>
-                                <Grid item style={{color:"#fff"}}>Log Out</Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Classroom
+                                </Grid>
                               </Grid>
-                            </span>
-                          </Link>
-                        </li>
-                      </ul>
+                            </Link>
+                          </li>
+                          <li>
+                            {" "}
+                            <Link to="/service">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <AccountCircleOutlined />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Profile
+                                </Grid>
+                              </Grid>
+                            </Link>
+                          </li>
+                          <li>
+                            {" "}
+                            <Link to="/service">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <ForumOutlined />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Messages
+                                </Grid>
+                              </Grid>
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              <span
+                                onClick={() => {
+                                  this.props.logOut();
+                                }}
+                              >
+                                <Grid
+                                  container
+                                  direction="row"
+                                  alignItems="center"
+                                >
+                                  <Grid
+                                    item
+                                    style={{
+                                      marginRight: 10,
+                                      color: "#f9004c",
+                                    }}
+                                  >
+                                    <PowerSettingsNewOutlined />
+                                  </Grid>
+                                  <Grid item style={{ color: "#fff" }}>
+                                    Log Out
+                                  </Grid>
+                                </Grid>
+                              </span>
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
+
+                      {this.props.user_type == 1 && (
+                        <ul className="submenu" style={mystyle}>
+                          <li>
+                            <Link to="/admin">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <Dashboard />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Admin Dashboard
+                                </Grid>
+                              </Grid>
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              <span
+                                onClick={() => {
+                                  this.props.logOut();
+                                }}
+                              >
+                                <Grid
+                                  container
+                                  direction="row"
+                                  alignItems="center"
+                                >
+                                  <Grid
+                                    item
+                                    style={{
+                                      marginRight: 10,
+                                      color: "#f9004c",
+                                    }}
+                                  >
+                                    <PowerSettingsNewOutlined />
+                                  </Grid>
+                                  <Grid item style={{ color: "#fff" }}>
+                                    Log Out
+                                  </Grid>
+                                </Grid>
+                              </span>
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
                     </li>
                   ) : null}
                 </ul>
@@ -289,8 +413,7 @@ class Header extends Component {
                 </ul>
               )}
             </nav>
-            {
-              this.props.from !== "login" &&
+            {this.props.from !== "login" &&
               this.props.from !== "signup" &&
               this.props.loginStatus === false && (
                 <div className="header-btn">
@@ -325,6 +448,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user_type: state.isLogged.payload.type,
     login_data: state.isLogged.payload,
     loginStatus: state.isLogged.login,
     logOut: state.logOut,
