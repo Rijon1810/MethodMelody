@@ -56,9 +56,9 @@ export default function Login(){
           >
             <div className="contact-form--1 col-xl-6 col-lg-6 col-md-6 col-sm-6">
               <div className="  order-2 order-lg-1">
-                <div className="section-title text-left mb--50">
-                  <h3 className="title">Login to your account.</h3>
-                  <p className="description">
+                <div className="section-title text-left mb--20">
+                  <h3 className="title theme-gradient">Login to your account.</h3>
+                  <p className="text-white">
                     Please enter your registered email and password for login.
                     <br></br>
                   </p>

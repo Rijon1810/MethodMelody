@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getInstructor } from "../../actions/getInstructorAction";
 
-class ContactThree extends Component {
+class AddInstructorForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -163,4 +163,4 @@ const mapStateToProps = (state) => ({
   instructorList: state.getInstructor.instructorList,
 });
 
-export default connect(mapStateToProps, { getInstructor })(ContactThree);
+export default connect(mapStateToProps, { getInstructor })(AddInstructorForm);
