@@ -41,7 +41,7 @@ import About from "./elements/About";
 import Contact from "./elements/Contact";
 import PortfolioDetails from "./elements/PortfolioDetails";
 import Blog from "./LMS/component/elements/Blog.jsx";
-import AllInstructors from "./LMS/component/elements/AllInstructors.jsx"
+import AllInstructors from "./LMS/component/elements/AllInstructors.jsx";
 import InstructorView from "./LMS/component/elements/blog/InstructorView.jsx";
 import BlogDetails from "./elements/BlogDetails";
 import error404 from "./elements/error404";
@@ -72,6 +72,8 @@ import Signup from "./LMS/component/Signup";
 import CourseList from "./LMS/component/CourseList";
 import CourseView from "./LMS/component/CourseView";
 import Admin from "./LMS/component/Admin.jsx";
+import AddCourse from "./LMS/component/AddCourse.jsx";
+import AddInstructor from "./LMS/component/AddInstructor.jsx";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -208,12 +210,12 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/blog`}
             component={Blog}
           />
-           <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/instructorlist`}
             component={AllInstructors}
           />
-           <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/instructorview`}
             component={InstructorView}
@@ -305,10 +307,20 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/courseview`}
             component={CourseView}
           />
-             <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/admin`}
             component={Admin}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/addcourse`}
+            component={AddCourse}
+          />
+               <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/addinstructor`}
+            component={AddInstructor}
           />
           <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
           <Route component={error404} />
