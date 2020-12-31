@@ -37,13 +37,7 @@ function AddCourse() {
 
         <Breadcrumb from="admin" />
 
-        {/* Start Stat Area  */}
-        <div className="rn-columns-area ptb--50 bg_color--6">
-          <div className="container">
-            <div className="row"></div>
-          </div>
-        </div>
-        {/* Start Stat Area  */}
+        
         <div className="rn-contact-form-area ptb--50 bg_color--1 pl--60">
           <Form />
         </div>
