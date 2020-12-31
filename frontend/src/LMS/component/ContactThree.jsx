@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getInstructor } from "../../actions/getInstructorAction";
+import { Fab } from "@material-ui/core";
+import { Add, Remove } from "@material-ui/icons";
 
 class ContactThree extends Component {
   constructor(props) {
@@ -21,7 +23,9 @@ class ContactThree extends Component {
               <div className="section-title text-left theme-gradient">
                 <h4 className="title">Upload Course</h4>
               </div>
-              <p className="text-muted">All the fields are rquired for successful course upload</p>
+              <p className="text-muted">
+                All the fields are rquired for successful course upload
+              </p>
               <div className="form-wrapper">
                 <form>
                   <div className="row">
@@ -112,9 +116,9 @@ class ContactThree extends Component {
                         />
                       </label>
                     </div>
-                </div>
+                  </div>
 
-                  <div className="row">                    
+                  <div className="row">
                     <div className="col-lg-4">
                       <label htmlFor="item03">
                         <input
@@ -132,7 +136,7 @@ class ContactThree extends Component {
                   </div>
 
                   <div className="row">
-                  <div className="col-lg-4">
+                    <div className="col-lg-4">
                       <div className="form-group">
                         <label for="exampleFormControlFile1">
                           Select Instructor *
@@ -159,7 +163,6 @@ class ContactThree extends Component {
                         </label>
                       </div>
                     </div>
-                  
                   </div>
 
                   <div className="row">
@@ -215,6 +218,204 @@ class ContactThree extends Component {
                       placeholder="Description *"
                     />
                   </label>
+                  <div className="section-title text-left theme-gradient pt--60">
+                    <h4 className="title">Upload Lesson</h4>
+                  </div>
+                  <p className="text-muted">
+                    Atleast one lesson is rquired for successful course upload
+                  </p>
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lessons 1 *</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lesson 2</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lesson 3</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lessons 4</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lesson 5</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lesson 6</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lessons 7</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lesson 8</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lesson 9</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row pb--60">
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label for="exampleFormControlFile1">Lessons 10</label>
+                        <label htmlFor="item03">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item03"
+                            value={this.state.rnSubject}
+                            onChange={(e) => {
+                              this.setState({ rnSubject: e.target.value });
+                            }}
+                            placeholder="lesson *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <div className="row pb--60">
+                    <div className="col-lg-1">
+                      <Fab color="primary" aria-label="add" size="small">
+                        <Add />
+                      </Fab>
+                    </div>
+                    <div className="col-lg-1">
+                      <Fab color="primary" aria-label="add" size="small">
+                        <Remove />
+                      </Fab>
+                    </div>
+                  </div> */}
                   <button
                     className="rn-button-style--2 btn-solid"
                     type="submit"
@@ -222,7 +423,7 @@ class ContactThree extends Component {
                     name="submit"
                     id="mc-embedded-subscribe"
                   >
-                    Submit
+                    Upload
                   </button>
                 </form>
               </div>
