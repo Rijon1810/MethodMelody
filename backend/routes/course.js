@@ -23,6 +23,7 @@ const fileFilter = (req, file, cb) => {
     file.mimetype === "image/png" ||
     file.mimetype === "video/x-flv" ||
     file.mimetype === "video/mp4" ||
+    file.mimetype === "video/m4v" ||
     file.mimetype === "video/quicktime" ||
     file.mimetype === "video/quicktimevideo/x-msvideo" ||
     file.mimetype === "video/x-msvideo" ||
