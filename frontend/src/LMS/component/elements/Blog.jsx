@@ -9,7 +9,7 @@ import Header from "../Header.jsx";
 import Footer from "../Footer.jsx";
 
 import { connect } from "react-redux";
-import { getCourse } from "../../../actions/getCourseAction";
+import { getCourse } from "../../../actions/courseAction";
 
 class Blog extends Component{
     render(){

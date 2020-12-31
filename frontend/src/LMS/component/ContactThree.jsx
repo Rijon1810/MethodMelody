@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getInstructor } from "../../actions/getInstructorAction";
+import { postCourse } from "../../actions/courseAction";
 import { Fab } from "@material-ui/core";
 import { Add, Remove } from "@material-ui/icons";
 
@@ -8,10 +9,25 @@ class ContactThree extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rnName: "",
-      rnEmail: "",
-      rnSubject: "",
-      rnMessage: "",
+      rnTitle: "",
+      rnSubtitle: "",
+      rnCatagory: "",
+      rnCourseHour: "",
+      rnPrice: "",
+      rnRequirements: "",
+      rnTopic: "",
+      rnWhoFor: "",
+      rnInstructor: "",
+      rnFeatured: "",
+      rnThumbnail: "",
+      refThumbnail: "",
+      rnDocuments: "",
+      refDocuments: "",
+      rnDesc: "",
+      rnVideos: "",
+      refVideos: "",
+      rnBanner: "",
+      refBanner: "",
     };
   }
   render() {
@@ -35,37 +51,39 @@ class ContactThree extends Component {
                           type="text"
                           name="name"
                           id="item01"
-                          value={this.state.rnName}
+                          value={this.state.rnTitle}
                           onChange={(e) => {
-                            this.setState({ rnName: e.target.value });
+                            this.setState({ rnTitle: e.target.value });
                           }}
                           placeholder="Title *"
                         />
                       </label>
                     </div>
+
                     <div className="col-lg-4">
                       <label htmlFor="item02">
                         <input
                           type="text"
                           name="email"
                           id="item02"
-                          value={this.state.rnEmail}
+                          value={this.state.rnSubtitle}
                           onChange={(e) => {
-                            this.setState({ rnEmail: e.target.value });
+                            this.setState({ rnSubtitle: e.target.value });
                           }}
                           placeholder="Subtitle *"
                         />
                       </label>
                     </div>
+
                     <div className="col-lg-4">
                       <label htmlFor="item03">
                         <input
                           type="text"
                           name="subject"
                           id="item03"
-                          value={this.state.rnSubject}
+                          value={this.state.rnCourseHour}
                           onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
+                            this.setState({ rnCourseHour: e.target.value });
                           }}
                           placeholder="Course Hour *"
                         />
@@ -75,42 +93,44 @@ class ContactThree extends Component {
 
                   <div className="row">
                     <div className="col-lg-4">
-                      <label htmlFor="item03">
+                      <label htmlFor="item04">
                         <input
                           type="text"
                           name="subject"
-                          id="item03"
-                          value={this.state.rnSubject}
+                          id="item04"
+                          value={this.state.rnPrice}
                           onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
+                            this.setState({ rnPrice: e.target.value });
                           }}
                           placeholder="Price *"
                         />
                       </label>
                     </div>
+
                     <div className="col-lg-4">
-                      <label htmlFor="item03">
+                      <label htmlFor="item05">
                         <input
                           type="text"
                           name="subject"
-                          id="item03"
-                          value={this.state.rnSubject}
+                          id="item05"
+                          value={this.state.rnRequirements}
                           onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
+                            this.setState({ rnRequirements: e.target.value });
                           }}
                           placeholder="Requirements *"
                         />
                       </label>
                     </div>
+
                     <div className="col-lg-4">
-                      <label htmlFor="item03">
+                      <label htmlFor="item06">
                         <input
                           type="text"
                           name="subject"
-                          id="item03"
-                          value={this.state.rnSubject}
+                          id="item06"
+                          value={this.state.rnTopic}
                           onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
+                            this.setState({ rnTopic: e.target.value });
                           }}
                           placeholder="Topics *"
                         />
@@ -120,14 +140,14 @@ class ContactThree extends Component {
 
                   <div className="row">
                     <div className="col-lg-4">
-                      <label htmlFor="item03">
+                      <label htmlFor="item07">
                         <input
                           type="text"
                           name="subject"
-                          id="item03"
-                          value={this.state.rnSubject}
+                          id="item07"
+                          value={this.state.rnWhoFor}
                           onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
+                            this.setState({ rnWhoFor: e.target.value });
                           }}
                           placeholder="Who this course is for *"
                         />
@@ -137,28 +157,60 @@ class ContactThree extends Component {
 
                   <div className="row">
                     <div className="col-lg-4">
+                      <label htmlFor="item10">
+                        <input
+                          type="text"
+                          name="subject"
+                          id="item10"
+                          value={this.state.rnCatagory}
+                          onChange={(e) => {
+                            this.setState({ rnCatagory: e.target.value });
+                          }}
+                          placeholder="Catagory *"
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-lg-4">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">
+                        <label htmlFor="exampleFormControlFile1">
                           Select Instructor *
                         </label>
-                        <label for="instructor *">
-                          <select className="form-control">
-                            {this.props.instructorList.map((instructor) => (
-                              <option>{instructor.name}</option>
-                            ))}
+                        <label htmlFor="instructor *">
+                          <select
+                            className="form-control"
+                            onSelect={(e) => {
+                              this.setState({ rnInstructor: e.target.value });
+                            }}
+                          >
+                            {this.props.instructorList.map(
+                              (instructor, index) => (
+                                <option key={index} value={instructor._id}>
+                                  {instructor.name}
+                                </option>
+                              )
+                            )}
                           </select>
                         </label>
                       </div>
                     </div>
+
                     <div className="col-lg-4">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">
+                        <label htmlFor="exampleFormControlFile1">
                           Feature Course *
                         </label>
-                        <label for="featured *">
-                          <select className="form-control">
-                            <option>Yes</option>
-                            <option>No</option>
+                        <label htmlFor="featured *">
+                          <select
+                            className="form-control"
+                            onSelect={(e) => {
+                              this.setState({ rnFeatured: e.target.value });
+                            }}
+                          >
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
                           </select>
                         </label>
                       </div>
@@ -168,17 +220,43 @@ class ContactThree extends Component {
                   <div className="row">
                     <div className="col-lg-4">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">
-                          Thumbnail File
+                        <label htmlFor="exampleFormControlFile1">
+                          Banner File
                         </label>
-                        <label htmlFor="item03">
+                        <label htmlFor="item11">
                           <input
                             type="file"
                             name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
+                            id="item08"
+                            value={this.state.refBanner}
+                            onChange={async (e) => {
+                              e.preventDefault();
+                              let file = await e.target.files[0];
+                              this.setState({ rnBanner: file });
+                            }}
+                            placeholder="Banner *"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label htmlFor="exampleFormControlFile1">
+                          Thumbnail File
+                        </label>
+                        <label htmlFor="item08">
+                          <input
+                            type="file"
+                            name="subject"
+                            id="item08"
+                            value={this.state.refThumbnail}
+                            onChange={async (e) => {
+                              e.preventDefault();
+                              let file = await e.target.files[0];
+                              this.setState({ rnThumbnail: file });
                             }}
                             placeholder="Thumbnail *"
                           />
@@ -187,17 +265,24 @@ class ContactThree extends Component {
                     </div>
                     <div className="col-lg-4">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">
+                        <label htmlFor="exampleFormControlFile1">
                           Document File
                         </label>
-                        <label htmlFor="item03">
+                        <label htmlFor="item09">
                           <input
                             type="file"
+                            multiple
                             name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
+                            id="item09"
+                            value={this.state.refDocuments}
                             onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
+                              let documents = [];
+                              Promise.all(
+                                [...e.target.files].map((file) => {
+                                  documents.push(file);
+                                })
+                              );
+                              this.setState({ rnDocuments: documents });
                             }}
                             placeholder="Document *"
                           />
@@ -206,196 +291,48 @@ class ContactThree extends Component {
                     </div>
                   </div>
 
-                  <label htmlFor="item04">
+                  <label htmlFor="item10">
                     <textarea
                       type="text"
-                      id="item04"
+                      id="item10"
                       name="message"
-                      value={this.state.rnMessage}
+                      value={this.state.rnDesc}
                       onChange={(e) => {
-                        this.setState({ rnMessage: e.target.value });
+                        this.setState({ rnDesc: e.target.value });
                       }}
                       placeholder="Description *"
                     />
                   </label>
+
                   <div className="section-title text-left theme-gradient pt--60">
                     <h4 className="title">Upload Lesson</h4>
                   </div>
                   <p className="text-muted">
                     Atleast one lesson is rquired for successful course upload
                   </p>
-                  <div className="row">
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lessons 1 *</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lesson 2</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
-                        </label>
-                      </div>
-                    </div>
 
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lesson 3</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  </div>
                   <div className="row">
-                    <div className="col-lg-4">
+                    <div className="col-lg-12">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">Lessons 4</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
+                        <label htmlFor="exampleFormControlFile1">
+                          Lessons 1 *
                         </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lesson 5</label>
                         <label htmlFor="item03">
                           <input
                             type="file"
+                            multiple
                             name="subject"
                             id="item03"
-                            value={this.state.rnSubject}
+                            value={this.state.refVideos}
+                            ref={this.state.refVideos}
                             onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lesson 6</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lessons 7</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lesson 8</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lesson 9</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
-                            }}
-                            placeholder="lesson *"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row pb--60">
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label for="exampleFormControlFile1">Lessons 10</label>
-                        <label htmlFor="item03">
-                          <input
-                            type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
-                            onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
+                              let videos = [];
+                              Promise.all(
+                                [...e.target.files].map((file) => {
+                                  videos.push(file);
+                                })
+                              );
+                              this.setState({ rnVideos: videos });
                             }}
                             placeholder="lesson *"
                           />
@@ -404,24 +341,39 @@ class ContactThree extends Component {
                     </div>
                   </div>
 
-                  {/* <div className="row pb--60">
-                    <div className="col-lg-1">
-                      <Fab color="primary" aria-label="add" size="small">
-                        <Add />
-                      </Fab>
-                    </div>
-                    <div className="col-lg-1">
-                      <Fab color="primary" aria-label="add" size="small">
-                        <Remove />
-                      </Fab>
-                    </div>
-                  </div> */}
                   <button
                     className="rn-button-style--2 btn-solid"
                     type="submit"
                     value="submit"
                     name="submit"
                     id="mc-embedded-subscribe"
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      let fd = new FormData();
+                      fd.append("title", this.state.rnTitle);
+                      fd.append("subtitle", this.state.rnSubtitle);
+                      fd.append("catagory", this.state.rnCatagory);
+                      fd.append("courseHour", this.state.rnCourseHour);
+                      fd.append("price", this.state.rnPrice);
+                      fd.append("requirements", this.state.rnRequirements);
+                      fd.append("topic", this.state.rnTopic);
+                      fd.append("whoFor", this.state.rnWhoFor);
+                      fd.append("instructor", this.state.rnInstructor);
+                      fd.append("featured", this.state.rnFeatured);
+                      fd.append("thumbnail", this.state.rnThumbnail);
+                      fd.append("desc", this.state.rnDesc);
+                      fd.append("videos", this.state.rnVideos);
+                      fd.append("banner", this.state.rnBanner);
+                      fd.append("documents", this.state.rnDocuments);
+
+
+
+                      await this.props.postCourse(fd);
+                      // this.props.create_course_status.message ===
+                      // "Course Added Successfully!"
+                      //   ? this.props.history.push("/admin")
+                      //   : this.props.history.push("/addcourse");
+                    }}
                   >
                     Upload
                   </button>
@@ -437,6 +389,9 @@ class ContactThree extends Component {
 
 const mapStateToProps = (state) => ({
   instructorList: state.getInstructor.instructorList,
+  create_course_status: state.postCourse.payload,
 });
 
-export default connect(mapStateToProps, { getInstructor })(ContactThree);
+export default connect(mapStateToProps, { getInstructor, postCourse })(
+  ContactThree
+);

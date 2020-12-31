@@ -12,7 +12,6 @@ import "./index.scss";
 import Landing from "./LMS/Landing";
 
 // Home layout
-import Demo from "./page-demo/Demo";
 import MainDemo from "./home/MainDemo";
 import Startup from "./home/Startup";
 import Paralax from "./home/Paralax";
@@ -77,7 +76,6 @@ import AddInstructor from "./LMS/component/AddInstructor.jsx";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
-import { Datastore } from "./store";
 
 class Root extends Component {
   render() {

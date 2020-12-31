@@ -31,7 +31,7 @@ import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getInstructor } from "../actions/getInstructorAction";
-import { getCourse } from "../actions/getCourseAction";
+import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
 import {
   getSelectedCourseId,

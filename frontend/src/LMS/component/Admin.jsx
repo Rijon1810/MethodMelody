@@ -1,19 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import PageHelmet from "./Helmet.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import {
-  FiCast,
-  FiLayers,
-  FiUsers,
-  FiMonitor,
-  FiChevronUp,
-} from "react-icons/fi";
+import { FiChevronUp } from "react-icons/fi";
 import ScrollToTop from "react-scroll-up";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -59,9 +53,7 @@ function Admin() {
               </div>
               <div className="col-lg-3 col-md-6 col-12 mt_sm--30 mt_md--30">
                 <div className="single-column custom-color">
-                  <p className="tilte text-white text-center">
-                    Total User
-                  </p>
+                  <p className="tilte text-white text-center">Total User</p>
                   <h2 className=" text-center text-white">
                     {analytics_data[0].user}
                   </h2>
@@ -69,9 +61,7 @@ function Admin() {
               </div>
               <div className="col-lg-3 col-md-6 col-12 mt_sm--30 mt_md--30">
                 <div className="single-column custom-color custom-color--1">
-                  <p className="tilte text-white text-center">
-                    Total Sales
-                  </p>
+                  <p className="tilte text-white text-center">Total Sales</p>
                   <h2 className=" text-center text-white">
                     {analytics_data[0].sold}
                   </h2>

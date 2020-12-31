@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import BlogContent from "./BlogContent.jsx";
 
 import { connect } from "react-redux";
-import { getCourse } from "../../../../actions/getCourseAction";
+import { getCourse } from "../../../../actions/courseAction";
 
 class BLogList extends Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class BLogList extends Component {
     };
   }
   render() {
-    const PostList = BlogContent.slice(0, 6);
     return (
       <Fragment>
         <div className="row">

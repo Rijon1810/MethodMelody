@@ -104,7 +104,7 @@ export default function PermanentDrawerLeft() {
               style={{ color: "#fff" }}
             />
           </ListItem>
-          <ListItem button key="addinstructor">
+          <ListItem button key="addnewuser">
             <ListItemIcon>
               <AccountCircle style={{ color: "#f9004d" }} />
             </ListItemIcon>
@@ -148,13 +148,13 @@ export default function PermanentDrawerLeft() {
               style={{ color: "#fff" }}
             />
           </ListItem>
-          <ListItem button key="updateinstructor">
+          <ListItem button key="updateuser">
             <ListItemIcon>
               <AccountCircleRounded style={{ color: "#f9004d" }} />
             </ListItemIcon>
             <ListItemText primary="View Users" style={{ color: "#fff" }} />
           </ListItem>
-          <ListItem button key="updateinstructor">
+          <ListItem button key="updatemessages">
             <ListItemIcon>
               <Mail style={{ color: "#f9004d" }} />
             </ListItemIcon>

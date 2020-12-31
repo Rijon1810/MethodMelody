@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { portfolioSlick2 } from "../page-demo/script";
 
 import { connect } from "react-redux";
-import { getCourse } from "../../actions/getCourseAction";
+import { getCourse } from "../../actions/courseAction";
 
 //importing custom scripts
 

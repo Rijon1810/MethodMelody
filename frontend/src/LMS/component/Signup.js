@@ -107,6 +107,7 @@ class Signup extends Component {
                 <label htmlFor="item05">
                   <input
                     type="file"
+                    multiple
                     name="image"
                     id="item05"
                     value={this.state.rnPhotoSnap.name}

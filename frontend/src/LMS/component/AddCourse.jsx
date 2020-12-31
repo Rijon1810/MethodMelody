@@ -1,19 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import PageHelmet from "./Helmet.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import {
-  FiCast,
-  FiLayers,
-  FiUsers,
-  FiMonitor,
-  FiChevronUp,
-} from "react-icons/fi";
+import { FiChevronUp } from "react-icons/fi";
 import ScrollToTop from "react-scroll-up";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector, useDispatch } from "react-redux";
 
 import Form from "./ContactThree.jsx";
 
@@ -24,9 +17,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AddCourse() {
-  const analytics_data = useSelector(
-    (state) => state.getAnalytics.getAnalytics
-  );
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -37,7 +27,6 @@ function AddCourse() {
 
         <Breadcrumb from="admin" />
 
-        
         <div className="rn-contact-form-area ptb--50 bg_color--1 pl--60 pr--60">
           <Form />
         </div>

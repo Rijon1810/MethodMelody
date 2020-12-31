@@ -52,10 +52,6 @@ class Header extends Component {
     super(props);
     this.menuTrigger = this.menuTrigger.bind(this);
     this.CLoseMenuTrigger = this.CLoseMenuTrigger.bind(this);
-    //  this.subMetuTrigger = this.subMetuTrigger.bind(this);
-    window.addEventListener("load", function () {
-      console.log("All assets are loaded");
-    });
     this.state = {
       instructorList: [],
       loginInfo: props.isLogged,
@@ -74,31 +70,6 @@ class Header extends Component {
   CLoseMenuTrigger() {
     document.querySelector(".header-wrapper").classList.remove("menu-open");
   }
-
-  // my functions
-
-  // get all instructor list from server later it will be list of all featured instructors
-  // getInstructors() {
-  //   axios
-  //     .get("instructor/", {
-  //       headers: {
-  //         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       const instructorList = res.data;
-  //       // setInstructorList(instructorList);
-  //       this.setState({ instructorList: instructorList });
-  //       console.log(
-  //         "instructor list size fetched in navbar: " + instructorList.length
-  //       );
-  //     });
-  // }
-
-  // life-cycle methods
-  // componentWillMount() {
-  //   this.getInstructors();
-  // }
 
   render() {
     //custom styles
@@ -125,10 +96,6 @@ class Header extends Component {
     }
 
     var color = "default-color";
-
-    // function logout() {
-    //   localStorage.clear();
-    // }
 
     return (
       <header
