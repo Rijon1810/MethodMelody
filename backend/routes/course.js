@@ -113,6 +113,7 @@ router
     const studentReviews = req.body.studentReviews;
     const certificate = req.body.certificate;
     const whoFor = req.body.whoFor;
+    const featured = req.body.featured;
     const newCourse = new Course({
       title,
       subtitle,
@@ -136,6 +137,7 @@ router
       studentReviews,
       certificate,
       whoFor,
+      featured,
     });
     newCourse
       .save()

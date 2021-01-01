@@ -56,6 +56,7 @@ router
     const course = req.body.course;
     const document = req.body.document;
     const video = req.body.video;
+    const featured = req.body.featured;
     const percentage = req.body.percentage;
     const newInstructor = new Instructor({
       name,
@@ -68,6 +69,7 @@ router
       course,
       document,
       video,
+      featured,
       percentage,
     });
     newInstructor
@@ -250,7 +252,11 @@ router.route("/:instructorId").post((req, res) => {
   }
   if (req.files.photo) special_query["photo"] = req.files.photo[0].path;
   if (req.files.banner) special_query["banner"] = req.files.banner[0].path;
-  Instructor.findByIdAndUpdate(id, { $set: special_query }, { useFindAndModify: false })
+  Instructor.findByIdAndUpdate(
+    id,
+    { $set: special_query },
+    { useFindAndModify: false }
+  )
     .then((doc) => {
       if (doc) {
         res.status(200).json(`Instructor Updated Successfully!`);
