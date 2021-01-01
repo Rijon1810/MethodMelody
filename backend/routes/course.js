@@ -53,6 +53,13 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/catagory").get((req, res) => {
+  Course.find({ published: true })
+    .select("catagory")
+    .then((courses) => res.status(200).json(courses))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 //ADD
 router
   .use(
