@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PermanentDrawerLeft() {
+  const history = useHistory();
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
@@ -53,8 +55,18 @@ export default function PermanentDrawerLeft() {
     setSelectedIndex(index);
     console.log(index + " clicked");
 
-    switch(index){
-       
+    switch (index) {
+      case 1:
+        history.push("/addcourse");
+        break;
+      case 2:
+        history.push("/addinstructor");
+        break;
+      case 3:
+        history.push("/adduser");
+        break;
+      default:
+        break;
     }
   };
 
@@ -95,7 +107,12 @@ export default function PermanentDrawerLeft() {
             </ListItemIcon>
             <ListItemText primary="Add New Course" style={{ color: "#fff" }} />
           </ListItem>
-          <ListItem button key="addinstructor">
+          <ListItem
+            button
+            key="addinstructor"
+            onClick={(event) => handleListItemClick(event, 2)}
+            selected={selectedIndex === 2}
+          >
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
@@ -104,7 +121,12 @@ export default function PermanentDrawerLeft() {
               style={{ color: "#fff" }}
             />
           </ListItem>
-          <ListItem button key="addnewuser">
+          <ListItem
+            button
+            key="addnewuser"
+            onClick={(event) => handleListItemClick(event, 3)}
+            selected={selectedIndex === 3}
+          >
             <ListItemIcon>
               <AccountCircle style={{ color: "#f9004d" }} />
             </ListItemIcon>
@@ -176,19 +198,28 @@ export default function PermanentDrawerLeft() {
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="Create Admin Account" style={{ color: "#fff" }} />
+            <ListItemText
+              primary="Create Admin Account"
+              style={{ color: "#fff" }}
+            />
           </ListItem>
           <ListItem button key="createinstructor">
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="Create Instructor Account" style={{ color: "#fff" }} />
+            <ListItemText
+              primary="Create Instructor Account"
+              style={{ color: "#fff" }}
+            />
           </ListItem>
           <ListItem button key="createcontentdeveloper">
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="Create Content Uploader Account" style={{ color: "#fff" }} />
+            <ListItemText
+              primary="Create Content Uploader Account"
+              style={{ color: "#fff" }}
+            />
           </ListItem>
         </List>
       </Drawer>

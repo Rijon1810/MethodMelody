@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 import { connect } from "react-redux";
-import { getInstructor } from "../../../../actions/getInstructorAction";
+import { getInstructor } from "../../../../actions/instructorAction";
 
 class InstructorList extends Component {
   constructor(props) {

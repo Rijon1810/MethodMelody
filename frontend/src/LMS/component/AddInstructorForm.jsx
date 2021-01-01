@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getInstructor } from "../../actions/getInstructorAction";
+import { getInstructor, postInstructor } from "../../actions/instructorAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class ContactThree extends Component {
   constructor(props) {
     super(props);
     this.state = {
       rnName: "",
-      rnEmail: "",
-      rnSubject: "",
-      rnMessage: "",
+      rnBand: "",
+      rnParcentage: "",
+      rnFeatured: "",
+      rnBio: "",
+      rnPhoto: "",
+      rnBanner: "",
     };
   }
   render() {
@@ -25,7 +30,7 @@ class ContactThree extends Component {
                 All the fields are rquired for successful course upload
               </p>
               <div className="form-wrapper">
-                <form>
+                <form ref={(el) => (this.form = el)}>
                   <div className="row">
                     <div className="col-lg-4">
                       <label htmlFor="item01">
@@ -45,11 +50,11 @@ class ContactThree extends Component {
                       <label htmlFor="item02">
                         <input
                           type="text"
-                          name="email"
+                          name="band"
                           id="item02"
-                          value={this.state.rnEmail}
+                          value={this.state.rnBand}
                           onChange={(e) => {
-                            this.setState({ rnEmail: e.target.value });
+                            this.setState({ rnBand: e.target.value });
                           }}
                           placeholder="Band *"
                         />
@@ -59,11 +64,11 @@ class ContactThree extends Component {
                       <label htmlFor="item03">
                         <input
                           type="text"
-                          name="subject"
+                          name="percentage"
                           id="item03"
-                          value={this.state.rnSubject}
+                          value={this.state.rnParcentage}
                           onChange={(e) => {
-                            this.setState({ rnSubject: e.target.value });
+                            this.setState({ rnParcentage: e.target.value });
                           }}
                           placeholder="Percentage *"
                         />
@@ -74,13 +79,19 @@ class ContactThree extends Component {
                   <div className="row">
                     <div className="col-lg-4">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">
+                        <label htmlFor="exampleFormControlFile1">
                           Feature Instructor *
                         </label>
-                        <label for="featured *">
-                          <select className="form-control">
-                            <option>Yes</option>
-                            <option>No</option>
+                        <label htmlFor="featured *">
+                          <select
+                            className="form-control"
+                            name="featured"
+                            onSelect={(e) => {
+                              this.setState({ rnFeatured: e.target.value });
+                            }}
+                          >
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
                           </select>
                         </label>
                       </div>
@@ -90,52 +101,70 @@ class ContactThree extends Component {
                   <div className="row">
                     <div className="col-lg-4">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">
+                        <label htmlFor="exampleFormControlFile1">
                           Thumbnail File
                         </label>
-                        <label htmlFor="item03">
+                        <label htmlFor="item04">
                           <input
                             type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
+                            name="photo"
+                            id="item04"
+                            value={this.state.rnPhoto.name}
                             onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
+                              let files = e.target.files;
+                              if (files) {
+                                let reader = new FileReader();
+                                reader.onload = (e) => {
+                                  this.setState({
+                                    rnPhoto: e.target.result,
+                                  });
+                                };
+                                reader.readAsDataURL(files[0]);
+                              }
                             }}
-                            placeholder="Thumbnail *"
+                            placeholder="Photo *"
                           />
                         </label>
                       </div>
                     </div>
                     <div className="col-lg-4">
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">
+                        <label htmlFor="exampleFormControlFile1">
                           Banner File
                         </label>
-                        <label htmlFor="item03">
+                        <label htmlFor="item05">
                           <input
                             type="file"
-                            name="subject"
-                            id="item03"
-                            value={this.state.rnSubject}
+                            name="banner"
+                            id="item05"
+                            value={this.state.rnBanner.name}
                             onChange={(e) => {
-                              this.setState({ rnSubject: e.target.value });
+                              let files = e.target.files;
+                              if (files) {
+                                let reader = new FileReader();
+                                reader.onload = (e) => {
+                                  this.setState({
+                                    rnBanner: e.target.result,
+                                  });
+                                };
+                                reader.readAsDataURL(files[0]);
+                              }
                             }}
-                            placeholder="Document *"
+                            placeholder="Banner *"
                           />
                         </label>
                       </div>
                     </div>
                   </div>
 
-                  <label htmlFor="item04">
+                  <label htmlFor="item06">
                     <textarea
                       type="text"
-                      id="item04"
-                      name="message"
-                      value={this.state.rnMessage}
+                      id="item06"
+                      name="bio"
+                      value={this.state.rnBio}
                       onChange={(e) => {
-                        this.setState({ rnMessage: e.target.value });
+                        this.setState({ rnBio: e.target.value });
                       }}
                       placeholder="Bio *"
                     />
@@ -146,9 +175,38 @@ class ContactThree extends Component {
                     value="submit"
                     name="submit"
                     id="mc-embedded-subscribe"
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      const body = new FormData(this.form);
+                      toast("Upload started!!! please wait!!");
+                      await this.props.postInstructor(body);
+                      this.props.create_instructor_status.message ===
+                      "Instructor Added Successfully!"
+                        ? toast.info("Instructor Added Successfully!", {
+                            position: "bottom-center",
+                            autoClose: 7000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          })
+                        : toast("Instructor Add Failed!");
+                    }}
                   >
                     Submit
                   </button>
+                  <ToastContainer
+                    position="bottom-center"
+                    autoClose={7000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                  />
                 </form>
               </div>
             </div>
@@ -161,6 +219,9 @@ class ContactThree extends Component {
 
 const mapStateToProps = (state) => ({
   instructorList: state.getInstructor.instructorList,
+  create_instructor_status: state.postInstructor.payload,
 });
 
-export default connect(mapStateToProps, { getInstructor })(ContactThree);
+export default connect(mapStateToProps, { getInstructor, postInstructor })(
+  ContactThree
+);

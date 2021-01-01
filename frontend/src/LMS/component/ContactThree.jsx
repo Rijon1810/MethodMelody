@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getInstructor } from "../../actions/getInstructorAction";
+import { getInstructor } from "../../actions/instructorAction";
 import { postCourse } from "../../actions/courseAction";
-import { Fab } from "@material-ui/core";
-import { Add, Remove } from "@material-ui/icons";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class ContactThree extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class ContactThree extends Component {
       refBanner: "",
     };
   }
+  formd = new FormData();
   render() {
     return (
       <div className="contact-form--1">
@@ -43,13 +45,13 @@ class ContactThree extends Component {
                 All the fields are rquired for successful course upload
               </p>
               <div className="form-wrapper">
-                <form>
+                <form ref={(el) => (this.form = el)}>
                   <div className="row">
                     <div className="col-lg-4">
                       <label htmlFor="item01">
                         <input
                           type="text"
-                          name="name"
+                          name="title"
                           id="item01"
                           value={this.state.rnTitle}
                           onChange={(e) => {
@@ -64,7 +66,7 @@ class ContactThree extends Component {
                       <label htmlFor="item02">
                         <input
                           type="text"
-                          name="email"
+                          name="subtitle"
                           id="item02"
                           value={this.state.rnSubtitle}
                           onChange={(e) => {
@@ -79,7 +81,7 @@ class ContactThree extends Component {
                       <label htmlFor="item03">
                         <input
                           type="text"
-                          name="subject"
+                          name="courseHour"
                           id="item03"
                           value={this.state.rnCourseHour}
                           onChange={(e) => {
@@ -96,7 +98,7 @@ class ContactThree extends Component {
                       <label htmlFor="item04">
                         <input
                           type="text"
-                          name="subject"
+                          name="price"
                           id="item04"
                           value={this.state.rnPrice}
                           onChange={(e) => {
@@ -111,7 +113,7 @@ class ContactThree extends Component {
                       <label htmlFor="item05">
                         <input
                           type="text"
-                          name="subject"
+                          name="requirements"
                           id="item05"
                           value={this.state.rnRequirements}
                           onChange={(e) => {
@@ -126,7 +128,7 @@ class ContactThree extends Component {
                       <label htmlFor="item06">
                         <input
                           type="text"
-                          name="subject"
+                          name="topic"
                           id="item06"
                           value={this.state.rnTopic}
                           onChange={(e) => {
@@ -143,7 +145,7 @@ class ContactThree extends Component {
                       <label htmlFor="item07">
                         <input
                           type="text"
-                          name="subject"
+                          name="whoFor"
                           id="item07"
                           value={this.state.rnWhoFor}
                           onChange={(e) => {
@@ -160,7 +162,7 @@ class ContactThree extends Component {
                       <label htmlFor="item10">
                         <input
                           type="text"
-                          name="subject"
+                          name="catagory"
                           id="item10"
                           value={this.state.rnCatagory}
                           onChange={(e) => {
@@ -180,6 +182,7 @@ class ContactThree extends Component {
                         </label>
                         <label htmlFor="instructor *">
                           <select
+                            name="instructor"
                             className="form-control"
                             onSelect={(e) => {
                               this.setState({ rnInstructor: e.target.value });
@@ -204,6 +207,7 @@ class ContactThree extends Component {
                         </label>
                         <label htmlFor="featured *">
                           <select
+                            name="featured"
                             className="form-control"
                             onSelect={(e) => {
                               this.setState({ rnFeatured: e.target.value });
@@ -226,13 +230,25 @@ class ContactThree extends Component {
                         <label htmlFor="item11">
                           <input
                             type="file"
-                            name="subject"
+                            name="banner"
                             id="item08"
-                            value={this.state.refBanner}
+                            value={this.state.rnBanner.name}
                             onChange={async (e) => {
                               e.preventDefault();
                               let file = await e.target.files[0];
-                              this.setState({ rnBanner: file });
+                              // this.setState({
+                              //   refBanner: file,
+                              // });
+                              this.formd.append("banner", file);
+                              if (file) {
+                                let reader = new FileReader();
+                                reader.onload = (e) => {
+                                  this.setState({
+                                    rnBanner: e.target.result,
+                                  });
+                                };
+                                reader.readAsDataURL(file);
+                              }
                             }}
                             placeholder="Banner *"
                           />
@@ -250,13 +266,25 @@ class ContactThree extends Component {
                         <label htmlFor="item08">
                           <input
                             type="file"
-                            name="subject"
+                            name="thumbnail"
                             id="item08"
-                            value={this.state.refThumbnail}
+                            value={this.state.rnThumbnail.name}
                             onChange={async (e) => {
                               e.preventDefault();
                               let file = await e.target.files[0];
-                              this.setState({ rnThumbnail: file });
+                              // this.setState({
+                              //   refThumbnail: file,
+                              // });
+                              this.formd.append("thumbnail", file);
+                              if (file) {
+                                let reader = new FileReader();
+                                reader.onload = (e) => {
+                                  this.setState({
+                                    rnThumbnail: e.target.result,
+                                  });
+                                };
+                                reader.readAsDataURL(file);
+                              }
                             }}
                             placeholder="Thumbnail *"
                           />
@@ -272,17 +300,31 @@ class ContactThree extends Component {
                           <input
                             type="file"
                             multiple
-                            name="subject"
+                            name="documents"
                             id="item09"
-                            value={this.state.refDocuments}
+                            value={this.state.rnDocuments.name}
                             onChange={(e) => {
-                              let documents = [];
-                              Promise.all(
-                                [...e.target.files].map((file) => {
-                                  documents.push(file);
-                                })
-                              );
-                              this.setState({ rnDocuments: documents });
+                              let files = e.target.files;
+                              let tempFile = {};
+                              for (let i = 0; i < files.length; i++) {
+                                // tempFile.append(`documents`, e.target.files[i]);
+                                this.formd.append(
+                                  `documents`,
+                                  e.target.files[i]
+                                );
+                              }
+                              this.setState({
+                                refDocuments: tempFile,
+                              });
+                              if (files) {
+                                let reader = new FileReader();
+                                reader.onload = (e) => {
+                                  this.setState({
+                                    rnDocuments: e.target.result,
+                                  });
+                                };
+                                reader.readAsDataURL(files[0]);
+                              }
                             }}
                             placeholder="Document *"
                           />
@@ -295,10 +337,13 @@ class ContactThree extends Component {
                     <textarea
                       type="text"
                       id="item10"
-                      name="message"
+                      name="desc"
                       value={this.state.rnDesc}
                       onChange={(e) => {
-                        this.setState({ rnDesc: e.target.value });
+                        this.setState({
+                          rnDesc: e.target.value,
+                        });
+                        // this.formd.append("desc", e.target.value);
                       }}
                       placeholder="Description *"
                     />
@@ -321,18 +366,28 @@ class ContactThree extends Component {
                           <input
                             type="file"
                             multiple
-                            name="subject"
+                            name="videos"
                             id="item03"
-                            value={this.state.refVideos}
-                            ref={this.state.refVideos}
+                            value={this.state.rnVideos.name}
                             onChange={(e) => {
-                              let videos = [];
-                              Promise.all(
-                                [...e.target.files].map((file) => {
-                                  videos.push(file);
-                                })
-                              );
-                              this.setState({ rnVideos: videos });
+                              let files = e.target.files;
+                              let tempFIle = {};
+                              for (let i = 0; i < files.length; i++) {
+                                // tempFIle.append(`videos`, e.target.files[i]);
+                                this.formd.append(`videos`, e.target.files[i]);
+                              }
+                              this.setState({
+                                refVideos: tempFIle,
+                              });
+                              if (files) {
+                                let reader = new FileReader();
+                                reader.onload = (e) => {
+                                  this.setState({
+                                    rnVideos: e.target.result,
+                                  });
+                                };
+                                reader.readAsDataURL(files[0]);
+                              }
                             }}
                             placeholder="lesson *"
                           />
@@ -349,34 +404,36 @@ class ContactThree extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
-                      let fd = new FormData();
-                      fd.append("title", this.state.rnTitle);
-                      fd.append("subtitle", this.state.rnSubtitle);
-                      fd.append("catagory", this.state.rnCatagory);
-                      fd.append("courseHour", this.state.rnCourseHour);
-                      fd.append("price", this.state.rnPrice);
-                      fd.append("requirements", this.state.rnRequirements);
-                      fd.append("topic", this.state.rnTopic);
-                      fd.append("whoFor", this.state.rnWhoFor);
-                      fd.append("instructor", this.state.rnInstructor);
-                      fd.append("featured", this.state.rnFeatured);
-                      fd.append("thumbnail", this.state.rnThumbnail);
-                      fd.append("desc", this.state.rnDesc);
-                      fd.append("videos", this.state.rnVideos);
-                      fd.append("banner", this.state.rnBanner);
-                      fd.append("documents", this.state.rnDocuments);
-
-
-
-                      await this.props.postCourse(fd);
-                      // this.props.create_course_status.message ===
-                      // "Course Added Successfully!"
-                      //   ? this.props.history.push("/admin")
-                      //   : this.props.history.push("/addcourse");
+                      const body = new FormData(this.form);
+                      toast("Upload started!!! please wait!!");
+                      await this.props.postCourse(body);
+                      this.props.create_course_status.message ===
+                      "Course Added Successfully!"
+                        ? toast.info("Course Added Successfully!", {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          })
+                        : toast("Course Add Failed!");
                     }}
                   >
                     Upload
                   </button>
+                  <ToastContainer
+                    position="bottom-center"
+                    autoClose={7000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                  />
                 </form>
               </div>
             </div>

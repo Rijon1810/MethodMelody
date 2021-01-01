@@ -9,7 +9,7 @@ import Header from "../Header.jsx";
 import Footer from "../Footer.jsx";
 
 import { connect } from "react-redux";
-import { getInstructor } from "../../../actions/getInstructorAction";
+import { getInstructor } from "../../../actions/instructorAction";
 import InstructorList from "./blog/InstructorList.jsx"
 
 class AllInstructors extends Component{

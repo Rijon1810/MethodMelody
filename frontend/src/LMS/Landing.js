@@ -30,7 +30,7 @@ import Testimonial from "./component/TestimonialOne.jsx";
 import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getInstructor } from "../actions/getInstructorAction";
+import { getInstructor } from "../actions/instructorAction";
 import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
 import {
