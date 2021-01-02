@@ -10,6 +10,7 @@ import PageHelmet from "./Helmet.jsx";
 import { connect } from "react-redux";
 import { isLogged } from "../../actions/isLoggedAction";
 import Landing from "../Landing.js";
+import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 
 class Login extends Component {
   constructor(props) {
@@ -33,19 +34,20 @@ class Login extends Component {
       <div className="active-dark">
         <PageHelmet pageTitle="Login" />
         <Header from="login" />
+       
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
           minHeight="100vh"
         >
-          <div className="contact-form--1 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+          <div className="contact-form--1 col-xl-6 col-lg-6 col-md-8 col-sm-10">
             <div className="  order-2 order-lg-1">
               <div className="section-title text-left mb--50">
-                <h3 className="title">Login to your account.</h3>
-                <p className="description">
+                <h3 className=" title">Login to your account.</h3>
+
+                <p className="text-white">
                   Please enter your registered email and password for login.
-                  <br></br>
                 </p>
               </div>
               <form>

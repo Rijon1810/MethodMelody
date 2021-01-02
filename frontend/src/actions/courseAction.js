@@ -1,5 +1,10 @@
 import axios from "../LMS/api/Config";
-import { GET_COURSE, GET_FEATURED_COURSE, POST_COURSE } from "./types";
+import {
+  GET_COURSE,
+  GET_FEATURED_COURSE,
+  POST_COURSE,
+  GET_CATAGORY,
+} from "./types";
 
 export const getCourse = () => (dispatch) => {
   axios
@@ -27,6 +32,21 @@ export const getCourse = () => (dispatch) => {
       dispatch({
         type: GET_COURSE,
         payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  axios
+    .get("course/catagory/", {
+      headers: {
+        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: GET_CATAGORY,
+        catagoryList: res.data,
       });
     })
     .catch((err) => {

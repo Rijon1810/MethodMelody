@@ -4,7 +4,7 @@ import { getInstructor, postInstructor } from "../../actions/instructorAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-class ContactThree extends Component {
+class AddInstructorForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -223,5 +223,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getInstructor, postInstructor })(
-  ContactThree
+  AddInstructorForm
 );

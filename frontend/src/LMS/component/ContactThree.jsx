@@ -421,7 +421,7 @@ class ContactThree extends Component {
                         : toast("Course Add Failed!");
                     }}
                   >
-                    Upload
+                    Update
                   </button>
                   <ToastContainer
                     position="bottom-center"

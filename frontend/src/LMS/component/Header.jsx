@@ -121,7 +121,7 @@ class Header extends Component {
                     <li className="has-droupdown">
                       <Link to="#">Courses</Link>
                       <ul className="submenu" style={mystyle}>
-                        {categoryList.map((category) => (
+                        {this.props.catagory_data.map((category) => (
                           <li>
                             <Link to="/service">
                               <Grid
@@ -193,17 +193,17 @@ class Header extends Component {
                         </Grid>
                       </Link>
                     </li>
-                  ):(
+                  ) : (
                     <li className="has-droupdown">
-                    <Link to="/">
-                      <Grid container direction="row" alignItems="center">
-                        <Grid item style={{ marginRight: 10 }}>
-                          <HomeOutlined />
+                      <Link to="/">
+                        <Grid container direction="row" alignItems="center">
+                          <Grid item style={{ marginRight: 10 }}>
+                            <HomeOutlined />
+                          </Grid>
+                          <Grid item>Home</Grid>
                         </Grid>
-                        <Grid item>Home</Grid>
-                      </Grid>
-                    </Link>
-                  </li>
+                      </Link>
+                    </li>
                   )}
 
                   {this.props.loginStatus ? (
@@ -420,6 +420,7 @@ const mapStateToProps = (state) => {
     loginStatus: state.isLogged.login,
     logOut: state.logOut,
     instructorList: state.getInstructor.instructorList,
+    catagory_data: state.getCourse.payload,
   };
 };
 

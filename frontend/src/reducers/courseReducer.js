@@ -1,9 +1,15 @@
-import { GET_COURSE, GET_FEATURED_COURSE, POST_COURSE } from "../actions/types";
+import {
+  GET_COURSE,
+  GET_FEATURED_COURSE,
+  POST_COURSE,
+  GET_CATAGORY,
+} from "../actions/types";
 
 const initialState = {
   payload: [],
   courseList: [],
   featuredCourseList: [],
+  catagoryList: [],
 };
 
 export const getCourseReducer = (state = initialState, action) => {
@@ -17,6 +23,11 @@ export const getCourseReducer = (state = initialState, action) => {
       return {
         ...state,
         courseList: action.payload,
+      };
+    case GET_CATAGORY:
+      return {
+        ...state,
+        catagoryList: action.payload,
       };
     default:
       return { ...state };

@@ -73,6 +73,8 @@ import CourseView from "./LMS/component/CourseView";
 import Admin from "./LMS/component/Admin.jsx";
 import AddCourse from "./LMS/component/AddCourse.jsx";
 import AddInstructor from "./LMS/component/AddInstructor.jsx";
+import UpdateCourse from "./LMS/component/UpdateCourse.jsx";
+import UpdateInstructor from "./LMS/component/UpdateInstructor.jsx";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -315,7 +317,17 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/addcourse`}
             component={AddCourse}
           />
-               <Route
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/updatecourse`}
+            component={UpdateCourse}
+          />
+           <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/updateinstructor`}
+            component={UpdateInstructor}
+          />
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/addinstructor`}
             component={AddInstructor}
