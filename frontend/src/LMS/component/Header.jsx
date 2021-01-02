@@ -14,6 +14,7 @@ import {
 import { connect } from "react-redux";
 import { isLogged } from "../../actions/isLoggedAction";
 import { logOut } from "../../actions/logOutAction";
+import { getCourse } from "../../actions/courseAction";
 
 //importing material components
 import { Avatar, Grid } from "@material-ui/core";
@@ -70,6 +71,9 @@ class Header extends Component {
   CLoseMenuTrigger() {
     document.querySelector(".header-wrapper").classList.remove("menu-open");
   }
+  componentWillMount() {
+    this.props.getCourse();
+  }
 
   render() {
     //custom styles
@@ -123,6 +127,8 @@ class Header extends Component {
                       <ul className="submenu" style={mystyle}>
                         {this.props.catagory_data.map((category) => (
                           <li>
+                            console.log(category.category)
+                            {category.category}
                             <Link to="/service">
                               <Grid
                                 container
@@ -132,13 +138,13 @@ class Header extends Component {
                                 <Grid item style={{ marginRight: 10 }}>
                                   {" "}
                                   <Avatar
-                                    alt={category.alt}
-                                    src={`${process.env.PUBLIC_URL}/${category.src}`}
+                                    alt={category.category}
+                                    // src={`${process.env.PUBLIC_URL}/${category.src}`}
                                     style={avatar}
                                   />
                                 </Grid>
                                 <Grid item style={{ color: "#fff" }}>
-                                  {category.primary}
+                                  {/* {category.primary} */}
                                 </Grid>
                               </Grid>
                             </Link>
@@ -424,4 +430,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { isLogged, logOut })(Header);
+export default connect(mapStateToProps, { isLogged, logOut, getCourse })(
+  Header
+);

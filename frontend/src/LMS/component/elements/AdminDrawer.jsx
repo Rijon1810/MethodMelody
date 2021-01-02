@@ -56,6 +56,9 @@ export default function PermanentDrawerLeft() {
     console.log(index + " clicked");
 
     switch (index) {
+      case 0:
+        history.push("/admin");
+        break;
       case 1:
         history.push("/addcourse");
         break;
@@ -64,6 +67,12 @@ export default function PermanentDrawerLeft() {
         break;
       case 3:
         history.push("/adduser");
+        break;
+      case 4:
+        history.push("/updatecourse");
+        break;
+      case 5:
+        history.push("/updateinstructor");
         break;
       default:
         break;
@@ -136,13 +145,23 @@ export default function PermanentDrawerLeft() {
         <Divider style={{ background: "#1d1e24" }} />
         {/* Update Section Start*/}
         <List>
-          <ListItem button key="updatecourse">
+          <ListItem
+            button
+            key="updatecourse"
+            onClick={(event) => handleListItemClick(event, 4)}
+            selected={selectedIndex === 4}
+          >
             <ListItemIcon>
               <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
             <ListItemText primary="Update Course" style={{ color: "#fff" }} />
           </ListItem>
-          <ListItem button key="updateinstructor">
+          <ListItem
+            button
+            key="updateinstructor"
+            onClick={(event) => handleListItemClick(event, 5)}
+            selected={selectedIndex === 5}
+          >
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>

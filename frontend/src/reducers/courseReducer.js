@@ -3,6 +3,8 @@ import {
   GET_FEATURED_COURSE,
   POST_COURSE,
   GET_CATAGORY,
+  GET_COURSE_BY_ID,
+  UPDATE_COURSE,
 } from "../actions/types";
 
 const initialState = {
@@ -28,6 +30,16 @@ export const getCourseReducer = (state = initialState, action) => {
       return {
         ...state,
         catagoryList: action.payload,
+      };
+    case GET_COURSE_BY_ID:
+      return {
+        ...state,
+        payload: action.payload,
+      };
+    case UPDATE_COURSE:
+      return {
+        ...state,
+        payload: action.payload,
       };
     default:
       return { ...state };

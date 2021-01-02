@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getInstructor } from "../../actions/getInstructorAction";
+import { getInstructor } from "../../actions/instructorAction";
 
 class UpdateInstructorForm extends Component {
   constructor(props) {
