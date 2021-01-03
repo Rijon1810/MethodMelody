@@ -65,13 +65,11 @@ export default function PermanentDrawerLeft() {
       case 2:
         history.push("/addinstructor");
         break;
+     
       case 3:
-        history.push("/adduser");
-        break;
-      case 4:
         history.push("/updatecourse");
         break;
-      case 5:
+      case 4:
         history.push("/updateinstructor");
         break;
       case 10:
