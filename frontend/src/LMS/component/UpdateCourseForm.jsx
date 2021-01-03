@@ -444,8 +444,12 @@ class UpdateCourseForm extends Component {
                             data.append(pair[0], body.get(pair[0]));
                           }
                         } else if (pair[1]) {
-                          console.log(pair[0] + ", " + pair[1]);
-                          data.append(pair[0], body.get(pair[0]));
+                          if (pair[1].name == "") {
+                            continue;
+                          } else {
+                            console.log(pair[0] + ", " + pair[1]);
+                            data.append(pair[0], body.get(pair[0]));
+                          }
                         }
                       }
                       toast("Update started!!! please wait!!");
