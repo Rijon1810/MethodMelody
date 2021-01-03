@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getInstructor, postInstructor } from "../../actions/instructorAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { signUp } from "../../actions/signUpAction";
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -12,9 +13,6 @@ class CreateAccount extends Component {
       rnEmail: "",
       rnPassword: "",
       rnUserType: "",
-      rnBio: "",
-      rnPhoto: "",
-      rnBanner: "",
     };
   }
   render() {
@@ -85,14 +83,14 @@ class CreateAccount extends Component {
                         <label htmlFor="accounttype *">
                           <select
                             className="form-control"
-                            name="featured"
+                            name="type"
                             onSelect={(e) => {
                               this.setState({ rnUserType: e.target.value });
                             }}
                           >
-                            <option value={true}>Admin</option>
-                            <option value={false}>Content Uploader</option>
-                            <option value={false}>Instructor</option>
+                            <option value={1}>Admin</option>
+                            <option value={2}>Content Uploader</option>
+                            <option value={3}>Instructor</option>
                           </select>
                         </label>
                       </div>
@@ -108,20 +106,23 @@ class CreateAccount extends Component {
                     onClick={async (event) => {
                       event.preventDefault();
                       const body = new FormData(this.form);
+                      for (var pair of body.entries()) {
+                        console.log(pair[0] + ", " + pair[1]);
+                      }
                       toast("Upload started!!! please wait!!");
-                      await this.props.postInstructor(body);
-                      this.props.create_instructor_status.message ===
-                      "Instructor Added Successfully!"
-                        ? toast.info("Instructor Added Successfully!", {
-                            position: "bottom-center",
-                            autoClose: 7000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                          })
-                        : toast("Instructor Add Failed!");
+                      await this.props.signUp(body);
+                    //   this.props.create_instructor_status.message ===
+                    //   "Instructor Added Successfully!"
+                    //     ? toast.info("Instructor Added Successfully!", {
+                    //         position: "bottom-center",
+                    //         autoClose: 7000,
+                    //         hideProgressBar: false,
+                    //         closeOnClick: true,
+                    //         pauseOnHover: true,
+                    //         draggable: true,
+                    //         progress: undefined,
+                    //       })
+                    //     : toast("Instructor Add Failed!");
                     }}
                   >
                     Submit
@@ -147,4 +148,8 @@ class CreateAccount extends Component {
   }
 }
 
-export default CreateAccount;
+const mapStateToProps = (state) => ({
+    create_user_status: state.isLogged.payload,
+  });
+  
+  export default connect(mapStateToProps, { signUp })(CreateAccount);
