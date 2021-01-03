@@ -80,6 +80,9 @@ export const postCourse = (data) => async (dispatch) => {
 };
 
 export const updateCourse = (id, data) => async (dispatch) => {
+  console.log(id);
+  console.log(data);
+
   await axios
     .post(`course/${id}/`, data, {
       headers: {

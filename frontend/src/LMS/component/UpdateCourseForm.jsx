@@ -73,6 +73,7 @@ class UpdateCourseForm extends Component {
                               this.props.getCourseById(e.target.value);
                             }}
                           >
+                            {/* {this.props.instructorList.unshift("n/a")} */}
                             {this.props.course_data.map((course, index) => (
                               <option key={index} value={course._id}>
                                 {course.title}
@@ -428,7 +429,27 @@ class UpdateCourseForm extends Component {
                       const id = body.get("courseId");
                       // console.log(body.getAll());
                       body.delete("courseId");
+                      const data = new FormData();
+                      for (var pair of body.entries()) {
+                        if (
+                          pair[0] == "banner" ||
+                          pair[0] == "videos" ||
+                          pair[0] == "documents" ||
+                          pair[0] == "thumbnail"
+                        ) {
+                          if (pair[1].name != "") {
+                            console.log(
+                              pair[0] + ", " + JSON.stringify(pair[1].name)
+                            );
+                            data.append(pair[0], body.get(pair[0]));
+                          }
+                        } else if (pair[1]) {
+                          console.log(pair[0] + ", " + pair[1]);
+                          data.append(pair[0], body.get(pair[0]));
+                        }
+                      }
                       toast("Update started!!! please wait!!");
+<<<<<<< HEAD
                       await this.props.updateCourse(id, body);
                     //   this.props.create_course_status.message ===
                     //   "Course Updated Successfully!"
@@ -443,6 +464,21 @@ class UpdateCourseForm extends Component {
                     //       })
                     //     : toast("Course Update Failed!");
                     // }}
+=======
+                      await this.props.updateCourse(id, data);
+                      this.props.create_course_update_status ===
+                      "Course Updated Successfully!"
+                        ? toast.info("Course Updated Successfully!", {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          })
+                        : toast("Course Update Failed!");
+>>>>>>> 54a39b584eab6afb50660b7c4cfc21d9ee94299a
                     }}
                   >
                     Upload
@@ -470,7 +506,7 @@ class UpdateCourseForm extends Component {
 
 const mapStateToProps = (state) => ({
   instructorList: state.getInstructor.instructorList,
-  // create_course_status: state.updateCourse.payload,
+  create_course_update_status: state.getCourse.updateConfirmation,
   course_data: state.getCourse.courseList,
   pay_load: state.getCourse.payload,
 });
