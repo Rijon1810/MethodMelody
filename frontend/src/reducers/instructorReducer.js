@@ -1,4 +1,8 @@
-import { GET_INSTRUCTOR, POST_INSTRUCTOR } from "../actions/types";
+import {
+  GET_INSTRUCTOR,
+  POST_INSTRUCTOR,
+  UPDATE_INSTRUCTOR,
+} from "../actions/types";
 
 const initialState = {
   instructorList: [],
@@ -14,6 +18,11 @@ export const getInstructorReducer = (state = initialState, action) => {
         instructorList: action.payload,
         length: action.length,
       };
+    case UPDATE_INSTRUCTOR:
+      return {
+        ...state,
+        payload: action.payload,
+      };
     default:
       return { ...state };
   }
@@ -26,8 +35,8 @@ export const postInstructorReducer = (state = initialState, action) => {
         ...state,
         payload: action.payload,
       };
+
     default:
       return { ...state };
   }
 };
-
