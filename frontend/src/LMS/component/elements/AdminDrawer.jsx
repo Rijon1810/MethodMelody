@@ -74,6 +74,9 @@ export default function PermanentDrawerLeft() {
       case 5:
         history.push("/updateinstructor");
         break;
+      case 10:
+        history.push("/createaccount");
+        break;
       default:
         break;
     }
@@ -130,17 +133,6 @@ export default function PermanentDrawerLeft() {
               style={{ color: "#fff" }}
             />
           </ListItem>
-          <ListItem
-            button
-            key="addnewuser"
-            onClick={(event) => handleListItemClick(event, 3)}
-            selected={selectedIndex === 3}
-          >
-            <ListItemIcon>
-              <AccountCircle style={{ color: "#f9004d" }} />
-            </ListItemIcon>
-            <ListItemText primary="Add New User" style={{ color: "#fff" }} />
-          </ListItem>
         </List>
         <Divider style={{ background: "#1d1e24" }} />
         {/* Update Section Start*/}
@@ -148,8 +140,8 @@ export default function PermanentDrawerLeft() {
           <ListItem
             button
             key="updatecourse"
-            onClick={(event) => handleListItemClick(event, 4)}
-            selected={selectedIndex === 4}
+            onClick={(event) => handleListItemClick(event, 3)}
+            selected={selectedIndex === 3}
           >
             <ListItemIcon>
               <ImportContacts style={{ color: "#f9004d" }} />
@@ -159,8 +151,8 @@ export default function PermanentDrawerLeft() {
           <ListItem
             button
             key="updateinstructor"
-            onClick={(event) => handleListItemClick(event, 5)}
-            selected={selectedIndex === 5}
+            onClick={(event) => handleListItemClick(event, 4)}
+            selected={selectedIndex === 4}
           >
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
@@ -174,13 +166,13 @@ export default function PermanentDrawerLeft() {
         {/* Update Section End*/}
         <Divider style={{ background: "#1d1e24" }} />
         <List>
-          <ListItem button key="updatecourse">
+          <ListItem button key="viewcourses">
             <ListItemIcon>
               <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
             <ListItemText primary="View Courses" style={{ color: "#fff" }} />
           </ListItem>
-          <ListItem button key="updateinstructor">
+          <ListItem button key="viewinstructor">
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
@@ -189,13 +181,13 @@ export default function PermanentDrawerLeft() {
               style={{ color: "#fff" }}
             />
           </ListItem>
-          <ListItem button key="updateuser">
+          <ListItem button key="viewusers">
             <ListItemIcon>
               <AccountCircleRounded style={{ color: "#f9004d" }} />
             </ListItemIcon>
             <ListItemText primary="View Users" style={{ color: "#fff" }} />
           </ListItem>
-          <ListItem button key="updatemessages">
+          <ListItem button key="viewmessages">
             <ListItemIcon>
               <Mail style={{ color: "#f9004d" }} />
             </ListItemIcon>
@@ -204,7 +196,7 @@ export default function PermanentDrawerLeft() {
         </List>
         <Divider style={{ background: "#1d1e24" }} />
         <List>
-          <ListItem button key="updatecourse">
+          <ListItem button key="siteanalytics">
             <ListItemIcon>
               <Assessment style={{ color: "#f9004d" }} />
             </ListItemIcon>
@@ -213,32 +205,16 @@ export default function PermanentDrawerLeft() {
         </List>
         <Divider style={{ background: "#1d1e24" }} />
         <List>
-          <ListItem button key="createadmin">
+          <ListItem
+            button
+            key="createaccount"
+            onClick={(event) => handleListItemClick(event, 10)}
+            selected={selectedIndex === 10}
+          >
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText
-              primary="Create Admin Account"
-              style={{ color: "#fff" }}
-            />
-          </ListItem>
-          <ListItem button key="createinstructor">
-            <ListItemIcon>
-              <AssignmentInd style={{ color: "#f9004d" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary="Create Instructor Account"
-              style={{ color: "#fff" }}
-            />
-          </ListItem>
-          <ListItem button key="createcontentdeveloper">
-            <ListItemIcon>
-              <AssignmentInd style={{ color: "#f9004d" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary="Create Content Uploader Account"
-              style={{ color: "#fff" }}
-            />
+            <ListItemText primary="Create Account" style={{ color: "#fff" }} />
           </ListItem>
         </List>
       </Drawer>
