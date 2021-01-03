@@ -73,6 +73,7 @@ class UpdateCourseForm extends Component {
                               this.props.getCourseById(e.target.value);
                             }}
                           >
+                            {/* {this.props.instructorList.unshift("n/a")} */}
                             {this.props.course_data.map((course, index) => (
                               <option key={index} value={course._id}>
                                 {course.title}
@@ -260,7 +261,7 @@ class UpdateCourseForm extends Component {
                               // this.setState({
                               //   refBanner: file,
                               // });
-                              this.formd.append("banner", file);
+                              // this.formd.append("banner", file);
                               if (file) {
                                 let reader = new FileReader();
                                 reader.onload = (e) => {
@@ -296,7 +297,7 @@ class UpdateCourseForm extends Component {
                               // this.setState({
                               //   refThumbnail: file,
                               // });
-                              this.formd.append("thumbnail", file);
+                              // this.formd.append("thumbnail", file);
                               if (file) {
                                 let reader = new FileReader();
                                 reader.onload = (e) => {
@@ -329,10 +330,10 @@ class UpdateCourseForm extends Component {
                               let tempFile = {};
                               for (let i = 0; i < files.length; i++) {
                                 // tempFile.append(`documents`, e.target.files[i]);
-                                this.formd.append(
-                                  `documents`,
-                                  e.target.files[i]
-                                );
+                                // this.formd.append(
+                                //   `documents`,
+                                //   e.target.files[i]
+                                // );
                               }
                               this.setState({
                                 refDocuments: tempFile,
@@ -394,7 +395,7 @@ class UpdateCourseForm extends Component {
                               let tempFIle = {};
                               for (let i = 0; i < files.length; i++) {
                                 // tempFIle.append(`videos`, e.target.files[i]);
-                                this.formd.append(`videos`, e.target.files[i]);
+                                // this.formd.append(`videos`, e.target.files[i]);
                               }
                               this.setState({
                                 refVideos: tempFIle,
@@ -428,20 +429,39 @@ class UpdateCourseForm extends Component {
                       const id = body.get("courseId");
                       // console.log(body.getAll());
                       body.delete("courseId");
+                      const data = new FormData();
+                      for (var pair of body.entries()) {
+                        if (
+                          pair[0] == "banner" ||
+                          pair[0] == "videos" ||
+                          pair[0] == "documents" ||
+                          pair[0] == "thumbnail"
+                        ) {
+                          if (pair[1].name != "") {
+                            console.log(
+                              pair[0] + ", " + JSON.stringify(pair[1].name)
+                            );
+                            data.append(pair[0], body.get(pair[0]));
+                          }
+                        } else if (pair[1]) {
+                          console.log(pair[0] + ", " + pair[1]);
+                          data.append(pair[0], body.get(pair[0]));
+                        }
+                      }
                       toast("Update started!!! please wait!!");
-                      await this.props.updateCourse(id, body);
-                      // this.props.create_course_status.message ===
-                      // "Course Updated Successfully!"
-                      //   ? toast.info("Course Updated Successfully!", {
-                      //       position: "bottom-center",
-                      //       autoClose: 5000,
-                      //       hideProgressBar: false,
-                      //       closeOnClick: true,
-                      //       pauseOnHover: true,
-                      //       draggable: true,
-                      //       progress: undefined,
-                      //     })
-                      //   : toast("Course Update Failed!");
+                      await this.props.updateCourse(id, data);
+                      this.props.create_course_update_status ===
+                      "Course Updated Successfully!"
+                        ? toast.info("Course Updated Successfully!", {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          })
+                        : toast("Course Update Failed!");
                     }}
                   >
                     Upload
@@ -469,7 +489,7 @@ class UpdateCourseForm extends Component {
 
 const mapStateToProps = (state) => ({
   instructorList: state.getInstructor.instructorList,
-  // create_course_status: state.updateCourse.payload,
+  create_course_update_status: state.getCourse.updateConfirmation,
   course_data: state.getCourse.courseList,
   pay_load: state.getCourse.payload,
 });

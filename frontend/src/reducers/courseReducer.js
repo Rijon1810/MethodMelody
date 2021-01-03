@@ -12,6 +12,7 @@ const initialState = {
   courseList: [],
   featuredCourseList: [],
   catagoryList: [],
+  updateConfirmation: [],
 };
 
 export const getCourseReducer = (state = initialState, action) => {
@@ -39,7 +40,7 @@ export const getCourseReducer = (state = initialState, action) => {
     case UPDATE_COURSE:
       return {
         ...state,
-        payload: action.payload,
+        updateConfirmation: action.payload,
       };
     default:
       return { ...state };

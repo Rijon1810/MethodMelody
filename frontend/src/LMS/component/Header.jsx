@@ -125,7 +125,7 @@ class Header extends Component {
                     <li className="has-droupdown">
                       <Link to="#">Courses</Link>
                       <ul className="submenu" style={mystyle}>
-                        {this.props.catagory_data.map((category) => (
+                        {categoryList.map((category) => (
                           <li>
                             console.log(category.category)
                             {category.category}
