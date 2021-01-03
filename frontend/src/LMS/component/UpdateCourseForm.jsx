@@ -260,7 +260,7 @@ class UpdateCourseForm extends Component {
                               // this.setState({
                               //   refBanner: file,
                               // });
-                              this.formd.append("banner", file);
+                              // this.formd.append("banner", file);
                               if (file) {
                                 let reader = new FileReader();
                                 reader.onload = (e) => {
@@ -296,7 +296,7 @@ class UpdateCourseForm extends Component {
                               // this.setState({
                               //   refThumbnail: file,
                               // });
-                              this.formd.append("thumbnail", file);
+                              // this.formd.append("thumbnail", file);
                               if (file) {
                                 let reader = new FileReader();
                                 reader.onload = (e) => {
@@ -329,10 +329,10 @@ class UpdateCourseForm extends Component {
                               let tempFile = {};
                               for (let i = 0; i < files.length; i++) {
                                 // tempFile.append(`documents`, e.target.files[i]);
-                                this.formd.append(
-                                  `documents`,
-                                  e.target.files[i]
-                                );
+                                // this.formd.append(
+                                //   `documents`,
+                                //   e.target.files[i]
+                                // );
                               }
                               this.setState({
                                 refDocuments: tempFile,
@@ -394,7 +394,7 @@ class UpdateCourseForm extends Component {
                               let tempFIle = {};
                               for (let i = 0; i < files.length; i++) {
                                 // tempFIle.append(`videos`, e.target.files[i]);
-                                this.formd.append(`videos`, e.target.files[i]);
+                                // this.formd.append(`videos`, e.target.files[i]);
                               }
                               this.setState({
                                 refVideos: tempFIle,
@@ -430,18 +430,19 @@ class UpdateCourseForm extends Component {
                       body.delete("courseId");
                       toast("Update started!!! please wait!!");
                       await this.props.updateCourse(id, body);
-                      // this.props.create_course_status.message ===
-                      // "Course Updated Successfully!"
-                      //   ? toast.info("Course Updated Successfully!", {
-                      //       position: "bottom-center",
-                      //       autoClose: 5000,
-                      //       hideProgressBar: false,
-                      //       closeOnClick: true,
-                      //       pauseOnHover: true,
-                      //       draggable: true,
-                      //       progress: undefined,
-                      //     })
-                      //   : toast("Course Update Failed!");
+                    //   this.props.create_course_status.message ===
+                    //   "Course Updated Successfully!"
+                    //     ? toast.info("Course Updated Successfully!", {
+                    //         position: "bottom-center",
+                    //         autoClose: 5000,
+                    //         hideProgressBar: false,
+                    //         closeOnClick: true,
+                    //         pauseOnHover: true,
+                    //         draggable: true,
+                    //         progress: undefined,
+                    //       })
+                    //     : toast("Course Update Failed!");
+                    // }}
                     }}
                   >
                     Upload

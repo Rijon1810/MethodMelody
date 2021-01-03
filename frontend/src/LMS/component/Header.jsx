@@ -20,7 +20,7 @@ import { getCourse } from "../../actions/courseAction";
 import { Avatar, Grid } from "@material-ui/core";
 
 //constants
-const categoryList = [
+const categoryLists = [
   {
     primary: "Guitar",
     alt: "Guitar",
@@ -125,10 +125,8 @@ class Header extends Component {
                     <li className="has-droupdown">
                       <Link to="#">Courses</Link>
                       <ul className="submenu" style={mystyle}>
-                        {this.props.catagory_data.map((category) => (
+                        {categoryLists.map((category) => (
                           <li>
-                            console.log(category.category)
-                            {category.category}
                             <Link to="/service">
                               <Grid
                                 container
@@ -138,13 +136,12 @@ class Header extends Component {
                                 <Grid item style={{ marginRight: 10 }}>
                                   {" "}
                                   <Avatar
-                                    alt={category.category}
-                                    // src={`${process.env.PUBLIC_URL}/${category.src}`}
-                                    style={avatar}
+                                    alt={category.alt}
+                                    src={`${process.env.PUBLIC_URL}/${category.src}`}
                                   />
                                 </Grid>
                                 <Grid item style={{ color: "#fff" }}>
-                                  {/* {category.primary} */}
+                                  {category.primary}
                                 </Grid>
                               </Grid>
                             </Link>
