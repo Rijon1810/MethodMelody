@@ -108,7 +108,7 @@ router
     const banner = req.files.banner[0].path;
     const videos = videos_object;
     const instructor = req.body.instructor;
-    const topic = req.body.topic;
+    const topic = req.body.topic; 
     const preRequisite = req.body.preRequisite;
     const requirements = req.body.requirements;
     const nextCourses = req.body.nextCourses;

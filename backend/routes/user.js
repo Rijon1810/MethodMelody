@@ -153,17 +153,20 @@ router
   .use(user.single("photo"))
   .route("/signup")
   .post((req, res) => {
-    const { error } = registerValidation(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    // const { error } = registerValidation(req.body);
+    // if (error) return res.status(400).send(error.details[0].message);
 
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
-    const photo = req.file.path;
+    let photo = "";
+    if (req.file) {
+      photo = req.file.path;
+    }
     const dob = req.body.dob;
     const phone = req.body.phone;
     const address = req.body.address;
-
+    const type = req.body.type;
     const course = req.body.course;
     const previousCourse = req.body.previousCourse;
 
@@ -183,6 +186,7 @@ router
               dob,
               phone,
               address,
+              type,
               course,
               previousCourse,
             });
