@@ -125,11 +125,7 @@ class Header extends Component {
                     <li className="has-droupdown">
                       <Link to="#">Courses</Link>
                       <ul className="submenu" style={mystyle}>
-<<<<<<< HEAD
                         {categoryLists.map((category) => (
-=======
-                        {categoryList.map((category) => (
->>>>>>> 54a39b584eab6afb50660b7c4cfc21d9ee94299a
                           <li>
                             <Link to="/service">
                               <Grid

@@ -449,22 +449,6 @@ class UpdateCourseForm extends Component {
                         }
                       }
                       toast("Update started!!! please wait!!");
-<<<<<<< HEAD
-                      await this.props.updateCourse(id, body);
-                    //   this.props.create_course_status.message ===
-                    //   "Course Updated Successfully!"
-                    //     ? toast.info("Course Updated Successfully!", {
-                    //         position: "bottom-center",
-                    //         autoClose: 5000,
-                    //         hideProgressBar: false,
-                    //         closeOnClick: true,
-                    //         pauseOnHover: true,
-                    //         draggable: true,
-                    //         progress: undefined,
-                    //       })
-                    //     : toast("Course Update Failed!");
-                    // }}
-=======
                       await this.props.updateCourse(id, data);
                       this.props.create_course_update_status ===
                       "Course Updated Successfully!"
@@ -478,7 +462,6 @@ class UpdateCourseForm extends Component {
                             progress: undefined,
                           })
                         : toast("Course Update Failed!");
->>>>>>> 54a39b584eab6afb50660b7c4cfc21d9ee94299a
                     }}
                   >
                     Upload
