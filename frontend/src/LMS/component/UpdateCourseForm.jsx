@@ -371,17 +371,17 @@ class UpdateCourseForm extends Component {
                     />
                   </label>
                   <div className="section-title text-left theme-gradient pt--60">
-                    <h4 className="title">Upload Lesson</h4>
+                    <h4 className="title">Update Lesson</h4>
                   </div>
                   <p className="text-muted">
-                    The new videos will replace the previous videos
+                    The new videos will replace the previous videos, you can select multiple video files and file names must be same as the lesson name.
                   </p>
 
                   <div className="row">
                     <div className="col-lg-12">
                       <div className="form-group">
                         <label htmlFor="exampleFormControlFile1">
-                          Lessons 1 *
+                          Lesson/s *
                         </label>
                         <label htmlFor="item03">
                           <input
