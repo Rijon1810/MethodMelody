@@ -155,6 +155,18 @@ class ContactThree extends Component {
                         />
                       </label>
                     </div>
+                    <div className="col-lg-4">
+                      <label htmlFor="item012">
+                        <input
+                          type="text"
+                          name="validity"
+                          id="item012"                                             
+                          placeholder="Validity: 30 Days"
+                          readOnly
+                          disabled                        
+                        />
+                      </label>
+                    </div>                   
                   </div>
 
                   <div className="row">

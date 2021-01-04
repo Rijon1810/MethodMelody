@@ -181,7 +181,7 @@ export default function CourseView(props) {
                         What will you learn?
                       </h3>
                       <ul>
-                        {selectedCourse.topic.map((top) => {
+                        {selectedCourse.topic[0].split(";").map((top) => {
                           return <li>{top}</li>;
                         })}
                       </ul>
@@ -219,7 +219,7 @@ export default function CourseView(props) {
                         Requirements
                       </h3>
                       <ul className="list-style--1 text-white">
-                        {selectedCourse.requirements.map((requirement) => {
+                        {selectedCourse.requirements[0].split(";").map((requirement) => {
                           return (
                             <li>
                               <FilterNone className /> {requirement}
@@ -233,7 +233,7 @@ export default function CourseView(props) {
                         Who this course is for
                       </h3>
                       <ul className="list-style--1 text-white">
-                        {selectedCourse.whoFor.map((who) => {
+                        {selectedCourse.whoFor[0].split(";").map((who) => {
                           return (
                             <li>
                               <FilterNone className /> {who}
