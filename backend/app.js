@@ -60,20 +60,40 @@ const soldRouter = require("./routes/sold");
 
 const { apiAuth } = require("./middleware/authentication");
 
-app.use(`/api/${process.env.API_VERSION}/course`, apiAuth, courseRouter);
-app.use(`/api/${process.env.API_VERSION}/user`, loginRouter);
-app.use(`/api/${process.env.API_VERSION}/video`, apiAuth, videoRouter);
+app.use(`/api/${process.env.API_VERSION}/course`, apiAuth, cors, courseRouter);
+app.use(`/api/${process.env.API_VERSION}/user`, cors, loginRouter);
+app.use(`/api/${process.env.API_VERSION}/video`, apiAuth, cors, videoRouter);
 app.use(
   `/api/${process.env.API_VERSION}/instructor`,
   apiAuth,
   instructorRouter
 );
-app.use(`/api/${process.env.API_VERSION}/document`, apiAuth, documentRouter);
-app.use(`/api/${process.env.API_VERSION}/contact`, apiAuth, contactRouter);
-app.use(`/api/${process.env.API_VERSION}/analytics`, apiAuth, analyticsRouter);
-app.use(`/api/${process.env.API_VERSION}/buy`, apiAuth, buyRouter);
-app.use(`/api/${process.env.API_VERSION}/featured`, apiAuth, featuredRouter);
-app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, soldRouter);
+app.use(
+  `/api/${process.env.API_VERSION}/document`,
+  apiAuth,
+  cors,
+  documentRouter
+);
+app.use(
+  `/api/${process.env.API_VERSION}/contact`,
+  apiAuth,
+  cors,
+  contactRouter
+);
+app.use(
+  `/api/${process.env.API_VERSION}/analytics`,
+  apiAuth,
+  cors,
+  analyticsRouter
+);
+app.use(`/api/${process.env.API_VERSION}/buy`, apiAuth, cors, buyRouter);
+app.use(
+  `/api/${process.env.API_VERSION}/featured`,
+  apiAuth,
+  cors,
+  featuredRouter
+);
+app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, cors, soldRouter);
 
 app.get("/storage(/*)?", (req, res) => {
   res.sendStatus(403);
