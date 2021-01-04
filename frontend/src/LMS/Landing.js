@@ -191,6 +191,12 @@ export default function Landing() {
                 key={course._id}
                 onClick={async (event) => {
                   dispatch(getSelectedCourseId(course));
+                  instructorList.forEach((instructor)=>{
+                    if (instructor._id === course.instructor){
+                      dispatch(getSelectedInstructorId(instructor));
+                    }
+                  })
+                
                 }}
               >
                 <div className="blog blog-style--1">
