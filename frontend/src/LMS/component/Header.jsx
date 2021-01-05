@@ -223,7 +223,7 @@ class Header extends Component {
                       {this.props.user_type == 4 && (
                         <ul className="submenu" style={mystyle}>
                           <li>
-                            <Link to="/service">
+                            <Link to="/studentpanel">
                               <Grid
                                 container
                                 direction="row"

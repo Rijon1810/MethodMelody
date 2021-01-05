@@ -161,10 +161,7 @@ export default function Landing() {
       {/* End Slider Area   */}
 
       {/* Start Featured Course Area Area */}
-      <div
-        className="rn-blog-area pt--100  mb-dec--30"
-        style={{ paddingBottom: "15ch" }}
-      >
+      <div className="rn-blog-area ptb--100  mb-dec--30">
         <div className="container">
           <div className="row align-items-end">
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
@@ -191,12 +188,11 @@ export default function Landing() {
                 key={course._id}
                 onClick={async (event) => {
                   dispatch(getSelectedCourseId(course));
-                  instructorList.forEach((instructor)=>{
-                    if (instructor._id === course.instructor){
+                  instructorList.forEach((instructor) => {
+                    if (instructor._id === course.instructor) {
                       dispatch(getSelectedInstructorId(instructor));
                     }
-                  })
-                
+                  });
                 }}
               >
                 <div className="blog blog-style--1">
@@ -230,7 +226,7 @@ export default function Landing() {
       {/* End featured course Area */}
 
       {/* Start Course Category Area  */}
-      <div className="service-area pb--100">
+      <div className="service-area  bg_color--1 ptb--100">
         <div className="container">
           <ServiceTwo />
         </div>
@@ -238,8 +234,19 @@ export default function Landing() {
       {/* End Course Category Area  */}
 
       {/* Start How Platform Works Video */}
-      <Grid container justify="center" direction="row">
+      <Grid
+        container
+        justify="center"
+        direction="row"
+        className="ptb--100 bg_color--5"
+      >
         <Grid item lg={8}>
+          {" "}
+          <div className="section-title text-center">
+            <h3 className="title pb--50 fontWeight500">How the platform works</h3>
+          </div>
+        </Grid>
+        <Grid item lg={8} md={8}>
           <div class="embed-responsive embed-responsive-21by9">
             <VideoTag
               autoPlay={`${true}`}
@@ -257,7 +264,7 @@ export default function Landing() {
 
       {/* Start CounterUp Area */}
       <div
-        className="rn-counterup-area pt--25 pb--110 "
+        className="rn-counterup-area pt--25 pb--100 bg_color--1"
         // style={{ paddingTop: "15ch" }}
       >
         <div className="container">
@@ -277,7 +284,7 @@ export default function Landing() {
 
       {/* Start Featured Instructor Area */}
       <div
-        className="rn-blog-area pt--50  mb-dec--30"
+        className="rn-blog-area pt--50  mb-dec--30 ptb--100"
         style={{ paddingBottom: "15ch" }}
       >
         <div className="container">
@@ -353,13 +360,13 @@ export default function Landing() {
       {/* End Blog Area */}
 
       {/* Start Student Feedback */}
-      <div className="col-lg-12 pt--50">
+      <div className="col-lg-12 ptb--100 bg_color--1">
         <Testimonial />
       </div>
       {/* End Student Feedback */}
 
       {/* Start Team Area  */}
-      <div className="rn-team-area pt--120 bg_color--5">
+      <div className="rn-team-area ptb--100">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
@@ -380,7 +387,7 @@ export default function Landing() {
       {/* End Team Area  */}
 
       {/* Start Faq Area */}
-      <div className="pv-feaq-area  pt--120">
+      <div className="pv-feaq-area  ptb--100 bg_color--1">
         <div className="container">
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
