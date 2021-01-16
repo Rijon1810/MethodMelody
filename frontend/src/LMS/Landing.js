@@ -31,6 +31,7 @@ import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getInstructor } from "../actions/instructorAction";
+import { getCart } from "../actions/cartAction";
 import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
 import {
@@ -97,6 +98,7 @@ export default function Landing() {
     dispatch(getCourse());
     dispatch(getAnalytics());
     dispatch(getCurrentVideoIndex(0));
+    dispatch(getCart());
   }, [dispatch]);
 
   // view all course handler
@@ -243,7 +245,9 @@ export default function Landing() {
         <Grid item lg={8}>
           {" "}
           <div className="section-title text-center">
-            <h3 className="title pb--50 fontWeight500">How the platform works</h3>
+            <h3 className="title pb--50 fontWeight500">
+              How the platform works
+            </h3>
           </div>
         </Grid>
         <Grid item lg={8} md={8}>

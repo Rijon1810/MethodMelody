@@ -1,7 +1,7 @@
 import axios from "../LMS/api/Config";
 import { DEL_CART, POST_CART, GET_CART } from "./types";
 
-export const getCart = (data) => (dispatch) => {
+export const getCart = () => (dispatch) => {
   axios
     .get("cart/", {
       headers: {
