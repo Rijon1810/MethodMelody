@@ -61,9 +61,9 @@ const cartRouter = require("./routes/cart");
 
 const { apiAuth } = require("./middleware/authentication");
 
-app.use(`/api/${process.env.API_VERSION}/course`, apiAuth, courseRouter);
-app.use(`/api/${process.env.API_VERSION}/user`, loginRouter);
-app.use(`/api/${process.env.API_VERSION}/video`, apiAuth, videoRouter);
+app.use(`/api/${process.env.API_VERSION}/course`, apiAuth, cors, courseRouter);
+app.use(`/api/${process.env.API_VERSION}/user`, cors, loginRouter);
+app.use(`/api/${process.env.API_VERSION}/video`, apiAuth, cors, videoRouter);
 app.use(
   `/api/${process.env.API_VERSION}/instructor`,
   apiAuth,

@@ -20,33 +20,37 @@ import { getCourse } from "../../actions/courseAction";
 import { Avatar, Grid } from "@material-ui/core";
 
 //constants
-const categoryLists = [
-  {
-    primary: "Guitar",
-    alt: "Guitar",
-    src: "assets/images/icons/guitar-electric.png",
-  },
-  {
-    primary: "Acoustic Fingerstyle Guitar",
-    alt: "Acoustic Fingerstyle guitar",
-    src: "assets/images/icons/acoustic-guitar.png",
-  },
-  {
-    primary: "Drums",
-    alt: "Drums",
-    src: "assets/images/icons/drums.png",
-  },
-  {
-    primary: "Piano/Keyboard",
-    alt: "Piano/Keyboard",
-    src: "assets/images/icons/piano.png",
-  },
-  {
-    primary: "Sound Engineering",
-    alt: "Sound Engineering",
-    src: "assets/images/icons/sound-engineering.png",
-  },
-];
+const categoryLists = {
+  Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
+  Drums: { alt: "Drums", src: "assets/images/icons/guitar-electric.png"}
+};
+
+//   {
+//     primary: "Guitar",
+//     alt: "Guitar",
+//     src: "assets/images/icons/guitar-electric.png",
+//   },
+//   {
+//     primary: "Acoustic Fingerstyle Guitar",
+//     alt: "Acoustic Fingerstyle guitar",
+//     src: "assets/images/icons/acoustic-guitar.png",
+//   },
+//   {
+//     primary: "Drums",
+//     alt: "Drums",
+//     src: "assets/images/icons/drums.png",
+//   },
+//   {
+//     primary: "Piano/Keyboard",
+//     alt: "Piano/Keyboard",
+//     src: "assets/images/icons/piano.png",
+//   },
+//   {
+//     primary: "Sound Engineering",
+//     alt: "Sound Engineering",
+//     src: "assets/images/icons/sound-engineering.png",
+//   },
+// ];
 
 class Header extends Component {
   constructor(props) {
@@ -74,6 +78,18 @@ class Header extends Component {
   componentWillMount() {
     this.props.getCourse();
   }
+
+  // categories = () => {
+
+  //   const map = [];
+  //   for (let value of this.props.catagory_data) {
+  //     if (map.indexOf(value) === -1) {
+  //       map.push(value);
+  //     }
+  //   }
+
+  //   console.log(result);
+  // };
 
   render() {
     //custom styles
@@ -125,7 +141,8 @@ class Header extends Component {
                     <li className="has-droupdown">
                       <Link to="#">Courses</Link>
                       <ul className="submenu" style={mystyle}>
-                        {categoryLists.map((category) => (
+                        {console.log(categoryLists)}
+                        {this.props.catagory_data.map((category) => (
                           <li>
                             <Link to="/service">
                               <Grid
@@ -136,12 +153,12 @@ class Header extends Component {
                                 <Grid item style={{ marginRight: 10 }}>
                                   {" "}
                                   <Avatar
-                                    alt={category.alt}
-                                    src={`${process.env.PUBLIC_URL}/${category.src}`}
+                                    alt={category}
+                                    src={`${process.env.PUBLIC_URL}/${categoryLists[category].src}`}
                                   />
                                 </Grid>
                                 <Grid item style={{ color: "#fff" }}>
-                                  {category.primary}
+                                  {category}
                                 </Grid>
                               </Grid>
                             </Link>
@@ -223,7 +240,7 @@ class Header extends Component {
                       {this.props.user_type == 4 && (
                         <ul className="submenu" style={mystyle}>
                           <li>
-                            <Link to="/service">
+                            <Link to="/studentpanel">
                               <Grid
                                 container
                                 direction="row"
@@ -423,7 +440,7 @@ const mapStateToProps = (state) => {
     loginStatus: state.isLogged.login,
     logOut: state.logOut,
     instructorList: state.getInstructor.instructorList,
-    catagory_data: state.getCourse.payload,
+    catagory_data: state.getCourse.catagoryList,
   };
 };
 

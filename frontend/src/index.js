@@ -76,6 +76,7 @@ import AddInstructor from "./LMS/component/AddInstructor.jsx";
 import UpdateCourse from "./LMS/component/UpdateCourse.jsx";
 import UpdateInstructor from "./LMS/component/UpdateInstructor.jsx";
 import CreateAccount from "./LMS/component/CreateAccount.jsx";
+import StudentPanel from "./LMS/component/elements/StudentPanel";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -337,6 +338,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/createaccount`}
             component={CreateAccount}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/studentpanel`}
+            component={StudentPanel}
           />
           <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
           <Route component={error404} />

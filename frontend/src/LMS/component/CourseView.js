@@ -10,15 +10,20 @@ import {
   Timer,
   Description,
   Smartphone,
+  Cancel,
 } from "@material-ui/icons";
 import {
   makeStyles,
   List,
   ListItem,
-  ListItemIcon,
+  Button,
   ListItemText,
-  Divider,
+  Backdrop,
   Avatar,
+  Modal,
+  Grid,
+  Fade,
+  IconButton,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 //custom components
@@ -68,6 +73,20 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper: {
+    backgroundColor: "#191c21",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(4),
+    outline: "none",
+  },
+  button: {
+    margin: theme.spacing(2, 0, 0, 0),
+  },
 }));
 
 export default function CourseView(props) {
@@ -83,6 +102,17 @@ export default function CourseView(props) {
   const selectedLesson = useSelector(
     (state) => state.getSelectedId.getCurrentVideoIndex
   );
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    console.log(`handleClose called`);
+    setOpen(false);
+  };
 
   return (
     <div className="active-dark">
@@ -126,14 +156,75 @@ export default function CourseView(props) {
               BDT {selectedCourse.price}
             </p>
             <div className="d-flex flex-row-reverse">
-              <a className="rn-btn" href="/login">
+              <a className="rn-btn" href="#" onClick={handleOpen}>
                 <span>Get Enrolled !</span>
               </a>
             </div>
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              className={classes.modal}
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+              disableBackdropClick={true}
+            >
+              <Fade in={open}>
+                <div className={classes.paper}>
+                  <div className="container">
+                    <div className="d-flex flex-row-reverse">
+                      {" "}
+                      <IconButton onClick={handleClose}>
+                        <Cancel fontsize="small" className="text-white" />
+                      </IconButton>
+                    </div>
+                    <div className="col-lg-12">
+                      {" "}
+                      <p className="text-white">{selectedCourse.title}</p>
+                    </div>
+                    <div className="col-lg-12">
+                      {" "}
+                      <h2 className="theme-gradient">{selectedCourse.price}</h2>
+                    </div>
+                    <div className="col-lg-12">
+                      <p className="text-white">30 Days Subscription</p>
+                    </div>
+                    <div className="col-lg-12">
+                      {" "}
+                      <button
+                        variant="contained"
+                        className="rn-button-style--2 btn-solid"
+                        fullWidth={true}
+                        style={{ width: "100%", marginTop: "50px" }}
+                      >
+                        Add to cart
+                      </button>
+                    </div>
+                    <div className="col-lg-12">
+                      {" "}
+                      <button
+                        variant="contained"
+                        style={{ width: "100%", marginTop: "20px" }}
+                        className="rn-button-style--2 btn-outlined"
+                      >
+                        Buy now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </Fade>
+            </Modal>
           </div>
           <div className="col-lg-9">
             <ReactPlayer
-              url={"http://63.250.33.174/" + selectedCourse.videos[selectedLesson].path}
+              url={
+                "http://63.250.33.174/" +
+                selectedCourse.videos[selectedLesson].path
+              }
             />
             {/* <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} /> */}
           </div>
@@ -181,7 +272,7 @@ export default function CourseView(props) {
                         What will you learn?
                       </h3>
                       <ul>
-                        {selectedCourse.topic.map((top) => {
+                        {selectedCourse.topic[0].split(";").map((top) => {
                           return <li>{top}</li>;
                         })}
                       </ul>
@@ -219,13 +310,15 @@ export default function CourseView(props) {
                         Requirements
                       </h3>
                       <ul className="list-style--1 text-white">
-                        {selectedCourse.requirements.map((requirement) => {
-                          return (
-                            <li>
-                              <FilterNone className /> {requirement}
-                            </li>
-                          );
-                        })}
+                        {selectedCourse.requirements[0]
+                          .split(";")
+                          .map((requirement) => {
+                            return (
+                              <li>
+                                <FilterNone className /> {requirement}
+                              </li>
+                            );
+                          })}
                       </ul>
                       {/* End Course Requirements */}
                       {/* Start Course Who For */}
@@ -233,7 +326,7 @@ export default function CourseView(props) {
                         Who this course is for
                       </h3>
                       <ul className="list-style--1 text-white">
-                        {selectedCourse.whoFor.map((who) => {
+                        {selectedCourse.whoFor[0].split(";").map((who) => {
                           return (
                             <li>
                               <FilterNone className /> {who}

@@ -32,7 +32,16 @@ class ContactThree extends Component {
     };
   }
   formd = new FormData();
+
   render() {
+    var categoryList = [
+      "Guitar",
+      "Acoustic Guitar",
+      "Drums",
+      "Bass",
+      "Sound Engineering",
+      "Keyboard/Piano",
+    ];
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -155,22 +164,42 @@ class ContactThree extends Component {
                         />
                       </label>
                     </div>
+                    <div className="col-lg-4">
+                      <label htmlFor="item012">
+                        <input
+                          type="text"
+                          name="validity"
+                          id="item012"
+                          placeholder="Validity: 30 Days"
+                          readOnly
+                          disabled
+                        />
+                      </label>
+                    </div>
                   </div>
 
                   <div className="row">
                     <div className="col-lg-4">
-                      <label htmlFor="item10">
-                        <input
-                          type="text"
-                          name="catagory"
-                          id="item10"
-                          value={this.state.rnCatagory}
-                          onChange={(e) => {
-                            this.setState({ rnCatagory: e.target.value });
-                          }}
-                          placeholder="Catagory *"
-                        />
-                      </label>
+                      <div className="form-group">
+                        <label htmlFor="exampleFormControlFile1">
+                          Select Category *
+                        </label>
+                        <label htmlFor="item10">
+                          <select
+                            name="category"
+                            className="form-control"
+                            onSelect={(e) => {
+                              this.setState({ rnCatagory: e.target.value });
+                            }}
+                          >
+                            {categoryList.map((category, index) => (
+                              <option key={index} value={category}>
+                                {category}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      </div>
                     </div>
                   </div>
 
@@ -436,7 +465,6 @@ class ContactThree extends Component {
                   />
                 </form>
               </div>
-            
             </div>
           </div>
         </div>
