@@ -57,6 +57,7 @@ const analyticsRouter = require("./routes/analytics");
 const buyRouter = require("./routes/buy");
 const featuredRouter = require("./routes/featured");
 const soldRouter = require("./routes/sold");
+const cartRouter = require("./routes/cart");
 
 const { apiAuth } = require("./middleware/authentication");
 
@@ -68,32 +69,13 @@ app.use(
   apiAuth,
   instructorRouter
 );
-app.use(
-  `/api/${process.env.API_VERSION}/document`,
-  apiAuth,
-  cors,
-  documentRouter
-);
-app.use(
-  `/api/${process.env.API_VERSION}/contact`,
-  apiAuth,
-  cors,
-  contactRouter
-);
-app.use(
-  `/api/${process.env.API_VERSION}/analytics`,
-  apiAuth,
-  cors,
-  analyticsRouter
-);
-app.use(`/api/${process.env.API_VERSION}/buy`, apiAuth, cors, buyRouter);
-app.use(
-  `/api/${process.env.API_VERSION}/featured`,
-  apiAuth,
-  cors,
-  featuredRouter
-);
-app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, cors, soldRouter);
+app.use(`/api/${process.env.API_VERSION}/document`, apiAuth, documentRouter);
+app.use(`/api/${process.env.API_VERSION}/contact`, apiAuth, contactRouter);
+app.use(`/api/${process.env.API_VERSION}/analytics`, apiAuth, analyticsRouter);
+app.use(`/api/${process.env.API_VERSION}/buy`, apiAuth, buyRouter);
+app.use(`/api/${process.env.API_VERSION}/featured`, apiAuth, featuredRouter);
+app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, soldRouter);
+app.use(`/api/${process.env.API_VERSION}/cart`, apiAuth, cartRouter);
 
 app.get("/storage(/*)?", (req, res) => {
   res.sendStatus(403);
