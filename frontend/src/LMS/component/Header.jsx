@@ -17,12 +17,12 @@ import { logOut } from "../../actions/logOutAction";
 import { getCourse } from "../../actions/courseAction";
 
 //importing material components
-import { Avatar, Grid } from "@material-ui/core";
+import { Avatar, Grid, Badge } from "@material-ui/core";
 
 //constants
 const categoryLists = {
   Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
-  Drums: { alt: "Drums", src: "assets/images/icons/guitar-electric.png"}
+  Drums: { alt: "Drums", src: "assets/images/icons/guitar-electric.png" },
 };
 
 //   {
@@ -207,7 +207,9 @@ class Header extends Component {
                       <Link to="/courseview">
                         <Grid container direction="row" alignItems="center">
                           <Grid item style={{ marginRight: 10 }}>
-                            <ShoppingCartOutlined />
+                            <Badge badgeContent={1} color="secondary">
+                              <ShoppingCartOutlined />
+                            </Badge>
                           </Grid>
                           <Grid item>Cart</Grid>
                         </Grid>
