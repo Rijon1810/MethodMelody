@@ -75,6 +75,9 @@ export default function PermanentDrawerLeft() {
       case 5:
         history.push("/admincourselist");
         break;
+      case 6:
+        history.push("/admininstructorlist");
+        break;
       case 10:
         history.push("/createaccount");
         break;
@@ -178,7 +181,12 @@ export default function PermanentDrawerLeft() {
             </ListItemIcon>
             <ListItemText primary="View Courses" style={{ color: "#fff" }} />
           </ListItem>
-          <ListItem button key="viewinstructor">
+          <ListItem
+            button
+            key="viewinstructor"
+            onClick={(event) => handleListItemClick(event, 6)}
+            selected={selectedIndex === 6}
+          >
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
             </ListItemIcon>
