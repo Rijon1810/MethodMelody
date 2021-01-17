@@ -9,6 +9,7 @@ import { getCourseReducer, postCourseReducer } from "./courseReducer";
 import getAnalyticsReducer from "./getAnalyticsReducer";
 import getSelectedIdReducer from "./getSelectedIdReducer";
 import cartStatusReducer from "./cartReducer";
+import getAllUsersReducer from "./userReducer";
 
 const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -19,6 +20,7 @@ const allReducers = combineReducers({
   getAnalytics: getAnalyticsReducer,
   getSelectedId: getSelectedIdReducer,
   cartInfo: cartStatusReducer,
+  getAllUsers: getAllUsersReducer,
 });
 
 export default allReducers;
