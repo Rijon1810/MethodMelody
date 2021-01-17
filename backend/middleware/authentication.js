@@ -15,7 +15,7 @@ function apiAuth(req, res, next) {
   }
 }
 
-function cors(req, res, next) {
+function my_cors(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -93,4 +93,4 @@ function authentication(req, res, next) {
   }
 }
 
-module.exports = { authentication, apiAuth, cors };
+module.exports = { authentication, apiAuth, my_cors };
