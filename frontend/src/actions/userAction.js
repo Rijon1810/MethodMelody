@@ -1,7 +1,7 @@
 import axios from "../LMS/api/Config";
 import { GET_ALL_USER } from "./types";
 
-export const getCart = (data) => (dispatch) => {
+export const getUser = (data) => (dispatch) => {
   axios
     .get(`user/`, {
       headers: {
@@ -13,6 +13,7 @@ export const getCart = (data) => (dispatch) => {
         type: GET_ALL_USER,
         payload: res.data,
       });
+      console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
       console.log(err);

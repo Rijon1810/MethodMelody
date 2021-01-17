@@ -23,6 +23,8 @@ import {
   getCurrentVideoIndex,
 } from "../../actions/getSelectedIdAction";
 
+import { getUser } from "../../actions/userAction";
+
 const useStyles = makeStyles((theme) => ({
   content: {
     marginLeft: "240px",
@@ -32,7 +34,10 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     display: "flex",
-    backgroundColor: "#191C21"
+    backgroundColor: "#191C21",
+    marginTop: 10,
+    marginBottom: 10,
+    markerEnd: 10,
   },
 }));
 
@@ -60,9 +65,13 @@ const AdminUserList = () => {
 
   const dispatch = useDispatch();
 
+  dispatch(getUser());
+
   const [list, setList] = React.useState("featured");
 
   useEffect(() => {}, [list]);
+
+  const userList = useSelector((state) => state.getAllUsers.allUsers);
 
   return (
     <React.Fragment>
@@ -90,36 +99,51 @@ const AdminUserList = () => {
               </div>
             </div>
             <div className="row mt--60 mt_sm--40 ">
-              <Card className={classes.root} raised="true">
-                <CardContent>
-                  <div className="container">
-                    <div className="col">
-                      <div className="row">
-                        <h4 className="theme-gradient">John Doe</h4>
-                      </div>
-                      <div className="row text-white">
-                       +8801796588950
-                      </div>
-                      <div className="row text-white">
-                        tanzeerhossain@zoho.com
-                      </div>
-                      <div className="row">
-                        <div className="blog-btn d-flex justify-content-center pt--20">
-                          <a className="rn-btn text-white" href="/courseview">
-                            Suspend
-                          </a>
+              {userList.map((user) => (
+                <div className="col-4">
+                  <Card className={classes.root} raised="true">
+                    <CardContent>
+                      <div className="container ">
+                        <div className="col">
+                          <div className="row">
+                            <h4 className="theme-gradient">{user.name}</h4>
+                          </div>
+                          <div className="row text-white">{user.phone}</div>
+                          <div className="row text-white">{user.email}</div>
+                          <div className="row">
+                            <div className="col-6">
+                              <div className="blog-btn pt--20">
+                                <a
+                                  className="rn-btn text-white"
+                                  href="#"
+                                >
+                                  View
+                                </a>
+                              </div>
+                            </div>
+                            <div className="col-6">
+                              <div className="blog-btn pt--20">
+                                <a
+                                  className="rn-btn text-white"
+                                  href="#"
+                                >
+                                  Suspend
+                                </a>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </CardContent>
+                    </CardContent>
 
-                <CardMedia
-                  className={classes.cover}
-                  image="https://cdn.vox-cdn.com/thumbor/gD8CFUq4EEdI8ux04KyGMmuIgcA=/0x86:706x557/920x613/filters:focal(0x86:706x557):format(webp)/cdn.vox-cdn.com/imported_assets/847184/stevejobs.png"
-                  title="Live from space album cover"
-                />
-              </Card>
+                    <CardMedia
+                      className={classes.cover}
+                      image={`http://63.250.33.174/${user.photo}`}
+                      title="Live from space album cover"
+                    />
+                  </Card>
+                </div>
+              ))}
             </div>
           </div>
         </div>
