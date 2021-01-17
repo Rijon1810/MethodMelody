@@ -59,23 +59,49 @@ const featuredRouter = require("./routes/featured");
 const soldRouter = require("./routes/sold");
 const cartRouter = require("./routes/cart");
 
-const { apiAuth } = require("./middleware/authentication");
+const { apiAuth, my_cors } = require("./middleware/authentication");
 
-app.use(`/api/${process.env.API_VERSION}/course`, apiAuth, cors, courseRouter);
-app.use(`/api/${process.env.API_VERSION}/user`, cors, loginRouter);
-app.use(`/api/${process.env.API_VERSION}/video`, apiAuth, cors, videoRouter);
+app.use(
+  `/api/${process.env.API_VERSION}/course`,
+  apiAuth,
+  my_cors,
+  courseRouter
+);
+app.use(`/api/${process.env.API_VERSION}/user`, my_cors, loginRouter);
+app.use(`/api/${process.env.API_VERSION}/video`, apiAuth, my_cors, videoRouter);
 app.use(
   `/api/${process.env.API_VERSION}/instructor`,
   apiAuth,
+  my_cors,
   instructorRouter
 );
-app.use(`/api/${process.env.API_VERSION}/document`, apiAuth, documentRouter);
-app.use(`/api/${process.env.API_VERSION}/contact`, apiAuth, contactRouter);
-app.use(`/api/${process.env.API_VERSION}/analytics`, apiAuth, analyticsRouter);
-app.use(`/api/${process.env.API_VERSION}/buy`, apiAuth, buyRouter);
-app.use(`/api/${process.env.API_VERSION}/featured`, apiAuth, featuredRouter);
-app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, soldRouter);
-app.use(`/api/${process.env.API_VERSION}/cart`, apiAuth, cartRouter);
+app.use(
+  `/api/${process.env.API_VERSION}/document`,
+  apiAuth,
+  my_cors,
+  documentRouter
+);
+app.use(
+  `/api/${process.env.API_VERSION}/contact`,
+  apiAuth,
+  my_cors,
+  contactRouter
+);
+app.use(
+  `/api/${process.env.API_VERSION}/analytics`,
+  apiAuth,
+  my_cors,
+  analyticsRouter
+);
+app.use(`/api/${process.env.API_VERSION}/buy`, apiAuth, my_cors, buyRouter);
+app.use(
+  `/api/${process.env.API_VERSION}/featured`,
+  apiAuth,
+  my_cors,
+  featuredRouter
+);
+app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, my_cors, soldRouter);
+app.use(`/api/${process.env.API_VERSION}/cart`, apiAuth, my_cors, cartRouter);
 
 app.get("/storage(/*)?", (req, res) => {
   res.sendStatus(403);

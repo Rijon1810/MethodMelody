@@ -123,6 +123,7 @@ router.route(`/login`).post((req, res) => {
                   phone: docs[0].phone,
                   address: docs[0].address,
                   email: docs[0].email,
+                  cart: docs[0].cart,
                   createdAt: docs[0].createdAt,
                   updatedAt: docs[0].updatedAt,
                 });
@@ -215,7 +216,24 @@ router
   .route("/")
   .get((req, res) => {
     User.find()
-      .then((user) => res.json(user))
+      .then((docs) =>
+        res.status(200).json({
+          id: docs[0]._id,
+          type: docs[0].type,
+          course: docs[0].course,
+          previousCourse: docs[0].previousCourse,
+          name: docs[0].name,
+          photo: docs[0].photo,
+          age: docs[0].age,
+          phone: docs[0].phone,
+          address: docs[0].address,
+          email: docs[0].email,
+          cart: docs[0].cart,
+          createdAt: docs[0].createdAt,
+          updatedAt: docs[0].updatedAt,
+        })
+      )
+
       .catch((err) => res.status(400).json("Error: " + err));
   });
 

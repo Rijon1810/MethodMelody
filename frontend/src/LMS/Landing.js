@@ -78,6 +78,7 @@ export default function Landing() {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
+  const userId = useSelector((state) => state.isLogged.payload.id);
 
   const courseList = useSelector((state) => state.getCourse.courseList);
 
@@ -100,7 +101,7 @@ export default function Landing() {
     dispatch(getCourse());
     dispatch(getAnalytics());
     dispatch(getCurrentVideoIndex(0));
-    dispatch(getCart());
+    dispatch(getCart(`${userId}`));
   }, [dispatch]);
 
   // view all course handler
