@@ -211,7 +211,7 @@ class Header extends Component {
                               <ShoppingCartOutlined />
                             </Badge>
                           </Grid>
-                          <Grid item>Cart</Grid>
+                          {/* <Grid item>Cart</Grid> */}
                         </Grid>
                       </Link>
                     </li>

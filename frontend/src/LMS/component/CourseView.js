@@ -104,7 +104,6 @@ export default function CourseView(props) {
   );
 
   const [open, setOpen] = React.useState(false);
-  const[cartItem, setCartItem] = React.useState(0);
 
   const handleOpen = () => {
     setOpen(true);
@@ -115,17 +114,10 @@ export default function CourseView(props) {
     setOpen(false);
   };
 
-  const handleCartAdd = () =>{
-    setCartItem(cartItem+1);
-  }
-  const handleCartRemove = () =>{
-    setCartItem(cartItem-1);
-  }
-
   return (
     <div className="active-dark">
       <PageHelmet pageTitle="Course" />
-      <Header from="landing" cart={cartItem}/>
+      <Header from="landing" />
       <Breadcrumb from="courseview" />
       <div className="container">
         <div className="row">
@@ -208,9 +200,6 @@ export default function CourseView(props) {
                         className="rn-button-style--2 btn-solid"
                         fullWidth={true}
                         style={{ width: "100%", marginTop: "50px" }}
-                        onClick={
-                          handleCartAdd
-                        }
                       >
                         Add to cart
                       </button>

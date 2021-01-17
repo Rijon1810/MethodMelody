@@ -83,6 +83,8 @@ export default function Landing() {
 
   const length = useSelector((state) => state.getInstructor.length);
 
+  const cart = useSelector((state) => state.getCart);
+
   const dispatch = useDispatch();
 
   let history = useHistory();

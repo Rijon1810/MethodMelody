@@ -65,12 +65,15 @@ export default function PermanentDrawerLeft() {
       case 2:
         history.push("/addinstructor");
         break;
-     
+
       case 3:
         history.push("/updatecourse");
         break;
       case 4:
         history.push("/updateinstructor");
+        break;
+      case 5:
+        history.push("/admincourselist");
         break;
       case 10:
         history.push("/createaccount");
@@ -164,7 +167,12 @@ export default function PermanentDrawerLeft() {
         {/* Update Section End*/}
         <Divider style={{ background: "#1d1e24" }} />
         <List>
-          <ListItem button key="viewcourses">
+          <ListItem
+            button
+            key="viewcourses"
+            onClick={(event) => handleListItemClick(event, 5)}
+            selected={selectedIndex === 5}
+          >
             <ListItemIcon>
               <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
