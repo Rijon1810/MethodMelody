@@ -3,7 +3,7 @@ import { DEL_CART, POST_CART, GET_CART } from "./types";
 
 export const getCart = (data) => (dispatch) => {
   axios
-    .get("cart/", data, {
+    .get(`cart/${data}`, {
       headers: {
         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
       },
@@ -24,6 +24,7 @@ export const postCart = (data) => (dispatch) => {
     .post("cart/", data, {
       headers: {
         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+        "Content-type": "application/json",
       },
     })
     .then((res) => {
@@ -42,6 +43,7 @@ export const removeCart = (data) => (dispatch) => {
     .delete("cart/", data, {
       headers: {
         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+        "Content-type": "application/json",
       },
     })
     .then((res) => {

@@ -3,9 +3,9 @@ const Mongoose = require("mongoose");
 const User = require("../models/User.model");
 
 //CART ADD
-router.route("/").get((req, res) => {
-  const user = Mongoose.Types.ObjectId(req.body.user);
-  const course = Mongoose.Types.ObjectId(req.body.course);
+router.route("/:userId").get((req, res) => {
+  const user = Mongoose.Types.ObjectId(req.params.userId);
+  console.log(user);
   User.find({ _id: user })
     .then((doc) => {
       res.status(200).json(doc[0].cart);
