@@ -7,7 +7,8 @@ import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../../actions/userAction";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -20,6 +21,10 @@ function Admin() {
     (state) => state.getAnalytics.getAnalytics
   );
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+  dispatch(getUser());
+
   return (
     <React.Fragment>
       <PageHelmet pageTitle="Admin Panel" />

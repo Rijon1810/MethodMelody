@@ -78,6 +78,8 @@ import UpdateInstructor from "./LMS/component/UpdateInstructor.jsx";
 import CreateAccount from "./LMS/component/CreateAccount.jsx";
 import AdminCourseList from "./LMS/component/AdminCourseList.jsx";
 import AdminInstructorList from "./LMS/component/AdminInstructorList.jsx";
+import AdminUserList from "./LMS/component/AdminUserList.jsx";
+import AdminMessages from "./LMS/component/AdminMessages.jsx";
 
 import StudentPanel from "./LMS/component/elements/StudentPanel";
 
@@ -347,10 +349,20 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/admincourselist`}
             component={AdminCourseList}
           />
-             <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/admininstructorlist`}
             component={AdminInstructorList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/adminuserlist`}
+            component={AdminUserList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/adminmessages`}
+            component={AdminMessages}
           />
           <Route
             exact

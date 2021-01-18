@@ -19,6 +19,7 @@ export const GET_CART = "GET_CART";
 export const POST_CART = "POST_CART";
 export const DEL_CART = "DEL_CART";
 export const GET_ALL_USER = "GET_ALL_USER";
+export const GET_ALL_MESSAGE = "GET_ALL_MESSAGE";
 
 
 

@@ -78,6 +78,12 @@ export default function PermanentDrawerLeft() {
       case 6:
         history.push("/admininstructorlist");
         break;
+      case 7:
+        history.push("/adminuserlist");
+        break;
+      case 8:
+        history.push("/adminmessages");
+        break;
       case 10:
         history.push("/createaccount");
         break;
@@ -195,13 +201,23 @@ export default function PermanentDrawerLeft() {
               style={{ color: "#fff" }}
             />
           </ListItem>
-          <ListItem button key="viewusers">
+          <ListItem
+            button
+            key="viewusers"
+            onClick={(event) => handleListItemClick(event, 7)}
+            selected={selectedIndex === 7}
+          >
             <ListItemIcon>
               <AccountCircleRounded style={{ color: "#f9004d" }} />
             </ListItemIcon>
             <ListItemText primary="View Users" style={{ color: "#fff" }} />
           </ListItem>
-          <ListItem button key="viewmessages">
+          <ListItem
+            button
+            key="viewmessages"
+            onClick={(event) => handleListItemClick(event, 8)}
+            selected={selectedIndex === 8}
+          >
             <ListItemIcon>
               <Mail style={{ color: "#f9004d" }} />
             </ListItemIcon>
