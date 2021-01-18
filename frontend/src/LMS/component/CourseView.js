@@ -40,7 +40,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#191c21",
+    backgroundColor: "#191919",
+    maxHeight: 500,
+    overflow: "auto",
   },
   Icon: {
     width: theme.spacing(2),

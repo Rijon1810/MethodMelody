@@ -30,7 +30,10 @@ import Testimonial from "./component/TestimonialOne.jsx";
 import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getInstructor } from "../actions/instructorAction";
+import {
+  getInstructor,
+  getFeaturedInstructor,
+} from "../actions/instructorAction";
 import { getCart } from "../actions/cartAction";
 import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
@@ -78,9 +81,12 @@ export default function Landing() {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
+  const featuredInstructorList = useSelector(
+    (state) => state.getInstructor.featuredInstructorList
+  );
   const userId = useSelector((state) => state.isLogged.payload.id);
 
-  const courseList = useSelector((state) => state.getCourse.courseList);
+  const courseList = useSelector((state) => state.getCourse.featuredCourseList);
 
   const length = useSelector((state) => state.getInstructor.length);
 
@@ -98,6 +104,7 @@ export default function Landing() {
 
   useEffect(() => {
     dispatch(getInstructor());
+    dispatch(getFeaturedInstructor());
     dispatch(getCourse());
     dispatch(getAnalytics());
     dispatch(getCurrentVideoIndex(0));
@@ -316,7 +323,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="row mt--60 mt_sm--40">
-            {instructorList.map((instructor) => (
+            {featuredInstructorList.map((instructor) => (
               <div className="col-lg-3 col-md-4 col-12" key={instructor._id}>
                 <div className="blog blog-style--1">
                   <div
