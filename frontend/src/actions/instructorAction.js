@@ -1,6 +1,7 @@
 import axios from "../LMS/api/Config";
 import {
   GET_INSTRUCTOR,
+  GET_FEATURED_INSTRUCTOR,
   POST_INSTRUCTOR,
   UPDATE_INSTRUCTOR,
   GET_INSTRUCTOR_BY_ID,
@@ -28,7 +29,31 @@ export const getInstructor = () => (dispatch) => {
       });
       console.log(err);
     });
-  return "True";
+  return "True";  
+};
+
+export const getFeaturedInstructor = () => (dispatch) => {
+  axios
+    .get("instructor/featured/", {
+      headers: {
+        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: GET_FEATURED_INSTRUCTOR,
+        payload: res.data,
+        length: res.data.length,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GET_FEATURED_INSTRUCTOR,
+        payload: [],
+        length: 0,
+      });
+      console.log(err);
+    });  
 };
 
 export const postInstructor = (data) => async (dispatch) => {
