@@ -182,19 +182,27 @@ class AddInstructorForm extends Component {
                       await this.props.postInstructor(body);
                       this.props.create_instructor_status.message ===
                       "Instructor Added Successfully!"
-                        ? toast.info("Instructor Added Successfully!", {
+                        ? toast.success("Instructor Added Successfully!", {
                             position: "bottom-center",
-                            autoClose: 7000,
+                            autoClose: false,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
                           })
-                        : toast("Instructor Add Failed!");
+                        : toast.error("Instructor Add Failed!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
                     }}
                   >
-                    Submit
+                    Upload
                   </button>
                   <ToastContainer
                     position="bottom-center"

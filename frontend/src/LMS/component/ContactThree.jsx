@@ -438,19 +438,27 @@ class ContactThree extends Component {
                       await this.props.postCourse(body);
                       this.props.create_course_status.message ===
                       "Course Added Successfully!"
-                        ? toast.info("Course Added Successfully!", {
+                        ? toast.success("Course Added Successfully!", {
                             position: "bottom-center",
-                            autoClose: 5000,
+                            autoClose: false,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
                           })
-                        : toast("Course Add Failed!");
+                        : toast.error("Course Add Failed!",{
+                          position: "bottom-center",
+                          autoClose: false,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                        });
                     }}
                   >
-                    Update
+                    Upload
                   </button>
                   <ToastContainer
                     position="bottom-center"

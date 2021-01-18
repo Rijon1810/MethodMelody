@@ -217,16 +217,24 @@ class UpdateInstructorForm extends Component {
                       console.log(this.props.instructor_update_status);
                       this.props.instructor_update_status ===
                       "Instructor Updated Successfully!"
-                        ? toast.info("Instructor Updated Successfully!", {
+                        ? toast.success("Instructor Updated Successfully!", {
                             position: "bottom-center",
-                            autoClose: 7000,
+                            autoClose: false,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
                           })
-                        : toast("Instructor Update Failed!");
+                        : toast.error("Instructor Update Failed!", {
+                          position: "bottom-center",
+                          autoClose: false,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                        });
                     }}
                   >
                     Submit

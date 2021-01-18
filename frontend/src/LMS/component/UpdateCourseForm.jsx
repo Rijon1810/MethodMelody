@@ -452,19 +452,27 @@ class UpdateCourseForm extends Component {
                       await this.props.updateCourse(id, data);
                       this.props.create_course_update_status ===
                       "Course Updated Successfully!"
-                        ? toast.info("Course Updated Successfully!", {
+                        ? toast.success("Course Updated Successfully!", {
                             position: "bottom-center",
-                            autoClose: 5000,
+                            autoClose: false,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
                           })
-                        : toast("Course Update Failed!");
+                        : toast.error("Course Update Failed!",{
+                          position: "bottom-center",
+                          autoClose: false,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                        });
                     }}
                   >
-                    Upload
+                    Update
                   </button>
                   <ToastContainer
                     position="bottom-center"
