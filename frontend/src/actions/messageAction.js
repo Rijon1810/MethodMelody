@@ -31,10 +31,10 @@ export const submitGeneralContact = (data) => (dispatch) => {
         type: POST_MESSAGE,
         payload: res.data,
       });
-      return true;
     })
     .catch((err) => {
       console.log(err);
       return false;
     });
+  return true;
 };

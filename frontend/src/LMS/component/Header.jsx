@@ -140,9 +140,7 @@ class Header extends Component {
                   {this.props.from !== "admin" && (
                     <li className="has-droupdown">
                       <Link to="#">Courses</Link>
-                      {/* {console.log(this.props.catagory_data)} */}
-                      <ul className="submenu" style={mystyle}>
-                        {console.log(categoryLists)}
+                      <ul className="submenu" style={mystyle}>                 
                         {this.props.catagory_data.map((category) => (
                           <li>
                             <Link to="/service">
@@ -158,6 +156,7 @@ class Header extends Component {
                                     src={`${process.env.PUBLIC_URL}/${categoryLists[category].src}`}
                                   />
                                 </Grid>
+                            
                                 <Grid item style={{ color: "#fff" }}>
                                   {category}
                                 </Grid>
