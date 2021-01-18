@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 //custom components
 import GoogleMap from "./GoogleMap";
+import { connect } from "react-redux";
+import { submitGeneralContact } from "../../actions/messageAction";
 
 class ContactOne extends Component {
   constructor(props) {
@@ -9,7 +11,6 @@ class ContactOne extends Component {
     this.state = {
       rnName: "",
       rnEmail: "",
-      rnSubject: "",
       rnMessage: "",
     };
   }
@@ -55,19 +56,6 @@ class ContactOne extends Component {
                       placeholder="Your email *"
                     />
                   </label>
-
-                  <label htmlFor="item03">
-                    <input
-                      type="text"
-                      name="subject"
-                      id="item03"
-                      value={this.state.rnSubject}
-                      onChange={(e) => {
-                        this.setState({ rnSubject: e.target.value });
-                      }}
-                      placeholder="Write a Subject"
-                    />
-                  </label>
                   <label htmlFor="item04">
                     <textarea
                       type="text"
@@ -86,17 +74,27 @@ class ContactOne extends Component {
                     value="submit"
                     name="submit"
                     id="mc-embedded-subscribe"
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      await this.props.submitGeneralContact({
+                        name: this.state.rnName,
+                        email: this.state.rnEmail,
+                        message: this.state.rnMessage,
+                      });
+                    }}
                   >
                     Submit
                   </button>
                 </form>
               </div>
             </div>
-          
           </div>
         </div>
       </div>
     );
   }
 }
-export default ContactOne;
+
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, { submitGeneralContact })(ContactOne);
