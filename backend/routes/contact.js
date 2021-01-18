@@ -7,6 +7,7 @@ const { query } = require("express");
 
 router.route("/getAll").get((req, res) => {
   Contact.find()
+    .sort({ updatedAt: "desc" })
     .then((contact) => res.json(contact))
     .catch((err) => res.status(400).json("Error: " + err));
 });
