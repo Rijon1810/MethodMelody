@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const replyViaEmail = ((message)=>{
+  window.open(`mailto:${message.email}`);
+})
+
 const AdminMessages = () => {
   const classes = useStyles();
 
@@ -68,7 +72,7 @@ const AdminMessages = () => {
                 <div className="section-title text-left">
                   <h3>General Messages</h3>
                   <p className="theme-gradient">
-                    All Registered & Un-registere User's Messages
+                    All Registered & Un-registered User's Messages
                   </p>
                   <p>
                     You can see all general messages in the below list and can
@@ -82,28 +86,42 @@ const AdminMessages = () => {
                 <List>
                   {generalMessageList.map((message) => (
                     <div>
-                      <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                          />
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={<h5>{message.name}</h5>}
-                          secondary={
-                            <React.Fragment>
-                              <Typography className="theme-gradient">
-                                {message.email}
-                              </Typography>
-                              <Typography style={{ color: "#000" }}>
-                                {message.message}
-                              </Typography>
-                            </React.Fragment>
-                          }
-                        />
-                      </ListItem>
-                      <Divider style={{marginLeft: 50, marginRight:50}}/>
+                      <div className="row">
+                        <div className="col-10">
+                          <ListItem alignItems="flex-start">
+                            <ListItemAvatar>
+                              <Avatar
+                                alt={message.name}
+                                src="/static/images/avatar/1.jpg"
+                              />
+                            </ListItemAvatar>
+                            <ListItemText
+                              primary={<h5>{message.name}</h5>}
+                              secondary={
+                                <React.Fragment>
+                                  <Typography className="theme-gradient">
+                                    {message.email}
+                                  </Typography>
+                                  <Typography style={{ color: "#000" }}>
+                                    {message.message}
+                                  </Typography>
+                                </React.Fragment>
+                              }
+                            />
+                          </ListItem>
+                        </div>
+                        <div className="col-2">
+                          <div className="blog-btn pt--20">
+                            <a className="rn-btn" href="#" onClick={(()=>{
+                              replyViaEmail(message);
+                            })}>
+                              Reply
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <Divider style={{ marginLeft: 50, marginRight: 50 }} />
                     </div>
                   ))}
                 </List>

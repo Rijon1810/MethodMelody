@@ -1,7 +1,7 @@
 import axios from "../LMS/api/Config";
 import { GET_ALL_USER } from "./types";
 
-export const getUser = (data) => (dispatch) => {
+export const getUser = () => (dispatch) => {
   axios
     .get(`user/`, {
       headers: {

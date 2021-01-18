@@ -8,7 +8,7 @@ import PageHelmet from "./Helmet.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import { useSelector, useDispatch } from "react-redux";
-
+import axios from "../api/Config";
 import { getCourse } from "../../actions/courseAction";
 import {
   getSelectedCourseId,
@@ -32,12 +32,35 @@ const findFeaturedCourses = (courses) => {
   return cL;
 };
 
+const featureOrUnfeatureCourse = (course) => {
+  console.log(`course for featuring = ${course._id}`)
+  var data = { "featured": [], "unFeatured": [] };
+  console.log(`course status = ${course.featured}`);
+  if (course.featured) {
+    data.unFeatured.push(course._id);
+  } else {
+    data.featured.push(course._id);
+  }
+  axios
+    .post(`course/featured/add/`, data, {
+      headers: {
+        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const AdminCourseList = () => {
   const classes = useStyles();
 
   const courseList = useSelector((state) => state.getCourse.courseList);
 
-  const featuredCourseList = findFeaturedCourses(courseList);
+  var featuredCourseList = findFeaturedCourses(courseList);
 
   console.log(`featured course list size = ${featuredCourseList.length}`);
 
@@ -45,10 +68,11 @@ const AdminCourseList = () => {
     (state) => state.getInstructor.instructorList
   );
   const dispatch = useDispatch();
+  dispatch(getCourse());
 
   const [list, setList] = React.useState("featured");
 
-  useEffect(() => {}, [list]);
+  useEffect(() => {}, [courseList]);
 
   return (
     <React.Fragment>
@@ -146,12 +170,27 @@ const AdminCourseList = () => {
                             <div>
                               {" "}
                               <div className="blog-btn d-flex justify-content-center">
-                                <a
-                                  className="rn-btn text-white"
-                                  href="/courseview"
-                                >
-                                  Un Feature
-                                </a>
+                                {course.featured ? (
+                                  <a
+                                    className="rn-btn text-white"
+                                    href="#"
+                                    onClick={() => {
+                                      featureOrUnfeatureCourse(course);
+                                    }}
+                                  >
+                                    Un Feature
+                                  </a>
+                                ) : (
+                                  <a
+                                    className="rn-btn text-white"
+                                    href="#"
+                                    onClick={() => {
+                                      featureOrUnfeatureCourse(course);
+                                    }}
+                                  >
+                                    Feature
+                                  </a>
+                                )}
                               </div>
                               <div className="blog-btn d-flex justify-content-center">
                                 <a
@@ -176,7 +215,10 @@ const AdminCourseList = () => {
                               <div className="blog-btn d-flex justify-content-center">
                                 <a
                                   className="rn-btn text-white"
-                                  href="/courseview"
+                                  href="#"
+                                  onClick={() => {
+                                    featureOrUnfeatureCourse(course);
+                                  }}
                                 >
                                   Un Feature
                                 </a>
@@ -225,7 +267,7 @@ const AdminCourseList = () => {
                           </h4>
 
                           <div className="blog-btn d-flex justify-content-center">
-                            <a className="rn-btn text-white" href="/courseview">
+                            <a className="rn-btn text-white" href="#">
                               Un Feature
                             </a>
                           </div>
