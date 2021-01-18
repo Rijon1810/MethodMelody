@@ -3,10 +3,9 @@ var Schema = mongoose.Schema;
 
 var ContactSchema = new Schema(
   {
-	name: { type: String },
-	from:{type:String},
-	to: {type: String},
-    instructor: { type: String },
+    name: { type: String },
+    from: { type: Schema.Types.ObjectId },
+    to: { type: Schema.Types.ObjectId },
     email: { type: String },
     message: { type: String },
     reply: { type: String },
