@@ -10,6 +10,7 @@ import getAnalyticsReducer from "./getAnalyticsReducer";
 import getSelectedIdReducer from "./getSelectedIdReducer";
 import cartStatusReducer from "./cartReducer";
 import getAllUsersReducer from "./userReducer";
+import getAllMessagesReducer from "./messageReducer";
 
 const allReducers = combineReducers({
   isLogged: loggedReducer,
@@ -21,6 +22,7 @@ const allReducers = combineReducers({
   getSelectedId: getSelectedIdReducer,
   cartInfo: cartStatusReducer,
   getAllUsers: getAllUsersReducer,
+  getAllGeneralMessages: getAllMessagesReducer
 });
 
 export default allReducers;

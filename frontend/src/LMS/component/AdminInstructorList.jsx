@@ -53,7 +53,7 @@ const AdminInstructorList = () => {
   return (
     <React.Fragment>
       {" "}
-      <PageHelmet pageTitle="Admin Panel - Courses List" />
+      <PageHelmet pageTitle="Admin Panel - Instructor List" />
       <main className={classes.content}>
         {" "}
         <Header from="admin" />
