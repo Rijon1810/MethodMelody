@@ -7,6 +7,7 @@ const Video = require("../models/Video.model");
 const Document = require("../models/Document.model");
 const Analytics = require("../models/Analytics.model");
 const Featured = require("../models/Featured.model");
+const { response } = require("express");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -54,9 +55,17 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/catagory").get((req, res) => {
+  catagory = [];
   Course.find({ published: true })
     .select("catagory")
-    .then((courses) => res.status(200).json(courses))
+    .then((courses) => {
+      courses.forEach((element) => {
+        if (!catagory.includes(element.catagory)) {
+          catagory.push(element.catagory);
+        }
+      });
+      res.status(200).json(catagory);
+    })
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -108,7 +117,7 @@ router
     const banner = req.files.banner[0].path;
     const videos = videos_object;
     const instructor = req.body.instructor;
-    const topic = req.body.topic; 
+    const topic = req.body.topic;
     const preRequisite = req.body.preRequisite;
     const requirements = req.body.requirements;
     const nextCourses = req.body.nextCourses;
