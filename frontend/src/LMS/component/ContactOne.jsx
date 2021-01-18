@@ -78,34 +78,32 @@ class ContactOne extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
-                      await this.props
-                        .submitGeneralContact({
-                          name: this.state.rnName,
-                          email: this.state.rnEmail,
-                          message: this.state.rnMessage,
-                        })
-                        .then(() => {
-                          toast.success("Message Sent!!", {
-                            position: "bottom-center",
-                            autoClose: false,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                          });
-                        })
-                        .catch(() => {
-                          toast.error("Failed sending message", {
-                            position: "bottom-center",
-                            autoClose: false,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                          });
+                      let submitted = await this.props.submitGeneralContact({
+                        name: this.state.rnName,
+                        email: this.state.rnEmail,
+                        message: this.state.rnMessage,
+                      });
+                      if (submitted) {
+                        toast.success("Message sent!!", {
+                          position: "bottom-center",
+                          autoClose: false,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
                         });
+                      } else {
+                        toast.error("Failed sending message!!", {
+                          position: "bottom-center",
+                          autoClose: false,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                        });
+                      }
                     }}
                   >
                     Submit
