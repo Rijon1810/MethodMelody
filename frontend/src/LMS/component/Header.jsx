@@ -19,6 +19,11 @@ import { getCourse } from "../../actions/courseAction";
 //importing material components
 import { Avatar, Grid, Badge } from "@material-ui/core";
 
+import {
+  getSelectedCourseId,
+  getSelectedInstructorId,
+} from "../../actions/getSelectedIdAction";
+
 //constants
 const categoryLists = {
   Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
@@ -107,9 +112,8 @@ class Header extends Component {
     for (var i in elements) {
       if (elements.hasOwnProperty(i)) {
         elements[i].onclick = function () {
-          this.parentElement
-            .querySelector(".submenu");
-            this.parentElement.classList.toggle("active");
+          this.parentElement.querySelector(".submenu");
+          this.parentElement.classList.toggle("active");
           this.classList.toggle("open");
         };
       }
@@ -140,7 +144,7 @@ class Header extends Component {
                   {this.props.from !== "admin" && (
                     <li className="has-droupdown">
                       <Link to="#">Courses</Link>
-                      <ul className="submenu" style={mystyle}>                 
+                      <ul className="submenu" style={mystyle}>
                         {this.props.catagory_data.map((category) => (
                           <li>
                             <Link to="/service">
@@ -156,7 +160,7 @@ class Header extends Component {
                                     src={`${process.env.PUBLIC_URL}/${categoryLists[category].src}`}
                                   />
                                 </Grid>
-                            
+
                                 <Grid item style={{ color: "#fff" }}>
                                   {category}
                                 </Grid>
@@ -165,7 +169,6 @@ class Header extends Component {
                           </li>
                         ))}
                       </ul>
-                    
                     </li>
                   )}
                   {this.props.from !== "admin" && (
@@ -174,7 +177,12 @@ class Header extends Component {
                       <ul className="submenu" style={mystyle}>
                         {this.props.instructorList.map((instructor) => (
                           <li>
-                            <Link to="/service">
+                            <a
+                              href="/instructorview"
+                              onClick={async (event) => {
+                                this.props.getSelectedInstructorId(instructor);
+                              }}
+                            >
                               <Grid
                                 container
                                 direction="row"
@@ -194,7 +202,7 @@ class Header extends Component {
                                   {instructor.name}
                                 </Grid>
                               </Grid>
-                            </Link>
+                            </a>
                           </li>
                         ))}
                         {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
@@ -208,7 +216,10 @@ class Header extends Component {
                       <Link to="/courseview">
                         <Grid container direction="row" alignItems="center">
                           <Grid item style={{ marginRight: 10 }}>
-                            <Badge badgeContent={this.props.cart_number.length} color="secondary">
+                            <Badge
+                              badgeContent={this.props.cart_number.length}
+                              color="secondary"
+                            >
                               <ShoppingCartOutlined />
                             </Badge>
                           </Grid>
@@ -448,6 +459,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { isLogged, logOut, getCourse })(
+export default connect(mapStateToProps, { isLogged, logOut, getCourse, getSelectedInstructorId })(
   Header
 );
