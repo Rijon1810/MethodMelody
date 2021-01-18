@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import GoogleMap from "./GoogleMap";
 import { connect } from "react-redux";
 import { submitGeneralContact } from "../../actions/messageAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class ContactOne extends Component {
   constructor(props) {
@@ -76,15 +78,49 @@ class ContactOne extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
-                      await this.props.submitGeneralContact({
-                        name: this.state.rnName,
-                        email: this.state.rnEmail,
-                        message: this.state.rnMessage,
-                      });
+                      await this.props
+                        .submitGeneralContact({
+                          name: this.state.rnName,
+                          email: this.state.rnEmail,
+                          message: this.state.rnMessage,
+                        })
+                        .then(() => {
+                          toast.success("Message Sent!!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
+                        })
+                        .catch(() => {
+                          toast.error("Failed sending message", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
+                        });
                     }}
                   >
                     Submit
                   </button>
+                  <ToastContainer
+                    position="bottom-center"
+                    autoClose={7000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                  />
                 </form>
               </div>
             </div>
