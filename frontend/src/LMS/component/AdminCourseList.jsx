@@ -217,6 +217,7 @@ const AdminCourseList = () => {
                                   className="rn-btn text-white"
                                   href="#"
                                   onClick={() => {
+                                    console.log(course);
                                     featureOrUnfeatureCourse(course);
                                   }}
                                 >
@@ -267,7 +268,9 @@ const AdminCourseList = () => {
                           </h4>
 
                           <div className="blog-btn d-flex justify-content-center">
-                            <a className="rn-btn text-white" href="#">
+                            <a className="rn-btn text-white" href="#" onClick={()=>{
+                              featureOrUnfeatureCourse(course);
+                            }}>
                               Un Feature
                             </a>
                           </div>

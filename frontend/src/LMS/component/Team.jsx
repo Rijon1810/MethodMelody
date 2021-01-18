@@ -21,59 +21,6 @@ let TeamContent = [
       },
     ],
   },
-  {
-    images: "01",
-    title: "Shabaz Lohan",
-    designation: "COO",
-    socialNetwork: [
-      {
-        icon: <FaFacebookF />,
-        url: "#",
-      },
-      {
-        icon: <FaLinkedinIn />,
-        url: "#",
-      },
-      {
-        icon: <FaTwitter />,
-        url: "#",
-      },
-    ],
-  },
-  {
-    images: "02",
-    title: "Nazif Muhammad Irad",
-    designation: "Creative Head",
-    socialNetwork: [
-      {
-        icon: <FaFacebookF />,
-        url: "#",
-      },
-      {
-        icon: <FaLinkedinIn />,
-        url: "#",
-      },
-    ],
-  },
-  {
-    images: "03",
-    title: "Fahad Hossain",
-    designation: "Production Manager",
-    socialNetwork: [
-      {
-        icon: <FaFacebookF />,
-        url: "#",
-      },
-      {
-        icon: <FaLinkedinIn />,
-        url: "#",
-      },
-      {
-        icon: <FaTwitter />,
-        url: "#",
-      },
-    ],
-  },
 ];
 
 class Team extends Component {

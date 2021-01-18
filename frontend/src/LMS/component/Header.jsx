@@ -108,8 +108,8 @@ class Header extends Component {
       if (elements.hasOwnProperty(i)) {
         elements[i].onclick = function () {
           this.parentElement
-            .querySelector(".submenu")
-            .classList.toggle("active");
+            .querySelector(".submenu");
+            this.parentElement.classList.toggle("active");
           this.classList.toggle("open");
         };
       }
@@ -140,6 +140,7 @@ class Header extends Component {
                   {this.props.from !== "admin" && (
                     <li className="has-droupdown">
                       <Link to="#">Courses</Link>
+                      {/* {console.log(this.props.catagory_data)} */}
                       <ul className="submenu" style={mystyle}>
                         {console.log(categoryLists)}
                         {this.props.catagory_data.map((category) => (
@@ -165,6 +166,7 @@ class Header extends Component {
                           </li>
                         ))}
                       </ul>
+                    
                     </li>
                   )}
                   {this.props.from !== "admin" && (
@@ -207,7 +209,7 @@ class Header extends Component {
                       <Link to="/courseview">
                         <Grid container direction="row" alignItems="center">
                           <Grid item style={{ marginRight: 10 }}>
-                            <Badge badgeContent={1} color="secondary">
+                            <Badge badgeContent={this.props.cart_number.length} color="secondary">
                               <ShoppingCartOutlined />
                             </Badge>
                           </Grid>
@@ -443,6 +445,7 @@ const mapStateToProps = (state) => {
     logOut: state.logOut,
     instructorList: state.getInstructor.instructorList,
     catagory_data: state.getCourse.catagoryList,
+    cart_number: state.cartInfo.cart,
   };
 };
 
