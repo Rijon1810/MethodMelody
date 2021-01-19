@@ -169,7 +169,7 @@ router
     const address = req.body.address;
     const type = req.body.type;
     const course = req.body.course;
-    const instructor = req.body.instructor;
+    const instructor = Mongoose.Types.ObjectId(req.body.instructor);
     const previousCourse = req.body.previousCourse;
 
     User.find({ email }).then((user) => {
