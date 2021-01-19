@@ -394,6 +394,59 @@ class Header extends Component {
                           </li>
                         </ul>
                       )}
+
+                      {this.props.user_type == 3 &&(
+                           <ul className="submenu" style={mystyle}>
+                           <li>
+                             <Link to="/instructorpanel">
+                               <Grid
+                                 container
+                                 direction="row"
+                                 alignItems="center"
+                               >
+                                 <Grid
+                                   item
+                                   style={{ marginRight: 10, color: "#f9004c" }}
+                                 >
+                                   <Dashboard />
+                                 </Grid>
+                                 <Grid item style={{ color: "#fff" }}>
+                                   My Dashboard
+                                 </Grid>
+                               </Grid>
+                             </Link>
+                           </li>
+                           <li>
+                             <Link to="#">
+                               <span
+                                 onClick={() => {
+                                   this.props.logOut();
+                                 }}
+                               >
+                                 <Grid
+                                   container
+                                   direction="row"
+                                   alignItems="center"
+                                 >
+                                   <Grid
+                                     item
+                                     style={{
+                                       marginRight: 10,
+                                       color: "#f9004c",
+                                     }}
+                                   >
+                                     <PowerSettingsNewOutlined />
+                                   </Grid>
+                                   <Grid item style={{ color: "#fff" }}>
+                                     Log Out
+                                   </Grid>
+                                 </Grid>
+                               </span>
+                             </Link>
+                           </li>
+                         </ul>
+                      
+                      )}
                     </li>
                   ) : null}
                 </ul>
