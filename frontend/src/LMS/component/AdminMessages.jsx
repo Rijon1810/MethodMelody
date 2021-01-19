@@ -12,6 +12,7 @@ import {
   ListItemText,
   Divider,
   Avatar,
+  Grid,
 } from "@material-ui/core";
 import { FiChevronUp } from "react-icons/fi";
 import ScrollToTop from "react-scroll-up";
@@ -38,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const replyViaEmail = ((message)=>{
+const replyViaEmail = (message) => {
   window.open(`mailto:${message.email}`);
-})
+};
 
 const AdminMessages = () => {
   const classes = useStyles();
@@ -67,27 +68,25 @@ const AdminMessages = () => {
           style={{ paddingBottom: "15ch" }}
         >
           <div className="container">
-            <div className="row align-items-end">
-              <div className="col-lg-6 col-md-12 col-sm-12 col-12">
-                <div className="section-title text-left">
-                  <h3>General Messages</h3>
-                  <p className="theme-gradient">
-                    All Registered & Un-registered User's Messages
-                  </p>
-                  <p>
-                    You can see all general messages in the below list and can
-                    reply via email to them.
-                  </p>
-                </div>
-              </div>
+            <div className="row-12">
+              <h3>General Messages</h3>
+              <p className="theme-gradient">
+                All Registered & Un-registered User's Messages
+              </p>
+              <p>
+                You can see all general messages in the below list and can reply
+                via email to them.
+              </p>
             </div>
+
             <div className="row mt--60 mt_sm--40 ">
               <Card raised="true" className={classes.root}>
                 <List>
                   {generalMessageList.map((message) => (
-                    <div>
-                      <div className="row">
-                        <div className="col-10">
+                    <Grid container direction="row" justify="center" alignItems="center">
+                      <Grid item container direction="row">
+                        <Grid item xs={10}>
+                          {" "}
                           <ListItem alignItems="flex-start">
                             <ListItemAvatar>
                               <Avatar
@@ -109,20 +108,25 @@ const AdminMessages = () => {
                               }
                             />
                           </ListItem>
-                        </div>
-                        <div className="col-2">
+                        </Grid>
+                        <Grid item container xs={2} justify="center">
                           <div className="blog-btn pt--20">
-                            <a className="rn-btn" href="#" onClick={(()=>{
-                              replyViaEmail(message);
-                            })}>
+                            <a
+                              className="rn-btn"
+                              href="#"
+                              onClick={() => {
+                                replyViaEmail(message);
+                              }}
+                            >
                               Reply
                             </a>
                           </div>
-                        </div>
-                      </div>
-
-                      <Divider style={{ marginLeft: 50, marginRight: 50 }} />
-                    </div>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={11}>
+                        <Divider />{" "}
+                      </Grid>
+                    </Grid>
                   ))}
                 </List>
               </Card>
@@ -137,7 +141,7 @@ const AdminMessages = () => {
         >
           <div className="container">
             <div className="row align-items-end">
-              <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div className="section-title text-left">
                   <h3>Student Messages</h3>
                   <p className="theme-gradient">
