@@ -97,6 +97,29 @@ class CreateAccount extends Component {
                     </div>
                   </div>
 
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label htmlFor="exampleFormControlFile1">
+                          Select Instructor
+                        </label>
+                        <label htmlFor="accounttype *">
+                          <select
+                            className="form-control"
+                            name="type"
+                            onSelect={(e) => {
+                              this.setState({ rnUserType: e.target.value });
+                            }}
+                          >
+                            <option value={1}>Admin</option>
+                            <option value={2}>Content Uploader</option>
+                            <option value={3}>Instructor</option>
+                          </select>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
                   <button
                     className="rn-button-style--2 btn-solid"
                     type="submit"
@@ -111,18 +134,18 @@ class CreateAccount extends Component {
                       }
                       toast("Upload started!!! please wait!!");
                       await this.props.signUp(body);
-                    //   this.props.create_instructor_status.message ===
-                    //   "Instructor Added Successfully!"
-                    //     ? toast.info("Instructor Added Successfully!", {
-                    //         position: "bottom-center",
-                    //         autoClose: 7000,
-                    //         hideProgressBar: false,
-                    //         closeOnClick: true,
-                    //         pauseOnHover: true,
-                    //         draggable: true,
-                    //         progress: undefined,
-                    //       })
-                    //     : toast("Instructor Add Failed!");
+                      //   this.props.create_instructor_status.message ===
+                      //   "Instructor Added Successfully!"
+                      //     ? toast.info("Instructor Added Successfully!", {
+                      //         position: "bottom-center",
+                      //         autoClose: 7000,
+                      //         hideProgressBar: false,
+                      //         closeOnClick: true,
+                      //         pauseOnHover: true,
+                      //         draggable: true,
+                      //         progress: undefined,
+                      //       })
+                      //     : toast("Instructor Add Failed!");
                     }}
                   >
                     Submit
@@ -149,7 +172,7 @@ class CreateAccount extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    create_user_status: state.isLogged.payload,
-  });
-  
-  export default connect(mapStateToProps, { signUp })(CreateAccount);
+  create_user_status: state.isLogged.payload,
+});
+
+export default connect(mapStateToProps, { signUp })(CreateAccount);
