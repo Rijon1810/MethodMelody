@@ -37,7 +37,7 @@ class BLogList extends Component {
                     <a href="/blog-details">{course.title}</a>
                   </h4>
                   <div className="blog-btn">
-                    <a className="rn-btn text-white" href="/blog-details">
+                    <a className="rn-btn text-white" href="/CourseView">
                       View Course
                     </a>
                   </div>
