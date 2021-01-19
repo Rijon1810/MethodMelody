@@ -18,5 +18,7 @@ export const signUp = (data) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+      return false;
     });
+    return true;
 };
