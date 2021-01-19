@@ -8,8 +8,9 @@ import PageHelmet from "./Helmet.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "../api/Config";
 
-import { getCourse } from "../../actions/courseAction";
+import { getInstructor } from "../../actions/instructorAction";
 import {
   getSelectedCourseId,
   getSelectedInstructorId,
@@ -32,6 +33,29 @@ const findFeaturedInstructors = (instructors) => {
   return iL;
 };
 
+const featureOrUnfeatureInstructor = (instructor) => {
+  console.log(`instructor for featuring = ${instructor._id}`)
+  var data = { "featured": [], "unFeatured": [] };
+  console.log(`instructor status = ${instructor.featured}`);
+  if (instructor.featured) {
+    data.unFeatured.push(instructor._id);
+  } else {
+    data.featured.push(instructor._id);
+  }
+  axios
+    .post(`instructor/featured/add/`, data, {
+      headers: {
+        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+      },
+    })
+    .then((res) => {
+      console.log(`instructor feature api response = ${res.data}`);
+    })
+    .catch((err) => {
+      console.log(`instructor feature api response = ${err}`);
+    });
+};
+
 const AdminInstructorList = () => {
   const classes = useStyles();
 
@@ -45,10 +69,11 @@ const AdminInstructorList = () => {
   console.log(`featured course list size = ${featuredInstructorList.length}`);
 
   const dispatch = useDispatch();
+  dispatch(getInstructor());
 
   const [list, setList] = React.useState("featured");
 
-  useEffect(() => {}, [list]);
+  useEffect(() => {}, [instructorList]);
 
   return (
     <React.Fragment>
@@ -152,9 +177,27 @@ const AdminInstructorList = () => {
                             </a>
                           </h4>
                           <div className="blog-btn d-flex justify-content-center">
-                            <a className="rn-btn text-white" href="/courseview">
-                              Un Feature
-                            </a>
+                            {instructor.featured ? (
+                              <a
+                                className="rn-btn text-white"
+                                href="#"
+                                onClick={() => {
+                                  featureOrUnfeatureInstructor(instructor);
+                                }}
+                              >
+                                Un Feature
+                              </a>
+                            ) : (
+                              <a
+                                className="rn-btn text-white"
+                                href="#"
+                                onClick={() => {
+                                  featureOrUnfeatureInstructor(instructor);
+                                }}
+                              >
+                                Feature
+                              </a>
+                            )}
                           </div>
                           <div className="blog-btn d-flex justify-content-center">
                             <a className="rn-btn text-white" href="/courseview">
@@ -214,12 +257,27 @@ const AdminInstructorList = () => {
                               {" "}
                               <div className="blog-btn">
                                 <div className="blog-btn d-flex justify-content-center">
-                                  <a
-                                    className="rn-btn text-white"
-                                    href="/courseview"
-                                  >
-                                    Un Feature
-                                  </a>
+                                  {instructor.featured ? (
+                                    <a
+                                      className="rn-btn text-white"
+                                      href="#"
+                                      onClick={() => {
+                                        featureOrUnfeatureInstructor(instructor);
+                                      }}
+                                    >
+                                      Un Feature
+                                    </a>
+                                  ) : (
+                                    <a
+                                      className="rn-btn text-white"
+                                      href="#"
+                                      onClick={() => {
+                                        featureOrUnfeatureInstructor(instructor);
+                                      }}
+                                    >
+                                      Feature
+                                    </a>
+                                  )}
                                 </div>
                                 <div className="blog-btn d-flex justify-content-center">
                                   <a
@@ -252,7 +310,10 @@ const AdminInstructorList = () => {
                                 <div className="blog-btn d-flex justify-content-center">
                                   <a
                                     className="rn-btn text-white"
-                                    href="/courseview"
+                                    href="#"
+                                    onClick={() => {
+                                      featureOrUnfeatureInstructor(instructor);
+                                    }}
                                   >
                                     Un Feature
                                   </a>
