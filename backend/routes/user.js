@@ -123,6 +123,7 @@ router.route(`/login`).post((req, res) => {
                   phone: docs[0].phone,
                   address: docs[0].address,
                   email: docs[0].email,
+                  instructor: docs[0].instructor,
                   cart: docs[0].cart,
                   createdAt: docs[0].createdAt,
                   updatedAt: docs[0].updatedAt,

@@ -35,6 +35,8 @@ import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 
 import Column from "../../blocks/Columns.jsx";
 import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
+import { postCart } from "../../actions/cartAction";
+import { isLogged } from "../../actions/isLoggedAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,6 +100,9 @@ export default function CourseView(props) {
   const selectedCourse = useSelector(
     (state) => state.getSelectedId.getSelectedCourseId
   );
+
+  const userId = useSelector((state) => state.isLogged.payload.id);
+
   const selectedInstructor = useSelector(
     (state) => state.getSelectedId.getSelectedInstructorId
   );
@@ -202,6 +207,14 @@ export default function CourseView(props) {
                         className="rn-button-style--2 btn-solid"
                         fullWidth={true}
                         style={{ width: "100%", marginTop: "50px" }}
+                        onClick={async (event) => {
+                          dispatch(
+                            postCart({
+                              user: userId,
+                              course: selectedCourse._id,
+                            })
+                          );
+                        }}
                       >
                         Add to cart
                       </button>
