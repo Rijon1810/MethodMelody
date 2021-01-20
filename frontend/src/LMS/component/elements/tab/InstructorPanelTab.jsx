@@ -22,7 +22,8 @@ class InstructorPanelTab extends Component {
   }
   render() {
     let tab1 = "My Courses",
-      tab2 = "Profile";
+      tab2 = "Profile",
+      tab3 = "Analytics";
     const { tabStyle } = this.props;
     return (
       <div>
@@ -35,8 +36,8 @@ class InstructorPanelTab extends Component {
               style={{ paddingTop: 50, paddingLeft: 20, paddingBottom: 50 }}
             >
               <Tab>{tab1}</Tab>
-
               <Tab>{tab2}</Tab>
+              <Tab>{tab3}</Tab>
             </TabList>
             <div className="col-lg-8">
               {/* Start Classroom Area */}
