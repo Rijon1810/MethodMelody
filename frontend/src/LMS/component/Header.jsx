@@ -213,7 +213,7 @@ class Header extends Component {
                   {/* <li><Link to="/about" >About</Link></li> */}
                   {this.props.from !== "admin" ? (
                     <li className="has-droupdown">
-                      <Link to="/courseview">
+                      <Link to="/cart">
                         <Grid container direction="row" alignItems="center">
                           <Grid item style={{ marginRight: 10 }}>
                             <Badge
