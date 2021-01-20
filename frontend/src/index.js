@@ -82,7 +82,8 @@ import AdminUserList from "./LMS/component/AdminUserList.jsx";
 import AdminMessages from "./LMS/component/AdminMessages.jsx";
 
 import StudentPanel from "./LMS/component/elements/StudentPanel";
-import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx"
+import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx";
+import CartPage from "./LMS/component/elements/CartPage.jsx";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -370,10 +371,15 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/studentpanel`}
             component={StudentPanel}
           />
-           <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/instructorpanel`}
             component={InstructorPanel}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/cart`}
+            component={CartPage}
           />
           <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
           <Route component={error404} />
