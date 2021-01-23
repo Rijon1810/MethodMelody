@@ -53,7 +53,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/contact",
+    buttonLink: "/allcourses",
   },
   {
     textPosition: "text-center",
@@ -63,7 +63,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/contact",
+    buttonLink: "/allcourses",
   },
   {
     textPosition: "text-center",
@@ -73,7 +73,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/contact",
+    buttonLink: "/allcourses",
   },
 ];
 
@@ -173,7 +173,7 @@ export default function Landing() {
       {/* End Slider Area   */}
 
       {/* Start Featured Course Area Area */}
-      <div className="rn-blog-area ptb--100  mb-dec--30">
+      <div className="rn-blog-area ptb--100  mb-dec--30 bg_color--6">
         <div className="container">
           <div className="row align-items-end">
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
@@ -187,7 +187,7 @@ export default function Landing() {
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
-                <a className="btn-transparent rn-btn-dark" href="/blog">
+                <a className="btn-transparent rn-btn-dark" href="/allcourses">
                   <span className="text">View All Courses</span>
                 </a>
               </div>
@@ -298,7 +298,7 @@ export default function Landing() {
 
       {/* Start Featured Instructor Area */}
       <div
-        className="rn-blog-area pt--50  mb-dec--30 ptb--100"
+        className="rn-blog-area pt--50  mb-dec--30 ptb--100 bg_color--6"
         style={{ paddingBottom: "15ch" }}
       >
         <div className="container">
@@ -374,9 +374,9 @@ export default function Landing() {
       {/* End Blog Area */}
 
       {/* Start Student Feedback */}
-      <div className="col-lg-12 ptb--100 bg_color--1">
+      {/* <div className="col-lg-12 ptb--100 bg_color--1">
         <Testimonial />
-      </div>
+      </div> */}
       {/* End Student Feedback */}
 
       {/* Start Team Area  */}
@@ -595,7 +595,7 @@ export default function Landing() {
       {/* Start Faq Area */}
 
       {/* Start Contact Form Area */}
-      <div className="portfolio-area pb--120 " style={{ paddingTop: "10ch" }}>
+      <div className="portfolio-area pb--120  bg_color--1" style={{ paddingTop: "10ch" }}>
         <ContactOne />
       </div>
       {/* End Contact Form Area */}

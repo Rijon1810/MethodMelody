@@ -33,12 +33,12 @@ class Footer extends Component {
                           <li>
                             <a href="/about">Metholdmelody Live</a>
                           </li>
-                          <li>
+                          {/* <li>
                             <a href="/contact">Articles</a>
-                          </li>
-                          <li>
+                          </li> */}
+                          {/* <li>
                             <a href="/contact">Sitemap</a>
-                          </li>
+                          </li> */}
                         </ul>
                       </div>
                     </div>
