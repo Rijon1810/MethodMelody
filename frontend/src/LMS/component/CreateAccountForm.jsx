@@ -114,7 +114,9 @@ class CreateAccountForm extends Component {
                               });
                             }}
                           >
-                            <option value="5fdb4c3afc17496a849d8f64">N/A</option>
+                            <option value="5fdb4c3afc17496a849d8f64">
+                              N/A
+                            </option>
                             {this.props.instructorList.map(
                               (instructor, index) => (
                                 <option value={instructor._id} key={index}>
@@ -141,40 +143,26 @@ class CreateAccountForm extends Component {
                         console.log(pair[0] + ", " + pair[1]);
                       }
                       toast("Upload started!!! please wait!!");
-                      var res = await this.props.signUp(body);
-                      if (res) {
-                        toast.success("Account Created Successfully!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
-                      } else {
-                        toast.error("Account Creation Failed!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
-                      }
-                      //   this.props.create_instructor_status.message ===
-                      //   "Instructor Added Successfully!"
-                      //     ? toast.info("Instructor Added Successfully!", {
-                      //         position: "bottom-center",
-                      //         autoClose: 7000,
-                      //         hideProgressBar: false,
-                      //         closeOnClick: true,
-                      //         pauseOnHover: true,
-                      //         draggable: true,
-                      //         progress: undefined,
-                      //       })
-                      //     : toast("Instructor Add Failed!");
+                      await this.props.signUp(body);
+                      this.props.create_user_status.message === "user added!"
+                        ? toast.success("Instructor Created Successfully!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          })
+                        : toast.error("Instructor Creation Failed!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
                     }}
                   >
                     Submit
