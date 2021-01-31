@@ -1,0 +1,236 @@
+import React, { Component } from "react";
+import { Grid, Box, IconButton, Avatar } from "@material-ui/core";
+import { Person } from "@material-ui/icons";
+//custom components
+import Footer from "./Footer.jsx";
+import Header from "./Header.jsx";
+import PageHelmet from "./Helmet.jsx";
+
+import { connect } from "react-redux";
+import { signUp } from "../../actions/signUpAction";
+import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+
+class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rnName: "",
+      rnEmail: "",
+      rnPassword: "",
+      rnConfirmPassword: "",
+      rnPhoto: "",
+      rnDob: "",
+      rnPhone: "",
+      rnAddress: "",
+      rnPhotoSnap: "",
+    };
+  }
+  render() {
+    return (
+      <div className="active-dark">
+        <PageHelmet pageTitle="Sign Up" />
+
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <Header from="signup" />
+              <Breadcrumb from="signup" />
+            </div>
+            <div className="col-lg-12">
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                minHeight="120vh"
+              >
+                <div className="contact-form--1 col-xl-6 col-lg-6 col-md-10 col-sm-10">
+                  <div className="  order-2 order-lg-1">
+                    <div className="section-title text-left mb--20">
+                      <h3 className="title">Create a new account.</h3>
+
+                      <p className="text-white">
+                        Please enter all the information for your account.
+                      </p>
+                    </div>
+                    <div className="d-flex justify-content-start   theme-gradient">
+                      <IconButton>
+                        <Avatar
+                          style={{ width: "100px", height: "100px" }}
+                          variant="rounded"
+                          src={this.state.rnPhotoSnap}
+                        ></Avatar>
+                      </IconButton>
+                    </div>
+                    <form>
+                      <label htmlFor="item01">
+                        <input
+                          type="text"
+                          name="name"
+                          id="item01"
+                          value={this.state.rnName}
+                          onChange={(e) => {
+                            this.setState({ rnName: e.target.value });
+                          }}
+                          placeholder="Your full name"
+                        />
+                      </label>
+                      <label htmlFor="item02">
+                        <input
+                          type="text"
+                          name="email"
+                          id="item02"
+                          value={this.state.rnEmail}
+                          onChange={(e) => {
+                            this.setState({ rnEmail: e.target.value });
+                          }}
+                          placeholder="Your email"
+                        />
+                      </label>
+
+                      <label htmlFor="item03">
+                        <input
+                          type="password"
+                          name="password"
+                          id="item03"
+                          value={this.state.rnPassword}
+                          onChange={(e) => {
+                            this.setState({ rnPassword: e.target.value });
+                          }}
+                          placeholder="Your password"
+                        />
+                      </label>
+
+                      <label htmlFor="item04">
+                        <input
+                          type="password"
+                          name="confirm password"
+                          id="item04"
+                          value={this.state.rnConfirmPassword}
+                          onChange={(e) => {
+                            this.setState({
+                              rnConfirmPassword: e.target.value,
+                            });
+                          }}
+                          placeholder="Confirm password"
+                        />
+                      </label>
+                      <label htmlFor="item05">
+                        <input
+                          type="file"
+                          name="image"
+                          id="item05"
+                          value={this.state.rnPhotoSnap.name}
+                          ref={this.state.rnPhotoSnap.name}
+                          onChange={async (e) => {
+                            e.preventDefault();
+                            let file = await e.target.files[0];
+                            this.setState({ rnPhoto: file });
+
+                            if (file) {
+                              let reader = new FileReader();
+                              reader.onload = (e) => {
+                                this.setState({ rnPhotoSnap: e.target.result });
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                          placeholder="upload picture"
+                        />
+                      </label>
+                      <label htmlFor="item06">
+                        <input
+                          type="text"
+                          name="dob"
+                          id="item06"
+                          value={this.state.rnDob}
+                          onChange={(e) => {
+                            this.setState({ rnDob: e.target.value });
+                          }}
+                          placeholder="Enter your Date of Birth"
+                        />
+                      </label>
+                      <label htmlFor="item07">
+                        <input
+                          type="text "
+                          pattern="[0-9]*"
+                          name="phone"
+                          id="item07"
+                          value={this.state.rnPhone}
+                          onChange={(e) => {
+                            this.setState({ rnPhone: e.target.value });
+                          }}
+                          placeholder="Phone Number"
+                        />
+                      </label>
+                      <label htmlFor="item08">
+                        <textarea
+                          type="text"
+                          name="address"
+                          id="item08"
+                          value={this.state.rnAddress}
+                          onChange={(e) => {
+                            this.setState({ rnAddress: e.target.value });
+                          }}
+                          placeholder="Address"
+                        />
+                      </label>
+                      <button
+                        className="rn-button-style--2 btn-solid"
+                        type="submit"
+                        value="submit"
+                        name="submit"
+                        id="mc-embedded-subscribe"
+                        onClick={async (event) => {
+                          event.preventDefault();
+                          let fd = new FormData();
+                          fd.append("name", this.state.rnName);
+                          fd.append("email", this.state.rnEmail);
+                          fd.append("password", this.state.rnPassword);
+                          fd.append(
+                            "confirmPassword",
+                            this.state.rnConfirmPassword
+                          );
+                          fd.append("photo", this.state.rnPhoto);
+                          fd.append("dob", this.state.rnDob);
+                          fd.append("phone", this.state.rnPhone);
+                          fd.append("address", this.state.rnAddress);
+
+                          await this.props.signUp(fd);
+                          this.props.create_user_status.message ===
+                          "user added!"
+                            ? this.props.history.push("/login")
+                            : this.props.history.push("/signup");
+                        }}
+                      >
+                        Submit
+                      </button>
+
+                      <div className=" text-right blog-btn mt_sm--10 mt_md--10">
+                        <a
+                          href="/login"
+                          className="btn-transparent rn-btn-dark"
+                        >
+                          <br />
+                          <span>Already have an account? Login</span>
+                        </a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </Box>
+            </div>
+            <div className="col-lg-12">
+              <Footer />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  create_user_status: state.isLogged.payload,
+});
+
+export default connect(mapStateToProps, { signUp })(Signup);

@@ -1,21 +1,398 @@
-import React from "react";
+// React Required
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./theme";
-import "./index.css";
-import App from "./App";
+
+// Create Import File
+import "./index.scss";
+
+// Common Layout
+// import Layout from "./component/common/App";
+
+// My Home Layout
+import Landing from "./LMS/Landing";
+
+// Home layout
+import MainDemo from "./home/MainDemo";
+import Startup from "./home/Startup";
+import Paralax from "./home/Paralax";
+import HomePortfolio from "./home/HomePortfolio";
+import DigitalAgency from "./home/DigitalAgency";
+import CreativeAgency from "./home/CreativeAgency";
+import PersonalPortfolio from "./home/PersonalPortfolio";
+import Business from "./home/Business";
+import StudioAgency from "./home/StudioAgency";
+import PortfolioLanding from "./home/PortfolioLanding";
+import CreativeLanding from "./home/CreativeLanding";
+import HomeParticles from "./home/HomeParticles";
+import CreativePortfolio from "./home/CreativePortfolio";
+import DesignerPortfolio from "./home/DesignerPortfolio";
+import InteriorLanding from "./home/Interior";
+import CorporateBusiness from "./home/CorporateBusiness";
+
+// Dark Home Layout
+import DarkMainDemo from "./dark/MainDemo";
+import DarkPortfolioLanding from "./dark/PortfolioLanding";
+
+// Element Layout
+import Service from "./elements/Service";
+import ServiceDetails from "./elements/ServiceDetails";
+import About from "./elements/About";
+import Contact from "./elements/Contact";
+import PortfolioDetails from "./elements/PortfolioDetails";
+import Blog from "./LMS/component/elements/Blog.jsx";
+import AllInstructors from "./LMS/component/elements/AllInstructors.jsx";
+import InstructorView from "./LMS/component/elements/blog/InstructorView.jsx";
+import BlogDetails from "./elements/BlogDetails";
+import error404 from "./elements/error404";
+
+// Blocks Layout
+
+import Team from "./blocks/Team";
+import Counters from "./blocks/Counters";
+import Testimonial from "./blocks/Testimonial";
+import Portfolio from "./blocks/Portfolio";
+import VideoPopup from "./blocks/VideoPopup";
+import Gallery from "./blocks/Gallery";
+import Brand from "./blocks/Brand";
+import ProgressBar from "./blocks/ProgressBar";
+import ContactForm from "./blocks/ContactForm";
+import GoogleMap from "./blocks/GoogleMap";
+import Columns from "./blocks/Columns";
+import PricingTable from "./blocks/PricingTable";
+
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(
-	<React.StrictMode>
-		<ThemeProvider theme={theme}>
-			<App />
-		</ThemeProvider>
-	</React.StrictMode>,
-	document.getElementById("root")
-);
+import { ProtectedRoute } from "./LMS/routes/protected.route";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// Coustom Components
+import Login from "./LMS/component/Login";
+import Signup from "./LMS/component/Signup";
+import CourseList from "./LMS/component/CourseList";
+import CourseView from "./LMS/component/CourseView";
+import Admin from "./LMS/component/Admin.jsx";
+import AddCourse from "./LMS/component/AddCourse.jsx";
+import AddInstructor from "./LMS/component/AddInstructor.jsx";
+import UpdateCourse from "./LMS/component/UpdateCourse.jsx";
+import UpdateInstructor from "./LMS/component/UpdateInstructor.jsx";
+import CreateAccount from "./LMS/component/CreateAccount.jsx";
+import AdminCourseList from "./LMS/component/AdminCourseList.jsx";
+import AdminInstructorList from "./LMS/component/AdminInstructorList.jsx";
+import AdminUserList from "./LMS/component/AdminUserList.jsx";
+import AdminMessages from "./LMS/component/AdminMessages.jsx";
+
+import StudentPanel from "./LMS/component/elements/StudentPanel";
+import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx";
+import CartPage from "./LMS/component/elements/CartPage.jsx";
+
+import { Provider } from "react-redux";
+import { store } from "./store";
+
+class Root extends Component {
+  render() {
+    return (
+      <BrowserRouter basename={"/"}>
+        <Switch>
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/`}
+            component={Landing}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/main-demo`}
+            component={MainDemo}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/dark-main-demo`}
+            component={DarkMainDemo}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/startup`}
+            component={Startup}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/paralax`}
+            component={Paralax}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/digital-agency`}
+            component={DigitalAgency}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/creative-agency`}
+            component={CreativeAgency}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/personal-portfolio`}
+            component={PersonalPortfolio}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/studio-agency`}
+            component={StudioAgency}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/business`}
+            component={Business}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/portfolio-home`}
+            component={HomePortfolio}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/portfolio-landing`}
+            component={PortfolioLanding}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/creative-landing`}
+            component={CreativeLanding}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/home-particles`}
+            component={HomeParticles}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/dark-portfolio-landing`}
+            component={DarkPortfolioLanding}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/designer-portfolio`}
+            component={DesignerPortfolio}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/creative-portfolio`}
+            component={CreativePortfolio}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/interior-landing`}
+            component={InteriorLanding}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/corporate-business`}
+            component={CorporateBusiness}
+          />
+          {/* Element Layot */}
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/service`}
+            component={Service}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/service-details`}
+            component={ServiceDetails}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/contact`}
+            component={Contact}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/about`}
+            component={About}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/portfolio-details`}
+            component={PortfolioDetails}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/blog`}
+            component={Blog}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/instructorlist`}
+            component={AllInstructors}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/instructorview`}
+            component={InstructorView}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/blog-details`}
+            component={BlogDetails}
+          />
+          {/* Blocks Elements  */}
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/team`}
+            component={Team}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/counters`}
+            component={Counters}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/testimonial`}
+            component={Testimonial}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/portfolio`}
+            component={Portfolio}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/video-popup`}
+            component={VideoPopup}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/gallery`}
+            component={Gallery}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/clint-logo`}
+            component={Brand}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/progressbar`}
+            component={ProgressBar}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/contact-form`}
+            component={ContactForm}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/google-map`}
+            component={GoogleMap}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/columns`}
+            component={Columns}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/pricing-table`}
+            component={PricingTable}
+          />
+          {/* Custom Routes */}
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/login`}
+            component={Login}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/signup`}
+            component={Signup}
+          />
+          <ProtectedRoute
+            exact
+            path={`${process.env.PUBLIC_URL}/courses`}
+            component={CourseList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/courseview`}
+            component={CourseView}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/admin`}
+            component={Admin}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/addcourse`}
+            component={AddCourse}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/updatecourse`}
+            component={UpdateCourse}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/updateinstructor`}
+            component={UpdateInstructor}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/addinstructor`}
+            component={AddInstructor}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/createaccount`}
+            component={CreateAccount}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/admincourselist`}
+            component={AdminCourseList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/admininstructorlist`}
+            component={AdminInstructorList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/adminuserlist`}
+            component={AdminUserList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/adminmessages`}
+            component={AdminMessages}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/studentpanel`}
+            component={StudentPanel}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/instructorpanel`}
+            component={InstructorPanel}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/cart`}
+            component={CartPage}
+          />
+          <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
+          <Route component={error404} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Root />
+  </Provider>,
+  document.getElementById("root")
+);
+serviceWorker.register();
