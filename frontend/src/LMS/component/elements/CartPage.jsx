@@ -7,6 +7,7 @@ import { FiChevronUp } from "react-icons/fi";
 import Header from "../Header.jsx";
 import Footer from "../Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
+import { removeCart } from "../../../actions/cartAction";
 
 import {
   makeStyles,
@@ -42,12 +43,17 @@ const useStyles = makeStyles((theme) => ({
 
 const CartPage = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartInfo.cart);
   console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
+  const selectedCourse = useSelector(
+    (state) => state.getSelectedId.getSelectedCourseId
+  );
+  const userId = useSelector((state) => state.isLogged.payload.id);
 
   var cartCoursesList = [];
 
@@ -95,9 +101,22 @@ const CartPage = () => {
                         <div className="row text-white">{course.catagory}</div>
 
                         <div className="blog-btn pt--20">
-                          <a className="rn-btn text-white" href="#">
+                          <button
+                            variant="contained"
+                            className="rn-button-style--2 btn-solid"
+                            fullWidth={true}
+                            style={{ width: "100%", marginTop: "50px" }}
+                            onClick={async (event) => {                             
+                              dispatch(
+                                removeCart({
+                                  user: userId,
+                                  course: course._id,
+                                })
+                              );
+                            }}
+                          >
                             Remove from cart
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
