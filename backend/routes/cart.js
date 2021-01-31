@@ -27,7 +27,7 @@ router.route("/").post((req, res) => {
 });
 
 //CART DELETE
-router.route("/").delete((req, res) => {
+router.route("/delete").post((req, res) => {
   const user = Mongoose.Types.ObjectId(req.body.user);
   const course = Mongoose.Types.ObjectId(req.body.course);
   User.updateOne({ _id: user }, { $pullAll: { cart: [course] } })

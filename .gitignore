@@ -23,7 +23,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 package-lock.json
-
-#assets
-/public/assets/images/service/home-video-1.mp4
-/public/assets/images/service/home_video_1.mov
