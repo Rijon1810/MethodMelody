@@ -139,7 +139,7 @@ class Signup extends Component {
                       </label>
                       <label htmlFor="item06">
                         <input
-                          type="text"
+                          type="date"
                           name="dob"
                           id="item06"
                           value={this.state.rnDob}
