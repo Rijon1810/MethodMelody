@@ -70,7 +70,7 @@ router.route("/catagory").get((req, res) => {
 });
 
 //update status
-router.route("/status").get((req, res) => {
+router.route("/status").post((req, res) => {
   Course.findOneAndUpdate(
     { "videos._id": Mongoose.Types.ObjectId(req.body.id) },
     {
