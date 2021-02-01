@@ -42,6 +42,7 @@ import {
   getSelectedInstructorId,
   getCurrentVideoIndex,
 } from "../actions/getSelectedIdAction";
+import { getUserCourse } from "../actions/userAction";
 
 //constants
 const SlideList = [
@@ -109,6 +110,7 @@ export default function Landing() {
     dispatch(getAnalytics());
     dispatch(getCurrentVideoIndex(0));
     dispatch(getCart(`${userId}`));
+    dispatch(getUserCourse(`${userId}`))
   }, [dispatch]);
 
   // view all course handler

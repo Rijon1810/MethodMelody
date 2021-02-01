@@ -100,7 +100,9 @@ export default function CourseView(props) {
 
   const isLogIn = useSelector((state) => state.isLogged.login);
 
-  const userCourses = useSelector((state) => state.getUserCourse);
+  const userCourses = useSelector(
+    (state) => state.getAllUsers.getUserCourse.course
+  );
 
   const selectedCourse = useSelector(
     (state) => state.getSelectedId.getSelectedCourseId
@@ -248,6 +250,13 @@ export default function CourseView(props) {
                 "http://63.250.33.174/" +
                 selectedCourse.videos[selectedLesson].path
               }
+              config={{
+                file: {
+                  attributes: {
+                    onContextMenu: (e) => e.preventDefault(),
+                  },
+                },
+              }}
             />
             {/* <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} /> */}
           </div>
@@ -266,7 +275,14 @@ export default function CourseView(props) {
                           dispatch(getCurrentVideoIndex(index));
                         }
                       } else if (lesson.status === "paid") {
-                        console.log(userCourses[0]);
+                        console.log(`course id = ${selectedCourse._id}`);
+                        console.log(`lesson status = ${lesson.status}`);
+                        userCourses.forEach((c) => {
+                          console.log(c[0]);
+                          if (c[0] === selectedCourse._id) {
+                            dispatch(getCurrentVideoIndex(index));
+                          }
+                        });
                       }
                     }}
                   >
