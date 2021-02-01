@@ -99,6 +99,8 @@ export default function CourseView(props) {
 
   const isLogIn = useSelector((state) => state.isLogged.login);
 
+  const userCourses = useSelector((state)=>state.isLogged.payload.course)
+
   const selectedCourse = useSelector(
     (state) => state.getSelectedId.getSelectedCourseId
   );
@@ -256,7 +258,15 @@ export default function CourseView(props) {
                     button
                     className={classes.ListItem}
                     onClick={async (event) => {
-                      dispatch(getCurrentVideoIndex(index));
+                      if (lesson.status === "open") {
+                        dispatch(getCurrentVideoIndex(index));
+                      }else if(lesson.status === "login"){
+                        if(isLogIn){
+                          dispatch(getCurrentVideoIndex(index));
+                        }
+                      }else if(lesson.status === "paid"){
+                         console.log(userCourses[0])
+                      }
                     }}
                   >
                     <Avatar className={classes.Avatar}>
