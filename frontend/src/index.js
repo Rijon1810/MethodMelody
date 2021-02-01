@@ -75,6 +75,7 @@ import AddCourse from "./LMS/component/AddCourse.jsx";
 import AddInstructor from "./LMS/component/AddInstructor.jsx";
 import UpdateCourse from "./LMS/component/UpdateCourse.jsx";
 import UpdateInstructor from "./LMS/component/UpdateInstructor.jsx";
+import UpdateLesson from "./LMS/component/UpdateLesson.jsx";
 import CreateAccount from "./LMS/component/CreateAccount.jsx";
 import AdminCourseList from "./LMS/component/AdminCourseList.jsx";
 import AdminInstructorList from "./LMS/component/AdminInstructorList.jsx";
@@ -216,7 +217,7 @@ class Root extends Component {
           />
           <Route
             exact
-            path={`${process.env.PUBLIC_URL}/blog`}
+            path={`${process.env.PUBLIC_URL}/allcourses`}
             component={Blog}
           />
           <Route
@@ -335,6 +336,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/updateinstructor`}
             component={UpdateInstructor}
+          />
+            <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/updatelesson`}
+            component={UpdateLesson}
           />
           <Route
             exact

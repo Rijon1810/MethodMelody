@@ -12,13 +12,13 @@ const ServiceList = [
   },
   {
     icon: <FiMusic />,
-    title: "Acoustic Finger Style Guitar",
+    title: "Bass Guitar",
     description:
       "I throw myself down among the tall grass by the stream as I lie close to the earth.",
   },
   {
     icon: <FiMusic />,
-    title: "Drums",
+    title: "Percussion",
     description:
       "I throw myself down among the tall grass by the stream as I lie close to the earth.",
   },

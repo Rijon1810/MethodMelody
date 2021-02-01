@@ -97,6 +97,8 @@ export default function CourseView(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const isLogIn = useSelector((state) => state.isLogged.login);
+
   const selectedCourse = useSelector(
     (state) => state.getSelectedId.getSelectedCourseId
   );
@@ -113,7 +115,10 @@ export default function CourseView(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
-    setOpen(true);
+    console.log(`is user logged in = ${isLogIn}`);
+    if (isLogIn) {
+      setOpen(true);
+    }
   };
 
   const handleClose = () => {

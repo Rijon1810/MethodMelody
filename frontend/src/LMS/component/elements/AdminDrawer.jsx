@@ -73,18 +73,21 @@ export default function PermanentDrawerLeft() {
         history.push("/updateinstructor");
         break;
       case 5:
-        history.push("/admincourselist");
+        history.push("/updatelesson");
         break;
       case 6:
-        history.push("/admininstructorlist");
+        history.push("/admincourselist");
         break;
       case 7:
-        history.push("/adminuserlist");
+        history.push("/admininstructorlist");
         break;
       case 8:
+        history.push("/adminuserlist");
+        break;
+      case 9:
         history.push("/adminmessages");
         break;
-      case 10:
+      case 11:
         history.push("/createaccount");
         break;
       default:
@@ -172,6 +175,17 @@ export default function PermanentDrawerLeft() {
               style={{ color: "#fff" }}
             />
           </ListItem>
+          <ListItem
+            button
+            key="updatelesson"
+            onClick={(event) => handleListItemClick(event, 5)}
+            selected={selectedIndex === 5}
+          >
+            <ListItemIcon>
+              <AssignmentInd style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText primary="Update Lesson" style={{ color: "#fff" }} />
+          </ListItem>
         </List>
         {/* Update Section End*/}
         <Divider style={{ background: "#1d1e24" }} />
@@ -179,8 +193,8 @@ export default function PermanentDrawerLeft() {
           <ListItem
             button
             key="viewcourses"
-            onClick={(event) => handleListItemClick(event, 5)}
-            selected={selectedIndex === 5}
+            onClick={(event) => handleListItemClick(event, 6)}
+            selected={selectedIndex === 6}
           >
             <ListItemIcon>
               <ImportContacts style={{ color: "#f9004d" }} />
@@ -190,8 +204,8 @@ export default function PermanentDrawerLeft() {
           <ListItem
             button
             key="viewinstructor"
-            onClick={(event) => handleListItemClick(event, 6)}
-            selected={selectedIndex === 6}
+            onClick={(event) => handleListItemClick(event, 7)}
+            selected={selectedIndex === 7}
           >
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />
@@ -204,8 +218,8 @@ export default function PermanentDrawerLeft() {
           <ListItem
             button
             key="viewusers"
-            onClick={(event) => handleListItemClick(event, 7)}
-            selected={selectedIndex === 7}
+            onClick={(event) => handleListItemClick(event, 8)}
+            selected={selectedIndex === 8}
           >
             <ListItemIcon>
               <AccountCircleRounded style={{ color: "#f9004d" }} />
@@ -215,8 +229,8 @@ export default function PermanentDrawerLeft() {
           <ListItem
             button
             key="viewmessages"
-            onClick={(event) => handleListItemClick(event, 8)}
-            selected={selectedIndex === 8}
+            onClick={(event) => handleListItemClick(event, 9)}
+            selected={selectedIndex === 9}
           >
             <ListItemIcon>
               <Mail style={{ color: "#f9004d" }} />
@@ -238,8 +252,8 @@ export default function PermanentDrawerLeft() {
           <ListItem
             button
             key="createaccount"
-            onClick={(event) => handleListItemClick(event, 10)}
-            selected={selectedIndex === 10}
+            onClick={(event) => handleListItemClick(event, 11)}
+            selected={selectedIndex === 11}
           >
             <ListItemIcon>
               <AssignmentInd style={{ color: "#f9004d" }} />

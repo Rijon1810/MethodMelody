@@ -36,7 +36,7 @@ class Signup extends Component {
               <Header from="signup" />
               <Breadcrumb from="signup" />
             </div>
-            <div className="col-lg-12">
+            <div className="col-lg-12 bg_color--6">
               <Box
                 display="flex"
                 justifyContent="center"
@@ -139,7 +139,7 @@ class Signup extends Component {
                       </label>
                       <label htmlFor="item06">
                         <input
-                          type="text"
+                          type="date"
                           name="dob"
                           id="item06"
                           value={this.state.rnDob}
