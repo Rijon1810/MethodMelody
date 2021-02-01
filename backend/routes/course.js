@@ -69,6 +69,25 @@ router.route("/catagory").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+//update status
+router.route("/status").post((req, res) => {
+  Course.findOneAndUpdate(
+    { "videos._id": Mongoose.Types.ObjectId(req.body.id) },
+    {
+      $set: {
+        "videos.$.status": req.body.status,
+      },
+    },
+    {
+      useFindAndModify: false,
+    }
+  )
+    .then((courses) => {
+      res.status(200).json(courses);
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 //ADD
 router
   .use(
