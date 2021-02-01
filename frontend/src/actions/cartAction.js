@@ -1,5 +1,4 @@
 import axios from "../LMS/api/Config";
-import axiosv2 from "axios";
 import { DEL_CART, POST_CART, GET_CART, SSL_RESPONSE } from "./types";
 
 export const getCart = (data) => (dispatch) => {
@@ -59,8 +58,8 @@ export const removeCart = (data) => (dispatch) => {
 };
 
 export const checkout = (data) => (dispatch) => {
-  axiosv2
-    .post("https://sandbox.sslcommerz.com/gwprocess/v4/api.php", data)
+  axios
+    .post("cart/ssl/", data)
     .then((res) => {
       dispatch({
         type: SSL_RESPONSE,
