@@ -2,6 +2,7 @@ import { GET_ALL_USER, GET_USER_COURSE } from "../actions/types";
 
 const initialState = {
   allUsers: {},
+  getUserCourse: {},
 };
 
 const getAllUsersReducer = (state = initialState, action) => {
