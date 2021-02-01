@@ -36,7 +36,7 @@ class Signup extends Component {
               <Header from="signup" />
               <Breadcrumb from="signup" />
             </div>
-            <div className="col-lg-12">
+            <div className="col-lg-12 bg_color--6">
               <Box
                 display="flex"
                 justifyContent="center"
