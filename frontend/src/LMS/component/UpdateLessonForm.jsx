@@ -14,7 +14,7 @@ class UpdateLessonForm extends Component {
     this.state = {
       rnCourse: "",
       showCourse: "",
-      showVideos: "",
+      showVideos: [],
     };
   }
 
@@ -136,7 +136,12 @@ class UpdateLessonForm extends Component {
               </div>
               <div>
                 {this.props.courseList.map((course) => {
-                  if (course._id == this.state.showCourse) {                   
+                  if (course._id == this.state.showCourse) {
+                    course.videos.forEach((video) => {
+                      console.log(video._id);
+                      this.setState({ showVideos: this.state.showVideos.push(video._id) });
+                    });
+
                     course.videos.map((video) => <h2>{video.path}</h2>);
                   }
                 })}
