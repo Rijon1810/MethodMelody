@@ -22,3 +22,4 @@ export const DEL_CART = "DEL_CART";
 export const GET_ALL_USER = "GET_ALL_USER";
 export const GET_ALL_MESSAGE = "GET_ALL_MESSAGE";
 export const POST_MESSAGE = "POST_MESSAGE";
+export const GET_USER_COURSE = "GET_USER_COURSE";

@@ -1,4 +1,4 @@
-import { GET_ALL_USER } from "../actions/types";
+import { GET_ALL_USER, GET_USER_COURSE } from "../actions/types";
 
 const initialState = {
   allUsers: {},
@@ -10,6 +10,11 @@ const getAllUsersReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload,
+      };
+    case GET_USER_COURSE:
+      return {
+        ...state,
+        getUserCourse: action.payload,
       };
     default:
       return { ...state };

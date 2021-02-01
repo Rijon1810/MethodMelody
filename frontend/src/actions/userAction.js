@@ -1,5 +1,5 @@
 import axios from "../LMS/api/Config";
-import { GET_ALL_USER } from "./types";
+import { GET_ALL_USER, GET_USER_COURSE } from "./types";
 
 export const getUser = () => (dispatch) => {
   axios
@@ -16,6 +16,29 @@ export const getUser = () => (dispatch) => {
       console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getUserCourse = (id) => async (dispatch) => {
+  await axios
+    .get(`user/${id}/`, {
+      headers: {
+        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+        "Content-type": "multipart/form-data",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: GET_USER_COURSE,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GET_USER_COURSE,
+        payload: "failed",
+      });
       console.log(err);
     });
 };
