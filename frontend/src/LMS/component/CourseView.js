@@ -37,6 +37,7 @@ import Column from "../../blocks/Columns.jsx";
 import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
 import { postCart } from "../../actions/cartAction";
 import { isLogged } from "../../actions/isLoggedAction";
+import { getUserCourse } from "../../actions/userAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,7 +100,7 @@ export default function CourseView(props) {
 
   const isLogIn = useSelector((state) => state.isLogged.login);
 
-  const userCourses = useSelector((state)=>state.isLogged.payload.course)
+  const userCourses = useSelector((state) => state.getUserCourse);
 
   const selectedCourse = useSelector(
     (state) => state.getSelectedId.getSelectedCourseId
@@ -260,12 +261,12 @@ export default function CourseView(props) {
                     onClick={async (event) => {
                       if (lesson.status === "open") {
                         dispatch(getCurrentVideoIndex(index));
-                      }else if(lesson.status === "login"){
-                        if(isLogIn){
+                      } else if (lesson.status === "login") {
+                        if (isLogIn) {
                           dispatch(getCurrentVideoIndex(index));
                         }
-                      }else if(lesson.status === "paid"){
-                         console.log(userCourses[0])
+                      } else if (lesson.status === "paid") {
+                        console.log(userCourses[0]);
                       }
                     }}
                   >
