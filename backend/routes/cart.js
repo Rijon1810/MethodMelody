@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Mongoose = require("mongoose");
 const User = require("../models/User.model");
 const SSLCommerz = require("sslcommerz-nodejs");
+const SSLCommerzPayment = require("sslcommerz");
 
 let settings = {
   isSandboxMode: true, //false if live version
@@ -28,6 +29,48 @@ router.route("/ssl").post((req, res) => {
   const cancel_url = req.body.product_profile;
   const currency = req.body.currency;
 
+  // new SSLCommerzPayment(
+  //   {
+  //     store_id: "metho600e5b92ab76f",
+  //     store_passwd: "metho600e5b92ab76f@ssl",
+  //     total_amount: 100,
+  //     currency: "BDT",
+  //     tran_id: "REF123",
+  //     success_url: success_url,
+  //     fail_url: success_url,
+  //     cancel_url: success_url,
+  //     shipping_method: "Courier",
+  //     product_name: "Computer.",
+  //     product_category: "Electronic",
+  //     product_profile: "general",
+  //     cus_name: "Customer Name",
+  //     cus_email: "cust@yahoo.com",
+  //     cus_add1: "Dhaka",
+  //     cus_add2: "Dhaka",
+  //     cus_city: "Dhaka",
+  //     cus_state: "Dhaka",
+  //     cus_postcode: "1000",
+  //     cus_country: "Bangladesh",
+  //     cus_phone: "01711111111",
+  //     cus_fax: "01711111111",
+  //     ship_name: "Customer Name",
+  //     ship_add1: "Dhaka",
+  //     ship_add2: "Dhaka",
+  //     ship_city: "Dhaka",
+  //     ship_state: "Dhaka",
+  //     ship_postcode: 1000,
+  //     ship_country: "Bangladesh",
+  //     multi_card_name: "mastercard, bkash",
+  //     value_a: "ref001_A",
+  //     value_b: "ref002_B",
+  //     value_c: "ref003_C",
+  //     value_d: "ref004_D",
+  //   },
+  //   false
+  // ).then((a) => {
+  //   res.status(200).json(a);
+  // });
+
   let post_body = {};
   post_body["total_amount"] = total_amount;
   post_body["currency"] = currency;
@@ -45,8 +88,8 @@ router.route("/ssl").post((req, res) => {
   post_body["shipping_method"] = "NO";
   post_body["multi_card_name"] = "";
   post_body["num_of_item"] = num_of_item;
-  post_body["product_name"] = product_name;
-  post_body["product_category"] = product_category;
+  post_body["product_name"] = "Test";
+  post_body["product_category"] = "Test Category";
   post_body["product_profile"] = product_profile;
   sslcommerz
     .init_transaction(post_body)
