@@ -7,10 +7,13 @@ import {
 } from "react-icons/fa";
 
 const SocialShare = [
-  { Social: <FaFacebookF />, link: "https://www.facebook.com/MethodMelodyOfficial" },
-  { Social: <FaLinkedinIn />, link: "https://www.linkedin.com/" },
-  { Social: <FaInstagram />, link: "https://www.instagram.com/" },
-  { Social: <FaTwitter />, link: "https://twitter.com/" },
+  {
+    Social: <FaFacebookF />,
+    link: "https://www.facebook.com/MethodMelodyOfficial",
+  },
+  { Social: <FaLinkedinIn />, link: "https://www.linkedin.com/company/method-melody" },
+  { Social: <FaInstagram />, link: "https://www.instagram.com/method_melody/" },
+  { Social: <FaTwitter />, link: "https://twitter.com/method_melody" },
 ];
 class Footer extends Component {
   render() {
@@ -69,12 +72,9 @@ class Footer extends Component {
                         <h4 className="theme-gradient">Social</h4>
                         <ul className="ft-link">
                           <li>
-                            <a href="mailto:admin@example.com">
-                              admin@example.com
+                            <a href="mailto:hr@example.com">
+                              info@methodmelody.com
                             </a>
-                          </li>
-                          <li>
-                            <a href="mailto:hr@example.com">hr@example.com</a>
                           </li>
                         </ul>
 
@@ -96,7 +96,7 @@ class Footer extends Component {
                         <p>
                           Copyright © 2020{" "}
                           <strong className="theme-gradient">
-                            MethodMelody
+                            M/S MethodMelody International
                           </strong>
                           . All Rights Reserved.
                         </p>

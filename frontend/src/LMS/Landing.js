@@ -48,9 +48,9 @@ import { getUserCourse } from "../actions/userAction";
 const SlideList = [
   {
     textPosition: "text-center",
-    bgImage: "bg_image--35",
+    bgImage: "bg_image--36",
     category: "",
-    title: "Mike Portnoy",
+    title: "Ibrahim Ahmed Kamal",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
@@ -58,9 +58,9 @@ const SlideList = [
   },
   {
     textPosition: "text-center",
-    bgImage: "bg_image--33",
+    bgImage: "bg_image--37",
     category: "",
-    title: "Eric CLapton",
+    title: "George Linclon D'Costa",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
@@ -68,9 +68,27 @@ const SlideList = [
   },
   {
     textPosition: "text-center",
-    bgImage: "bg_image--34",
+    bgImage: "bg_image--38",
     category: "",
-    title: "Justin Chancellor",
+    title: "Mahan Fahim",
+    description:
+      "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
+    buttonText: "Let's Get Started",
+    buttonLink: "/allcourses",
+  },{
+    textPosition: "text-center",
+    bgImage: "bg_image--39",
+    category: "",
+    title: "Nafeez Al Amin",
+    description:
+      "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
+    buttonText: "Let's Get Started",
+    buttonLink: "/allcourses",
+  },{
+    textPosition: "text-center",
+    bgImage: "bg_image--40",
+    category: "",
+    title: "Raef Al Hasan Rafa",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
@@ -139,7 +157,7 @@ export default function Landing() {
                       <div className={`inner ${value.textPosition}`}>
                         {value.category ? <span>{value.category}</span> : ""}
                         {value.title ? (
-                          <h1 className="title theme-gradient">
+                          <h1 style={{color:"b1222"}}>
                             {value.title}
                           </h1>
                         ) : (

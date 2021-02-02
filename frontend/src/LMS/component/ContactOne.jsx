@@ -27,8 +27,8 @@ class ContactOne extends Component {
                 <p className="description">
                   For any queries regarding the Platform, Subscription Process,
                   Account Registration, etc. You can also reach us via <br></br>
-                  <a href="tel:+8801923088574">01923 088574</a> or email:
-                  <a href="mailto:admin@example.com"> admin@example.com</a>{" "}
+                  <a href="tel:+8801923088574">01913130113</a> or email:
+                  <a href="mailto:admin@example.com"> info@methodmelody.com</a>{" "}
                 </p>
               </div>
               <div className="form-wrapper">
