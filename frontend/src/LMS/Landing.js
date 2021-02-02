@@ -201,7 +201,7 @@ export default function Landing() {
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="section-title text-left">
                 <h3>Our Courses</h3>
-                <p className="theme-gradient">
+                <p style={{color: "#b12222"}}>
                   Start with any of our {courseList.length} in-depth featured
                   courses
                 </p>
@@ -328,7 +328,7 @@ export default function Landing() {
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="section-title text-left">
                 <h3>Our Instructors</h3>
-                <p className="theme-gradient">
+                <p style={{color: "#b12222"}}>
                   Learn from the best of the Best
                 </p>
               </div>
@@ -407,7 +407,7 @@ export default function Landing() {
           <div className="row">
             <div className="col-lg-6">
               <div className="section-title service-style--3 text-left mb--25 mb_sm--0">
-                <h3 className="title">Our Team</h3>
+                <h3 className="title" >Our Team</h3>
                 {/* <p>
                   There are many variations of passages of Lorem Ipsum
                   available, but the majority have suffered alteration.
@@ -428,7 +428,7 @@ export default function Landing() {
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
               <div className="section-title text-left pb--30">
-                <h3 className="theme-gradient">Do you have any Question</h3>
+                <h3 style={{color: "#b12222"}}>Do you have any Question</h3>
               </div>
             </div>
           </div>
@@ -524,7 +524,7 @@ export default function Landing() {
                         our catalog. Even after you are still confused you can
                         always{" "}
                         <a
-                          className="theme-gradient"
+                          style={{color: "#b12222"}}
                           href="https://www.dropbox.com/s/ysornwsweh836wi/change-home-page.png?dl=0"
                         >
                           <strong>contact</strong>
