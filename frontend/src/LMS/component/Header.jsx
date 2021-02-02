@@ -130,7 +130,7 @@ class Header extends Component {
             <div className="logo">
               <a href="/">
                 <img
-                  src="/assets/images/logo/logo-white.png"
+                  src="/assets/images/logo/logo-red.png"
                   alt="Digital Agency"
                 />
               </a>

@@ -136,6 +136,8 @@ export default function Landing() {
     history.push("/courses", { courses: "all" });
   }
 
+  // var titleColor = {"Red": "#b12222"}
+
   return (
     <div className="active-dark">
       <Header from="landing" />
@@ -157,7 +159,7 @@ export default function Landing() {
                       <div className={`inner ${value.textPosition}`}>
                         {value.category ? <span>{value.category}</span> : ""}
                         {value.title ? (
-                          <h1 style={{color:"b1222"}}>
+                          <h1 style={{color: "#b12222"}}>
                             {value.title}
                           </h1>
                         ) : (
