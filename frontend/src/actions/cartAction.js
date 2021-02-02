@@ -59,7 +59,12 @@ export const removeCart = (data) => (dispatch) => {
 
 export const checkout = (data) => (dispatch) => {
   axios
-    .post("cart/ssl/", data)
+    .post("cart/ssl/", data, {
+      headers: {
+        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+        "Content-type": "application/json",
+      },
+    })
     .then((res) => {
       dispatch({
         type: SSL_RESPONSE,
