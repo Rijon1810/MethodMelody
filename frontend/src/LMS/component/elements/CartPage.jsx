@@ -1,7 +1,8 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, Route } from "react";
+import { useHistory } from "react-router-dom";
 import PageHelmet from "../Helmet.jsx";
 import Breadcrumb from "./common/Breadcrumb.jsx";
-
+import axios from "axios";
 import ScrollToTop from "react-scroll-up";
 import { FiChevronUp } from "react-icons/fi";
 import Header from "../Header.jsx";
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CartPage = () => {
   const dispatch = useDispatch();
+  let history = useHistory();
   const classes = useStyles();
   const cartItems = useSelector((state) => state.cartInfo.cart);
   const [total, setTotal] = useState(0);
@@ -137,36 +139,62 @@ const CartPage = () => {
                 <div className="blog-btn">
                   <a
                     className="rn-btn"
-                    href="#"
-                    onClick={dispatch(
-                      checkout({
-                        total_amount: "100",
-                        currency: "BDT",
-                        success_url: "http://yoursite.com/success.php",
-                        fail_url: "http://yoursite.com/fail.php",
-                        cancel_url: "http://yoursite.com/cancel.php",
-                        cus_name: "Customer Name",
-                        cus_email: "cust@yahoo.com",
-                        cus_add1: "Dhaka",
-                        cus_city: "Dhaka",
-                        cus_state: "Dhaka",
-                        cus_postcode: "1000",
-                        cus_country: "Bangladesh",
-                        cus_phone: "01711111111",
-                        cus_fax: "01711111111",
-                        ship_name: "Customer Name",
-                        ship_add1: "Dhaka",
-                        ship_add2: "Dhaka",
-                        ship_city: "Dhaka",
-                        ship_state: "Dhaka",
-                        ship_postcode: "1000",
-                        ship_country: "Bangladesh",
-                        multi_card_name: "mastercard,visacard,amexcard",
-                        product_name: "course",
-                        product_category: "category",
-                        product_profile: "profile",
-                      })
-                    )}
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      axios
+                        .post(
+                          "http://63.250.33.174/api/v1/cart/ssl/",
+                          {
+                            total_amount: "100",
+                            currency: "BDT",
+                            success_url: "http://63.250.33.174/cart/",
+                            fail_url: "http://63.250.33.174/cart/",
+                            cancel_url: "http://63.250.33.174/cart/",
+                            cus_name: "Customer Name",
+                            cus_email: "cust@yahoo.com",
+                            cus_add1: "Dhaka",
+                            cus_city: "Dhaka",
+                            cus_state: "Dhaka",
+                            cus_postcode: "1000",
+                            cus_country: "Bangladesh",
+                            cus_phone: "01711111111",
+                            cus_fax: "01711111111",
+                            ship_name: "Customer Name",
+                            ship_add1: "Dhaka",
+                            ship_add2: "Dhaka",
+                            ship_city: "Dhaka",
+                            ship_state: "Dhaka",
+                            ship_postcode: "1000",
+                            ship_country: "Bangladesh",
+                            multi_card_name:
+                              "mastercard,visacard,amexcard,bkash",
+                            product_name: "course",
+                            product_category: "category",
+                            product_profile: "general",
+                          },
+                          {
+                            headers: {
+                              "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                              "Content-type": "application/json",
+                            },
+                          }
+                        )
+                        .then((res) => {
+                          console.log(res.data.redirectGatewayURL);
+                          console.log(res.data.GatewayPageURL);
+
+                          // if (res.data.status === "SUCCESS") {
+                          //   // axios.get(res.data.GatewayPageURL).then((re) => {
+                          //   //   console.log(re);
+                          //   // });
+                          window.location.href = res.data.GatewayPageURL;
+                          // }
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
+                    }}
                   >
                     Proceed to checkout
                   </a>
@@ -189,3 +217,33 @@ const CartPage = () => {
 };
 
 export default CartPage;
+
+// dispatch(
+//   checkout({
+//     total_amount: "100",
+//     currency: "BDT",
+//     success_url: "http://google.com",
+//     fail_url: "http://yoursite.com/fail.php",
+//     cancel_url: "http://yoursite.com/cancel.php",
+//     cus_name: "Customer Name",
+//     cus_email: "cust@yahoo.com",
+//     cus_add1: "Dhaka",
+//     cus_city: "Dhaka",
+//     cus_state: "Dhaka",
+//     cus_postcode: "1000",
+//     cus_country: "Bangladesh",
+//     cus_phone: "01711111111",
+//     cus_fax: "01711111111",
+//     ship_name: "Customer Name",
+//     ship_add1: "Dhaka",
+//     ship_add2: "Dhaka",
+//     ship_city: "Dhaka",
+//     ship_state: "Dhaka",
+//     ship_postcode: "1000",
+//     ship_country: "Bangladesh",
+//     multi_card_name: "mastercard,visacard,amexcard",
+//     product_name: "course",
+//     product_category: "category",
+//     product_profile: "profile",
+//   })
+// );
