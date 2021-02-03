@@ -31,10 +31,10 @@ class Footer extends Component {
                         <h4 className="theme-gradient">Explore</h4>
                         <ul className="ft-link">
                           <li>
-                            <a href="/portfolio">Classes</a>
+                            <a href="/allcourses">Classes</a>
                           </li>
                           <li>
-                            <a href="/about">Metholdmelody Live</a>
+                            <a href="#" onClick={() => alert('Metholdmelody Live is coming soon!!')}>Metholdmelody Live</a>
                           </li>
                           {/* <li>
                             <a href="/contact">Articles</a>

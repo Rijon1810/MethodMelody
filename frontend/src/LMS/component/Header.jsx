@@ -211,7 +211,7 @@ class Header extends Component {
                     </li>
                   )}
                   {/* <li><Link to="/about" >About</Link></li> */}
-                  {this.props.from !== "admin" ? (
+                  {this.props.from !== "admin" && this.props.loginStatus !== false? (
                     <li className="has-droupdown">
                       <Link to="/cart">
                         <Grid container direction="row" alignItems="center">
