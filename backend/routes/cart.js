@@ -3,6 +3,7 @@ const Mongoose = require("mongoose");
 const User = require("../models/User.model");
 const SSLCommerz = require("sslcommerz-nodejs");
 const SSLCommerzPayment = require("sslcommerz");
+const axios = require("axios");
 
 let settings = {
   isSandboxMode: true, //false if live version
@@ -11,6 +12,33 @@ let settings = {
 };
 
 let sslcommerz = new SSLCommerz(settings);
+
+router.route("/sslValidator").post(async (req, res) => {
+  const url =
+    "https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php";
+  // const getData = async (url) => {
+  //   try {
+  await axios
+    .get(url, {
+      val_id: req.body.val_id,
+      store_id: "metho600e5b92ab76f",
+      store_passwd: "metho600e5b92ab76f@ssl",
+      format: "json",
+    })
+    .then((doc) => {
+      console.log(doc);
+      res.status(200).json(res.body);
+    });
+  // const data = response.data;
+  // console.log(data);
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  // };
+
+  // console.log(getData(url));
+  // console.log(req.body.val_id);
+});
 
 router.route("/ssl").post((req, res) => {
   const total_amount = req.body.total_amount;
@@ -24,7 +52,7 @@ router.route("/ssl").post((req, res) => {
   const product_name = req.body.product_name;
   const product_category = req.body.product_category;
   const product_profile = req.body.product_profile;
-  const success_url = req.body.product_profile;
+  const success_url = req.body.success_url;
   const fail_url = req.body.product_profile;
   const cancel_url = req.body.product_profile;
   const currency = req.body.currency;
@@ -75,7 +103,7 @@ router.route("/ssl").post((req, res) => {
   post_body["total_amount"] = total_amount;
   post_body["currency"] = currency;
   post_body["tran_id"] = "12345";
-  post_body["success_url"] = success_url;
+  post_body["success_url"] = "http://localhost:8080/api/v1/cart/sslValidator/";
   post_body["fail_url"] = fail_url;
   post_body["cancel_url"] = cancel_url;
   post_body["emi_option"] = 0;

@@ -2,11 +2,16 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 var path = require("path");
+var bodyParser = require("body-parser");
 
 require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
+var jsonParser = bodyParser.json();
 
 app.use(cors());
 app.use(express.json());
@@ -101,7 +106,12 @@ app.use(
   featuredRouter
 );
 app.use(`/api/${process.env.API_VERSION}/sold`, apiAuth, my_cors, soldRouter);
-app.use(`/api/${process.env.API_VERSION}/cart`, apiAuth, my_cors, cartRouter);
+app.use(
+  `/api/${process.env.API_VERSION}/cart`,
+  urlencodedParser,
+  my_cors,
+  cartRouter
+);
 
 app.get("/storage(/*)?", (req, res) => {
   res.sendStatus(403);
