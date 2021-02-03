@@ -22,12 +22,13 @@ import { Avatar, Grid, Badge } from "@material-ui/core";
 import {
   getSelectedCourseId,
   getSelectedInstructorId,
+  getSelectedCourseCategory,
 } from "../../actions/getSelectedIdAction";
 
 //constants
 const categoryLists = {
   Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
-  Drums: { alt: "Drums", src: "assets/images/icons/guitar-electric.png" },
+  Drums: { alt: "Drums", src: "assets/images/icons/drums.png" },
 };
 
 //   {
@@ -147,7 +148,12 @@ class Header extends Component {
                       <ul className="submenu" style={mystyle}>
                         {this.props.catagory_data.map((category) => (
                           <li>
-                            <Link to="/service">
+                            <Link
+                              to="/allcourses"
+                              onClick={() =>
+                                this.props.getSelectedCourseCategory(category)
+                              }
+                            >
                               <Grid
                                 container
                                 direction="row"
@@ -211,7 +217,8 @@ class Header extends Component {
                     </li>
                   )}
                   {/* <li><Link to="/about" >About</Link></li> */}
-                  {this.props.from !== "admin" && this.props.loginStatus !== false? (
+                  {this.props.from !== "admin" &&
+                  this.props.loginStatus !== false ? (
                     <li className="has-droupdown">
                       <Link to="/cart">
                         <Grid container direction="row" alignItems="center">
@@ -395,57 +402,56 @@ class Header extends Component {
                         </ul>
                       )}
 
-                      {this.props.user_type == 3 &&(
-                           <ul className="submenu" style={mystyle}>
-                           <li>
-                             <Link to="/instructorpanel">
-                               <Grid
-                                 container
-                                 direction="row"
-                                 alignItems="center"
-                               >
-                                 <Grid
-                                   item
-                                   style={{ marginRight: 10, color: "#f9004c" }}
-                                 >
-                                   <Dashboard />
-                                 </Grid>
-                                 <Grid item style={{ color: "#fff" }}>
-                                   My Dashboard
-                                 </Grid>
-                               </Grid>
-                             </Link>
-                           </li>
-                           <li>
-                             <Link to="#">
-                               <span
-                                 onClick={() => {
-                                   this.props.logOut();
-                                 }}
-                               >
-                                 <Grid
-                                   container
-                                   direction="row"
-                                   alignItems="center"
-                                 >
-                                   <Grid
-                                     item
-                                     style={{
-                                       marginRight: 10,
-                                       color: "#f9004c",
-                                     }}
-                                   >
-                                     <PowerSettingsNewOutlined />
-                                   </Grid>
-                                   <Grid item style={{ color: "#fff" }}>
-                                     Log Out
-                                   </Grid>
-                                 </Grid>
-                               </span>
-                             </Link>
-                           </li>
-                         </ul>
-                      
+                      {this.props.user_type == 3 && (
+                        <ul className="submenu" style={mystyle}>
+                          <li>
+                            <Link to="/instructorpanel">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <Dashboard />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  My Dashboard
+                                </Grid>
+                              </Grid>
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="#">
+                              <span
+                                onClick={() => {
+                                  this.props.logOut();
+                                }}
+                              >
+                                <Grid
+                                  container
+                                  direction="row"
+                                  alignItems="center"
+                                >
+                                  <Grid
+                                    item
+                                    style={{
+                                      marginRight: 10,
+                                      color: "#f9004c",
+                                    }}
+                                  >
+                                    <PowerSettingsNewOutlined />
+                                  </Grid>
+                                  <Grid item style={{ color: "#fff" }}>
+                                    Log Out
+                                  </Grid>
+                                </Grid>
+                              </span>
+                            </Link>
+                          </li>
+                        </ul>
                       )}
                     </li>
                   ) : null}
@@ -512,6 +518,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { isLogged, logOut, getCourse, getSelectedInstructorId })(
-  Header
-);
+export default connect(mapStateToProps, {
+  isLogged,
+  logOut,
+  getCourse,
+  getSelectedInstructorId,
+  getSelectedCourseCategory,
+})(Header);

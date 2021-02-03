@@ -11,13 +11,18 @@ const BLogList = () => {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
+  const categorySelectedList = useSelector(
+    (state) => state.getSelectedId.getSelectedCourseCategoryList
+  );
+  console.log(categorySelectedList)
+  
   const dispatch = useDispatch();
   return (
     <Fragment>
       <div className="row">
         {console.log("course list size in BlogList.js= " + courseList.length)}
 
-        {courseList.map((course) => (
+        {categorySelectedList.map((course) => (          
           <div
             className="col-lg-3 col-md-6 col-sm-6 col-12"
             key={course._id}

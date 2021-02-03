@@ -41,6 +41,7 @@ import {
   getSelectedCourseId,
   getSelectedInstructorId,
   getCurrentVideoIndex,
+  getSelectedCourseCategory,
 } from "../actions/getSelectedIdAction";
 import { getUserCourse } from "../actions/userAction";
 
@@ -75,7 +76,8 @@ const SlideList = [
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
     buttonLink: "/login",
-  },{
+  },
+  {
     textPosition: "text-center",
     bgImage: "bg_image--24",
     category: "",
@@ -84,7 +86,8 @@ const SlideList = [
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
     buttonLink: "/login",
-  },{
+  },
+  {
     textPosition: "text-center",
     bgImage: "bg_image--26",
     category: "",
@@ -128,7 +131,8 @@ export default function Landing() {
     dispatch(getAnalytics());
     dispatch(getCurrentVideoIndex(0));
     dispatch(getCart(`${userId}`));
-    dispatch(getUserCourse(`${userId}`))
+    dispatch(getUserCourse(`${userId}`));
+    // dispatch(getSelectedCourseCategory(""));
   }, [dispatch]);
 
   // view all course handler
@@ -136,7 +140,7 @@ export default function Landing() {
     history.push("/courses", { courses: "all" });
   }
 
-  console.log(SlideList[0].bgImage)
+  console.log(SlideList[0].bgImage);
 
   // var titleColor = {"Red": "#b12222"}
 
@@ -161,9 +165,7 @@ export default function Landing() {
                       <div className={`inner ${value.textPosition}`}>
                         {value.category ? <span>{value.category}</span> : ""}
                         {value.title ? (
-                          <h1 style={{color: "#b12222"}}>
-                            {value.title}
-                          </h1>
+                          <h1 style={{ color: "#b12222" }}>{value.title}</h1>
                         ) : (
                           ""
                         )}
@@ -203,7 +205,7 @@ export default function Landing() {
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="section-title text-left">
                 <h3>Our Courses</h3>
-                <p style={{color: "#b12222"}}>
+                <p style={{ color: "#b12222" }}>
                   Start with any of our {courseList.length} in-depth featured
                   courses
                 </p>
@@ -211,7 +213,11 @@ export default function Landing() {
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
-                <a className="btn-transparent rn-btn-dark" href="/allcourses">
+                <a
+                  className="btn-transparent rn-btn-dark"
+                  href="/allcourses"
+                  onClick={dispatch(getSelectedCourseCategory(""))}
+                >
                   <span className="text">View All Courses</span>
                 </a>
               </div>
@@ -330,7 +336,7 @@ export default function Landing() {
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="section-title text-left">
                 <h3>Our Instructors</h3>
-                <p style={{color: "#b12222"}}>
+                <p style={{ color: "#b12222" }}>
                   Learn from the best of the Best
                 </p>
               </div>
@@ -409,7 +415,7 @@ export default function Landing() {
           <div className="row">
             <div className="col-lg-6">
               <div className="section-title service-style--3 text-left mb--25 mb_sm--0">
-                <h3 className="title" >Our Team</h3>
+                <h3 className="title">Our Team</h3>
                 {/* <p>
                   There are many variations of passages of Lorem Ipsum
                   available, but the majority have suffered alteration.
@@ -430,7 +436,7 @@ export default function Landing() {
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
               <div className="section-title text-left pb--30">
-                <h3 style={{color: "#b12222"}}>Do you have any Question</h3>
+                <h3 style={{ color: "#b12222" }}>Do you have any Question</h3>
               </div>
             </div>
           </div>
@@ -526,7 +532,7 @@ export default function Landing() {
                         our catalog. Even after you are still confused you can
                         always{" "}
                         <a
-                          style={{color: "#b12222"}}
+                          style={{ color: "#b12222" }}
                           href="https://www.dropbox.com/s/ysornwsweh836wi/change-home-page.png?dl=0"
                         >
                           <strong>contact</strong>
@@ -619,7 +625,10 @@ export default function Landing() {
       {/* Start Faq Area */}
 
       {/* Start Contact Form Area */}
-      <div className="portfolio-area pb--120  bg_color--1" style={{ paddingTop: "10ch" }}>
+      <div
+        className="portfolio-area pb--120  bg_color--1"
+        style={{ paddingTop: "10ch" }}
+      >
         <ContactOne />
       </div>
       {/* End Contact Form Area */}

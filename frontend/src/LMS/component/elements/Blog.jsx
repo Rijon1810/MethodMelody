@@ -11,8 +11,9 @@ import Footer from "../Footer.jsx";
 import { connect } from "react-redux";
 import { getCourse } from "../../../actions/courseAction";
 
-class Blog extends Component{
+class Blog extends Component{    
     render(){
+        console.log(this.props.courseCategory)
         return(
             <div className="active-dark">
                 <Header from="landing" />
@@ -54,6 +55,7 @@ class Blog extends Component{
 
 const mapStateToProps = (state) => ({
     courseList: state.getCourse.courseList,
+    courseCategory: state.getSelectedId.getSelectedCourseCategory,
   });
   
 export default connect(mapStateToProps, { getCourse })(Blog);

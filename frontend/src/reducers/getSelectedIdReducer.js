@@ -2,12 +2,14 @@ import {
   GET_SELECTED_COURSE_ID,
   GET_SELECTED_INSTRUCTOR_ID,
   GET_SELECTED_LESSON_ID,
+  GET_SELECTED_COURSE_CATEGORY
 } from "../actions/types";
 
 const initialState = {
   getSelectedCourseId: {},
   getSelectedInstructorId: {},
   getCurrentVideoIndex: 0,
+  getSelectedCourseCategoryList: "",
 };
 
 const getSelectedIdReducer = (state = initialState, action) => {
@@ -27,6 +29,11 @@ const getSelectedIdReducer = (state = initialState, action) => {
         ...state,
         getCurrentVideoIndex: action.payload,
       };
+      case GET_SELECTED_COURSE_CATEGORY:
+        return {
+          ...state,
+          getSelectedCourseCategoryList: action.payload,
+        };
     default:
       return { ...state };
   }
