@@ -129,7 +129,7 @@ class Header extends Component {
         <div className="header-wrapper" id="header-wrapper">
           <div className="header-left">
             <div className="logo">
-              <a href="/">
+              <a href="/" onClick={()=>this.props.getSelectedCourseCategory("")}>
                 <img
                   src="/assets/images/logo/logo-red.png"
                   alt="Digital Agency"
