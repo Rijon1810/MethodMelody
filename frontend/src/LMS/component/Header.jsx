@@ -29,6 +29,7 @@ import {
 const categoryLists = {
   Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
   Drums: { alt: "Drums", src: "assets/images/icons/drums.png" },
+  Bass: { alt: "Bass", src: "assets/images/icons/bass-guitar-electric.png" },
 };
 
 //   {
