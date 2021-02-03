@@ -11,7 +11,10 @@ const SocialShare = [
     Social: <FaFacebookF />,
     link: "https://www.facebook.com/MethodMelodyOfficial",
   },
-  { Social: <FaLinkedinIn />, link: "https://www.linkedin.com/company/method-melody" },
+  {
+    Social: <FaLinkedinIn />,
+    link: "https://www.linkedin.com/company/method-melody",
+  },
   { Social: <FaInstagram />, link: "https://www.instagram.com/method_melody/" },
   { Social: <FaTwitter />, link: "https://twitter.com/method_melody" },
 ];
@@ -34,7 +37,14 @@ class Footer extends Component {
                             <a href="/allcourses">Classes</a>
                           </li>
                           <li>
-                            <a href="#" onClick={() => alert('Metholdmelody Live is coming soon!!')}>Metholdmelody Live</a>
+                            <a
+                              href="#"
+                              onClick={() =>
+                                alert("Metholdmelody Live is coming soon!!")
+                              }
+                            >
+                              Metholdmelody Live
+                            </a>
                           </li>
                           {/* <li>
                             <a href="/contact">Articles</a>
@@ -52,6 +62,9 @@ class Footer extends Component {
                       <div className="footer-link">
                         <h4 className="theme-gradient">About</h4>
                         <ul className="ft-link">
+                          <li>
+                            <a href="/about">About Us</a>
+                          </li>
                           <li>
                             <a href="/about">Privacy</a>
                           </li>
