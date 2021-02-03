@@ -144,7 +144,7 @@ const CartPage = () => {
                       e.preventDefault();
                       axios
                         .post(
-                          "http://63.250.33.174/api/v1/cart/ssl/",
+                          "http://localhost:8080/api/v1/cart/ssl/",
                           {
                             total_amount: "100",
                             currency: "BDT",
