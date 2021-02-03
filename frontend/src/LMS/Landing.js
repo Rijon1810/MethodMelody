@@ -48,51 +48,51 @@ import { getUserCourse } from "../actions/userAction";
 const SlideList = [
   {
     textPosition: "text-center",
-    bgImage: "bg_image--36",
+    bgImage: "bg_image--21",
     category: "",
     title: "Ibrahim Ahmed Kamal",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },
   {
     textPosition: "text-center",
-    bgImage: "bg_image--37",
+    bgImage: "bg_image--22",
     category: "",
     title: "George Linclon D'Costa",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },
   {
     textPosition: "text-center",
-    bgImage: "bg_image--38",
+    bgImage: "bg_image--23",
     category: "",
     title: "Mahan Fahim",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },{
     textPosition: "text-center",
-    bgImage: "bg_image--39",
+    bgImage: "bg_image--24",
     category: "",
     title: "Nafeez Al Amin",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },{
     textPosition: "text-center",
-    bgImage: "bg_image--40",
+    bgImage: "bg_image--26",
     category: "",
     title: "Raef Al Hasan Rafa",
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },
 ];
 
@@ -135,6 +135,8 @@ export default function Landing() {
   function handleViewAllCourse() {
     history.push("/courses", { courses: "all" });
   }
+
+  console.log(SlideList[0].bgImage)
 
   // var titleColor = {"Red": "#b12222"}
 
