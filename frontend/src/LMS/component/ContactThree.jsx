@@ -36,11 +36,10 @@ class ContactThree extends Component {
   render() {
     var categoryList = [
       "Guitar",
-      "Acoustic Guitar",
-      "Drums",
-      "Bass",
+      "Bass Guitar",
+      "Percussion",
+      "Piano & Keyboard",
       "Sound Engineering",
-      "Keyboard/Piano",
     ];
     return (
       <div className="contact-form--1">

@@ -28,8 +28,10 @@ import {
 //constants
 const categoryLists = {
   Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
-  Drums: { alt: "Drums", src: "assets/images/icons/drums.png" },
+  Piano: { alt: "Piano & Keyboard", src: "assets/images/icons/piano.png" },
   Bass: { alt: "Bass", src: "assets/images/icons/bass-guitar-electric.png" },
+  Percussion: { alt: "Percussion", src: "assets/images/icons/drums.png" },
+  Sound: { alt: "Sound Engineering", src: "assets/images/icons/sound-engineering.png" },
 };
 
 //   {
@@ -98,6 +100,13 @@ class Header extends Component {
   //   console.log(result);
   // };
 
+  renderSwitchCategory(param){
+    switch(param){
+      case 'a':
+        break
+    }
+  }
+
   render() {
     //custom styles
     const mystyle = {
@@ -152,7 +161,7 @@ class Header extends Component {
                             <Link
                               to="/allcourses"
                               onClick={() =>
-                                this.props.getSelectedCourseCategory(category)
+                                this.props.getSelectedCourseCategory(category.split(" ")[0])
                               }
                             >
                               <Grid
@@ -164,7 +173,7 @@ class Header extends Component {
                                   {" "}
                                   <Avatar
                                     alt={category}
-                                    src={`${process.env.PUBLIC_URL}/${categoryLists[category].src}`}
+                                    src={`${process.env.PUBLIC_URL}/${categoryLists[category.split(" ")[0]].src}`}
                                   />
                                 </Grid>
 
