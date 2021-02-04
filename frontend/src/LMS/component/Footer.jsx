@@ -66,10 +66,10 @@ class Footer extends Component {
                             <a href="/about">About Us</a>
                           </li>
                           <li>
-                            <a href="/about">Privacy</a>
+                            <a href="/privacy">Privacy</a>
                           </li>
                           <li>
-                            <a href="/contact">Terms</a>
+                            <a href="/terms">Terms</a>
                           </li>
                           <li>
                             <a href="/contact">Support</a>

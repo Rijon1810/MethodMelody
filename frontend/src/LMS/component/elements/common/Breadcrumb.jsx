@@ -13,7 +13,7 @@ class Breadcrumb extends Component{
                                 <div className="breadcrumb-inner pt--100">
                                 
                                     <h2 className="title text-left ">{}</h2>
-                                    {!this.props.from ? (
+                                    {!this.props.from ?  (
                                         <ul className="page-list text-left">
                                             <li className="breadcrumb-item active">All</li>    
                                             <li className="breadcrumb-item"><Link to={`${process.env.PUBLIC_URL}`}>Popular</Link></li>
