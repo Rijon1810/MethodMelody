@@ -23,7 +23,7 @@ router.route("/success").post(async (req, res) => {
     },
   }).then((doc) => {
     console.log(doc.data);
-    res.redirect("http://63.250.33.174/cart");
+    res.redirect("http://63.250.33.174/studentpanel");
   });
 });
 
