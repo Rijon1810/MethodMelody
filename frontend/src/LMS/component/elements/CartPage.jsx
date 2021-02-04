@@ -144,7 +144,7 @@ const CartPage = () => {
                       e.preventDefault();
                       axios
                         .post(
-                          "http://http://63.250.33.174/api/v1/cart/ssl/",
+                          "http://63.250.33.174/api/v1/cart/ssl/",
                           {
                             total_amount: "1000",
                             discount_amount: "0",
