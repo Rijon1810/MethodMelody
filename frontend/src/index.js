@@ -38,6 +38,7 @@ import Service from "./elements/Service";
 import ServiceDetails from "./elements/ServiceDetails";
 import About from "./elements/About";
 import Terms from "./LMS/component/Terms.jsx";
+import Privacy from "./LMS/component/Privacy.jsx";
 import Contact from "./elements/Contact";
 import PortfolioDetails from "./elements/PortfolioDetails";
 import Blog from "./LMS/component/elements/Blog.jsx";
@@ -215,6 +216,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/terms`}
             component={Terms}
+          />
+           <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/privacy`}
+            component={Privacy}
           />
           <Route
             exact
