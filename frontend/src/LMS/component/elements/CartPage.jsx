@@ -144,34 +144,21 @@ const CartPage = () => {
                       e.preventDefault();
                       axios
                         .post(
-                          "http://localhost:8080/api/v1/cart/ssl/",
+                          "http://http://63.250.33.174/api/v1/cart/ssl/",
                           {
-                            total_amount: "100",
-                            currency: "BDT",
-                            success_url: "http://63.250.33.174/cart/",
-                            fail_url: "http://63.250.33.174/cart/",
-                            cancel_url: "http://63.250.33.174/cart/",
-                            cus_name: "Customer Name",
-                            cus_email: "cust@yahoo.com",
-                            cus_add1: "Dhaka",
+                            total_amount: "1000",
+                            discount_amount: "0",
+                            cus_name: "Shanewas",
+                            cus_phone: "+8801521108012",
+                            cus_email: "shanewas@potato.com",
+                            cus_add1: "asda",
                             cus_city: "Dhaka",
-                            cus_state: "Dhaka",
-                            cus_postcode: "1000",
                             cus_country: "Bangladesh",
-                            cus_phone: "01711111111",
-                            cus_fax: "01711111111",
-                            ship_name: "Customer Name",
-                            ship_add1: "Dhaka",
-                            ship_add2: "Dhaka",
-                            ship_city: "Dhaka",
-                            ship_state: "Dhaka",
-                            ship_postcode: "1000",
-                            ship_country: "Bangladesh",
-                            multi_card_name:
-                              "mastercard,visacard,amexcard,bkash",
-                            product_name: "course",
-                            product_category: "category",
-                            product_profile: "general",
+                            cus_postcode: "1206",
+                            num_of_item: "3",
+                            product_name: "Course",
+                            cart: "{}",
+                            currency: "BDT",
                           },
                           {
                             headers: {
@@ -181,15 +168,7 @@ const CartPage = () => {
                           }
                         )
                         .then((res) => {
-                          console.log(res.data.redirectGatewayURL);
-                          console.log(res.data.GatewayPageURL);
-
-                          // if (res.data.status === "SUCCESS") {
-                          //   // axios.get(res.data.GatewayPageURL).then((re) => {
-                          //   //   console.log(re);
-                          //   // });
                           window.location.href = res.data.GatewayPageURL;
-                          // }
                         })
                         .catch((err) => {
                           console.log(err);
@@ -217,33 +196,3 @@ const CartPage = () => {
 };
 
 export default CartPage;
-
-// dispatch(
-//   checkout({
-//     total_amount: "100",
-//     currency: "BDT",
-//     success_url: "http://google.com",
-//     fail_url: "http://yoursite.com/fail.php",
-//     cancel_url: "http://yoursite.com/cancel.php",
-//     cus_name: "Customer Name",
-//     cus_email: "cust@yahoo.com",
-//     cus_add1: "Dhaka",
-//     cus_city: "Dhaka",
-//     cus_state: "Dhaka",
-//     cus_postcode: "1000",
-//     cus_country: "Bangladesh",
-//     cus_phone: "01711111111",
-//     cus_fax: "01711111111",
-//     ship_name: "Customer Name",
-//     ship_add1: "Dhaka",
-//     ship_add2: "Dhaka",
-//     ship_city: "Dhaka",
-//     ship_state: "Dhaka",
-//     ship_postcode: "1000",
-//     ship_country: "Bangladesh",
-//     multi_card_name: "mastercard,visacard,amexcard",
-//     product_name: "course",
-//     product_category: "category",
-//     product_profile: "profile",
-//   })
-// );
