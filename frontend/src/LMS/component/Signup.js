@@ -37,7 +37,7 @@ class Signup extends Component {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          minHeight="120vh"
+         
         >
           <div className="contact-form--1 col-xl-6 col-lg-6 col-md-10 col-sm-10 ptb--50">
             <div className="row d-flex align-items-center">

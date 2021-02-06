@@ -9,6 +9,7 @@ import Header from "../Header.jsx";
 import Footer from "../Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { checkout } from "../../../actions/cartAction";
+import Paper from "@material-ui/core/Paper";
 
 import {
   makeStyles,
@@ -60,6 +61,7 @@ const CartPage = () => {
     for (let i = 0; i < courseList.length; i++) {
       if (cartItem == courseList[i]._id) {
         cartCoursesList.push(courseList[i]);
+        setTotal(total +courseList[i].price)
       }
     }
   });
@@ -74,19 +76,11 @@ const CartPage = () => {
         {" "}
         <Header from="admin" />
         <Breadcrumb from="cart" />
-        <div className=" bg_color--5">
-          <Grid container>
-            <Grid item lg={6}>
+        <div className="ptb--50">
+          <div className="row plr--50">
+            <div className="col">
               {cartCoursesList.map((course) => (
-                <Grid
-                  item
-                  lg={12}
-                  style={{
-                    marginBottom: "20px",
-                    marginLeft: "50px",
-                    marginRight: "50px",
-                  }}
-                >
+                <div>
                   <Card className={classes.root} raised="true">
                     <CardMedia
                       className={classes.cover}
@@ -97,16 +91,16 @@ const CartPage = () => {
                       <div className="container ">
                         <div className="col">
                           <div className="row">
-                            <h4 className="theme-gradient">{course.title}</h4>
+                            <h4 style={{ color: "#b12222" }}>{course.title}</h4>
                           </div>
                           <div className="row text-white">
-                            {course.subtitle}
+                            <p>Subtitle: {course.subtitle}</p>
                           </div>
                           <div className="row text-white">
-                            {course.catagory}
+                            <p>Category: {course.catagory}</p>
                           </div>
 
-                          <div className="blog-btn pt--20">
+                          <div className="blog-btn pt--20 row d-flex">
                             <a className="rn-btn text-white" href="#">
                               Remove from cart
                             </a>
@@ -115,72 +109,82 @@ const CartPage = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </Grid>
-              ))}
-            </Grid>
-            <Grid item container justify="center" lg={6}>
-              <Grid item lg={12}>
-                <h2>Checkout</h2>
-              </Grid>
-              <Grid item lg={12}>
-                <h3>Your Checkout List: </h3>
-              </Grid>
-              {cartCoursesList.map((course, idx) => (
-                <Grid item lg={12}>
-                  <h3>
-                    {idx + 1}. {course.price} BDT
-                  </h3>
-                </Grid>
-              ))}
-              <Grid item lg={12}>
-                <h3>Total: {cartCoursesList[0].price}</h3>
-              </Grid>
-              <Grid item lg={12}>
-                <div className="blog-btn">
-                  <a
-                    className="rn-btn"
-                    href="/"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      axios
-                        .post(
-                          "http://63.250.33.174/api/v1/cart/ssl/",
-                          {
-                            total_amount: "1000",
-                            discount_amount: "0",
-                            cus_name: "Shanewas",
-                            cus_phone: "+8801521108012",
-                            cus_email: "shanewas@potato.com",
-                            cus_add1: "asda",
-                            cus_city: "Dhaka",
-                            cus_country: "Bangladesh",
-                            cus_postcode: "1206",
-                            num_of_item: "3",
-                            product_name: "Course",
-                            cart: "{}",
-                            currency: "BDT",
-                          },
-                          {
-                            headers: {
-                              "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-                              "Content-type": "application/json",
-                            },
-                          }
-                        )
-                        .then((res) => {
-                          window.location.href = res.data.GatewayPageURL;
-                        })
-                        .catch((err) => {
-                          console.log(err);
-                        });
-                    }}
-                  >
-                    Proceed to checkout
-                  </a>
                 </div>
-              </Grid>
-            </Grid>
-          </Grid>
+              ))}
+            </div>
+            <div className="col">
+              <Card className={classes.root} raised="true">
+                <CardContent>
+                  <h2 style={{ color: "#b12222" }}>Checkout</h2>
+
+                  <h4 className="text-white  mt--50">Your Checkout List: </h4>
+
+                  {cartCoursesList.map((course, idx) => (
+                    <div>
+                      <p className="text-white">
+                        {idx + 1}. {course.price} BDT
+                      </p>
+                    </div>
+                  ))}
+                  <div className="row d-flex align-items-center  mt--50">
+                    <div className="col">
+                      <h4 className="text-white">Total: </h4>
+                    </div>
+                    <div className="col">
+                      <h4 style={{ color: "#b12222" }}>
+                        {total}
+                      </h4>
+                    </div>
+                    <div className="col">
+                      <h4 className="text-white">(BDT)</h4>
+                    </div>
+                  </div>
+                  <div className="blog-btn mt--20">
+                    <a
+                      className="rn-btn text-white"
+                      href="/"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        axios
+                          .post(
+                            "http://63.250.33.174/api/v1/cart/ssl/",
+                            {
+                              total_amount: "1000",
+                              discount_amount: "0",
+                              cus_name: "Shanewas",
+                              cus_phone: "+8801521108012",
+                              cus_email: "shanewas@potato.com",
+                              cus_add1: "asda",
+                              cus_city: "Dhaka",
+                              cus_country: "Bangladesh",
+                              cus_postcode: "1206",
+                              num_of_item: "3",
+                              product_name: "Course",
+                              cart: "{}",
+                              currency: "BDT",
+                            },
+                            {
+                              headers: {
+                                "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                                "Content-type": "application/json",
+                              },
+                            }
+                          )
+                          .then((res) => {
+                            window.location.href = res.data.GatewayPageURL;
+                          })
+                          .catch((err) => {
+                            console.log(err);
+                          });
+                      }}
+                    >
+                      Proceed to checkout
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
         {/* Start Back To Top */}
         <div className="backto-top">
