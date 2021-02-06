@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { checkout } from "../../../actions/cartAction";
 import Paper from "@material-ui/core/Paper";
 
+
 import {
   makeStyles,
   Card,
@@ -48,6 +49,7 @@ const CartPage = () => {
   let history = useHistory();
   const classes = useStyles();
   const cartItems = useSelector((state) => state.cartInfo.cart);
+  const userID = useSelector((state) => state.isLogged.payload.id);
   const [total, setTotal] = useState(0);
   console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
@@ -159,7 +161,7 @@ const CartPage = () => {
                               cus_postcode: "1206",
                               num_of_item: "3",
                               product_name: "Course",
-                              cart: "{}",
+                              cart: { id: userID, course: [] },
                               currency: "BDT",
                             },
                             {
@@ -171,6 +173,7 @@ const CartPage = () => {
                           )
                           .then((res) => {
                             window.location.href = res.data.GatewayPageURL;
+                            // goes into redux
                           })
                           .catch((err) => {
                             console.log(err);

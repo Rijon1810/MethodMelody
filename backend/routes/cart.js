@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Mongoose = require("mongoose");
 const User = require("../models/User.model");
+// const Purchase = require("../models/Purchase.model");
 const SSLCommerz = require("sslcommerz-nodejs");
 const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
@@ -13,18 +14,83 @@ let settings = {
 
 let sslcommerz = new SSLCommerz(settings);
 
-router.route("/success").post(async (req, res) => {
-  console.log(req.body);
+router.route("/success/:userId").post(async (req, res) => {
+  const user = Mongoose.Types.ObjectId(req.params.userId);
   await axios({
     method: "get",
     url: `https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?val_id=${req.body.val_id}&store_id=metho600e5b92ab76f&store_passwd=metho600e5b92ab76f@ssl&format=json`,
     headers: {
       "content-type": "application/x-www-form-urlencoded;charset=utf-8",
     },
-  }).then((doc) => {
-    console.log(doc.data);
-    res.redirect("http://63.250.33.174/studentpanel");
-  });
+  })
+    .then(async (doc) => {
+      await User.findOneAndUpdate(
+        { _id: user },
+        {
+          $set: {
+            currentCartStatus: true,
+          },
+          // $push: { purchaseHistory: doc.data },
+        },
+        { useFindAndModify: false }
+      )
+        .then((cart) => {
+          console.log(cart.cart);
+
+          cart.cart.forEach(async (item) => {
+            console.log(user);
+            console.log(typeof item.toString());
+            await axios
+              .post(
+                "http://63.250.33.174/api/v1/buy",
+                {
+                  user: user.toString(),
+                  course: item.toString(),
+                },
+                {
+                  headers: {
+                    "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                    "Content-type": "application/json",
+                  },
+                }
+              )
+              .then((buy) => {
+                console.log(buy.data);
+              })
+              .catch((a) => {
+                console.log(a);
+              })
+              .then(async () => {
+                await axios
+                  .post(
+                    "http://63.250.33.174/api/v1/cart/remove_all",
+                    {
+                      user: user.toString(),
+                    },
+                    {
+                      headers: {
+                        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                        "Content-type": "application/json",
+                      },
+                    }
+                  )
+                  .then((cartRemove) => {
+                    console.log(cartRemove.data.message);
+                    res.redirect("http://63.250.33.174/studentpanel");
+                  })
+                  .catch((a) => {
+                    console.log(a);
+                  });
+              });
+          });
+        })
+        .catch((err) => {
+          throw err;
+        });
+    })
+    .catch((error) => {
+      res.status(400).json("Error: " + error);
+    });
 });
 
 router.route("/ssl").post((req, res) => {
@@ -42,6 +108,8 @@ router.route("/ssl").post((req, res) => {
   const product_name = req.body.product_name;
   const cart = req.body.cart;
   const currency = req.body.currency;
+  const user = req.body.cart.id;
+  const success_url = `http://63.250.33.174/api/v1/cart/success/${user}`;
 
   let post_body = {};
   post_body["total_amount"] = total_amount;
@@ -50,7 +118,7 @@ router.route("/ssl").post((req, res) => {
   post_body["cart"] = cart;
   post_body["discount_amount"] = discount_amount;
   post_body["num_of_item"] = num_of_item;
-  post_body["success_url"] = "http://63.250.33.174/api/v1/cart/success/";
+  post_body["success_url"] = success_url;
   post_body["fail_url"] = "http://63.250.33.174/api/v1/cart/fail/";
   post_body["cancel_url"] = "http://63.250.33.174/api/v1/cart/cancel/";
   post_body["emi_option"] = 0;
@@ -82,7 +150,6 @@ router.route("/ssl").post((req, res) => {
 //CART ADD
 router.route("/:userId").get((req, res) => {
   const user = Mongoose.Types.ObjectId(req.params.userId);
-  console.log(user);
   User.find({ _id: user })
     .then((doc) => {
       res.status(200).json(doc[0].cart);
@@ -94,7 +161,10 @@ router.route("/:userId").get((req, res) => {
 router.route("/").post((req, res) => {
   const user = Mongoose.Types.ObjectId(req.body.user);
   const course = Mongoose.Types.ObjectId(req.body.course);
-  User.updateOne({ _id: user }, { $addToSet: { cart: course } })
+  User.updateOne(
+    { _id: user },
+    { $addToSet: { cart: course }, $set: { currentCartStatus: false } }
+  )
     .then((doc) => {
       res.status(200).json({
         message: `Item added to  cart!`,
@@ -107,7 +177,26 @@ router.route("/").post((req, res) => {
 router.route("/delete").post((req, res) => {
   const user = Mongoose.Types.ObjectId(req.body.user);
   const course = Mongoose.Types.ObjectId(req.body.course);
-  User.updateOne({ _id: user }, { $pullAll: { cart: [course] } })
+  User.updateOne(
+    { _id: user },
+    { $pullAll: { cart: [course], $set: { currentCartStatus: false } } }
+  )
+    .then((doc) => {
+      res.status(200).json({
+        message: `Item removed from cart!`,
+      });
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+//remove all
+router.route("/remove_all").post((req, res) => {
+  const user = Mongoose.Types.ObjectId(req.body.user);
+  User.findOneAndUpdate(
+    { _id: user },
+    { $set: { cart: [], currentCartStatus: false } },
+    { useFindAndModify: false }
+  )
     .then((doc) => {
       res.status(200).json({
         message: `Item removed from cart!`,
