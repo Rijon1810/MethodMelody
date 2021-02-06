@@ -22,6 +22,8 @@ var UserSchema = new Schema(
     cart: [{ type: Schema.Types.ObjectId }],
     previousCourse: [{ type: Schema.Types.ObjectId }],
     v_token: { type: String },
+    purchaseHistory: [{ type: [Schema.Types.Mixed] }],
+    currentCartStatus: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
