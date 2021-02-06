@@ -61,7 +61,6 @@ const CartPage = () => {
     for (let i = 0; i < courseList.length; i++) {
       if (cartItem == courseList[i]._id) {
         cartCoursesList.push(courseList[i]);
-        setTotal(total +courseList[i].price)
       }
     }
   });
@@ -132,7 +131,7 @@ const CartPage = () => {
                     </div>
                     <div className="col">
                       <h4 style={{ color: "#b12222" }}>
-                        {total}
+                        {cartCoursesList[0].price}
                       </h4>
                     </div>
                     <div className="col">

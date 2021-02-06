@@ -35,20 +35,15 @@ class Login extends Component {
         <PageHelmet pageTitle="Login" />
         <Header from="login" />
         <Breadcrumb from="login" />
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-         
-        >
+        <Box display="flex" justifyContent="center" alignItems="center">
           <div className="contact-form--1 col-xl-6 col-lg-6 col-md-8 col-sm-10 ptb--50">
             <div className="row d-flex align-items-center">
-            <div className="col-12 pb--20">
-              <h3 className=" title">Login to your account.</h3>
+              <div className="col-12 pb--20">
+                <h3 className=" title">Login to your account.</h3>
 
-              <p>
-                Please enter your registered email and password for login.
-              </p>
+                <p>
+                  Please enter your registered email and password for login.
+                </p>
               </div>
             </div>
             <form>
@@ -107,7 +102,7 @@ class Login extends Component {
             </form>
           </div>
         </Box>
-        
+
         <Footer />
       </div>
     );
