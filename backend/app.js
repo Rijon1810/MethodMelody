@@ -7,7 +7,7 @@ var bodyParser = require("body-parser");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 5000; 
+const port = process.env.PORT || 5000;
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
@@ -62,6 +62,8 @@ const buyRouter = require("./routes/buy");
 const featuredRouter = require("./routes/featured");
 const soldRouter = require("./routes/sold");
 const cartRouter = require("./routes/cart");
+const wishListRouter = require("./routes/wishlist");
+const referralRouter = require("./routes/referral");
 
 const { apiAuth, my_cors } = require("./middleware/authentication");
 
@@ -110,6 +112,18 @@ app.use(
   urlencodedParser,
   my_cors,
   cartRouter
+);
+app.use(
+  `/api/${process.env.API_VERSION}/wishlist`,
+  apiAuth,
+  my_cors,
+  wishListRouter
+);
+app.use(
+  `/api/${process.env.API_VERSION}/referral`,
+  apiAuth,
+  my_cors,
+  referralRouter
 );
 
 app.get("/storage(/*)?", (req, res) => {

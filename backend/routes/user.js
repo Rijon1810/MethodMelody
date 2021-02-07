@@ -122,6 +122,7 @@ router.route(`/login`).post((req, res) => {
                   photo: docs[0].photo,
                   age: docs[0].age,
                   phone: docs[0].phone,
+                  dob: docs[0].dob,
                   address: docs[0].address,
                   email: docs[0].email,
                   instructor: docs[0].instructor,
