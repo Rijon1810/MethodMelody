@@ -24,6 +24,8 @@ var UserSchema = new Schema(
     referralCode: { type: String },
     studentId: { type: String },
     v_token: { type: String },
+    purchaseHistory: [{ type: [Schema.Types.Mixed] }],
+    currentCartStatus: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

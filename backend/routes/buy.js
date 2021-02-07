@@ -22,7 +22,7 @@ router.route("/").post((req, res) => {
 
   User.findByIdAndUpdate(
     { _id: user },
-    { $push: { course: [course, currentTime] } },
+    { $addToSet: { course: [course, currentTime] } },
     { useFindAndModify: false }
   )
     .then((doc) => {
