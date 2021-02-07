@@ -8,6 +8,8 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import axios from "../api/Config";
+
 class UpdateLessonForm extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,8 @@ class UpdateLessonForm extends Component {
       rnCourse: "",
       showCourse: "",
       showVideos: [],
+      rnStatus: "",
+      rnStatusList: ["open", "login", "paid"],
     };
   }
 
@@ -22,7 +26,15 @@ class UpdateLessonForm extends Component {
 
   courseToShow = (id) => {
     console.log(`rnCourse value = ${id}`);
-    this.setState({ showCourse: id });
+    // this.setState({ showCourse: id });
+    {
+      this.props.courseList.map((course) => {
+        if (course._id == id) {
+          this.setState({ showVideos: course.videos });
+          console.log(course.videos);
+        }
+      });
+    }
   };
 
   render() {
@@ -57,6 +69,9 @@ class UpdateLessonForm extends Component {
                               this.props.getCourseById(e.target.value);
                             }}
                           >
+                            <option key={""} value={0}>
+                              Select Course
+                            </option>
                             {this.props.courseList.map((course, index) => (
                               <option key={index} value={course._id}>
                                 {course.title}
@@ -68,7 +83,7 @@ class UpdateLessonForm extends Component {
                     </div>
                   </div>
 
-                  <button
+                  {/* <button
                     className="rn-button-style--2 btn-solid"
                     type="submit"
                     value="submit"
@@ -119,7 +134,7 @@ class UpdateLessonForm extends Component {
                     }}
                   >
                     Submit
-                  </button>
+                  </button> */}
 
                   <ToastContainer
                     position="bottom-center"
@@ -134,17 +149,125 @@ class UpdateLessonForm extends Component {
                   />
                 </form>
               </div>
-              <div>
-                {this.props.courseList.map((course) => {
+              <div className="mt--50">
+                {/* {this.props.courseList.map((course) => {
                     
                   if (course._id == this.state.showCourse) {
-                    course.videos.forEach((video) => {
-                      console.log(video._id);
-                    });
+                    // course.videos.forEach((video) => {
+                    //   console.log(video.path);
+                    // });
 
                     course.videos.map((video) => <h2>{video.path}</h2>);
                   }
-                })}
+                })} */}
+                {this.state.showVideos.map((video) => (
+                  <div className="row pt--30">
+                    <div className="col">
+                      <p>{video.filename}</p>
+                    </div>
+                    <div className="col d-flex justify-content-end">
+                      <p >{video.status}</p>
+                    </div>
+                    <div className="col blog-btn d-flex justify-content-end">
+                    <a
+                        className="rn-btn"
+                        href="#"
+                        onClick={() => {
+                          console.log(video._id);
+                          console.log(this.state.rnStatus); 
+                          axios
+                            .post(
+                              "course/status/",
+                              {
+                                id: video._id,
+                                status: "open",
+                              },
+                              {
+                                headers: {
+                                  "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                                  "Content-type": "application/json",
+                                },
+                              }
+                            )
+                            .then((res) => {
+                              alert(`lesson status updated successfully`);
+                            })
+                            .catch((err) => {
+                              console.log(err);
+                            });                         
+                        }}
+                      >
+                        Open
+                      </a>
+                    </div>
+                    <div className="col blog-btn d-flex justify-content-end">
+                    <a
+                        className="rn-btn"
+                        href="#"
+                        onClick={() => {
+                          console.log(video._id);
+                          console.log(this.state.rnStatus);  
+                          axios
+                            .post(
+                              "course/status/",
+                              {
+                                id: video._id,
+                                status: "login",
+                              },
+                              {
+                                headers: {
+                                  "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                                  "Content-type": "application/json",
+                                },
+                              }
+                            )
+                            .then((res) => {
+                              alert(`lesson status updated successfully`);
+                            })
+                            .catch((err) => {
+                              console.log(err);
+                            });                        
+                        }}
+                      >
+                        Login
+                      </a>
+                    </div>
+                    <div className="col blog-btn d-flex justify-content-end">
+                      <a
+                        className="rn-btn"
+                        href="#"
+                        onClick={() => {
+                          console.log(video._id);
+                          console.log(this.state.rnStatus);  
+                          axios
+                            .post(
+                              "course/status/",
+                              {
+                                id: video._id,
+                                status: "paid",
+                              },
+                              {
+                                headers: {
+                                  "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                                  "Content-type": "application/json",
+                                },
+                              }
+                            )
+                            .then((res) => {
+                              alert(`lesson status updated successfully`);
+                            })
+                            .catch((err) => {
+                              console.log(err);
+                            });                         
+                        }}
+                      >
+                        Paid
+                      </a>
+                    
+                    </div>
+                  </div>
+                ))}
+                {/* <h1>Hello!!!!!!!s</h1> */}
               </div>
             </div>
           </div>
