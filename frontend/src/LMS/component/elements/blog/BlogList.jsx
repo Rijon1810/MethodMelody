@@ -11,10 +11,20 @@ const BLogList = () => {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
-  const categorySelectedList = useSelector(
-    (state) => state.getSelectedId.getSelectedCourseCategoryList
+  const currentCourseList = useSelector(
+    (state) => state.getAllUsers.getUserCourse.course
   );
-  console.log(categorySelectedList)
+  // console.log(categorySelectedList)
+
+  var currentCourses =  [];
+  currentCourseList.map((course_id)=>{
+    console.log(`current course id = ${course_id}}`)
+    for(var i=0; i<courseList.length; i++){
+      if(course_id[0]==courseList[i]._id){
+        currentCourses.push(courseList[i]);
+      }
+    }
+  })
   
   const dispatch = useDispatch();
   return (
@@ -22,7 +32,7 @@ const BLogList = () => {
       <div className="row">
         {console.log("course list size in BlogList.js= " + courseList.length)}
 
-        {categorySelectedList.map((course) => (          
+        {currentCourses.map((course) => (          
           <div
             className="col-lg-3 col-md-6 col-sm-6 col-12"
             key={course._id}
