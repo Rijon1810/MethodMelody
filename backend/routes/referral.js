@@ -16,14 +16,44 @@ router.route("/:userId").get((req, res) => {
 router.route("/").post((req, res) => {
   const user = Mongoose.Types.ObjectId(req.body.user);
   const referral = req.body.referral;
-  const price = req.body.price;
+  const price = parseFloat(req.body.price);
 
   User.find({ _id: user })
     .then((doc) => {
       if (doc[0].course.length === 0) {
         User.find({ referralCode: referral })
           .then((doc) => {
-            res.status(200).json(parseFloat(price - (10 * price) / 100));
+            refBonus = doc[0].referralBonus;
+            if (doc[0] == null) {
+              res.status(200).json("Wrong Referral Code");
+            } else {
+              if (doc[0]._id == user.toHexString()) {
+                res.status(200).json("cant use your own referral !! Really !!");
+              } else {
+                refBonus = parseFloat(
+                  parseFloat(refBonus) + (20 * price) / 100
+                );
+                User.findOneAndUpdate(
+                  { _id: doc[0]._id },
+                  {
+                    $set: {
+                      referralBonus: refBonus,
+                    },
+                  },
+                  {
+                    useFindAndModify: false,
+                  }
+                )
+                  .then((doc) => {
+                    console.log(doc);
+                    res
+                      .status(200)
+                      .json(parseFloat(price - (10 * price) / 100));
+                  })
+                  .catch((err) => res.status(400).json("Error: " + err));
+                // res.status(200).json(parseFloat(price - (10 * price) / 100));
+              }
+            }
           })
           .catch((err) => res.status(400).json("Error: " + err));
       } else {

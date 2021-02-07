@@ -29,7 +29,7 @@ router.route("/").post((req, res) => {
 router.route("/delete").post((req, res) => {
   const user = Mongoose.Types.ObjectId(req.body.user);
   const course = Mongoose.Types.ObjectId(req.body.course);
-  User.updateOne({ _id: user }, { $pullAll: { cart: [course] } })
+  User.updateOne({ _id: user }, { $pullAll: { wishList: [course] } })
     .then((doc) => {
       res.status(200).json({
         message: `Item removed from wishList!`,
@@ -43,7 +43,7 @@ router.route("/remove_all").post((req, res) => {
   const user = Mongoose.Types.ObjectId(req.body.user);
   User.findOneAndUpdate(
     { _id: user },
-    { $set: { cart: [] } },
+    { $set: { wishList: [] } },
     { useFindAndModify: false }
   )
     .then((doc) => {
