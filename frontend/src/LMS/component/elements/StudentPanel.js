@@ -12,7 +12,7 @@ import Tab from "./tab/TabTwo.jsx";
 class StudentPanel extends Component {
   render() {
     return (
-      <div className="active-dark">
+      <div>
         <Header from="landing" />
         {/* Start Breadcrump Area */}
         <Breadcrumb from="Classroom" />

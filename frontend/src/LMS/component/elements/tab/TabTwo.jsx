@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
 import { isLogged } from "../../../../actions/isLoggedAction";
 
-import { MailOutline, Event } from "@material-ui/icons";
+import { MailOutline, Event, LocalOffer, AssignmentInd } from "@material-ui/icons";
 //importing material components
 import { Grid } from "@material-ui/core";
 
@@ -36,7 +36,7 @@ class TabsTwo extends Component {
               <div className="col-lg-12">
                 <Tabs>
                   <TabList
-                    className={`${tabStyle} bg_color--6`}
+                    className={`${tabStyle} bg_color--1`}
                     style={{ padding: 50 }}
                   >
                     <Tab>{tab1}</Tab>
@@ -172,10 +172,28 @@ class TabsTwo extends Component {
                                   item
                                   style={{ marginRight: 10, color: "#f9004c" }}
                                 >
+                                  <AssignmentInd />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Student ID: {this.props.profile.studentId}
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <div className="col-lg-12 pt--20">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                                justify="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
                                   <MailOutline />
                                 </Grid>
                                 <Grid item style={{ color: "#fff" }}>
-                                  {this.props.profile.email}
+                                  Email: {this.props.profile.email}
                                 </Grid>
                               </Grid>
                             </div>
@@ -193,7 +211,25 @@ class TabsTwo extends Component {
                                   <Event />
                                 </Grid>
                                 <Grid item style={{ color: "#fff" }}>
-                                  {this.props.profile.dob}
+                                  Date of Birth: {this.props.profile.dob}
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <div className="col-lg-12 ptb--20">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                                justify="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <LocalOffer />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Referral Code: {this.props.profile.referralCode}
                                 </Grid>
                               </Grid>
                             </div>
@@ -237,7 +273,7 @@ class TabsTwo extends Component {
                                               placeholder={
                                                 this.props.profile.name
                                               }
-                                              className="text-white"
+                                              
                                             />
                                           </label>
                                         </div>
@@ -263,7 +299,7 @@ class TabsTwo extends Component {
                                               placeholder={
                                                 this.props.profile.phone
                                               }
-                                              className="text-white"
+                                              
                                             />
                                           </label>
                                         </div>
@@ -289,7 +325,7 @@ class TabsTwo extends Component {
                                               placeholder={
                                                 this.props.profile.address
                                               }
-                                              className="text-white"
+                                              
                                             />
                                           </label>
                                         </div>
