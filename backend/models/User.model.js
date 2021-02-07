@@ -21,6 +21,8 @@ var UserSchema = new Schema(
     instructor: { type: Schema.Types.ObjectId },
     cart: [{ type: Schema.Types.ObjectId }],
     previousCourse: [{ type: Schema.Types.ObjectId }],
+    referralCode: { type: String },
+    studentId: { type: String },
     v_token: { type: String },
   },
   { timestamps: true }

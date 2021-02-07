@@ -9,6 +9,7 @@ const { authentication, apiAuth } = require("../middleware/authentication");
 const { registerValidation, loginValidation } = require("../validation");
 const Analytics = require("../models/Analytics.model");
 const Course = require("../models/Course.model");
+let referralCodeGenerator = require("referral-code-generator");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -125,6 +126,8 @@ router.route(`/login`).post((req, res) => {
                   email: docs[0].email,
                   instructor: docs[0].instructor,
                   cart: docs[0].cart,
+                  referralCode: docs[0].referralCode,
+                  studentId: docs[0].studentId,
                   createdAt: docs[0].createdAt,
                   updatedAt: docs[0].updatedAt,
                 });
@@ -151,13 +154,23 @@ router.route(`/login`).post((req, res) => {
 });
 
 router
-  .use(apiAuth)
+  // .use(apiAuth)
   .use(user.single("photo"))
   .route("/signup")
   .post((req, res) => {
     // const { error } = registerValidation(req.body);
     // if (error) return res.status(400).send(error.details[0].message);
-
+    var datetime = new Date();
+    const referralCode = `${referralCodeGenerator.alphaNumeric(
+      "uppercase",
+      2,
+      2
+    )}${datetime.toString().split(" ")[2]}`;
+    const studentId = `${referralCodeGenerator.alphaNumeric(
+      "uppercase",
+      1,
+      4
+    )}${datetime.toString().split(" ")[2]}${datetime.toString().split(" ")[3]}`;
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
@@ -172,7 +185,6 @@ router
     const course = req.body.course;
     const instructor = Mongoose.Types.ObjectId(req.body.instructor);
     const previousCourse = req.body.previousCourse;
-
     User.find({ email }).then((user) => {
       if (user.length >= 1) {
         return res.status(409).json({ message: "Mail exists" });
@@ -193,6 +205,8 @@ router
               course,
               instructor,
               previousCourse,
+              referralCode,
+              studentId,
             });
             newUser
               .save()
