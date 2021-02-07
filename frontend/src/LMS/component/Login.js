@@ -31,82 +31,79 @@ class Login extends Component {
       return <Redirect to={"/"} />;
     }
     return (
-      <div className="active-dark">
+      <div>
         <PageHelmet pageTitle="Login" />
         <Header from="login" />
-       
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-        >
-          <div className="contact-form--1 col-xl-6 col-lg-6 col-md-8 col-sm-10">
-            <div className="  order-2 order-lg-1">
-              <div className="section-title text-left mb--50">
+        <Breadcrumb from="login" />
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <div className="contact-form--1 col-xl-6 col-lg-6 col-md-8 col-sm-10 ptb--50">
+            <div className="row d-flex align-items-center">
+              <div className="col-12 pb--20">
                 <h3 className=" title">Login to your account.</h3>
 
-                <p className="text-white">
+                <p>
                   Please enter your registered email and password for login.
                 </p>
               </div>
-              <form>
-                <label htmlFor="item02">
-                  <input
-                    type="text"
-                    name="email"
-                    id="item02"
-                    value={this.state.rnEmail}
-                    onChange={(e) => {
-                      this.setState({ rnEmail: e.target.value });
-                    }}
-                    placeholder="Your email"
-                  />
-                </label>
-
-                <label htmlFor="item03">
-                  <input
-                    type="password"
-                    name="password"
-                    id="item03"
-                    value={this.state.rnSubject}
-                    onChange={(e) => {
-                      this.setState({ rnPassword: e.target.value });
-                    }}
-                    placeholder="Your password"
-                  />
-                </label>
-
-                <button
-                  className="rn-button-style--2 btn-solid"
-                  type="submit"
-                  value="submit"
-                  name="submit"
-                  id="mc-embedded-subscribe"
-                  onClick={async (event) => {
-                    event.preventDefault();
-                    await this.props.isLogged({
-                      email: this.state.rnEmail,
-                      password: this.state.rnPassword,
-                    });
-                    this.props.loginStatus
-                      ? this.props.history.push("/")
-                      : this.props.history.push("/login");
-                  }}
-                >
-                  Submit
-                </button>
-
-                <div className=" text-right blog-btn mt_sm--10 mt_md--10">
-                  <a href="/signup" className="btn-transparent rn-btn-dark">
-                    <br />
-                    <span>Don't have an account? Signup</span>
-                  </a>
-                </div>
-              </form>
             </div>
+            <form>
+              <label htmlFor="item02">
+                <input
+                  type="text"
+                  name="email"
+                  id="item02"
+                  value={this.state.rnEmail}
+                  onChange={(e) => {
+                    this.setState({ rnEmail: e.target.value });
+                  }}
+                  placeholder="Your email"
+                />
+              </label>
+
+              <label htmlFor="item03">
+                <input
+                  type="password"
+                  name="password"
+                  id="item03"
+                  value={this.state.rnSubject}
+                  onChange={(e) => {
+                    this.setState({ rnPassword: e.target.value });
+                  }}
+                  placeholder="Your password"
+                />
+              </label>
+
+              <button
+                className="rn-button-style--2 btn-solid"
+                type="submit"
+                value="submit"
+                name="submit"
+                id="mc-embedded-subscribe"
+                onClick={async (event) => {
+                  event.preventDefault();
+                  await this.props.isLogged({
+                    email: this.state.rnEmail,
+                    password: this.state.rnPassword,
+                  });
+                  this.props.loginStatus
+                    ? this.props.history.push("/")
+                    : this.props.history.push("/login");
+                }}
+              >
+                Submit
+              </button>
+
+              <div className=" text-right blog-btn mt_sm--10 mt_md--10">
+                <a href="/signup" className="btn-transparent rn-btn-dark">
+                  <br />
+                  <span>Don't have an account? Signup</span>
+                </a>
+              </div>
+            </form>
           </div>
         </Box>
+
+        <Footer />
       </div>
     );
   }

@@ -266,6 +266,7 @@ class Terms extends Component {
                     </div>
                   </div>
                 </div>
+                
                 <div className="col-lg-12 mt--150">
                   <div className="about-inner inner">
                     <div className="section-title">

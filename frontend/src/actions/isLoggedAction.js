@@ -25,6 +25,6 @@ export const isLogged = (data) => (dispatch) => {
         login: false,
       });
       auth.logout();
-      // alert("Login Failed!! Please try with correct Credentials.");
+      alert("Login Failed!! Please try with correct Credentials.");
     });
 };
