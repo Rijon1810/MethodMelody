@@ -3,10 +3,11 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Pagination from "../common/Pagination.jsx";
 import BlogList from "../blog/BlogList.jsx";
 import WishList from "../blog/WishList.jsx";
+import PurchaseHistoryList from "../blog/PurchaseHistoryList.jsx";
 import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
 import { isLogged } from "../../../../actions/isLoggedAction";
-import {getUserCourse} from "../../../../actions/userAction";
+import { getUserCourse } from "../../../../actions/userAction";
 
 import {
   MailOutline,
@@ -71,6 +72,7 @@ class TabsTwo extends Component {
                     </div>
                   </TabPanel>
                   {/* End Classroom Area */}
+
                   {/* Start Wish List */}
                   <TabPanel>
                     <div className="single-tab-content">
@@ -88,6 +90,7 @@ class TabsTwo extends Component {
                   </TabPanel>
                   {/* End Wish List */}
 
+                  {/* Start Message */}
                   <TabPanel>
                     <div className="single-tab-content">
                       <ul>
@@ -112,34 +115,25 @@ class TabsTwo extends Component {
                       </ul>
                     </div>
                   </TabPanel>
+                  {/* End Message */}
 
+                  {/* Start Purchase History */}
                   <TabPanel>
                     <div className="single-tab-content">
-                      <ul>
-                        <li>
-                          <a href="/service">
-                            BSc In CSE
-                            <span> - ABC University, Los Angeles, CA</span>
-                          </a>{" "}
-                          2010
-                        </li>
-                        <li>
-                          <a href="/service">
-                            Diploma in Computer Science
-                            <span> - Gamma Technical Institute</span>
-                          </a>{" "}
-                          2009
-                        </li>
-                        <li>
-                          <a href="/service">
-                            Graphic Designer
-                            <span> - ABC Institute, Los Angeles, CA</span>
-                          </a>{" "}
-                          2007
-                        </li>
-                      </ul>
+                      <div className="container">
+                        <PurchaseHistoryList />
+                        <div className="row">
+                          <div className="col-lg-12">
+                            {/* Start Pagination Area */}
+                            <Pagination />
+                            {/* End Pagination Area */}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </TabPanel>
+                  {/* End Purchase History */}
+
                   {/* Start Profile Area */}
                   <TabPanel>
                     <div className="single-tab-content">
