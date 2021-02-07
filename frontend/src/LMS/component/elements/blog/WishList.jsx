@@ -1,14 +1,21 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useState, useEffect } from "react";
 import BlogContent from "./BlogContent.jsx";
 
 import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
 import { useSelector, useDispatch } from "react-redux";
-import {getSelectedCourseId,getSelectedInstructorId} from "../../../../actions/getSelectedIdAction";
-
+import {
+  getSelectedCourseId,
+  getSelectedInstructorId,
+} from "../../../../actions/getSelectedIdAction";
+import { getUserCourse } from "../../../../actions/userAction";
+import { removeWishList } from "../../../../actions/wishListAction";
 const WishList = () => {
   console.log("Inside wishlist");
-  const courseList = useSelector((state) => state.getAllUsers.getUserCourse.wishList);
+  const [render, setRender] = useState(false);
+  const courseList = useSelector(
+    (state) => state.getAllUsers.getUserCourse.wishList
+  );
   const courseListAll = useSelector((state) => state.getCourse.courseList);
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
@@ -16,7 +23,8 @@ const WishList = () => {
   const categorySelectedList = useSelector(
     (state) => state.getSelectedId.getSelectedCourseCategoryList
   );
-  console.log(categorySelectedList)
+  const userId = useSelector((state) => state.isLogged.payload.id);
+  console.log(categorySelectedList);
 
   // const selectedCourse = (()=>{
   //   courseListAll.map((course)=>{
@@ -34,14 +42,19 @@ const WishList = () => {
       }
     }
   });
-  
+
+  useEffect(() => {
+    dispatch(getUserCourse(`${userId}`));
+    // dispatch(getSelectedCourseCategory(""));
+  }, [render]);
+
   const dispatch = useDispatch();
   return (
     <Fragment>
       <div className="row">
         {console.log("course list size in BlogList.js= " + courseList.length)}
 
-        {wishListCourses.map((course) => (          
+        {wishListCourses.map((course) => (
           <div
             className="col-lg-3 col-md-6 col-sm-6 col-12"
             key={course._id}
@@ -72,6 +85,20 @@ const WishList = () => {
                 <div className="blog-btn">
                   <a className="rn-btn text-white" href="/courseview">
                     View Course
+                  </a>
+                </div>
+                <div className="blog-btn">
+                  <a
+                    className="rn-btn text-white"
+                    href="#"
+                    onClick={() => {
+                      dispatch(
+                        removeWishList({ user: userId, course: course._id })
+                      );
+                      // setRender(true);
+                    }}
+                  >
+                    Remove Course
                   </a>
                 </div>
               </div>

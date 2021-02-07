@@ -6,6 +6,7 @@ import WishList from "../blog/WishList.jsx";
 import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
 import { isLogged } from "../../../../actions/isLoggedAction";
+import {getUserCourse} from "../../../../actions/userAction";
 
 import {
   MailOutline,
@@ -24,6 +25,9 @@ class TabsTwo extends Component {
       rnPhone: "",
       rnAddress: "",
     };
+  }
+  componentWillMount() {
+    this.props.getUserCourse(this.props.userId);
   }
   render() {
     let tab1 = "Classroom",
@@ -379,7 +383,8 @@ class TabsTwo extends Component {
 const mapStateToProps = (state) => ({
   courseList: state.getCourse.courseList,
   profile: state.isLogged.payload,
+  userId: state.isLogged.payload.id,
   refBonus: state.getAllUsers.getUserCourse.referralBonus,
 });
 
-export default connect(mapStateToProps, { getCourse })(TabsTwo);
+export default connect(mapStateToProps, { getCourse, getUserCourse })(TabsTwo);

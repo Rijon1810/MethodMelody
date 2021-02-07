@@ -38,6 +38,7 @@ import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
 import { postCart } from "../../actions/cartAction";
 import { isLogged } from "../../actions/isLoggedAction";
 import { getUserCourse } from "../../actions/userAction";
+import {postWishListCourse} from "../../actions/wishListAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -175,6 +176,13 @@ export default function CourseView(props) {
             <div className="d-flex flex-row-reverse">
               <a className="rn-btn" href="#" onClick={handleOpen}>
                 <span>Get Enrolled !</span>
+              </a>
+            </div>
+            <div className="d-flex flex-row-reverse" style={{ marginTop: 20}}>
+              <a className="rn-btn" href="#" onClick={(()=>{
+                  dispatch(postWishListCourse({user: userId, course:selectedCourse._id}));
+              })}>
+                <span>Add to Wish List !</span>
               </a>
             </div>
             <Modal
