@@ -51,7 +51,8 @@ const WishList = () => {
   const dispatch = useDispatch();
   return (
     <Fragment>
-      <div className="row">
+      {wishListCourses.length != 0 ? (  <div className="row">
+        
         {console.log("course list size in BlogList.js= " + courseList.length)}
 
         {wishListCourses.map((course) => (
@@ -106,7 +107,9 @@ const WishList = () => {
           </div>
         ))}
       </div>
-    </Fragment>
+    ):(<div className="row"><h3>Currently your wish list is empty, add some courses to your wishlist in order to bookmark them to this section.</h3></div>)}
+    
+      </Fragment>
   );
 };
 
