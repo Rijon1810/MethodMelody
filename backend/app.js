@@ -64,8 +64,57 @@ const soldRouter = require("./routes/sold");
 const cartRouter = require("./routes/cart");
 const wishListRouter = require("./routes/wishlist");
 const referralRouter = require("./routes/referral");
+var cron = require("node-cron");
+
+const User = require("./models/User.model");
+const Course = require("./models/Course.model");
 
 const { apiAuth, my_cors } = require("./middleware/authentication");
+
+cron.schedule(
+  "00 00 12 * * 0-6",
+  function () {
+    /*
+     * Runs every day
+     * at 12:00:00 AM.
+     */
+    var currentTime = new Date();
+    User.find()
+      .then((docs) => {
+        docs.forEach(function (doc) {
+          if (doc.course.length !== 0) {
+            doc.course.forEach((time, index) => {
+              const diffTime = Math.abs(
+                Date.parse(currentTime) - Date.parse(time[1])
+              );
+              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+              Course.findById(mongoose.Types.ObjectId(time[0]))
+                .select("validity")
+                .then((data) => {
+                  if (data !== null) {
+                    if (diffDays > data.validity) {
+                      doc.course.splice(index, 1);
+                      User.findByIdAndUpdate(
+                        doc._id,
+                        {
+                          $addToSet: { previousCourse: time[0] },
+                          $set: {
+                            course: doc.course,
+                          },
+                        },
+                        { useFindAndModify: false }
+                      ).exec();
+                    }
+                  }
+                });
+            });
+          }
+        });
+      })
+      .catch((err) => console.log(err));
+  },
+  { scheduled: true }
+);
 
 app.use(
   `/api/${process.env.API_VERSION}/course`,

@@ -24,7 +24,7 @@ var CourseSchema = new Schema(
     courseHour: { type: Number },
     documents: [{ type: Object }],
     price: { type: String },
-    validity: { type: String },
+    validity: { type: String, default: "30" },
     studentReviews: [
       {
         type: Schema.Types.ObjectId,
