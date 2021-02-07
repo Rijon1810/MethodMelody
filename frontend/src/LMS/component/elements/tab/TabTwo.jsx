@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Pagination from "../common/Pagination.jsx";
 import BlogList from "../blog/BlogList.jsx";
-
+import WishList from "../blog/WishList.jsx";
 import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
 import { isLogged } from "../../../../actions/isLoggedAction";
 
-import { MailOutline, Event, LocalOffer, AssignmentInd } from "@material-ui/icons";
+import {
+  MailOutline,
+  Event,
+  LocalOffer,
+  AssignmentInd,
+} from "@material-ui/icons";
 //importing material components
 import { Grid } from "@material-ui/core";
 
@@ -62,31 +67,22 @@ class TabsTwo extends Component {
                     </div>
                   </TabPanel>
                   {/* End Classroom Area */}
-
+                  {/* Start Wish List */}
                   <TabPanel>
                     <div className="single-tab-content">
-                      <ul>
-                        <li>
-                          <a href="/service">
-                            Awwwards.com <span>- Winner</span>
-                          </a>{" "}
-                          2019 - 2020
-                        </li>
-                        <li>
-                          <a href="/service">
-                            CSS Design Awards <span>- Winner</span>
-                          </a>{" "}
-                          2017 - 2018
-                        </li>
-                        <li>
-                          <a href="/service">
-                            Design nominees <span>- site of the day</span>
-                          </a>{" "}
-                          2013- 2014
-                        </li>
-                      </ul>
+                      <div className="container">
+                        <WishList />
+                        <div className="row">
+                          <div className="col-lg-12">
+                            {/* Start Pagination Area */}
+                            <Pagination />
+                            {/* End Pagination Area */}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </TabPanel>
+                  {/* End Wish List */}
 
                   <TabPanel>
                     <div className="single-tab-content">
@@ -215,6 +211,25 @@ class TabsTwo extends Component {
                                 </Grid>
                               </Grid>
                             </div>
+                            <div className="col-lg-12 pt--20">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                                justify="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <LocalOffer />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Referral Code:{" "}
+                                  {this.props.profile.referralCode}
+                                </Grid>
+                              </Grid>
+                            </div>
                             <div className="col-lg-12 ptb--20">
                               <Grid
                                 container
@@ -229,7 +244,7 @@ class TabsTwo extends Component {
                                   <LocalOffer />
                                 </Grid>
                                 <Grid item style={{ color: "#fff" }}>
-                                  Referral Code: {this.props.profile.referralCode}
+                                  Referral Bonus: {this.props.refBonus}
                                 </Grid>
                               </Grid>
                             </div>
@@ -273,7 +288,6 @@ class TabsTwo extends Component {
                                               placeholder={
                                                 this.props.profile.name
                                               }
-                                              
                                             />
                                           </label>
                                         </div>
@@ -299,7 +313,6 @@ class TabsTwo extends Component {
                                               placeholder={
                                                 this.props.profile.phone
                                               }
-                                              
                                             />
                                           </label>
                                         </div>
@@ -325,7 +338,6 @@ class TabsTwo extends Component {
                                               placeholder={
                                                 this.props.profile.address
                                               }
-                                              
                                             />
                                           </label>
                                         </div>
@@ -367,6 +379,7 @@ class TabsTwo extends Component {
 const mapStateToProps = (state) => ({
   courseList: state.getCourse.courseList,
   profile: state.isLogged.payload,
+  refBonus: state.getAllUsers.getUserCourse.referralBonus,
 });
 
 export default connect(mapStateToProps, { getCourse })(TabsTwo);
