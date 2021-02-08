@@ -8,9 +8,8 @@ import { FiChevronUp } from "react-icons/fi";
 import Header from "../Header.jsx";
 import Footer from "../Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { checkout } from "../../../actions/cartAction";
+import { checkout, removeCart } from "../../../actions/cartAction";
 import Paper from "@material-ui/core/Paper";
-
 
 import {
   makeStyles,
@@ -50,7 +49,7 @@ const CartPage = () => {
   const classes = useStyles();
   const cartItems = useSelector((state) => state.cartInfo.cart);
   const userID = useSelector((state) => state.isLogged.payload.id);
-  const [total, setTotal] = useState(0);
+  let total = 0;
   console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
   const instructorList = useSelector(
@@ -63,6 +62,7 @@ const CartPage = () => {
     for (let i = 0; i < courseList.length; i++) {
       if (cartItem == courseList[i]._id) {
         cartCoursesList.push(courseList[i]);
+        total = parseFloat(courseList[i].price) + parseFloat(total);
       }
     }
   });
@@ -102,7 +102,18 @@ const CartPage = () => {
                           </div>
 
                           <div className="blog-btn pt--20 row d-flex">
-                            <a className="rn-btn text-white" href="#">
+                            <a
+                              className="rn-btn text-white"
+                              href="#"
+                              onClick={() => {
+                                dispatch(
+                                  removeCart({
+                                    user: userID,
+                                    course: course._id,
+                                  })
+                                );
+                              }}
+                            >
                               Remove from cart
                             </a>
                           </div>
@@ -132,9 +143,7 @@ const CartPage = () => {
                       <h4 className="text-white">Total: </h4>
                     </div>
                     <div className="col">
-                      <h4 style={{ color: "#b12222" }}>
-                        {cartCoursesList[0].price}
-                      </h4>
+                      <h4 style={{ color: "#b12222" }}>{total}</h4>
                     </div>
                     <div className="col">
                       <h4 className="text-white">(BDT)</h4>
