@@ -51,65 +51,71 @@ const WishList = () => {
   const dispatch = useDispatch();
   return (
     <Fragment>
-      {wishListCourses.length != 0 ? (  <div className="row">
-        
-        {console.log("course list size in BlogList.js= " + courseList.length)}
+      {wishListCourses.length != 0 ? (
+        <div className="row">
+          {console.log("course list size in BlogList.js= " + courseList.length)}
 
-        {wishListCourses.map((course) => (
-          <div
-            className="col-lg-3 col-md-6 col-sm-6 col-12"
-            key={course._id}
-            onClick={async (event) => {
-              dispatch(getSelectedCourseId(course));
-              instructorList.forEach((instructor) => {
-                if (instructor._id === course.instructor) {
-                  dispatch(getSelectedInstructorId(instructor));
-                }
-              });
-            }}
-          >
-            <div className="blog blog-style--1">
-              <div className="thumbnail">
-                <a href="/courseview">
-                  <img
-                    className="w-100"
-                    src={`http://63.250.33.174/` + course.thumbnail}
-                    alt="Blog Images"
-                  />
-                </a>
-              </div>
-              <div className="content">
-                <p className="blogtype">{course.catagory}</p>
-                <h4 className="title">
-                  <a href="/courseview">{course.title}</a>
-                </h4>
-                <div className="blog-btn">
-                  <a className="rn-btn text-white" href="/courseview">
-                    View Course
+          {wishListCourses.map((course) => (
+            <div
+              className="col-lg-3 col-md-6 col-sm-6 col-12"
+              key={course._id}
+              onClick={async (event) => {
+                dispatch(getSelectedCourseId(course));
+                instructorList.forEach((instructor) => {
+                  if (instructor._id === course.instructor) {
+                    dispatch(getSelectedInstructorId(instructor));
+                  }
+                });
+              }}
+            >
+              <div className="blog blog-style--1">
+                <div className="thumbnail">
+                  <a href="/courseview">
+                    <img
+                      className="w-100"
+                      src={`http://63.250.33.174/` + course.thumbnail}
+                      alt="Blog Images"
+                    />
                   </a>
                 </div>
-                <div className="blog-btn">
-                  <a
-                    className="rn-btn text-white"
-                    href="#"
-                    onClick={() => {
-                      dispatch(
-                        removeWishList({ user: userId, course: course._id })
-                      );
-                      // setRender(true);
-                    }}
-                  >
-                    Remove Course
-                  </a>
+                <div className="content">
+                  <p className="blogtype">{course.catagory}</p>
+                  <h4 className="title">
+                    <a href="/courseview">{course.title}</a>
+                  </h4>
+                  <div className="blog-btn">
+                    <a className="rn-btn text-white" href="/courseview">
+                      View Course
+                    </a>
+                  </div>
+                  <div className="blog-btn">
+                    <a
+                      className="rn-btn text-white"
+                      href="#"
+                      onClick={() => {
+                        dispatch(
+                          removeWishList({ user: userId, course: course._id })
+                        );
+                        // setRender(true);
+                      }}
+                    >
+                      Remove Course
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    ):(<div className="row"><h3>Currently your wish list is empty, add some courses to your wishlist in order to bookmark them to this section.</h3></div>)}
-    
-      </Fragment>
+          ))}
+        </div>
+      ) : (
+        <div className="row">
+          <h3>
+            Currently your wish list is empty, add some courses to your wishlist
+            in order to bookmark them to this section.
+          </h3>
+        </div>
+      )}
+    </Fragment>
   );
 };
 
