@@ -431,7 +431,7 @@ export default function CourseView(props) {
           className="portfolio-area pb--120  bg_color--1"
           style={{ paddingTop: "10ch" }}
         >
-          <StudentContactForm />
+          <StudentContactForm instructor={selectedInstructor} />
         </div>
       ) : null}
 
