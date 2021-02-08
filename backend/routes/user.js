@@ -246,7 +246,9 @@ router
     var query = req.body;
     var special_query = {};
     for (var key in query) {
-      if (key !== "type") special_query[key] = `${query[key]}`;
+      if (key !== "type" && query[key] !== "") {
+        special_query[key] = `${query[key]}`;
+      }
     }
     if (req.body.password) {
       special_query["password"] = await bcrypt.hash(req.body.password, 10);
