@@ -180,40 +180,40 @@ class InstructorPanelTab extends Component {
                                         />
                                       </label>
                                     </div>
-                                  </div>
-                                  <div className="col-lg-12">
-                                    <label
-                                      htmlFor="exampleFormControlFile12"
-                                      className="text-muted"
-                                    >
-                                      Photo
-                                    </label>
+                                    <div className="col-lg-12">
+                                      <label
+                                        htmlFor="exampleFormControlFile12"
+                                        className="text-muted"
+                                      >
+                                        Photo
+                                      </label>
 
-                                    <label htmlFor="item98">
-                                      <input
-                                        type="file"
-                                        name="photo"
-                                        id="item98"
-                                        value={this.state.rnPhotoSnap.name}
-                                        ref={this.state.rnPhotoSnap.name}
-                                        onChange={async (e) => {
-                                          e.preventDefault();
-                                          let file = await e.target.files[0];
-                                          this.setState({ rnPhoto: file });
+                                      <label htmlFor="item98">
+                                        <input
+                                          type="file"
+                                          name="photo"
+                                          id="item98"
+                                          value={this.state.rnPhotoSnap.name}
+                                          ref={this.state.rnPhotoSnap.name}
+                                          onChange={async (e) => {
+                                            e.preventDefault();
+                                            let file = await e.target.files[0];
+                                            this.setState({ rnPhoto: file });
 
-                                          if (file) {
-                                            let reader = new FileReader();
-                                            reader.onload = (e) => {
-                                              this.setState({
-                                                rnPhotoSnap: e.target.result,
-                                              });
-                                            };
-                                            reader.readAsDataURL(file);
-                                          }
-                                        }}
-                                        placeholder="upload picture"
-                                      />
-                                    </label>
+                                            if (file) {
+                                              let reader = new FileReader();
+                                              reader.onload = (e) => {
+                                                this.setState({
+                                                  rnPhotoSnap: e.target.result,
+                                                });
+                                              };
+                                              reader.readAsDataURL(file);
+                                            }
+                                          }}
+                                          placeholder="upload picture"
+                                        />
+                                      </label>
+                                    </div>
                                   </div>
 
                                   <button
