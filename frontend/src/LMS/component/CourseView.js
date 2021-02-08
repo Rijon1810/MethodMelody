@@ -39,6 +39,7 @@ import { postCart } from "../../actions/cartAction";
 import { isLogged } from "../../actions/isLoggedAction";
 import { getUserCourse } from "../../actions/userAction";
 import { postWishListCourse } from "../../actions/wishListAction";
+import StudentContactForm from "./StudentContactForm.jsx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -134,11 +135,13 @@ export default function CourseView(props) {
   };
 
   useEffect(() => {
-    userCourses.forEach((c) => {
-      if (c[0] == selectedCourse._id) {
-        setPaid(true);
-      }
-    });
+    if (isLogIn) {
+      userCourses.forEach((c) => {
+        if (c[0] == selectedCourse._id) {
+          setPaid(true);
+        }
+      });
+    }
   }, [paid]);
 
   return (
@@ -420,6 +423,19 @@ export default function CourseView(props) {
           </main>
         </div>
       </div>
+
+      {/* Start Contact Form Area */}
+      {paid == true ? (
+        <div
+          className="portfolio-area pb--120  bg_color--1"
+          style={{ paddingTop: "10ch" }}
+        >
+          <StudentContactForm />
+        </div>
+      ) : null}
+
+      {/* End Contact Form Area */}
+
       {/* Start Back To Top */}
       <div className="backto-top">
         <ScrollToTop showUnder={160}>
