@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Pagination from "../common/Pagination.jsx";
 import BlogList from "../blog/BlogList.jsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
 import { isLogged } from "../../../../actions/isLoggedAction";
+import { updateUser } from "../../../../actions/userAction";
 
 import { MailOutline, Event } from "@material-ui/icons";
 //importing material components
@@ -16,8 +19,11 @@ class InstructorPanelTab extends Component {
     super(props);
     this.state = {
       rnName: "",
-      rnNewPassword: "",
       rnPassword: "",
+      rnPhone: "",
+      rnAddress: "",
+      rnPhotoSnap: "",
+      rnPhoto: "",
     };
   }
   render() {
@@ -67,10 +73,7 @@ class InstructorPanelTab extends Component {
                             <a href="#">
                               <img
                                 className="w-100"
-                                src={
-                                  `http://63.250.33.174/` +
-                                  this.props.profile.photo
-                                }
+                                src={this.state.rnPhotoSnap}
                                 // alt="Blog Images"
                               />
                             </a>
@@ -120,7 +123,7 @@ class InstructorPanelTab extends Component {
                                       </label>
                                     </div>
 
-                                    <div className="col-lg-12">
+                                    {/* <div className="col-lg-12">
                                       <label
                                         htmlFor="exampleFormControlFile1"
                                         className="text-muted"
@@ -143,7 +146,7 @@ class InstructorPanelTab extends Component {
                                           }
                                         />
                                       </label>
-                                    </div>
+                                    </div> */}
 
                                     <div className="col-lg-12">
                                       <label
@@ -157,10 +160,10 @@ class InstructorPanelTab extends Component {
                                           type="password"
                                           name="password"
                                           id="item03"
-                                          value={this.state.rnNewPassword}
+                                          value={this.state.rnPassword}
                                           onChange={(e) => {
                                             this.setState({
-                                              rnNewPassword: e.target.value,
+                                              rnPassword: e.target.value,
                                             });
                                           }}
                                           placeholder={
@@ -170,6 +173,40 @@ class InstructorPanelTab extends Component {
                                       </label>
                                     </div>
                                   </div>
+                                  <div className="col-lg-12">
+                                    <label
+                                      htmlFor="exampleFormControlFile12"
+                                      className="text-muted"
+                                    >
+                                      Photo
+                                    </label>
+
+                                    <label htmlFor="item98">
+                                      <input
+                                        type="file"
+                                        name="photo"
+                                        id="item98"
+                                        value={this.state.rnPhotoSnap.name}
+                                        ref={this.state.rnPhotoSnap.name}
+                                        onChange={async (e) => {
+                                          e.preventDefault();
+                                          let file = await e.target.files[0];
+                                          this.setState({ rnPhoto: file });
+
+                                          if (file) {
+                                            let reader = new FileReader();
+                                            reader.onload = (e) => {
+                                              this.setState({
+                                                rnPhotoSnap: e.target.result,
+                                              });
+                                            };
+                                            reader.readAsDataURL(file);
+                                          }
+                                        }}
+                                        placeholder="upload picture"
+                                      />
+                                    </label>
+                                  </div>
 
                                   <button
                                     className="rn-button-style--2 btn-solid"
@@ -177,10 +214,49 @@ class InstructorPanelTab extends Component {
                                     value="submit"
                                     name="submit"
                                     id="mc-embedded-subscribe"
-                                    onClick={async (event) => {}}
+                                    onClick={async (event) => {
+                                      event.preventDefault();
+                                      const body = new FormData(this.form);
+                                      body.append("user", this.props.userId);
+                                      await this.props.updateUser(body);
+                                      this.props.paylod ===
+                                      "User Updated Successfully!"
+                                        ? toast.success(
+                                            "User Updated Successfully!",
+                                            {
+                                              position: "bottom-center",
+                                              autoClose: false,
+                                              hideProgressBar: false,
+                                              closeOnClick: true,
+                                              pauseOnHover: true,
+                                              draggable: true,
+                                              progress: undefined,
+                                            }
+                                          )
+                                        : toast.error("User Update Failed!", {
+                                            position: "bottom-center",
+                                            autoClose: false,
+                                            hideProgressBar: false,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            draggable: true,
+                                            progress: undefined,
+                                          });
+                                    }}
                                   >
                                     Save
                                   </button>
+                                  <ToastContainer
+                                    position="bottom-center"
+                                    autoClose={7000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                  />
                                 </form>
                               </div>
                             </div>
@@ -206,6 +282,10 @@ class InstructorPanelTab extends Component {
 const mapStateToProps = (state) => ({
   courseList: state.getCourse.courseList,
   profile: state.isLogged.payload,
+  userId: state.isLogged.payload.id,
+  paylod: state.getAllUsers.payload,
 });
 
-export default connect(mapStateToProps, { getCourse })(InstructorPanelTab);
+export default connect(mapStateToProps, { getCourse, updateUser })(
+  InstructorPanelTab
+);
