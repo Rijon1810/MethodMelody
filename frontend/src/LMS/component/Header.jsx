@@ -289,7 +289,7 @@ class Header extends Component {
                               </Grid>
                             </Link>
                           </li>
-                          <li>
+                          {/* <li>
                             {" "}
                             <Link to="/service">
                               <Grid
@@ -329,6 +329,7 @@ class Header extends Component {
                               </Grid>
                             </Link>
                           </li>
+                           */}
                           <li>
                             <Link to="#">
                               <span
@@ -357,6 +358,7 @@ class Header extends Component {
                               </span>
                             </Link>
                           </li>
+                        
                         </ul>
                       )}
 
