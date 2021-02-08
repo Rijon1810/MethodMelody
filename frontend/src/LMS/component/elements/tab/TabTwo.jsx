@@ -7,7 +7,9 @@ import PurchaseHistoryList from "../blog/PurchaseHistoryList.jsx";
 import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
 import { isLogged } from "../../../../actions/isLoggedAction";
-import { getUserCourse } from "../../../../actions/userAction";
+import { getUserCourse, updateUser } from "../../../../actions/userAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   MailOutline,
@@ -25,6 +27,9 @@ class TabsTwo extends Component {
       rnName: "",
       rnPhone: "",
       rnAddress: "",
+      rnPassword: "",
+      rnPhotoSnap: "",
+      rnPhoto: "",
     };
   }
   componentWillMount() {
@@ -146,10 +151,7 @@ class TabsTwo extends Component {
                                 <a href="#">
                                   <img
                                     className="w-100"
-                                    src={
-                                      `http://63.250.33.174/` +
-                                      this.props.profile.photo
-                                    }
+                                    src={this.state.rnPhotoSnap}
                                     alt="Blog Images"
                                   />
                                 </a>
@@ -341,16 +343,120 @@ class TabsTwo extends Component {
                                         </div>
                                       </div>
 
+                                      <div className="col-lg-12">
+                                        <label
+                                          htmlFor="exampleFormControlFile2"
+                                          className="text-muted"
+                                        >
+                                          Full Name
+                                        </label>
+                                        <label htmlFor="item99">
+                                          <input
+                                            type="text"
+                                            name="password"
+                                            id="item99"
+                                            value={this.state.rnPassword}
+                                            onChange={(e) => {
+                                              this.setState({
+                                                rnPassword: e.target.value,
+                                              });
+                                            }}
+                                            placeholder="***"
+                                          />
+                                        </label>
+                                      </div>
+                                      <div className="col-lg-12">
+                                        <label
+                                          htmlFor="exampleFormControlFile12"
+                                          className="text-muted"
+                                        >
+                                          Photo
+                                        </label>
+
+                                        <label htmlFor="item98">
+                                          <input
+                                            type="file"
+                                            name="photo"
+                                            id="item98"
+                                            value={this.state.rnPhotoSnap.name}
+                                            ref={this.state.rnPhotoSnap.name}
+                                            onChange={async (e) => {
+                                              e.preventDefault();
+                                              let file = await e.target
+                                                .files[0];
+                                              this.setState({ rnPhoto: file });
+
+                                              if (file) {
+                                                let reader = new FileReader();
+                                                reader.onload = (e) => {
+                                                  this.setState({
+                                                    rnPhotoSnap:
+                                                      e.target.result,
+                                                  });
+                                                };
+                                                reader.readAsDataURL(file);
+                                              }
+                                            }}
+                                            placeholder="upload picture"
+                                          />
+                                        </label>
+                                      </div>
                                       <button
                                         className="rn-button-style--2 btn-solid"
                                         type="submit"
                                         value="submit"
                                         name="submit"
                                         id="mc-embedded-subscribe"
-                                        onClick={async (event) => {}}
+                                        onClick={async (event) => {
+                                          event.preventDefault();
+                                          const body = new FormData(this.form);
+                                          // console.log(body);
+                                          body.append(
+                                            "user",
+                                            this.props.userId
+                                          );
+                                          await this.props.updateUser(body);
+                                          this.props.paylod ===
+                                          "User Updated Successfully!"
+                                            ? toast.success(
+                                                "User Updated Successfully!",
+                                                {
+                                                  position: "bottom-center",
+                                                  autoClose: false,
+                                                  hideProgressBar: false,
+                                                  closeOnClick: true,
+                                                  pauseOnHover: true,
+                                                  draggable: true,
+                                                  progress: undefined,
+                                                }
+                                              )
+                                            : toast.error(
+                                                "User Update Failed!",
+                                                {
+                                                  position: "bottom-center",
+                                                  autoClose: false,
+                                                  hideProgressBar: false,
+                                                  closeOnClick: true,
+                                                  pauseOnHover: true,
+                                                  draggable: true,
+                                                  progress: undefined,
+                                                }
+                                              );
+                                        }}
                                       >
                                         Save
                                       </button>
+                                      <ToastContainer
+                                        position="bottom-center"
+                                        autoClose={7000}
+                                        hideProgressBar={false}
+                                        newestOnTop={false}
+                                        closeOnClick
+                                        rtl={false}
+                                        pauseOnFocusLoss
+                                        draggable
+                                        pauseOnHover
+                                      />
                                     </form>
                                   </div>
                                 </div>
@@ -379,6 +485,11 @@ const mapStateToProps = (state) => ({
   profile: state.isLogged.payload,
   userId: state.isLogged.payload.id,
   refBonus: state.getAllUsers.getUserCourse.referralBonus,
+  paylod: state.getAllUsers.payload,
 });
 
-export default connect(mapStateToProps, { getCourse, getUserCourse })(TabsTwo);
+export default connect(mapStateToProps, {
+  getCourse,
+  getUserCourse,
+  updateUser,
+})(TabsTwo);
