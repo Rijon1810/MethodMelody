@@ -256,6 +256,7 @@ export default function CourseView(props) {
                               course: selectedCourse._id,
                             })
                           );
+                          handleClose();
                         }}
                       >
                         Add to cart
