@@ -14,8 +14,10 @@ class StudentContactForm extends Component {
       rnName: "",
       rnEmail: "",
       rnMessage: "",
+      rnInstructor: props.instructor,
     };
   }
+
   render() {
     return (
       <div className="contact-form--1">
@@ -23,10 +25,12 @@ class StudentContactForm extends Component {
           <div className="row row--35 align-items-center ">
             <div className="col-lg-8 order-2 order-lg-1 offset-lg-2">
               <div className="section-title text-left mb--50">
-                <h3 className="title" style={{color: "#b12222"}}>Send message to your Instructor.</h3>
+                <h3 className="title" style={{ color: "#b12222" }}>
+                  Send message to your Instructor.
+                </h3>
                 <p className="description">
-                  For any queries regarding this course you can contact the course Instructor by filling up the below form. <br></br>
-                
+                  For any queries regarding this course you can contact the
+                  course Instructor by filling up the below form. <br></br>
                 </p>
               </div>
               <div className="form-wrapper">
@@ -77,8 +81,10 @@ class StudentContactForm extends Component {
                     onClick={async (event) => {
                       event.preventDefault();
                       let submitted = await this.props.submitGeneralContact({
-                        name: this.state.rnName,
-                        email: this.state.rnEmail,
+                        name: this.props.userName,
+                        to: this.state.rnInstructor,
+                        from: this.props.userId,
+                        email: this.props.userEmail,
                         message: this.state.rnMessage,
                       });
                       if (submitted) {
@@ -127,6 +133,12 @@ class StudentContactForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  userName: state.isLogged.payload.name,
+  userEmail: state.isLogged.payload.email,
+  userId: state.isLogged.payload._id,
+});
 
-export default connect(mapStateToProps, { submitGeneralContact })(StudentContactForm);
+export default connect(mapStateToProps, { submitGeneralContact })(
+  StudentContactForm
+);
