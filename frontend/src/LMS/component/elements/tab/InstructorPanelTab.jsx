@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Pagination from "../common/Pagination.jsx";
-import BlogList from "../blog/BlogList.jsx";
+import BlogList from "../blog/InstructorCourseList.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -71,11 +71,19 @@ class InstructorPanelTab extends Component {
                         <div className="col-lg-12">
                           <div className="thumbnail pt--20">
                             <a href="#">
-                              <img
-                                className="w-100"
-                                src={this.state.rnPhotoSnap}
-                                // alt="Blog Images"
-                              />
+                              {this.state.rnPhotoSnap == "" ? (
+                                <img
+                                  className="w-100"
+                                  src={`http://63.250.33.174/${this.props.profile.photo}`}
+                                  alt="Blog Images"
+                                />
+                              ) : (
+                                <img
+                                  className="w-100"
+                                  src={this.state.rnPhotoSnap}
+                                  alt="Blog Images"
+                                />
+                              )}
                             </a>
                           </div>
                         </div>

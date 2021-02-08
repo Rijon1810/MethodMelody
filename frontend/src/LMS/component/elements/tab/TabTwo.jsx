@@ -149,11 +149,19 @@ class TabsTwo extends Component {
                             <div className="col-lg-12">
                               <div className="thumbnail pt--20">
                                 <a href="#">
-                                  <img
-                                    className="w-100"
-                                    src={this.state.rnPhotoSnap}
-                                    alt="Blog Images"
-                                  />
+                                  {this.state.rnPhotoSnap == "" ? (
+                                    <img
+                                      className="w-100"
+                                      src={`http://63.250.33.174/${this.props.profile.photo}`}
+                                      alt="Blog Images"
+                                    />
+                                  ) : (
+                                    <img
+                                      className="w-100"
+                                      src={this.state.rnPhotoSnap}
+                                      alt="Blog Images"
+                                    />
+                                  )}
                                 </a>
                               </div>
                             </div>
@@ -341,66 +349,70 @@ class TabsTwo extends Component {
                                             />
                                           </label>
                                         </div>
-                                      </div>
+                                        <div className="col-lg-12">
+                                          <label
+                                            htmlFor="exampleFormControlFile2"
+                                            className="text-muted"
+                                          >
+                                            Password
+                                          </label>
+                                          <label htmlFor="item99">
+                                            <input
+                                              type="text"
+                                              name="password"
+                                              id="item99"
+                                              value={this.state.rnPassword}
+                                              onChange={(e) => {
+                                                this.setState({
+                                                  rnPassword: e.target.value,
+                                                });
+                                              }}
+                                              placeholder="***"
+                                            />
+                                          </label>
+                                        </div>
+                                        <div className="col-lg-12">
+                                          <label
+                                            htmlFor="exampleFormControlFile12"
+                                            className="text-muted"
+                                          >
+                                            Photo
+                                          </label>
 
-                                      <div className="col-lg-12">
-                                        <label
-                                          htmlFor="exampleFormControlFile2"
-                                          className="text-muted"
-                                        >
-                                          Full Name
-                                        </label>
-                                        <label htmlFor="item99">
-                                          <input
-                                            type="text"
-                                            name="password"
-                                            id="item99"
-                                            value={this.state.rnPassword}
-                                            onChange={(e) => {
-                                              this.setState({
-                                                rnPassword: e.target.value,
-                                              });
-                                            }}
-                                            placeholder="***"
-                                          />
-                                        </label>
-                                      </div>
-                                      <div className="col-lg-12">
-                                        <label
-                                          htmlFor="exampleFormControlFile12"
-                                          className="text-muted"
-                                        >
-                                          Photo
-                                        </label>
-
-                                        <label htmlFor="item98">
-                                          <input
-                                            type="file"
-                                            name="photo"
-                                            id="item98"
-                                            value={this.state.rnPhotoSnap.name}
-                                            ref={this.state.rnPhotoSnap.name}
-                                            onChange={async (e) => {
-                                              e.preventDefault();
-                                              let file = await e.target
-                                                .files[0];
-                                              this.setState({ rnPhoto: file });
-
-                                              if (file) {
-                                                let reader = new FileReader();
-                                                reader.onload = (e) => {
-                                                  this.setState({
-                                                    rnPhotoSnap:
-                                                      e.target.result,
-                                                  });
-                                                };
-                                                reader.readAsDataURL(file);
+                                          <label htmlFor="item98">
+                                            <input
+                                              type="file"
+                                              name="photo"
+                                              id="item98"
+                                              value={
+                                                this.state.rnPhotoSnap.name
                                               }
-                                            }}
-                                            placeholder="upload picture"
-                                          />
-                                        </label>
+                                              ref={this.state.rnPhotoSnap.name}
+                                              onChange={async (e) => {
+                                                e.preventDefault();
+                                                let file = await e.target
+                                                  .files[0];
+                                                this.setState({
+                                                  rnPhoto: file,
+                                                });
+
+                                                if (file) {
+                                                  let reader = new FileReader();
+                                                  reader.onload = (e) => {
+                                                    this.setState({
+                                                      rnPhotoSnap:
+                                                        e.target.result,
+                                                    });
+                                                  };
+                                                  reader.readAsDataURL(file);
+                                                }
+                                              }}
+                                              placeholder="upload picture"
+                                            />
+                                          </label>
+                                        </div>
                                       </div>
+
                                       <button
                                         className="rn-button-style--2 btn-solid"
                                         type="submit"
