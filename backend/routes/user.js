@@ -238,5 +238,34 @@ router
 
       .catch((err) => res.status(400).json("Error: " + err));
   });
+router
+  .use(apiAuth)
+  .route("/")
+  .post(async (req, res) => {
+    const id = Mongoose.Types.ObjectId(req.body.user);
+    var query = req.body;
+    var special_query = {};
+    for (var key in query) {
+      if (key !== "type") special_query[key] = `${query[key]}`;
+    }
+    if (req.body.password) {
+      special_query["password"] = await bcrypt.hash(req.body.password, 10);
+    }
+
+    if (req.file) special_query["photo"] = req.file.path;
+    User.findByIdAndUpdate(
+      id,
+      { $set: special_query },
+      { useFindAndModify: false }
+    )
+      .then((doc) => {
+        if (doc) {
+          res.status(200).json(`User Updated Successfully!`);
+        } else {
+          res.status(404).json(`User Update Failed!`);
+        }
+      })
+      .catch((err) => res.status(400).json("Error: " + err));
+  });
 
 module.exports = router;

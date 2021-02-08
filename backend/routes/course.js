@@ -83,7 +83,7 @@ router.route("/status").post((req, res) => {
     }
   )
     .then((courses) => {
-      res.status(200).json(courses);
+      res.status(200).json("Successful");
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -363,7 +363,7 @@ router.route("/:courseId").get((req, res) => {
 
 //UPDATE by ID
 router.route("/:courseId").post((req, res) => {
-  const id = req.params.courseId;
+  const id = Mongoose.Types.ObjectId(req.params.courseId);
   var query = req.body;
   var special_query = {};
   for (var key in query) {
