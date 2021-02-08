@@ -38,7 +38,8 @@ import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
 import { postCart } from "../../actions/cartAction";
 import { isLogged } from "../../actions/isLoggedAction";
 import { getUserCourse } from "../../actions/userAction";
-import {postWishListCourse} from "../../actions/wishListAction";
+import { postWishListCourse } from "../../actions/wishListAction";
+import StudentContactForm from "./StudentContactForm.jsx";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,6 +120,7 @@ export default function CourseView(props) {
   );
 
   const [open, setOpen] = React.useState(false);
+  const [paid, setPaid] = React.useState(false);
 
   const handleOpen = () => {
     console.log(`is user logged in = ${isLogIn}`);
@@ -131,6 +133,16 @@ export default function CourseView(props) {
     console.log(`handleClose called`);
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (isLogIn) {
+      userCourses.forEach((c) => {
+        if (c[0] == selectedCourse._id) {
+          setPaid(true);
+        }
+      });
+    }
+  }, [paid]);
 
   return (
     <div className="active-dark">
@@ -173,15 +185,27 @@ export default function CourseView(props) {
             <p className="text-white text-lg-right">
               BDT {selectedCourse.price}
             </p>
-            <div className="d-flex flex-row-reverse">
-              <a className="rn-btn" href="#" onClick={handleOpen}>
-                <span>Get Enrolled !</span>
-              </a>
-            </div>
-            <div className="d-flex flex-row-reverse" style={{ marginTop: 20}}>
-              <a className="rn-btn" href="#" onClick={(()=>{
-                  dispatch(postWishListCourse({user: userId, course:selectedCourse._id}));
-              })}>
+            {paid != true ? (
+              <div className="d-flex flex-row-reverse">
+                <a className="rn-btn" href="#" onClick={handleOpen}>
+                  <span>Get Enrolled !</span>
+                </a>
+              </div>
+            ) : null}
+
+            <div className="d-flex flex-row-reverse" style={{ marginTop: 20 }}>
+              <a
+                className="rn-btn"
+                href="#"
+                onClick={() => {
+                  dispatch(
+                    postWishListCourse({
+                      user: userId,
+                      course: selectedCourse._id,
+                    })
+                  );
+                }}
+              >
                 <span>Add to Wish List !</span>
               </a>
             </div>
@@ -399,6 +423,19 @@ export default function CourseView(props) {
           </main>
         </div>
       </div>
+
+      {/* Start Contact Form Area */}
+      {paid == true ? (
+        <div
+          className="portfolio-area pb--120  bg_color--1"
+          style={{ paddingTop: "10ch" }}
+        >
+          <StudentContactForm />
+        </div>
+      ) : null}
+
+      {/* End Contact Form Area */}
+
       {/* Start Back To Top */}
       <div className="backto-top">
         <ScrollToTop showUnder={160}>

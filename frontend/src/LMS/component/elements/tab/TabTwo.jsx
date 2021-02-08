@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Pagination from "../common/Pagination.jsx";
-import BlogList from "../blog/BlogList.jsx";
+import BlogList from "../blog/ClassroomCourseList.jsx";
 import WishList from "../blog/WishList.jsx";
 import PurchaseHistoryList from "../blog/PurchaseHistoryList.jsx";
 import { connect } from "react-redux";

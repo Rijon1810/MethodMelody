@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState, useEffect } from "react";
+import React, { Component, Fragment } from "react";
 import BlogContent from "./BlogContent.jsx";
 
 import { connect } from "react-redux";
@@ -8,54 +8,35 @@ import {
   getSelectedCourseId,
   getSelectedInstructorId,
 } from "../../../../actions/getSelectedIdAction";
-import { getUserCourse } from "../../../../actions/userAction";
-import { removeWishList } from "../../../../actions/wishListAction";
-const WishList = () => {
-  console.log("Inside wishlist");
-  const [render, setRender] = useState(false);
-  const courseList = useSelector(
-    (state) => state.getAllUsers.getUserCourse.wishList
-  );
-  const courseListAll = useSelector((state) => state.getCourse.courseList);
+
+const ClassroomCourseList = () => {
+  const courseList = useSelector((state) => state.getCourse.courseList);
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
-  const categorySelectedList = useSelector(
-    (state) => state.getSelectedId.getSelectedCourseCategoryList
+  const currentCourseList = useSelector(
+    (state) => state.getAllUsers.getUserCourse.course
   );
-  const userId = useSelector((state) => state.isLogged.payload.id);
-  console.log(categorySelectedList);
+  // console.log(categorySelectedList)
 
-  // const selectedCourse = (()=>{
-  //   courseListAll.map((course)=>{
-  //     if(course._id === courseList){
-  //       return course;
-  //     }
-  //   })
-  // })
-
-  var wishListCourses = [];
-  courseList.forEach((wishItem) => {
-    for (let i = 0; i < courseListAll.length; i++) {
-      if (wishItem === courseListAll[i]._id) {
-        wishListCourses.push(courseListAll[i]);
+  var currentCourses = [];
+  currentCourseList.map((course_id) => {
+    console.log(`current course id = ${course_id}}`);
+    for (var i = 0; i < courseList.length; i++) {
+      if (course_id[0] == courseList[i]._id) {
+        currentCourses.push(courseList[i]);
       }
     }
   });
 
-  useEffect(() => {
-    dispatch(getUserCourse(`${userId}`));
-    // dispatch(getSelectedCourseCategory(""));
-  }, [render]);
-
   const dispatch = useDispatch();
   return (
     <Fragment>
-      {wishListCourses.length != 0 ? (
+      {currentCourses.length != 0 ? (
         <div className="row">
           {console.log("course list size in BlogList.js= " + courseList.length)}
 
-          {wishListCourses.map((course) => (
+          {currentCourses.map((course) => (
             <div
               className="col-lg-3 col-md-6 col-sm-6 col-12"
               key={course._id}
@@ -88,20 +69,6 @@ const WishList = () => {
                       View Course
                     </a>
                   </div>
-                  <div className="blog-btn">
-                    <a
-                      className="rn-btn text-white"
-                      href="#"
-                      onClick={() => {
-                        dispatch(
-                          removeWishList({ user: userId, course: course._id })
-                        );
-                        // setRender(true);
-                      }}
-                    >
-                      Remove Course
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -110,8 +77,8 @@ const WishList = () => {
       ) : (
         <div className="row">
           <h3>
-            Currently your wish list is empty, add some courses to your wishlist
-            in order to bookmark them to this section.
+            You are not enrolled to any courses yet, please buy your preferred
+            courses and visit them from this section.
           </h3>
         </div>
       )}
@@ -119,4 +86,4 @@ const WishList = () => {
   );
 };
 
-export default WishList;
+export default ClassroomCourseList;
