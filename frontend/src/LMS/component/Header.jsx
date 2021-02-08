@@ -31,7 +31,10 @@ const categoryLists = {
   Piano: { alt: "Piano & Keyboard", src: "assets/images/icons/piano.png" },
   Bass: { alt: "Bass", src: "assets/images/icons/bass-guitar-electric.png" },
   Percussion: { alt: "Percussion", src: "assets/images/icons/drums.png" },
-  Sound: { alt: "Sound Engineering", src: "assets/images/icons/sound-engineering.png" },
+  Sound: {
+    alt: "Sound Engineering",
+    src: "assets/images/icons/sound-engineering.png",
+  },
 };
 
 //   {
@@ -100,10 +103,10 @@ class Header extends Component {
   //   console.log(result);
   // };
 
-  renderSwitchCategory(param){
-    switch(param){
-      case 'a':
-        break
+  renderSwitchCategory(param) {
+    switch (param) {
+      case "a":
+        break;
     }
   }
 
@@ -139,7 +142,10 @@ class Header extends Component {
         <div className="header-wrapper" id="header-wrapper">
           <div className="header-left">
             <div className="logo">
-              <a href="/" onClick={()=>this.props.getSelectedCourseCategory("")}>
+              <a
+                href="/"
+                onClick={() => this.props.getSelectedCourseCategory("")}
+              >
                 <img
                   src="/assets/images/logo/logo-red.png"
                   alt="Digital Agency"
@@ -161,7 +167,9 @@ class Header extends Component {
                             <Link
                               to="/allcourses"
                               onClick={() =>
-                                this.props.getSelectedCourseCategory(category.split(" ")[0])
+                                this.props.getSelectedCourseCategory(
+                                  category.split(" ")[0]
+                                )
                               }
                             >
                               <Grid
@@ -173,7 +181,9 @@ class Header extends Component {
                                   {" "}
                                   <Avatar
                                     alt={category}
-                                    src={`${process.env.PUBLIC_URL}/${categoryLists[category.split(" ")[0]].src}`}
+                                    src={`${process.env.PUBLIC_URL}/${
+                                      categoryLists[category.split(" ")[0]].src
+                                    }`}
                                   />
                                 </Grid>
 
@@ -358,7 +368,6 @@ class Header extends Component {
                               </span>
                             </Link>
                           </li>
-                        
                         </ul>
                       )}
 
