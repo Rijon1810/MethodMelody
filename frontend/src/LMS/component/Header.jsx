@@ -160,7 +160,7 @@ class Header extends Component {
                 <ul className="mainmenu">
                   {this.props.from !== "admin" && (
                     <li className="has-droupdown">
-                      <Link to="#">Courses</Link>
+                      <Link to="/allcourses">Courses</Link>
                       <ul className="submenu" style={mystyle}>
                         {this.props.catagory_data.map((category) => (
                           <li>
@@ -199,7 +199,7 @@ class Header extends Component {
                   )}
                   {this.props.from !== "admin" && (
                     <li className="has-droupdown">
-                      <Link to="#">Musicians</Link>
+                      <Link to="/instructorlist">Musicians</Link>
                       <ul className="submenu" style={mystyle}>
                         {this.props.instructorList.map((instructor) => (
                           <li>

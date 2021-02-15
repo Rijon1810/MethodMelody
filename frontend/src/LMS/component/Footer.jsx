@@ -34,7 +34,7 @@ class Footer extends Component {
                         <h4 className="theme-gradient">Explore</h4>
                         <ul className="ft-link">
                           <li>
-                            <a href="/allcourses">Classes</a>
+                            <a href="/allcourses">Courses</a>
                           </li>
                           <li>
                             <a

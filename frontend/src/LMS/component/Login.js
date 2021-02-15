@@ -70,15 +70,17 @@ class Login extends Component {
                     this.setState({ rnPassword: e.target.value });
                   }}
                   placeholder="Your password"
+                  data-toggle="password"
                 />
               </label>
 
               <button
-                className="rn-button-style--2 btn-solid"
+                className="rn-button-style--2"
                 type="submit"
                 value="submit"
                 name="submit"
                 id="mc-embedded-subscribe"
+                style={{ backgroundColor: "#b12222", color:"#ffffff" , borderBlockStyle:"hidden" }}
                 onClick={async (event) => {
                   event.preventDefault();
                   await this.props.isLogged({

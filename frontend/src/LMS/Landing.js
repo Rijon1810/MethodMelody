@@ -108,6 +108,9 @@ export default function Landing() {
   );
   const userId = useSelector((state) => state.isLogged.payload.id);
 
+  const isLoggedIn = useSelector((state) => state.isLogged.login);
+  console.log("is logged in: " + isLoggedIn);
+
   const courseList = useSelector((state) => state.getCourse.featuredCourseList);
 
   const length = useSelector((state) => state.getInstructor.length);
@@ -174,7 +177,7 @@ export default function Landing() {
                         ) : (
                           ""
                         )}
-                        {value.buttonText ? (
+                        {/* {value.buttonText ? (
                           <div className="slide-btn">
                             <a
                               className="rn-button-style--2 btn-primary-color"
@@ -185,6 +188,25 @@ export default function Landing() {
                           </div>
                         ) : (
                           ""
+                        )} */}
+                        {isLoggedIn ? (
+                          <div className="slide-btn">
+                            <a
+                              className="rn-button-style--2" style={{ backgroundColor: "#b12222", color:"#ffffff", borderBlockStyle:"hidden" }}
+                              href="/allcourses"
+                            >
+                              {value.buttonText}
+                            </a>
+                          </div>
+                        ) : (
+                          <div className="slide-btn">
+                            <a
+                              className="rn-button-style--2" style={{ backgroundColor: "#b12222", color:"#ffffff", borderBlockStyle:"hidden"  }}
+                              href={`${value.buttonLink}`}
+                            >
+                              {value.buttonText}
+                            </a>
+                          </div>
                         )}
                       </div>
                     </div>
