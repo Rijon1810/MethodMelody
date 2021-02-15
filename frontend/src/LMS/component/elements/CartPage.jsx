@@ -55,6 +55,7 @@ const CartPage = () => {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
+  const [remove, setRemove] = React.useState(false);
 
   var cartCoursesList = [];
 
@@ -67,7 +68,7 @@ const CartPage = () => {
     }
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [remove]);
 
   return (
     <React.Fragment>
@@ -112,6 +113,7 @@ const CartPage = () => {
                                     course: course._id,
                                   })
                                 );
+                                setRemove(true);
                               }}
                             >
                               Remove from cart
