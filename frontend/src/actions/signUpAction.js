@@ -15,10 +15,10 @@ export const signUp = (data) => (dispatch) => {
         payload: res.data,
         login: false,
       });
+      alert(res.data.message);
     })
     .catch((err) => {
       console.log(err);
-      return false;
+      alert("failed try again");
     });
-    return true;
 };

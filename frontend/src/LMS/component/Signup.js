@@ -9,7 +9,7 @@ import PageHelmet from "./Helmet.jsx";
 import { connect } from "react-redux";
 import { signUp } from "../../actions/signUpAction";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-
+import { Redirect } from "react-router-dom";
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -33,12 +33,7 @@ class Signup extends Component {
         <Header from="signup" />
         <Breadcrumb from="signup" />
 
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-         
-        >
+        <Box display="flex" justifyContent="center" alignItems="center">
           <div className="contact-form--1 col-xl-6 col-lg-6 col-md-10 col-sm-10 ptb--50">
             <div className="row d-flex align-items-center">
               <div className="col-8">
@@ -194,9 +189,12 @@ class Signup extends Component {
                   fd.append("address", this.state.rnAddress);
 
                   await this.props.signUp(fd);
-                  this.props.create_user_status.message === "user added!"
-                    ? this.props.history.push("/login")
-                    : this.props.history.push("/signup");
+                  this.props.history.push("/login");
+
+                  // return <Redirect to="/login" />;
+                  // this.props.create_user_status.message === "user added!"
+                  //   ? this.props.history.push("/login")
+                  //   : this.props.history.push("/signup");
                 }}
               >
                 Submit

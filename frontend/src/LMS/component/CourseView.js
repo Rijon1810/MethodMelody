@@ -155,7 +155,7 @@ export default function CourseView(props) {
             <h3 className="fontWeight500" style={{ paddingTop: "2ch" }}>
               {selectedCourse.title}
             </h3>
-            <p className="fontWeight500" className="theme-gradient">
+            <p className="fontWeight500" style={{ color: "#b12222" }}>
               {" "}
               {selectedCourse.subtitle}
             </p>
@@ -237,7 +237,7 @@ export default function CourseView(props) {
                     </div>
                     <div className="col-lg-12">
                       {" "}
-                      <h2 className="theme-gradient">{selectedCourse.price}</h2>
+                      <h2 style={{ color: "#b12222" }}>{selectedCourse.price}</h2>
                     </div>
                     <div className="col-lg-12">
                       <p className="text-white">30 Days Subscription</p>
@@ -256,6 +256,7 @@ export default function CourseView(props) {
                               course: selectedCourse._id,
                             })
                           );
+                          handleClose();
                         }}
                       >
                         Add to cart
@@ -338,7 +339,7 @@ export default function CourseView(props) {
                 <div className="row">
                   <div className="col-lg-9">
                     <div className="single-column">
-                      <h3 className="tilte theme-gradient">
+                      <h3 className="tilte " style={{ color: "#b12222" }}>
                         About this course
                       </h3>
                       <p className="text-white text-justify">
@@ -347,7 +348,7 @@ export default function CourseView(props) {
                     </div>
                     {/* Start What You Will Learn Area */}
                     <div className="list-style--1 text-white pt--60">
-                      <h3 className="tilte theme-gradient">
+                      <h3 className="tilte " style={{ color: "#b12222" }}>
                         What will you learn?
                       </h3>
                       <ul>
@@ -360,7 +361,7 @@ export default function CourseView(props) {
                   </div>
                   <div className="col-lg-3">
                     <div className="single-column">
-                      <h3 className="tilte theme-gradient">
+                      <h3 className="tilte " style={{ color: "#b12222" }}>
                         This course includes
                       </h3>
                       <ul className="list-style--1 text-white">
@@ -385,7 +386,7 @@ export default function CourseView(props) {
                         </li>
                       </ul>
                       {/* Start Course Requirements */}
-                      <h3 className="tilte theme-gradient pt--60">
+                      <h3 className="tilte  pt--60">
                         Requirements
                       </h3>
                       <ul className="list-style--1 text-white">
@@ -401,7 +402,7 @@ export default function CourseView(props) {
                       </ul>
                       {/* End Course Requirements */}
                       {/* Start Course Who For */}
-                      <h3 className="tilte theme-gradient pt--60">
+                      <h3 className="tilte  pt--60">
                         Who this course is for
                       </h3>
                       <ul className="list-style--1 text-white">
@@ -430,7 +431,7 @@ export default function CourseView(props) {
           className="portfolio-area pb--120  bg_color--1"
           style={{ paddingTop: "10ch" }}
         >
-          <StudentContactForm />
+          <StudentContactForm instructor={selectedInstructor} />
         </div>
       ) : null}
 

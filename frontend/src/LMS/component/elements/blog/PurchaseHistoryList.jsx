@@ -86,7 +86,7 @@ const PurchaseHistoryList = () => {
                     View Course
                   </a>
                 </div>
-                <div className="blog-btn">
+                {/* <div className="blog-btn">
                   <a
                     className="rn-btn text-white"
                     href="#"
@@ -99,7 +99,7 @@ const PurchaseHistoryList = () => {
                   >
                     Remove Course
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
