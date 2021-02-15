@@ -121,6 +121,7 @@ export default function CourseView(props) {
 
   const [open, setOpen] = React.useState(false);
   const [paid, setPaid] = React.useState(false);
+  const [wish, setWish] = React.useState(false);
 
   const handleOpen = () => {
     console.log(`is user logged in = ${isLogIn}`);
@@ -142,7 +143,7 @@ export default function CourseView(props) {
         }
       });
     }
-  }, [paid]);
+  }, [paid, wish]);
 
   return (
     <div className="active-dark">
@@ -194,9 +195,11 @@ export default function CourseView(props) {
             ) : null}
 
             <div className="d-flex flex-row-reverse" style={{ marginTop: 20 }}>
-              <a
-                className="rn-btn"
-                href="#"
+              <button
+                variant="contained"
+                className="rn-button-style--2 btn"
+                fullWidth={true}
+                style={{ width: "50%", marginTop: "50px" }}
                 onClick={() => {
                   dispatch(
                     postWishListCourse({
@@ -204,10 +207,11 @@ export default function CourseView(props) {
                       course: selectedCourse._id,
                     })
                   );
+                  setWish(true);
                 }}
               >
-                <span>Add to Wish List !</span>
-              </a>
+                Add to Wish List !
+              </button>
             </div>
             <Modal
               aria-labelledby="transition-modal-title"

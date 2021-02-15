@@ -43,7 +43,7 @@ export const postWishListCourse = (data) => (dispatch) => {
       //   type: POST_WISHLIST,
       //   payload: res.data,
       // });
-      alert(res.data.message);
+      // alert(res.data.message);
     })
     .catch((err) => {
       console.log(err);

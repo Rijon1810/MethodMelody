@@ -67,9 +67,7 @@ const CartPage = () => {
       }
     }
   });
-
   useEffect(() => {}, [remove]);
-
   return (
     <React.Fragment>
       {" "}
