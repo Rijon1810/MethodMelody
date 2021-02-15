@@ -55,7 +55,7 @@ const CartPage = () => {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
-  const [paid, setPaid] = React.useState(false);
+  const [remove, setRemove] = React.useState(false);
 
   var cartCoursesList = [];
 
@@ -68,7 +68,7 @@ const CartPage = () => {
     }
   });
 
-  useEffect(() => {}, [paid]);
+  useEffect(() => {}, [remove]);
 
   return (
     <React.Fragment>
@@ -106,6 +106,15 @@ const CartPage = () => {
                             <a
                               className="rn-btn text-white"
                               href="#"
+                              onClick={() => {
+                                dispatch(
+                                  removeCart({
+                                    user: userID,
+                                    course: course._id,
+                                  })
+                                );
+                                setRemove(true);
+                              }}
                             >
                               Remove from cart
                             </a>
