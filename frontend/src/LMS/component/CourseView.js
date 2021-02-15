@@ -128,7 +128,6 @@ export default function CourseView(props) {
       setOpen(true);
     }
   };
-  const [cart, setCart] = React.useState(false);
 
   const handleClose = () => {
     console.log(`handleClose called`);
@@ -143,7 +142,7 @@ export default function CourseView(props) {
         }
       });
     }
-  }, [paid, cart]);
+  }, [paid]);
 
   return (
     <div className="active-dark">
