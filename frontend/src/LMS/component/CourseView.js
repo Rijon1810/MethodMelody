@@ -129,6 +129,12 @@ export default function CourseView(props) {
       setOpen(true);
     }
   };
+  const handleWish = () => {
+    console.log(`is user logged in = ${isLogIn}`);
+    if (isLogIn) {
+      setWish(true);
+    }
+  };
 
   const handleClose = () => {
     console.log(`handleClose called`);
@@ -195,23 +201,23 @@ export default function CourseView(props) {
             ) : null}
 
             <div className="d-flex flex-row-reverse" style={{ marginTop: 20 }}>
-              <button
-                variant="contained"
-                className="rn-button-style--2 btn"
-                fullWidth={true}
-                style={{ width: "50%", marginTop: "50px" }}
-                onClick={() => {
-                  dispatch(
-                    postWishListCourse({
-                      user: userId,
-                      course: selectedCourse._id,
-                    })
-                  );
-                  setWish(true);
-                }}
-              >
-                Add to Wish List !
-              </button>
+              {wish != true ? (
+                <a
+                  className="rn-btn"
+                  href="#"
+                  onClick={() => {
+                    dispatch(
+                      postWishListCourse({
+                        user: userId,
+                        course: selectedCourse._id,
+                      })
+                    );
+                    setWish(true);
+                  }}
+                >
+                  <span>Add to Wish List !</span>
+                </a>
+              ) : null}
             </div>
             <Modal
               aria-labelledby="transition-modal-title"
