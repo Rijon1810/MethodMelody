@@ -128,6 +128,7 @@ export default function CourseView(props) {
       setOpen(true);
     }
   };
+  const [cart, setCart] = React.useState(false);
 
   const handleClose = () => {
     console.log(`handleClose called`);
@@ -142,7 +143,7 @@ export default function CourseView(props) {
         }
       });
     }
-  }, [paid]);
+  }, [paid, cart]);
 
   return (
     <div className="active-dark">
@@ -237,7 +238,9 @@ export default function CourseView(props) {
                     </div>
                     <div className="col-lg-12">
                       {" "}
-                      <h2 style={{ color: "#b12222" }}>{selectedCourse.price}</h2>
+                      <h2 style={{ color: "#b12222" }}>
+                        {selectedCourse.price}
+                      </h2>
                     </div>
                     <div className="col-lg-12">
                       <p className="text-white">30 Days Subscription</p>
@@ -256,6 +259,7 @@ export default function CourseView(props) {
                               course: selectedCourse._id,
                             })
                           );
+                          setPaid(true);
                           handleClose();
                         }}
                       >
@@ -386,9 +390,7 @@ export default function CourseView(props) {
                         </li>
                       </ul>
                       {/* Start Course Requirements */}
-                      <h3 className="tilte  pt--60">
-                        Requirements
-                      </h3>
+                      <h3 className="tilte  pt--60">Requirements</h3>
                       <ul className="list-style--1 text-white">
                         {selectedCourse.requirements[0]
                           .split(";")
@@ -402,9 +404,7 @@ export default function CourseView(props) {
                       </ul>
                       {/* End Course Requirements */}
                       {/* Start Course Who For */}
-                      <h3 className="tilte  pt--60">
-                        Who this course is for
-                      </h3>
+                      <h3 className="tilte  pt--60">Who this course is for</h3>
                       <ul className="list-style--1 text-white">
                         {selectedCourse.whoFor[0].split(";").map((who) => {
                           return (
