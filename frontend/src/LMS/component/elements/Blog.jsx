@@ -16,7 +16,7 @@ class Blog extends Component{
         console.log(this.props.courseCategory)
         return(
             <div className="active-dark">
-                <Header from="landing" />
+                <Header from="allcourses" />
                 {/* Start Breadcrump Area */}
                 <Breadcrumb title={'All Courses'}   />
                 {/* End Breadcrump Area */}

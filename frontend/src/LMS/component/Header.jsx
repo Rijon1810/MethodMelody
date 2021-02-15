@@ -155,8 +155,8 @@ class Header extends Component {
           </div>
           <div className="header-right">
             <nav className="mainmenunav d-lg-block">
-              {(this.props.from === "landing" ||
-                this.props.from === "admin") && (
+              {(this.props.from !== "login" &&
+                this.props.from !== "signup") && (
                 <ul className="mainmenu">
                   {this.props.from !== "admin" && (
                     <li className="has-droupdown">
@@ -256,14 +256,16 @@ class Header extends Component {
                     </li>
                   ) : (
                     <li className="has-droupdown">
-                      <Link to="/">
-                        <Grid container direction="row" alignItems="center">
-                          <Grid item style={{ marginRight: 10 }}>
-                            <HomeOutlined />
+                      {this.props.from !== "landing" ? (
+                        <Link to="/">
+                          <Grid container direction="row" alignItems="center">
+                            <Grid item style={{ marginRight: 10 }}>
+                              <HomeOutlined />
+                            </Grid>
+                            <Grid item>Home</Grid>
                           </Grid>
-                          <Grid item>Home</Grid>
-                        </Grid>
-                      </Link>
+                        </Link>
+                      ) : null}
                     </li>
                   )}
 
