@@ -106,15 +106,6 @@ const CartPage = () => {
                             <a
                               className="rn-btn text-white"
                               href="#"
-                              onClick={() => {
-                                dispatch(
-                                  removeCart({
-                                    user: userID,
-                                    course: course._id,
-                                  })
-                                );
-                                setPaid(true);
-                              }}
                             >
                               Remove from cart
                             </a>
