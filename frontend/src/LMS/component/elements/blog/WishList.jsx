@@ -11,6 +11,7 @@ import {
 import { getUserCourse } from "../../../../actions/userAction";
 import { removeWishList } from "../../../../actions/wishListAction";
 const WishList = () => {
+  const dispatch = useDispatch();
   console.log("Inside wishlist");
   const [render, setRender] = useState(false);
   const courseList = useSelector(
@@ -45,10 +46,13 @@ const WishList = () => {
 
   useEffect(() => {
     dispatch(getUserCourse(`${userId}`));
-    // dispatch(getSelectedCourseCategory(""));
-  }, [render]);
+    for (var j = 0; j < wishListCourses.length; j++) {
+      if (wishListCourses[j]._id === render) {
+        wishListCourses.splice(j, 1);
+      }
+    }
+  }, [dispatch, wishListCourses]);
 
-  const dispatch = useDispatch();
   return (
     <Fragment>
       {wishListCourses.length != 0 ? (
@@ -96,7 +100,7 @@ const WishList = () => {
                         dispatch(
                           removeWishList({ user: userId, course: course._id })
                         );
-                        // setRender(true);
+                        setRender(course._id);
                       }}
                     >
                       Remove Course
