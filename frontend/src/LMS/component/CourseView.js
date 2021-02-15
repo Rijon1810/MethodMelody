@@ -290,7 +290,7 @@ export default function CourseView(props) {
               </Fade>
             </Modal>
           </div>
-          <div className="col-lg-9">
+          <div onContextMenu={(e) => e.preventDefault()} className="col-lg-9">
             <ReactPlayer
               url={
                 "http://63.250.33.174/" +
@@ -300,9 +300,11 @@ export default function CourseView(props) {
                 file: {
                   attributes: {
                     onContextMenu: (e) => e.preventDefault(),
+                    controlsList: "nodownload",
                   },
                 },
               }}
+              controls
             />
             {/* <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} /> */}
           </div>
