@@ -8,7 +8,7 @@ import { FiChevronUp } from "react-icons/fi";
 import Header from "../Header.jsx";
 import Footer from "../Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { checkout, removeCart } from "../../../actions/cartAction";
+import { checkout, removeCart, getCart } from "../../../actions/cartAction";
 import Paper from "@material-ui/core/Paper";
 
 import {
@@ -55,7 +55,7 @@ const CartPage = () => {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
-  const [remove, setRemove] = React.useState(false);
+  const [remove, setRemove] = React.useState("");
 
   var cartCoursesList = [];
 
@@ -67,9 +67,14 @@ const CartPage = () => {
       }
     }
   });
-
-  useEffect(() => {}, [remove]);
-
+  useEffect(() => {
+    dispatch(getCart(`${userID}`));
+    for (var j = 0; j < cartCoursesList.length; j++) {
+      if (cartCoursesList[j]._id === remove) {
+        cartCoursesList.splice(j, 1);
+      }
+    }
+  }, [dispatch, cartCoursesList]);
   return (
     <React.Fragment>
       {" "}
@@ -113,7 +118,7 @@ const CartPage = () => {
                                     course: course._id,
                                   })
                                 );
-                                setRemove(true);
+                                setRemove(course._id);
                               }}
                             >
                               Remove from cart

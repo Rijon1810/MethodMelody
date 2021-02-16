@@ -121,6 +121,7 @@ export default function CourseView(props) {
 
   const [open, setOpen] = React.useState(false);
   const [paid, setPaid] = React.useState(false);
+  const [wish, setWish] = React.useState(false);
 
   const handleOpen = () => {
     console.log(`is user logged in = ${isLogIn}`);
@@ -128,6 +129,12 @@ export default function CourseView(props) {
       setOpen(true);
     } else {
       alert("Please login first in order to buy the course");
+    }
+  };
+  const handleWish = () => {
+    console.log(`is user logged in = ${isLogIn}`);
+    if (isLogIn) {
+      setWish(true);
     }
   };
 
@@ -144,7 +151,7 @@ export default function CourseView(props) {
         }
       });
     }
-  }, [paid]);
+  }, [paid, wish]);
 
   const renderPlayButton = (lesson_status, course_id) => {
     if (lesson_status === "open") {
@@ -259,20 +266,23 @@ export default function CourseView(props) {
             ) : null}
 
             <div className="d-flex flex-row-reverse" style={{ marginTop: 20 }}>
-              <a
-                className="rn-btn"
-                href="#"
-                onClick={() => {
-                  dispatch(
-                    postWishListCourse({
-                      user: userId,
-                      course: selectedCourse._id,
-                    })
-                  );
-                }}
-              >
-                <span>Add to Wish List !</span>
-              </a>
+              {wish != true ? (
+                <a
+                  className="rn-btn"
+                  href="#"
+                  onClick={() => {
+                    dispatch(
+                      postWishListCourse({
+                        user: userId,
+                        course: selectedCourse._id,
+                      })
+                    );
+                    setWish(true);
+                  }}
+                >
+                  <span>Add to Wish List !</span>
+                </a>
+              ) : null}
             </div>
             <Modal
               aria-labelledby="transition-modal-title"
@@ -345,7 +355,7 @@ export default function CourseView(props) {
               </Fade>
             </Modal>
           </div>
-          <div className="col-lg-9">
+          <div onContextMenu={(e) => e.preventDefault()} className="col-lg-9">
             <ReactPlayer
               url={
                 "http://63.250.33.174/" +
@@ -355,9 +365,11 @@ export default function CourseView(props) {
                 file: {
                   attributes: {
                     onContextMenu: (e) => e.preventDefault(),
+                    controlsList: "nodownload",
                   },
                 },
               }}
+              controls
             />
             {/* <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} /> */}
           </div>
