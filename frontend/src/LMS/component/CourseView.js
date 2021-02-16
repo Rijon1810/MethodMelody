@@ -40,6 +40,7 @@ import { isLogged } from "../../actions/isLoggedAction";
 import { getUserCourse } from "../../actions/userAction";
 import { postWishListCourse } from "../../actions/wishListAction";
 import StudentContactForm from "./StudentContactForm.jsx";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CourseView(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const isLogIn = useSelector((state) => state.isLogged.login);
 
@@ -346,6 +348,17 @@ export default function CourseView(props) {
                         variant="contained"
                         style={{ width: "100%", marginTop: "20px" }}
                         className="rn-button-style--2 btn-outlined"
+                        onClick={async (event) => {
+                          dispatch(
+                            postCart({
+                              user: userId,
+                              course: selectedCourse._id,
+                            })
+                          );
+                          setPaid(true);
+                          handleClose();
+                          history.push('/cart');
+                        }}
                       >
                         Buy now
                       </button>
