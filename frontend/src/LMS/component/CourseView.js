@@ -126,6 +126,8 @@ export default function CourseView(props) {
     console.log(`is user logged in = ${isLogIn}`);
     if (isLogIn) {
       setOpen(true);
+    } else {
+      alert("Please login first in order to buy the course");
     }
   };
 
@@ -143,6 +145,69 @@ export default function CourseView(props) {
       });
     }
   }, [paid]);
+
+  const renderPlayButton = (lesson_status, course_id) => {
+    if (lesson_status === "open") {
+      return (
+        <Avatar className={classes.Avatar}>
+          <PlayArrow className={classes.Icon} />
+        </Avatar>
+      );
+    } else if (lesson_status === "login") {
+      if (isLogIn) {
+        return (
+          <Avatar className={classes.Avatar}>
+            <PlayArrow className={classes.Icon} />
+          </Avatar>
+        );
+      } else {
+        return (
+          <Avatar className={classes.Avatar}>
+            <Lock className={classes.Icon} />
+          </Avatar>
+        );
+      }
+    } else if (lesson_status === "paid") {
+      if (isLogIn) {
+        if (userCourses !== undefined) {
+          console.log(typeof userCourses);
+
+          if (userCourses.length === 0) {
+            return (
+              <Avatar className={classes.Avatar}>
+                <Lock className={classes.Icon} />
+              </Avatar>
+            );
+          } else {
+            let userCoursesIdArr = [];
+            userCourses.forEach((c) => {
+              userCoursesIdArr.push(c._id);
+            });
+            var a = userCoursesIdArr.indexOf(course_id);
+            if (a < 0) {
+              return (
+                <Avatar className={classes.Avatar}>
+                  <PlayArrow className={classes.Icon} />
+                </Avatar>
+              );
+            }
+          }
+        } else {
+          return (
+            <Avatar className={classes.Avatar}>
+              <Lock className={classes.Icon} />
+            </Avatar>
+          );
+        }
+      } else {
+        return (
+          <Avatar className={classes.Avatar}>
+            <Lock className={classes.Icon} />
+          </Avatar>
+        );
+      }
+    }
+  };
 
   return (
     <div className="active-dark">
@@ -309,22 +374,35 @@ export default function CourseView(props) {
                       } else if (lesson.status === "login") {
                         if (isLogIn) {
                           dispatch(getCurrentVideoIndex(index));
+                        } else {
+                          alert(
+                            "Please login first in order to play this lesson"
+                          );
                         }
-                      } else if (lesson.status === "paid") {
+                      } else if (lesson.status === "paid" && isLogIn === true) {
                         console.log(`course id = ${selectedCourse._id}`);
                         console.log(`lesson status = ${lesson.status}`);
                         userCourses.forEach((c) => {
                           console.log(c[0]);
                           if (c[0] === selectedCourse._id) {
                             dispatch(getCurrentVideoIndex(index));
+                          } else {
+                            alert(
+                              'Please buy the course first by clicking on the "Get Enrolled!" button first to play this lesson'
+                            );
                           }
                         });
+                      } else {
+                        alert(
+                          'Please buy the course first by clicking on the "Get Enrolled!" button to play this lesson'
+                        );
                       }
                     }}
                   >
-                    <Avatar className={classes.Avatar}>
+                    {/* <Avatar className={classes.Avatar}>
                       <PlayArrow className={classes.Icon} />
-                    </Avatar>
+                    </Avatar> */}
+                    {renderPlayButton(lesson.status, selectedCourse._id)}
                     <ListItemText
                       primary={lesson.originalname}
                       className={classes.ListItemText}
