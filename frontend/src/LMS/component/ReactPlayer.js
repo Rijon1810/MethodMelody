@@ -10,8 +10,13 @@ export default function Player({ url }) {
         url={url}
         width="100%"
         height="100%"
-        controls="true"
+        controls="false"
         style={{ outline: "none" }}
+        config={{ file: { 
+          attributes: {
+            controlsList: 'nodownload'  //<- this is the important bit
+          }
+      }}}
       />
     </div>
   );
