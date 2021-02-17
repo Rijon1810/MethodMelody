@@ -432,16 +432,16 @@ export default function Landing() {
       {/* End Student Feedback */}
 
       {/* Start Team Area  */}
-      <div className="rn-team-area ptb--100">
+      {/* <div className="rn-team-area ptb--100">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
               <div className="section-title service-style--3 text-left mb--25 mb_sm--0">
                 <h3 className="title">Our Team</h3>
-                {/* <p>
+                <p>
                   There are many variations of passages of Lorem Ipsum
                   available, but the majority have suffered alteration.
-                </p> */}
+                </p>
               </div>
             </div>
           </div>
@@ -449,7 +449,7 @@ export default function Landing() {
             <Team column="col-lg-3 col-md-6 col-sm-6 col-12" />
           </div>
         </div>
-      </div>
+      </div> */}
       {/* End Team Area  */}
 
       {/* Start Faq Area */}
@@ -648,7 +648,7 @@ export default function Landing() {
 
       {/* Start Contact Form Area */}
       <div
-        className="portfolio-area pb--120  bg_color--1"
+        className="portfolio-area pb--120  bg_color--6"
         style={{ paddingTop: "10ch" }}
       >
         <ContactOne />
