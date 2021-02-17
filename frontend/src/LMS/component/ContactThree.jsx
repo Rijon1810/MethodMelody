@@ -166,12 +166,13 @@ class ContactThree extends Component {
                     <div className="col-lg-4">
                       <label htmlFor="item012">
                         <input
-                          type="text"
+                          type="number"
                           name="validity"
                           id="item012"
                           placeholder="Validity: 30 Days"
-                          readOnly
-                          disabled
+                          // readOnly
+                          // disabled
+                          onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                         />
                       </label>
                     </div>
