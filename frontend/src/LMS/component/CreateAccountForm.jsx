@@ -91,7 +91,7 @@ class CreateAccountForm extends Component {
                           >
                             <option value={1}>Admin</option>
                             <option value={2}>Content Uploader</option>
-                            <option value={3}>Instructor</option>
+                            {/* <option value={3}>Instructor</option> */}
                           </select>
                         </label>
                       </div>
