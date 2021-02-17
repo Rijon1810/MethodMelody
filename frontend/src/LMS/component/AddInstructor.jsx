@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 
 import Form from "./AddInstructorForm.jsx";
+import CreateInstructorAccountForm from "./CreateInstructorAccountForm.jsx";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -37,9 +38,15 @@ function AddInstructor() {
 
         <Breadcrumb from="admin" />
 
+     
+
         
         <div className="rn-contact-form-area ptb--50 bg_color--1 pl--60 pr--60">
           <Form />
+        </div>
+
+        <div className="rn-contact-form-area ptb--50 bg_color--1 pl--60 pr--60">
+          <CreateInstructorAccountForm />
         </div>
         {/* Start Back To Top */}
         <div className="backto-top">

@@ -3,31 +3,30 @@ import { connect } from "react-redux";
 import { getInstructor, postInstructor } from "../../actions/instructorAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { signUp } from "../../actions/signUpAction";
 
-class AddInstructorForm extends Component {
+class CreateInstructorAccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       rnName: "",
-      rnBand: "",
-      rnParcentage: "",
-      rnFeatured: "",
-      rnBio: "",
-      rnPhoto: "",
-      rnBanner: "",
+      rnEmail: "",
+      rnPassword: "",
+      rnUserType: 3,
+      rnInstructorProfileId: "",
     };
   }
-  render() {
+  render() {    
     return (
       <div className="contact-form--1">
         <div className="container">
           <div className="row row--35 align-items-start">
             <div className="col-lg-12 order-2 order-lg-1">
               <div className="section-title text-left">
-                <h4 className="title"style={{ color: "#b12222" }}>Create New Instructor Profile</h4>
+                <h4 style={{ color: "#b12222" }}>Create New Instructor Account</h4>
               </div>
               <p className="text-muted">
-                All the fields are rquired for successful course upload
+                All the fields are rquired for successful instructor account creation.
               </p>
               <div className="form-wrapper">
                 <form ref={(el) => (this.form = el)}>
@@ -50,13 +49,13 @@ class AddInstructorForm extends Component {
                       <label htmlFor="item02">
                         <input
                           type="text"
-                          name="band"
+                          name="email"
                           id="item02"
-                          value={this.state.rnBand}
+                          value={this.state.rnEmail}
                           onChange={(e) => {
-                            this.setState({ rnBand: e.target.value });
+                            this.setState({ rnEmail: e.target.value });
                           }}
-                          placeholder="Band *"
+                          placeholder="Email *"
                         />
                       </label>
                     </div>
@@ -64,13 +63,13 @@ class AddInstructorForm extends Component {
                       <label htmlFor="item03">
                         <input
                           type="text"
-                          name="percentage"
+                          name="password"
                           id="item03"
-                          value={this.state.rnParcentage}
+                          value={this.state.rnPassword}
                           onChange={(e) => {
-                            this.setState({ rnParcentage: e.target.value });
+                            this.setState({ rnPassword: e.target.value });
                           }}
-                          placeholder="Percentage *"
+                          placeholder="Password *"
                         />
                       </label>
                     </div>
@@ -80,18 +79,19 @@ class AddInstructorForm extends Component {
                     <div className="col-lg-4">
                       <div className="form-group">
                         <label htmlFor="exampleFormControlFile1">
-                          Feature Instructor *
+                          Account Type *
                         </label>
-                        <label htmlFor="featured *">
+                        <label htmlFor="accounttype *">
                           <select
                             className="form-control"
-                            name="featured"
-                            onSelect={(e) => {
-                              this.setState({ rnFeatured: e.target.value });
-                            }}
+                            name="type"
+                            // onSelect={(e) => {
+                            //   this.setState({ rnUserType: e.target.value });
+                            // }}
                           >
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
+                            {/* <option value={1}>Admin</option>
+                            <option value={2}>Content Uploader</option> */}
+                            <option value={3} selected>Instructor</option>
                           </select>
                         </label>
                       </div>
@@ -102,73 +102,34 @@ class AddInstructorForm extends Component {
                     <div className="col-lg-4">
                       <div className="form-group">
                         <label htmlFor="exampleFormControlFile1">
-                          Thumbnail File
+                          Select Instructor
                         </label>
-                        <label htmlFor="item04">
-                          <input
-                            type="file"
-                            name="photo"
-                            id="item04"
-                            value={this.state.rnPhoto.name}
-                            onChange={(e) => {
-                              let files = e.target.files;
-                              if (files) {
-                                let reader = new FileReader();
-                                reader.onload = (e) => {
-                                  this.setState({
-                                    rnPhoto: e.target.result,
-                                  });
-                                };
-                                reader.readAsDataURL(files[0]);
-                              }
+                        <label htmlFor="accounttype *">
+                          <select
+                            className="form-control"
+                            name="instructor"
+                            onSelect={(e) => {
+                              this.setState({
+                                rnInstructorProfileId: e.target.value,
+                              });
                             }}
-                            placeholder="Photo *"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="col-lg-4">
-                      <div className="form-group">
-                        <label htmlFor="exampleFormControlFile1">
-                          Banner File
-                        </label>
-                        <label htmlFor="item05">
-                          <input
-                            type="file"
-                            name="banner"
-                            id="item05"
-                            value={this.state.rnBanner.name}
-                            onChange={(e) => {
-                              let files = e.target.files;
-                              if (files) {
-                                let reader = new FileReader();
-                                reader.onload = (e) => {
-                                  this.setState({
-                                    rnBanner: e.target.result,
-                                  });
-                                };
-                                reader.readAsDataURL(files[0]);
-                              }
-                            }}
-                            placeholder="Banner *"
-                          />
+                          >
+                            <option value="5fdb4c3afc17496a849d8f64">
+                              N/A
+                            </option>
+                            {this.props.instructorList.map(
+                              (instructor, index) => (
+                                <option value={instructor._id} key={index}>
+                                  {instructor.name}
+                                </option>
+                              )
+                            )}
+                          </select>
                         </label>
                       </div>
                     </div>
                   </div>
 
-                  <label htmlFor="item06">
-                    <textarea
-                      type="text"
-                      id="item06"
-                      name="bio"
-                      value={this.state.rnBio}
-                      onChange={(e) => {
-                        this.setState({ rnBio: e.target.value });
-                      }}
-                      placeholder="Bio *"
-                    />
-                  </label>
                   <button
                     className="rn-button-style--2"
                     type="submit"
@@ -179,11 +140,13 @@ class AddInstructorForm extends Component {
                     onClick={async (event) => {
                       event.preventDefault();
                       const body = new FormData(this.form);
+                      for (var pair of body.entries()) {
+                        console.log(pair[0] + ", " + pair[1]);
+                      }
                       toast("Upload started!!! please wait!!");
-                      await this.props.postInstructor(body);
-                      this.props.create_instructor_status.message ===
-                      "Instructor Added Successfully!"
-                        ? toast.success("Instructor Added Successfully!", {
+                      await this.props.signUp(body);
+                      this.props.create_user_status.message === "user added!"
+                        ? toast.success("Instructor Created Successfully!", {
                             position: "bottom-center",
                             autoClose: false,
                             hideProgressBar: false,
@@ -192,7 +155,7 @@ class AddInstructorForm extends Component {
                             draggable: true,
                             progress: undefined,
                           })
-                        : toast.error("Instructor Add Failed!", {
+                        : toast.error("Instructor Creation Failed!", {
                             position: "bottom-center",
                             autoClose: false,
                             hideProgressBar: false,
@@ -203,7 +166,7 @@ class AddInstructorForm extends Component {
                           });
                     }}
                   >
-                    Upload
+                    Submit
                   </button>
                   <ToastContainer
                     position="bottom-center"
@@ -228,9 +191,9 @@ class AddInstructorForm extends Component {
 
 const mapStateToProps = (state) => ({
   instructorList: state.getInstructor.instructorList,
-  create_instructor_status: state.postInstructor.payload,
+  create_user_status: state.isLogged.payload,
 });
 
-export default connect(mapStateToProps, { getInstructor, postInstructor })(
-  AddInstructorForm
+export default connect(mapStateToProps, { signUp, getInstructor })(
+  CreateInstructorAccountForm
 );
