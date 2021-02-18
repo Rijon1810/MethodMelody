@@ -181,6 +181,7 @@ class AddInstructorForm extends Component {
                       const body = new FormData(this.form);
                       toast("Upload started!!! please wait!!");
                       await this.props.postInstructor(body);
+                      this.props.getInstructor();
                       this.props.create_instructor_status.message ===
                       "Instructor Added Successfully!"
                         ? toast.success("Instructor Added Successfully!", {
