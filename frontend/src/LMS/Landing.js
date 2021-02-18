@@ -130,12 +130,12 @@ export default function Landing() {
   useEffect(() => {
     dispatch(getInstructor());
     dispatch(getFeaturedInstructor());
-    // dispatch(getCourse());
+    dispatch(getCourse());
     dispatch(getAnalytics());
     dispatch(getCurrentVideoIndex(0));
     dispatch(getCart(`${userId}`));
     dispatch(getUserCourse(`${userId}`));
-    // dispatch(getSelectedCourseCategory(""));
+    dispatch(getSelectedCourseCategory(""));
   }, [dispatch]);
 
   // view all course handler

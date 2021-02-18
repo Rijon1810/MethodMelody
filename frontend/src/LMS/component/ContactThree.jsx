@@ -29,6 +29,7 @@ class ContactThree extends Component {
       refVideos: "",
       rnBanner: "",
       refBanner: "",
+      rnValidity:"",
     };
   }
   formd = new FormData();
@@ -170,6 +171,10 @@ class ContactThree extends Component {
                           name="validity"
                           id="item012"
                           placeholder="Validity: 30 Days"
+                          value={this.state.rnValidity}
+                          onChange={(e) => {
+                            this.setState({ rnValidity: e.target.value });
+                          }}
                           // readOnly
                           // disabled
                           onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
@@ -186,7 +191,7 @@ class ContactThree extends Component {
                         </label>
                         <label htmlFor="item10">
                           <select
-                            name="category"
+                            name="catagory"
                             className="form-control"
                             onSelect={(e) => {
                               this.setState({ rnCatagory: e.target.value });

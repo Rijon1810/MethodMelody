@@ -44,11 +44,14 @@ export default function Header(props) {
   useEffect(() => {
     // dispatch(isLogged());
     // dispatch(logOut());
-    dispatch(getCourse());
+    // dispatch(getCourse());
     // dispatch(getSelectedInstructorId());
-    // dispatch(getSelectedCourseCategory());
-    dispatch(getCart(`${userId}`));
-    dispatch(getUserCourse(`${userId}`));
+    // dispatch(getSelectedCourseCategory(""));
+    if(loginStatus){
+      dispatch(getCart(`${userId}`));
+      dispatch(getUserCourse(`${userId}`));
+    }
+  
 
     // dispatch(getSelectedCourseCategory(""));
   }, [dispatch, cart_number, username]);
