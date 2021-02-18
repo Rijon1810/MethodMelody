@@ -494,7 +494,7 @@ class TabsTwo extends Component {
 
 const mapStateToProps = (state) => ({
   courseList: state.getCourse.courseList,
-  profile: state.isLogged.payload,
+  profile: state.getAllUsers.getUserCourse,
   userId: state.isLogged.payload.id,
   refBonus: state.getAllUsers.getUserCourse.referralBonus,
   paylod: state.getAllUsers.payload,
