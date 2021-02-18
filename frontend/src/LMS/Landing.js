@@ -130,7 +130,7 @@ export default function Landing() {
   useEffect(() => {
     dispatch(getInstructor());
     dispatch(getFeaturedInstructor());
-    dispatch(getCourse());
+    // dispatch(getCourse());
     dispatch(getAnalytics());
     dispatch(getCurrentVideoIndex(0));
     dispatch(getCart(`${userId}`));

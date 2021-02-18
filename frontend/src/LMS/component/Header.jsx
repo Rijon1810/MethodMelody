@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+
 import { Link, useHistory } from "react-router-dom";
 import { FiX, FiMenu } from "react-icons/fi";
 import {
@@ -25,188 +26,280 @@ import {
   getSelectedCourseCategory,
 } from "../../actions/getSelectedIdAction";
 
-//constants
-const categoryLists = {
-  Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
-  Piano: { alt: "Piano & Keyboard", src: "assets/images/icons/piano.png" },
-  Bass: { alt: "Bass", src: "assets/images/icons/bass-guitar-electric.png" },
-  Percussion: { alt: "Percussion", src: "assets/images/icons/drums.png" },
-  Sound: {
-    alt: "Sound Engineering",
-    src: "assets/images/icons/sound-engineering.png",
-  },
-};
+import { useSelector, useDispatch } from "react-redux";
 
-//   {
-//     primary: "Guitar",
-//     alt: "Guitar",
-//     src: "assets/images/icons/guitar-electric.png",
-//   },
-//   {
-//     primary: "Acoustic Fingerstyle Guitar",
-//     alt: "Acoustic Fingerstyle guitar",
-//     src: "assets/images/icons/acoustic-guitar.png",
-//   },
-//   {
-//     primary: "Drums",
-//     alt: "Drums",
-//     src: "assets/images/icons/drums.png",
-//   },
-//   {
-//     primary: "Piano/Keyboard",
-//     alt: "Piano/Keyboard",
-//     src: "assets/images/icons/piano.png",
-//   },
-//   {
-//     primary: "Sound Engineering",
-//     alt: "Sound Engineering",
-//     src: "assets/images/icons/sound-engineering.png",
-//   },
-// ];
+export default function Header(props) {
+  const dispatch = useDispatch();
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.menuTrigger = this.menuTrigger.bind(this);
-    this.CLoseMenuTrigger = this.CLoseMenuTrigger.bind(this);
-    this.state = {
-      instructorList: [],
-      loginInfo: props.isLogged,
-    };
+  let history = useHistory();
+
+  useEffect(() => {
+    // dispatch(isLogged());
+    // dispatch(logOut());
+    dispatch(getCourse());
+    // dispatch(getSelectedInstructorId());
+    // dispatch(getSelectedCourseCategory());
+    // dispatch(getCart(`${userId}`));
+    // dispatch(getUserCourse(`${userId}`));
+
+    // dispatch(getSelectedCourseCategory(""));
+  }, []);
+
+  const user_type = useSelector((state) => state.isLogged.payload.type);
+  const login_data = useSelector((state) => state.isLogged.payload);
+  const loginStatus = useSelector((state) => state.isLogged.login);
+
+  const logOut = useSelector((state) => state.logOut);
+  //   console.log("is logged in: " + isLoggedIn);
+
+  const instructorList = useSelector(
+    (state) => state.getInstructor.instructorList
+  );
+
+  const catagory_data = useSelector((state) => state.getCourse.catagoryList);
+
+  const cart_number = useSelector((state) => state.cartInfo.cart);
+
+  // const PostList = BlogContent.slice(0, 4);
+  // dispatch(getInstructor());
+  // life-cycle methods
+  // alert(instructorList);
+  // const instructorLists = useSelector((state) => state.login);
+
+  // view all course handler
+  function handleViewAllCourse() {
+    history.push("/courses", { courses: "all" });
   }
 
-  routeChange = (path) => {
-    let history = useHistory();
-    history.push(path);
+  // var titleColor = {"Red": "#b12222"}
+  var color = "default-color";
+  //custom styles
+  const mystyle = {
+    width: "35ch",
+    background: "#101010",
   };
 
-  menuTrigger() {
+  const avatar = {
+    width: "45px",
+    height: "45px",
+  };
+
+  function menuTrigger() {
     document.querySelector(".header-wrapper").classList.toggle("menu-open");
   }
 
-  CLoseMenuTrigger() {
+  function CLoseMenuTrigger() {
     document.querySelector(".header-wrapper").classList.remove("menu-open");
   }
-  componentWillMount() {
-    this.props.getCourse();
-  }
 
-  // categories = () => {
-
-  //   const map = [];
-  //   for (let value of this.props.catagory_data) {
-  //     if (map.indexOf(value) === -1) {
-  //       map.push(value);
-  //     }
-  //   }
-
-  //   console.log(result);
-  // };
-
-  renderSwitchCategory(param) {
-    switch (param) {
-      case "a":
-        break;
-    }
-  }
-
-  render() {
-    //custom styles
-    const mystyle = {
-      width: "35ch",
-      background: "#101010",
-    };
-
-    const avatar = {
-      width: "45px",
-      height: "45px",
-    };
-
-    var elements = document.querySelectorAll(".has-droupdown > a");
-    for (var i in elements) {
-      if (elements.hasOwnProperty(i)) {
-        elements[i].onclick = function () {
-          this.parentElement.querySelector(".submenu");
-          this.parentElement.classList.toggle("active");
-          this.classList.toggle("open");
-        };
-      }
-    }
-
-    var color = "default-color";
-
-    return (
-      <header
-        className={`header-area formobile-menu header--transparent ${color}`}
-      >
-        <div className="header-wrapper" id="header-wrapper">
-          <div className="header-left">
-            <div className="logo">
-              <a
-                href="/"
-                onClick={() => this.props.getSelectedCourseCategory("")}
-              >
-                <img
-                  src="/assets/images/logo/logo-red.png"
-                  alt="Digital Agency"
-                />
-              </a>
-            </div>
+  //constants
+  const categoryLists = {
+    Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
+    Piano: { alt: "Piano & Keyboard", src: "assets/images/icons/piano.png" },
+    Bass: { alt: "Bass", src: "assets/images/icons/bass-guitar-electric.png" },
+    Percussion: { alt: "Percussion", src: "assets/images/icons/drums.png" },
+    Sound: {
+      alt: "Sound Engineering",
+      src: "assets/images/icons/sound-engineering.png",
+    },
+  };
+  return (
+    <header
+      className={`header-area formobile-menu header--transparent ${color}`}
+    >
+      <div className="header-wrapper" id="header-wrapper">
+        <div className="header-left">
+          <div className="logo">
+            <a href="/" onClick={() => dispatch(getSelectedCourseCategory(""))}>
+              <img
+                src="/assets/images/logo/logo-red.png"
+                alt="Digital Agency"
+              />
+            </a>
           </div>
-          <div className="header-right">
-            <nav className="mainmenunav d-lg-block">
-              {(this.props.from !== "login" &&
-                this.props.from !== "signup") && (
-                <ul className="mainmenu">
-                  {this.props.from !== "admin" && (
-                    <li className="has-droupdown">
-                      <Link to="/allcourses">Courses</Link>
-                      <ul className="submenu" style={mystyle}>
-                        {this.props.catagory_data.map((category) => (
-                          <li>
-                            <Link
-                              to="/allcourses"
-                              onClick={() =>
-                                this.props.getSelectedCourseCategory(
+        </div>
+        <div className="header-right">
+          <nav className="mainmenunav d-lg-block">
+            {props.from !== "login" && props.from !== "signup" && (
+              <ul className="mainmenu">
+                {props.from !== "admin" && (
+                  <li className="has-droupdown">
+                    <Link to="/allcourses">Courses</Link>
+                    <ul className="submenu" style={mystyle}>
+                      {catagory_data.map((category) => (
+                        <li>
+                          <Link
+                            to="/allcourses"
+                            onClick={() =>
+                              dispatch(
+                                getSelectedCourseCategory(
                                   category.split(" ")[0]
                                 )
-                              }
-                            >
-                              <Grid
-                                container
-                                direction="row"
-                                alignItems="center"
-                              >
-                                <Grid item style={{ marginRight: 10 }}>
-                                  {" "}
-                                  <Avatar
-                                    alt={category}
-                                    src={`${process.env.PUBLIC_URL}/${
-                                      categoryLists[category.split(" ")[0]].src
-                                    }`}
-                                  />
-                                </Grid>
-
-                                <Grid item style={{ color: "#fff" }}>
-                                  {category}
-                                </Grid>
+                              )
+                            }
+                          >
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                {" "}
+                                <Avatar
+                                  alt={category}
+                                  src={`${process.env.PUBLIC_URL}/${
+                                    categoryLists[category.split(" ")[0]].src
+                                  }`}
+                                />
                               </Grid>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  )}
-                  {this.props.from !== "admin" && (
-                    <li className="has-droupdown">
-                      <Link to="/instructorlist">Musicians</Link>
+
+                              <Grid item style={{ color: "#fff" }}>
+                                {category}
+                              </Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                )}
+                {props.from !== "admin" && (
+                  <li className="has-droupdown">
+                    <Link to="/instructorlist">Musicians</Link>
+                    <ul className="submenu" style={mystyle}>
+                      {instructorList.map((instructor) => (
+                        <li>
+                          <a
+                            href="/instructorview"
+                            onClick={async (event) => {
+                              dispatch(getSelectedInstructorId(instructor));
+                            }}
+                          >
+                            <Grid container direction="row" alignItems="center">
+                              <Grid item style={{ marginRight: 10 }}>
+                                {" "}
+                                <Avatar
+                                  alt={instructor.name}
+                                  src={
+                                    "http://63.250.33.174/" + instructor.photo
+                                  }
+                                  style={avatar}
+                                />
+                              </Grid>
+                              <Grid item style={{ color: "#fff" }}>
+                                {instructor.name}
+                              </Grid>
+                            </Grid>
+                          </a>
+                        </li>
+                      ))}
+                      {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
+                  <li><Link to="/service-details">Service Details</Link></li> */}
+                    </ul>
+                  </li>
+                )}
+                {/* <li><Link to="/about" >About</Link></li> */}
+                {props.from !== "admin" && loginStatus !== false ? (
+                  <li className="has-droupdown">
+                    <Link to="/cart">
+                      <Grid container direction="row" alignItems="center">
+                        <Grid item style={{ marginRight: 10 }}>
+                          <Badge
+                            badgeContent={cart_number.length}
+                            color="secondary"
+                          >
+                            <ShoppingCartOutlined />
+                          </Badge>
+                        </Grid>
+                        {/* <Grid item>Cart</Grid> */}
+                      </Grid>
+                    </Link>
+                  </li>
+                ) : (
+                  <li className="has-droupdown">
+                    {props.from !== "landing" ? (
+                      <Link to="/">
+                        <Grid container direction="row" alignItems="center">
+                          <Grid item style={{ marginRight: 10 }}>
+                            <HomeOutlined />
+                          </Grid>
+                          <Grid item>Home</Grid>
+                        </Grid>
+                      </Link>
+                    ) : null}
+                  </li>
+                )}
+
+                {loginStatus ? (
+                  <li className="has-droupdown">
+                    <Link to="#">
+                      <Grid container direction="row" alignItems="center">
+                        <Grid item style={{ marginRight: 10 }}>
+                          <AccountCircleOutlined />
+                        </Grid>
+                        <Grid item> {login_data.name}</Grid>
+                        <Grid item> </Grid>
+                      </Grid>
+                    </Link>
+                    {user_type == 4 && (
                       <ul className="submenu" style={mystyle}>
-                        {this.props.instructorList.map((instructor) => (
-                          <li>
-                            <a
-                              href="/instructorview"
-                              onClick={async (event) => {
-                                this.props.getSelectedInstructorId(instructor);
+                        <li>
+                          <Link to="/studentpanel">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid
+                                item
+                                style={{ marginRight: 10, color: "#f9004c" }}
+                              >
+                                <LocalLibraryOutlined />
+                              </Grid>
+                              <Grid item style={{ color: "#fff" }}>
+                                Classroom
+                              </Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                        {/* <li>
+                        {" "}
+                        <Link to="/service">
+                          <Grid
+                            container
+                            direction="row"
+                            alignItems="center"
+                          >
+                            <Grid
+                              item
+                              style={{ marginRight: 10, color: "#f9004c" }}
+                            >
+                              <AccountCircleOutlined />
+                            </Grid>
+                            <Grid item style={{ color: "#fff" }}>
+                              Profile
+                            </Grid>
+                          </Grid>
+                        </Link>
+                      </li>
+                      <li>
+                        {" "}
+                        <Link to="/service">
+                          <Grid
+                            container
+                            direction="row"
+                            alignItems="center"
+                          >
+                            <Grid
+                              item
+                              style={{ marginRight: 10, color: "#f9004c" }}
+                            >
+                              <ForumOutlined />
+                            </Grid>
+                            <Grid item style={{ color: "#fff" }}>
+                              Messages
+                            </Grid>
+                          </Grid>
+                        </Link>
+                      </li>
+                       */}
+                        <li>
+                          <Link to="#">
+                            <span
+                              onClick={() => {
+                                dispatch(logOut());
                               }}
                             >
                               <Grid
@@ -214,76 +307,97 @@ class Header extends Component {
                                 direction="row"
                                 alignItems="center"
                               >
-                                <Grid item style={{ marginRight: 10 }}>
-                                  {" "}
-                                  <Avatar
-                                    alt={instructor.name}
-                                    src={
-                                      "http://63.250.33.174/" + instructor.photo
-                                    }
-                                    style={avatar}
-                                  />
+                                <Grid
+                                  item
+                                  style={{
+                                    marginRight: 10,
+                                    color: "#f9004c",
+                                  }}
+                                >
+                                  <PowerSettingsNewOutlined />
                                 </Grid>
                                 <Grid item style={{ color: "#fff" }}>
-                                  {instructor.name}
+                                  Log Out
                                 </Grid>
                               </Grid>
-                            </a>
-                          </li>
-                        ))}
-                        {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
-                      <li><Link to="/service-details">Service Details</Link></li> */}
+                            </span>
+                          </Link>
+                        </li>
                       </ul>
-                    </li>
-                  )}
-                  {/* <li><Link to="/about" >About</Link></li> */}
-                  {this.props.from !== "admin" &&
-                  this.props.loginStatus !== false ? (
-                    <li className="has-droupdown">
-                      <Link to="/cart">
-                        <Grid container direction="row" alignItems="center">
-                          <Grid item style={{ marginRight: 10 }}>
-                            <Badge
-                              badgeContent={this.props.cart_number.length}
-                              color="secondary"
-                            >
-                              <ShoppingCartOutlined />
-                            </Badge>
-                          </Grid>
-                          {/* <Grid item>Cart</Grid> */}
-                        </Grid>
-                      </Link>
-                    </li>
-                  ) : (
-                    <li className="has-droupdown">
-                      {this.props.from !== "landing" ? (
-                        <Link to="/">
-                          <Grid container direction="row" alignItems="center">
-                            <Grid item style={{ marginRight: 10 }}>
-                              <HomeOutlined />
+                    )}
+
+                    {user_type == 1 && (
+                      <ul className="submenu" style={mystyle}>
+                        <li>
+                          <Link to="/admin">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid
+                                item
+                                style={{ marginRight: 10, color: "#f9004c" }}
+                              >
+                                <Dashboard />
+                              </Grid>
+                              <Grid item style={{ color: "#fff" }}>
+                                Admin Dashboard
+                              </Grid>
                             </Grid>
-                            <Grid item>Home</Grid>
-                          </Grid>
-                        </Link>
-                      ) : null}
-                    </li>
-                  )}
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="#">
+                            <span
+                              onClick={() => {
+                                logOut();
+                              }}
+                            >
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{
+                                    marginRight: 10,
+                                    color: "#f9004c",
+                                  }}
+                                >
+                                  <PowerSettingsNewOutlined />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Log Out
+                                </Grid>
+                              </Grid>
+                            </span>
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
 
-                  {this.props.loginStatus ? (
-                    <li className="has-droupdown">
-                      <Link to="#">
-                        <Grid container direction="row" alignItems="center">
-                          <Grid item style={{ marginRight: 10 }}>
-                            <AccountCircleOutlined />
-                          </Grid>
-                          <Grid item> {this.props.login_data.name}</Grid>
-                          <Grid item> </Grid>
-                        </Grid>
-                      </Link>
-                      {this.props.user_type == 4 && (
-                        <ul className="submenu" style={mystyle}>
-                          <li>
-                            <Link to="/studentpanel">
+                    {user_type == 3 && (
+                      <ul className="submenu" style={mystyle}>
+                        <li>
+                          <Link to="/instructorpanel">
+                            <Grid container direction="row" alignItems="center">
+                              <Grid
+                                item
+                                style={{ marginRight: 10, color: "#f9004c" }}
+                              >
+                                <Dashboard />
+                              </Grid>
+                              <Grid item style={{ color: "#fff" }}>
+                                My Dashboard
+                              </Grid>
+                            </Grid>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="#">
+                            <span
+                              onClick={() => {
+                                logOut();
+                              }}
+                            >
                               <Grid
                                 container
                                 direction="row"
@@ -291,260 +405,66 @@ class Header extends Component {
                               >
                                 <Grid
                                   item
-                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                  style={{
+                                    marginRight: 10,
+                                    color: "#f9004c",
+                                  }}
                                 >
-                                  <LocalLibraryOutlined />
+                                  <PowerSettingsNewOutlined />
                                 </Grid>
                                 <Grid item style={{ color: "#fff" }}>
-                                  Classroom
+                                  Log Out
                                 </Grid>
                               </Grid>
-                            </Link>
-                          </li>
-                          {/* <li>
-                            {" "}
-                            <Link to="/service">
-                              <Grid
-                                container
-                                direction="row"
-                                alignItems="center"
-                              >
-                                <Grid
-                                  item
-                                  style={{ marginRight: 10, color: "#f9004c" }}
-                                >
-                                  <AccountCircleOutlined />
-                                </Grid>
-                                <Grid item style={{ color: "#fff" }}>
-                                  Profile
-                                </Grid>
-                              </Grid>
-                            </Link>
-                          </li>
-                          <li>
-                            {" "}
-                            <Link to="/service">
-                              <Grid
-                                container
-                                direction="row"
-                                alignItems="center"
-                              >
-                                <Grid
-                                  item
-                                  style={{ marginRight: 10, color: "#f9004c" }}
-                                >
-                                  <ForumOutlined />
-                                </Grid>
-                                <Grid item style={{ color: "#fff" }}>
-                                  Messages
-                                </Grid>
-                              </Grid>
-                            </Link>
-                          </li>
-                           */}
-                          <li>
-                            <Link to="#">
-                              <span
-                                onClick={() => {
-                                  this.props.logOut();
-                                }}
-                              >
-                                <Grid
-                                  container
-                                  direction="row"
-                                  alignItems="center"
-                                >
-                                  <Grid
-                                    item
-                                    style={{
-                                      marginRight: 10,
-                                      color: "#f9004c",
-                                    }}
-                                  >
-                                    <PowerSettingsNewOutlined />
-                                  </Grid>
-                                  <Grid item style={{ color: "#fff" }}>
-                                    Log Out
-                                  </Grid>
-                                </Grid>
-                              </span>
-                            </Link>
-                          </li>
-                        </ul>
-                      )}
-
-                      {this.props.user_type == 1 && (
-                        <ul className="submenu" style={mystyle}>
-                          <li>
-                            <Link to="/admin">
-                              <Grid
-                                container
-                                direction="row"
-                                alignItems="center"
-                              >
-                                <Grid
-                                  item
-                                  style={{ marginRight: 10, color: "#f9004c" }}
-                                >
-                                  <Dashboard />
-                                </Grid>
-                                <Grid item style={{ color: "#fff" }}>
-                                  Admin Dashboard
-                                </Grid>
-                              </Grid>
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="#">
-                              <span
-                                onClick={() => {
-                                  this.props.logOut();
-                                }}
-                              >
-                                <Grid
-                                  container
-                                  direction="row"
-                                  alignItems="center"
-                                >
-                                  <Grid
-                                    item
-                                    style={{
-                                      marginRight: 10,
-                                      color: "#f9004c",
-                                    }}
-                                  >
-                                    <PowerSettingsNewOutlined />
-                                  </Grid>
-                                  <Grid item style={{ color: "#fff" }}>
-                                    Log Out
-                                  </Grid>
-                                </Grid>
-                              </span>
-                            </Link>
-                          </li>
-                        </ul>
-                      )}
-
-                      {this.props.user_type == 3 && (
-                        <ul className="submenu" style={mystyle}>
-                          <li>
-                            <Link to="/instructorpanel">
-                              <Grid
-                                container
-                                direction="row"
-                                alignItems="center"
-                              >
-                                <Grid
-                                  item
-                                  style={{ marginRight: 10, color: "#f9004c" }}
-                                >
-                                  <Dashboard />
-                                </Grid>
-                                <Grid item style={{ color: "#fff" }}>
-                                  My Dashboard
-                                </Grid>
-                              </Grid>
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="#">
-                              <span
-                                onClick={() => {
-                                  this.props.logOut();
-                                }}
-                              >
-                                <Grid
-                                  container
-                                  direction="row"
-                                  alignItems="center"
-                                >
-                                  <Grid
-                                    item
-                                    style={{
-                                      marginRight: 10,
-                                      color: "#f9004c",
-                                    }}
-                                  >
-                                    <PowerSettingsNewOutlined />
-                                  </Grid>
-                                  <Grid item style={{ color: "#fff" }}>
-                                    Log Out
-                                  </Grid>
-                                </Grid>
-                              </span>
-                            </Link>
-                          </li>
-                        </ul>
-                      )}
-                    </li>
-                  ) : null}
-                </ul>
-              )}
-              {(this.props.from === "login" ||
-                this.props.from === "signup") && (
-                <ul className="mainmenu">
-                  <li className="has-droupdown">
-                    <a href="/">
-                      <Grid container direction="row">
-                        <Grid item style={{ marginRight: 10 }}>
-                          <HomeOutlined />
-                        </Grid>
-                        <Grid item> Home</Grid>
-                      </Grid>
-                    </a>
+                            </span>
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
                   </li>
-                </ul>
-              )}
-            </nav>
-            {this.props.from !== "login" &&
-              this.props.from !== "signup" &&
-              this.props.loginStatus === false && (
-                <div className="header-btn">
-                  {console.log(localStorage.getItem("name"))}
-                  <a className="rn-btn" href="/login">
-                    <span>Login</span>
+                ) : null}
+              </ul>
+            )}
+            {(props.from === "login" || props.from === "signup") && (
+              <ul className="mainmenu">
+                <li className="has-droupdown">
+                  <a href="/">
+                    <Grid container direction="row">
+                      <Grid item style={{ marginRight: 10 }}>
+                        <HomeOutlined />
+                      </Grid>
+                      <Grid item> Home</Grid>
+                    </Grid>
                   </a>
-                </div>
-              )}
+                </li>
+              </ul>
+            )}
+          </nav>
+          {props.from !== "login" &&
+            props.from !== "signup" &&
+            loginStatus === false && (
+              <div className="header-btn">
+                {console.log(localStorage.getItem("name"))}
+                <a className="rn-btn" href="/login">
+                  <span>Login</span>
+                </a>
+              </div>
+            )}
 
-            {/* Start Humberger Menu  */}
-            <div className="humberger-menu d-block d-lg-none pl--20">
-              <span
-                onClick={this.menuTrigger}
-                className="menutrigger text-white"
-              >
-                <FiMenu />
-              </span>
-            </div>
-            {/* End Humberger Menu  */}
-            <div className="close-menu d-block d-lg-none">
-              <span onClick={this.CLoseMenuTrigger} className="closeTrigger">
-                <FiX />
-              </span>
-            </div>
+          {/* Start Humberger Menu  */}
+          <div className="humberger-menu d-block d-lg-none pl--20">
+            <span onClick={menuTrigger} className="menutrigger text-white">
+              <FiMenu />
+            </span>
+          </div>
+          {/* End Humberger Menu  */}
+          <div className="close-menu d-block d-lg-none">
+            <span onClick={CLoseMenuTrigger} className="closeTrigger">
+              <FiX />
+            </span>
           </div>
         </div>
-      </header>
-    );
-  }
+      </div>
+    </header>
+  );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    user_type: state.isLogged.payload.type,
-    login_data: state.isLogged.payload,
-    loginStatus: state.isLogged.login,
-    logOut: state.logOut,
-    instructorList: state.getInstructor.instructorList,
-    catagory_data: state.getCourse.catagoryList,
-    cart_number: state.cartInfo.cart,
-  };
-};
-
-export default connect(mapStateToProps, {
-  isLogged,
-  logOut,
-  getCourse,
-  getSelectedInstructorId,
-  getSelectedCourseCategory,
-})(Header);
