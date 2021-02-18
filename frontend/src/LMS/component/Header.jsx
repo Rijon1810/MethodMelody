@@ -17,6 +17,7 @@ import { isLogged } from "../../actions/isLoggedAction";
 import { logOut } from "../../actions/logOutAction";
 import { getCourse } from "../../actions/courseAction";
 import { getCart } from "../../actions/cartAction";
+import {getUserCourse} from "../../actions/userAction";
 
 //importing material components
 import { Avatar, Grid, Badge } from "@material-ui/core";
@@ -38,6 +39,8 @@ export default function Header(props) {
 
   const userId = useSelector((state) => state.isLogged.payload.id);
 
+  const username = useSelector((state) => state.getAllUsers.getUserCourse.name);
+
   useEffect(() => {
     // dispatch(isLogged());
     // dispatch(logOut());
@@ -45,16 +48,16 @@ export default function Header(props) {
     // dispatch(getSelectedInstructorId());
     // dispatch(getSelectedCourseCategory());
     dispatch(getCart(`${userId}`));
-    // dispatch(getUserCourse(`${userId}`));
+    dispatch(getUserCourse(`${userId}`));
 
     // dispatch(getSelectedCourseCategory(""));
-  }, [dispatch, cart_number]);
+  }, [dispatch, cart_number, username]);
 
   const user_type = useSelector((state) => state.isLogged.payload.type);
   const login_data = useSelector((state) => state.isLogged.payload);
   const loginStatus = useSelector((state) => state.isLogged.login);
 
-  const logOut = useSelector((state) => state.logOut);
+  // const logOut = useSelector((state) => state.logOut);
   //   console.log("is logged in: " + isLoggedIn);
 
   const instructorList = useSelector(
@@ -238,7 +241,7 @@ export default function Header(props) {
                         <Grid item style={{ marginRight: 10 }}>
                           <AccountCircleOutlined />
                         </Grid>
-                        <Grid item> {login_data.name}</Grid>
+                        <Grid item> {username}</Grid>
                         <Grid item> </Grid>
                       </Grid>
                     </Link>
@@ -352,7 +355,7 @@ export default function Header(props) {
                           <Link to="#">
                             <span
                               onClick={() => {
-                                logOut();
+                                dispatch(logOut());
                               }}
                             >
                               <Grid
@@ -400,7 +403,7 @@ export default function Header(props) {
                           <Link to="#">
                             <span
                               onClick={() => {
-                                logOut();
+                                dispatch(logOut());
                               }}
                             >
                               <Grid
