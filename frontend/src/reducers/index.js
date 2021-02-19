@@ -22,7 +22,7 @@ const allReducers = combineReducers({
   getSelectedId: getSelectedIdReducer,
   cartInfo: cartStatusReducer,
   getAllUsers: getAllUsersReducer,
-  getAllGeneralMessages: getAllMessagesReducer
+  Messages: getAllMessagesReducer
 });
 
 export default allReducers;
