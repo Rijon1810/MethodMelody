@@ -9,6 +9,8 @@ var ContactSchema = new Schema(
     email: { type: String },
     message: { type: String },
     reply: { type: String },
+    type: { type: String, default: "general" },
+    status: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
