@@ -86,9 +86,23 @@ router.route("/m/:id").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-//GET ALL by a USER ID
-router.route("/u/:userId").get((req, res) => {
-  Contact.find({ from: Mongoose.Types.ObjectId(req.params.userId) })
+//GET ALL CURRENT by a USER ID
+router.route("/u/c/:userId").get((req, res) => {
+  Contact.find({
+    from: Mongoose.Types.ObjectId(req.params.userId),
+    status: false,
+  })
+    .sort({ updatedAt: "desc" })
+    .then((contact) => res.json(contact))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+//GET ALL PREVIOUS by a USER ID
+router.route("/u/p/:userId").get((req, res) => {
+  Contact.find({
+    from: Mongoose.Types.ObjectId(req.params.userId),
+    status: true,
+  })
     .sort({ updatedAt: "desc" })
     .then((contact) => res.json(contact))
     .catch((err) => res.status(400).json("Error: " + err));
@@ -99,7 +113,7 @@ router.route("/r/:contactId").post((req, res) => {
   const reply = req.body.reply;
   Contact.findByIdAndUpdate(
     req.params.contactId,
-    { $set: { reply: reply } },
+    { $set: { reply: reply, status: true } },
     { useFindAndModify: false }
   )
     .then((doc) => {
