@@ -88,6 +88,9 @@ export default function Header(props) {
   const mystyle = {
     width: "35ch",
     background: "#101010",
+    overflow: "auto",
+    maxHeight: "50ch",
+    scrollbar:"auto"
   };
 
   const avatar = {
