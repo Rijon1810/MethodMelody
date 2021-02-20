@@ -3,7 +3,12 @@ import {
   GET_USER_COURSE,
   USER_UPDATE,
   USER_SUSPEND,
-  GET_TYPED_USER,
+  GET_TYPED_USER_1,
+  GET_TYPED_USER_2,
+  GET_TYPED_USER_3,
+  GET_TYPED_USER_4,
+  GET_TYPED_USER_STUDENT,
+  GET_TYPED_USER_SUBSCRIBER,
 } from "../actions/types";
 
 const initialState = {
@@ -11,7 +16,12 @@ const initialState = {
   getUserCourse: {},
   payload: {},
   suspendStatus: "",
-  getByType: {},
+  getByType_1: {},
+  getByType_2: {},
+  getByType_3: {},
+  getByType_4: {},
+  student: {},
+  subscriber: {},
 };
 
 const getAllUsersReducer = (state = initialState, action) => {
@@ -36,10 +46,35 @@ const getAllUsersReducer = (state = initialState, action) => {
         ...state,
         suspendStatus: action.payload,
       };
-    case GET_TYPED_USER:
+    case GET_TYPED_USER_1:
       return {
         ...state,
-        getByType: action.payload,
+        getByType_1: action.payload,
+      };
+    case GET_TYPED_USER_2:
+      return {
+        ...state,
+        getByType_2: action.payload,
+      };
+    case GET_TYPED_USER_3:
+      return {
+        ...state,
+        getByType_3: action.payload,
+      };
+    case GET_TYPED_USER_4:
+      return {
+        ...state,
+        getByType_4: action.payload,
+      };
+    case GET_TYPED_USER_STUDENT:
+      return {
+        ...state,
+        student: action.payload,
+      };
+    case GET_TYPED_USER_SUBSCRIBER:
+      return {
+        ...state,
+        subscriber: action.payload,
       };
     default:
       return { ...state };
