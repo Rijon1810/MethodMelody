@@ -215,11 +215,22 @@ const AdminMessages = () => {
                                   secondary={
                                     <React.Fragment>
                                       <Typography style={{ color: "#b12222" }}>
-                                        {message.email}
+                                        {message.toName === undefined
+                                          ? null
+                                          : `Instructor: ${message.toName}`}
                                       </Typography>
                                       <Typography style={{ color: "#000" }}>
                                         {message.message}
                                       </Typography>
+                                      {message.status === true ? (
+                                        <Typography
+                                          style={{
+                                            color: "#b12222",
+                                          }}
+                                        >
+                                          {`Reply: ${message.reply}`}
+                                        </Typography>
+                                      ) : null}
                                     </React.Fragment>
                                   }
                                 />
@@ -235,7 +246,7 @@ const AdminMessages = () => {
                                     onClick={(event) => {
                                       handleClickOpen();
                                       setMessageId(message._id);
-                                      setMessage(message.message)
+                                      setMessage(message.message);
                                     }}
                                     style={{
                                       backgroundColor: "#b12222",

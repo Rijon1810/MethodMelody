@@ -142,6 +142,12 @@ class TabsTwo extends Component {
                                     {message.message}
                                   </p>
                                   <h5 style={{ color: "#b12222" }}>
+                                    To Instructor:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>
+                                    {message.toName}
+                                  </p>
+                                  <h5 style={{ color: "#b12222" }}>
                                     Instructor's reply:
                                   </h5>
                                   <p style={{ color: "#000" }}>Pending</p>
@@ -181,6 +187,12 @@ class TabsTwo extends Component {
                                   </h5>
                                   <p style={{ color: "#000" }}>
                                     {message.message}
+                                  </p>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    To Instructor:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>
+                                    {message.toName}
                                   </p>
                                   <h5 style={{ color: "#b12222" }}>
                                     Instructor's reply:
