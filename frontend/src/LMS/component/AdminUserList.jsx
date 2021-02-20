@@ -115,7 +115,7 @@ const AdminUserList = () => {
                               <div className="blog-btn pt--20">
                                 <a
                                   className="rn-btn text-white"
-                                  href="#"
+                                  href="/viewuser"
                                 >
                                   View
                                 </a>

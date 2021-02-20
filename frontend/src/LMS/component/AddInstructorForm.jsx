@@ -24,7 +24,9 @@ class AddInstructorForm extends Component {
           <div className="row row--35 align-items-start">
             <div className="col-lg-12 order-2 order-lg-1">
               <div className="section-title text-left">
-                <h4 className="title"style={{ color: "#b12222" }}>Create New Instructor Profile</h4>
+                <h4 className="title" style={{ color: "#b12222" }}>
+                  Create New Instructor Profile
+                </h4>
               </div>
               <p className="text-muted">
                 All the fields are rquired for successful course upload
@@ -175,13 +177,26 @@ class AddInstructorForm extends Component {
                     value="submit"
                     name="submit"
                     id="mc-embedded-subscribe"
-                    style={{ backgroundColor: "#b12222", color:"#ffffff" , borderBlockStyle:"hidden" }}
+                    style={{
+                      backgroundColor: "#b12222",
+                      color: "#ffffff",
+                      borderBlockStyle: "hidden",
+                    }}
                     onClick={async (event) => {
                       event.preventDefault();
                       const body = new FormData(this.form);
                       toast("Upload started!!! please wait!!");
                       await this.props.postInstructor(body);
                       this.props.getInstructor();
+                      this.setState({
+                        rnName: "",
+                        rnBand: "",
+                        rnParcentage: "",
+                        rnFeatured: "",
+                        rnBio: "",
+                        rnPhoto: "",
+                        rnBanner: "",
+                      });
                       this.props.create_instructor_status.message ===
                       "Instructor Added Successfully!"
                         ? toast.success("Instructor Added Successfully!", {

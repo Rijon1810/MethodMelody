@@ -145,6 +145,11 @@ class CreateInstructorAccountForm extends Component {
                       }
                       toast("Upload started!!! please wait!!");
                       await this.props.signUp(body);
+                      this.setState({ rnName: "",
+                      rnEmail: "",
+                      rnPassword: "",
+                      rnUserType: 3,
+                      rnInstructorProfileId: "",})
                       this.props.create_user_status.message === "user added!"
                         ? toast.success("Instructor Created Successfully!", {
                             position: "bottom-center",

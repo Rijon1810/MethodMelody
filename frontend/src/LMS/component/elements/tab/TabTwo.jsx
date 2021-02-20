@@ -10,6 +10,21 @@ import { isLogged } from "../../../../actions/isLoggedAction";
 import { getUserCourse, updateUser } from "../../../../actions/userAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  makeStyles,
+  Card,
+  CardMedia,
+  Button,
+  Typography,
+  CardContent,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Divider,
+  Avatar,
+  Grid,
+} from "@material-ui/core";
 
 import {
   MailOutline,
@@ -18,7 +33,7 @@ import {
   AssignmentInd,
 } from "@material-ui/icons";
 //importing material components
-import { Grid } from "@material-ui/core";
+// import { Grid } from "@material-ui/core";
 
 class TabsTwo extends Component {
   constructor(props) {
@@ -99,17 +114,87 @@ class TabsTwo extends Component {
                   <TabPanel>
                     <div className="single-tab-content">
                       <h3>Pending Messages</h3>
-                      <p className="theme-gradient">All your Pending Queries</p>
-                      <p>
-                        You can see all your pending queries which hasn't been yet answered in the below section.
+                      <p style={{ color: "#b12222" }}>
+                        All your Pending Queries
                       </p>
+                      <p>
+                        You can see all your pending queries which hasn't been
+                        yet answered in the below section.
+                      </p>
+                      {this.props.currentMessages.length === 0 ? (
+                        <h4>Currently you don't have any pending messages</h4>
+                      ) : (
+                        <div className="container-fluid mt--30 mt_sm--40 ">
+                          <Card raised="true">
+                            <List
+                              style={{
+                                maxHeight: 500,
+                                overflow: "auto",
+                                width: "100%",
+                              }}
+                            >
+                              {this.props.currentMessages.map((message) => (
+                                <div style={{ padding: "20px" }}>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    My message:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>
+                                    {message.message}
+                                  </p>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    Instructor's reply:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>Pending</p>
+                                  <Divider />{" "}
+                                </div>
+                              ))}
+                            </List>
+                          </Card>
+                        </div>
+                      )}
                     </div>
-                    <div className="single-tab-content">
+                    <div className="single-tab-content mt--60">
                       <h3>Answered Messages</h3>
-                      <p className="theme-gradient">All your Answered Queries</p>
-                      <p>
-                        You can see all your answered queries which hasn't been yet answered in the below section.
+                      <p style={{ color: "#b12222" }}>
+                        All your Answered Queries
                       </p>
+                      <p>
+                        You can see all your answered queries which hasn't been
+                        yet answered in the below section.
+                      </p>
+                      {this.props.previousMessages.length === 0 ? (
+                        <h4>Currently you don't have any answered messages</h4>
+                      ) : (
+                        <div className="container-fluid mt--30 mt_sm--40 ">
+                          <Card raised="true">
+                            <List
+                              style={{
+                                maxHeight: 500,
+                                overflow: "auto",
+                                width: "100%",
+                              }}
+                            >
+                              {this.props.previousMessages.map((message) => (
+                                <div style={{ padding: "20px" }}>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    My message:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>
+                                    {message.message}
+                                  </p>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    Instructor's reply:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>
+                                    {message.reply}
+                                  </p>
+                                  <Divider />{" "}
+                                </div>
+                              ))}
+                            </List>
+                          </Card>
+                        </div>
+                      )}
                     </div>
                   </TabPanel>
                   {/* End Message */}
@@ -490,6 +575,8 @@ const mapStateToProps = (state) => ({
   userId: state.isLogged.payload.id,
   refBonus: state.getAllUsers.getUserCourse.referralBonus,
   paylod: state.getAllUsers.payload,
+  currentMessages: state.Messages.current,
+  previousMessages: state.Messages.previous,
 });
 
 export default connect(mapStateToProps, {
