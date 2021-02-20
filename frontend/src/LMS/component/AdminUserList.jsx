@@ -71,7 +71,15 @@ const AdminUserList = () => {
 
   useEffect(() => {}, [list]);
 
-  const userList = useSelector((state) => state.getAllUsers.allUsers);
+  const userList = useSelector((state) => state.getAllUsers.student);
+  const subscriberList = useSelector((state) => state.getAllUsers.subscriber);
+  const adminList = useSelector((state) => state.getAllUsers.getByType_1);
+  const contentUploaderList = useSelector(
+    (state) => state.getAllUsers.getByType_2
+  );
+  const instructorAccountList = useSelector(
+    (state) => state.getAllUsers.getByType_3
+  );
 
   return (
     <React.Fragment>
@@ -145,7 +153,6 @@ const AdminUserList = () => {
           </div>
         </div>
         {/* End User List */}
-
         {/* Start Subscriber List */}
         <div
           className="rn-blog-area pt--50  mb-dec--30 ptb--100"
@@ -164,7 +171,7 @@ const AdminUserList = () => {
               </div>
             </div>
             <div className="row mt--60 mt_sm--40 ">
-              {userList.map((user) => (
+              {subscriberList.map((user) => (
                 <div className="col-4">
                   <Card className={classes.root} raised="true">
                     <CardContent>
@@ -210,6 +217,200 @@ const AdminUserList = () => {
           </div>
         </div>
         {/* End Subscriber List */}
+        {/* Start Instructor List */}
+        <div
+          className="rn-blog-area pt--50  mb-dec--30 ptb--100"
+          style={{ paddingBottom: "15ch" }}
+        >
+          <div className="container">
+            <div className="row align-items-end">
+              <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div className="section-title text-left">
+                  <h3>All Instructors</h3>
+                  <p className="theme-gradient">All Instructor User List</p>
+                  <p>
+                    You can suspend any user anytime hitting the button below.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="row mt--60 mt_sm--40 ">
+              {instructorList.map((user) => (
+                <div className="col-4">
+                  <Card className={classes.root} raised="true">
+                    <CardContent>
+                      <div className="container ">
+                        <div className="col">
+                          <div className="row">
+                            <h4 className="theme-gradient">{user.name}</h4>
+                          </div>
+                          <div className="row text-white">{user.phone}</div>
+                          <div className="row text-white">{user.email}</div>
+                          <div className="row">
+                            <div className="col-6">
+                              <div className="blog-btn pt--20">
+                                <a
+                                  className="rn-btn text-white"
+                                  href="/viewuser"
+                                >
+                                  View
+                                </a>
+                              </div>
+                            </div>
+                            <div className="col-6">
+                              <div className="blog-btn pt--20">
+                                <a className="rn-btn text-white" href="#">
+                                  Suspend
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+
+                    <CardMedia
+                      className={classes.cover}
+                      image={`http://63.250.33.174/${user.photo}`}
+                      title="Live from space album cover"
+                    />
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* End Instructor List */}
+        {/* Start Admin List */}
+        <div
+          className="rn-blog-area pt--50  mb-dec--30 ptb--100"
+          style={{ paddingBottom: "15ch" }}
+        >
+          <div className="container">
+            <div className="row align-items-end">
+              <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div className="section-title text-left">
+                  <h3>All Admins</h3>
+                  <p className="theme-gradient">All Admin User List</p>
+                  <p>
+                    You can suspend any user anytime hitting the button below.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="row mt--60 mt_sm--40 ">
+              {adminList.map((user) => (
+                <div className="col-4">
+                  <Card className={classes.root} raised="true">
+                    <CardContent>
+                      <div className="container ">
+                        <div className="col">
+                          <div className="row">
+                            <h4 className="theme-gradient">{user.name}</h4>
+                          </div>
+                          <div className="row text-white">{user.phone}</div>
+                          <div className="row text-white">{user.email}</div>
+                          <div className="row">
+                            <div className="col-6">
+                              <div className="blog-btn pt--20">
+                                <a
+                                  className="rn-btn text-white"
+                                  href="/viewuser"
+                                >
+                                  View
+                                </a>
+                              </div>
+                            </div>
+                            <div className="col-6">
+                              <div className="blog-btn pt--20">
+                                <a className="rn-btn text-white" href="#">
+                                  Suspend
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+
+                    <CardMedia
+                      className={classes.cover}
+                      image={`http://63.250.33.174/${user.photo}`}
+                      title="Live from space album cover"
+                    />
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* End Admin List */}
+        {/* Start ContentUploader List */}
+        <div
+          className="rn-blog-area pt--50  mb-dec--30 ptb--100"
+          style={{ paddingBottom: "15ch" }}
+        >
+          <div className="container">
+            <div className="row align-items-end">
+              <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div className="section-title text-left">
+                  <h3>All Content Uploaders</h3>
+                  <p className="theme-gradient">
+                    All Content Uploader User List
+                  </p>
+                  <p>
+                    You can suspend any user anytime hitting the button below.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="row mt--60 mt_sm--40 ">
+              {contentUploaderList.map((user) => (
+                <div className="col-4">
+                  <Card className={classes.root} raised="true">
+                    <CardContent>
+                      <div className="container ">
+                        <div className="col">
+                          <div className="row">
+                            <h4 className="theme-gradient">{user.name}</h4>
+                          </div>
+                          <div className="row text-white">{user.phone}</div>
+                          <div className="row text-white">{user.email}</div>
+                          <div className="row">
+                            <div className="col-6">
+                              <div className="blog-btn pt--20">
+                                <a
+                                  className="rn-btn text-white"
+                                  href="/viewuser"
+                                >
+                                  View
+                                </a>
+                              </div>
+                            </div>
+                            <div className="col-6">
+                              <div className="blog-btn pt--20">
+                                <a className="rn-btn text-white" href="#">
+                                  Suspend
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+
+                    <CardMedia
+                      className={classes.cover}
+                      image={`http://63.250.33.174/${user.photo}`}
+                      title="Live from space album cover"
+                    />
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* End ContentUploader List */}
         {/* Start Back To Top */}
         <div className="backto-top">
           <ScrollToTop showUnder={160}>

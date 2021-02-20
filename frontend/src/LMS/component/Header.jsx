@@ -65,7 +65,11 @@ export default function Header(props) {
       }
       if (user_type === 1) {
         dispatch(getGeneralMessage());
-        dispatch(getByType());
+        dispatch(getByType(1));
+        dispatch(getByType(2));
+        dispatch(getByType(3));
+        dispatch(getByStudentType("student"));
+        dispatch(getByStudentType("subscriber"))
       }
     }
 
