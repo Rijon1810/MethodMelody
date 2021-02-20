@@ -13,6 +13,12 @@ import {
   Divider,
   Avatar,
   Grid,
+  DialogActions,
+  TextField,
+  DialogContentText,
+  DialogContent,
+  DialogTitle,
+  Dialog,
 } from "@material-ui/core";
 import { FiChevronUp } from "react-icons/fi";
 import ScrollToTop from "react-scroll-up";
@@ -22,7 +28,8 @@ import PageHelmet from "./Helmet.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { getMessage } from "../../actions/messageAction";
+// import { getMessage } from "../../actions/messageAction";
+import { replyMessage } from "../../actions/messageAction";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -48,11 +55,30 @@ const AdminMessages = () => {
 
   const dispatch = useDispatch();
 
-  dispatch(getMessage());
+  // dispatch(getMessage());
 
   const generalMessageList = useSelector((state) => state.Messages.general);
   const studentMessageList = useSelector((state) => state.Messages.student);
 
+  const [open, setOpen] = useState(false);
+  const [messageId, setMessageId] = useState("");
+  const [reply, setReply] = useState("");
+
+  // let messageId = '';
+  // let reply = '';
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const sendReply = () => {
+    console.log(`message id = ${messageId} and reply message = ${reply}`);
+    dispatch(replyMessage(messageId, { reply: reply }));
+  };
   return (
     <React.Fragment>
       {" "}
@@ -203,8 +229,10 @@ const AdminMessages = () => {
                                 <a
                                   className="rn-btn"
                                   href="#"
-                                  onClick={() => {
-                                    replyViaEmail(message);
+                                  // onClick={handleClickOpen}
+                                  onClick={(event) => {
+                                    handleClickOpen();
+                                    setMessageId(message._id);
                                   }}
                                   style={{
                                     backgroundColor: "#b12222",
@@ -232,6 +260,46 @@ const AdminMessages = () => {
         </div>
         {/* End Registered User Message Section */}
         {/* Start Back To Top */}
+        <div>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title"
+          >
+            <DialogTitle id="form-dialog-title">Reply!</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Please give your reply to the following student query to address
+                his concerns and click the send button.
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Reply answer"
+                type="text"
+                fullWidth
+                onChange={(event) => {
+                  setReply(event.target.value);
+                }}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} style={{ color: "#b12222" }}>
+                Cancel
+              </Button>
+              <Button
+                onClick={(event) => {
+                  handleClose();
+                  sendReply();
+                }}
+                style={{ color: "#b12222" }}
+              >
+                Send
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
         <div className="backto-top">
           <ScrollToTop showUnder={160}>
             <FiChevronUp />
