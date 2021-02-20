@@ -63,7 +63,7 @@ export default function Header(props) {
         dispatch(getCurrentMessageById(`${userId}`));
         dispatch(getPreviousMessageById(`${userId}`));
       }
-      if(user_type === 1){
+      if (user_type === 1) {
         dispatch(getGeneralMessage());
         dispatch(getStudentMessage());
       }
@@ -415,6 +415,39 @@ export default function Header(props) {
                             </Grid>
                           </Link>
                         </li>
+                        <li>
+                          <Link to="#">
+                            <span
+                              onClick={() => {
+                                dispatch(logOut());
+                              }}
+                            >
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{
+                                    marginRight: 10,
+                                    color: "#f9004c",
+                                  }}
+                                >
+                                  <PowerSettingsNewOutlined />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Log Out
+                                </Grid>
+                              </Grid>
+                            </span>
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+
+                    {user_type == 2 && (
+                      <ul className="submenu" style={mystyle}>
                         <li>
                           <Link to="#">
                             <span
