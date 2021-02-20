@@ -17,7 +17,7 @@ import { isLogged } from "../../actions/isLoggedAction";
 import { logOut } from "../../actions/logOutAction";
 import { getCourse } from "../../actions/courseAction";
 import { getCart } from "../../actions/cartAction";
-import {getUserCourse} from "../../actions/userAction";
+import { getUserCourse } from "../../actions/userAction";
 
 //importing material components
 import { Avatar, Grid, Badge } from "@material-ui/core";
@@ -27,7 +27,12 @@ import {
   getSelectedInstructorId,
   getSelectedCourseCategory,
 } from "../../actions/getSelectedIdAction";
-import { getCurrentMessageById, getPreviousMessageById } from "../../actions/messageAction";
+import {
+  getCurrentMessageById,
+  getPreviousMessageById,
+  getGeneralMessage,
+  getStudentMessage,
+} from "../../actions/messageAction";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -42,26 +47,30 @@ export default function Header(props) {
 
   const username = useSelector((state) => state.getAllUsers.getUserCourse.name);
 
+  const user_type = useSelector((state) => state.isLogged.payload.type);
+  const login_data = useSelector((state) => state.isLogged.payload);
+  const loginStatus = useSelector((state) => state.isLogged.login);
   useEffect(() => {
     // dispatch(isLogged());
     // dispatch(logOut());
     // dispatch(getCourse());
     // dispatch(getSelectedInstructorId());
     // dispatch(getSelectedCourseCategory(""));
-    if(loginStatus){
+    if (loginStatus) {
       dispatch(getCart(`${userId}`));
       dispatch(getUserCourse(`${userId}`));
-      dispatch(getCurrentMessageById(`${userId}`));
-      dispatch(getPreviousMessageById(`${userId}`));
+      if (user_type === 4) {
+        dispatch(getCurrentMessageById(`${userId}`));
+        dispatch(getPreviousMessageById(`${userId}`));
+      }
+      if(user_type === 1){
+        dispatch(getGeneralMessage());
+        dispatch(getStudentMessage());
+      }
     }
-  
 
     // dispatch(getSelectedCourseCategory(""));
   }, [dispatch, cart_number, username]);
-
-  const user_type = useSelector((state) => state.isLogged.payload.type);
-  const login_data = useSelector((state) => state.isLogged.payload);
-  const loginStatus = useSelector((state) => state.isLogged.login);
 
   // const logOut = useSelector((state) => state.logOut);
   //   console.log("is logged in: " + isLoggedIn);
@@ -71,8 +80,6 @@ export default function Header(props) {
   );
 
   const catagory_data = useSelector((state) => state.getCourse.catagoryList);
-
- 
 
   // const PostList = BlogContent.slice(0, 4);
   // dispatch(getInstructor());
@@ -93,7 +100,7 @@ export default function Header(props) {
     background: "#101010",
     overflow: "auto",
     maxHeight: "50ch",
-    scrollbar:"auto"
+    scrollbar: "auto",
   };
 
   const avatar = {
