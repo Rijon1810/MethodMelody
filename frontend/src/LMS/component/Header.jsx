@@ -17,7 +17,7 @@ import { isLogged } from "../../actions/isLoggedAction";
 import { logOut } from "../../actions/logOutAction";
 import { getCourse } from "../../actions/courseAction";
 import { getCart } from "../../actions/cartAction";
-import { getUserCourse } from "../../actions/userAction";
+import { getUserCourse, getByType, getByStudentType } from "../../actions/userAction";
 
 //importing material components
 import { Avatar, Grid, Badge } from "@material-ui/core";
@@ -65,7 +65,7 @@ export default function Header(props) {
       }
       if (user_type === 1) {
         dispatch(getGeneralMessage());
-        dispatch(getStudentMessage());
+        // dispatch(getStudentMessage());
       }
     }
 
