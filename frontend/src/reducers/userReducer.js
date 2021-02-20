@@ -1,9 +1,15 @@
-import { GET_ALL_USER, GET_USER_COURSE, USER_UPDATE } from "../actions/types";
+import {
+  GET_ALL_USER,
+  GET_USER_COURSE,
+  USER_UPDATE,
+  USER_SUSPEND,
+} from "../actions/types";
 
 const initialState = {
   allUsers: {},
   getUserCourse: {},
   payload: {},
+  suspendStatus: "",
 };
 
 const getAllUsersReducer = (state = initialState, action) => {
@@ -22,6 +28,11 @@ const getAllUsersReducer = (state = initialState, action) => {
       return {
         ...state,
         payload: action.payload,
+      };
+    case USER_SUSPEND:
+      return {
+        ...state,
+        suspendStatus: action.payload,
       };
     default:
       return { ...state };
