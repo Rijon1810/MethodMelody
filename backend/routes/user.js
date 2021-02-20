@@ -96,7 +96,7 @@ router.route(`/login`).post((req, res) => {
   const password = req.body.password;
   User.find({ email })
     .then((docs) => {
-      if (docs.length > 0) {
+      if (docs.length > 0 && suspend === false) {
         bcrypt.compare(password, docs[0].password, (err, result) => {
           // if (err) {
           // 	return res.status(401).json({ message: "Auth failed!" });
@@ -269,5 +269,23 @@ router
       })
       .catch((err) => res.status(400).json("Error: " + err));
   });
+
+//GET by ID
+router.route("/suspend/:userId").post((req, res) => {
+  const id = req.params.userId;
+  User.findByIdAndUpdate(
+    id,
+    { $set: { suspend: true } },
+    { useFindAndModify: false }
+  )
+    .then((doc) => {
+      if (doc) {
+        res.status(200).json(doc);
+      } else {
+        res.status(404).json(doc);
+      }
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 
 module.exports = router;
