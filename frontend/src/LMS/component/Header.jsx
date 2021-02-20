@@ -27,6 +27,7 @@ import {
   getSelectedInstructorId,
   getSelectedCourseCategory,
 } from "../../actions/getSelectedIdAction";
+import { getCurrentMessageById, getPreviousMessageById } from "../../actions/messageAction";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -50,6 +51,8 @@ export default function Header(props) {
     if(loginStatus){
       dispatch(getCart(`${userId}`));
       dispatch(getUserCourse(`${userId}`));
+      dispatch(getCurrentMessageById(`${userId}`));
+      dispatch(getPreviousMessageById(`${userId}`));
     }
   
 

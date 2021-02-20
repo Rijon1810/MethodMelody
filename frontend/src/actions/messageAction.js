@@ -63,7 +63,7 @@ export const getCurrentMessageById = (id) => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(`current message api response = ${res.body}`)
+      console.log(`current message api response = ${res.data}`)
       dispatch({
         type: GET_CURRENT_MESSAGE_BY_ID,
         payload: res.data,
@@ -79,6 +79,7 @@ export const getCurrentMessageById = (id) => (dispatch) => {
 };
 
 export const getPreviousMessageById = (id) => (dispatch) => {
+ 
   axios
     .get(`contact/u/p/${id}`, {
       headers: {
@@ -86,6 +87,7 @@ export const getPreviousMessageById = (id) => (dispatch) => {
       },
     })
     .then((res) => {
+      console.log(`previous message api response = ${res.data}`)
       dispatch({
         type: GET_PREVIOUS_MESSAGE_BY_ID,
         payload: res.data,
