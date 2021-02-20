@@ -63,6 +63,7 @@ const AdminMessages = () => {
   const [open, setOpen] = useState(false);
   const [messageId, setMessageId] = useState("");
   const [reply, setReply] = useState("");
+  const [message, setMessage] = useState("");
 
   // let messageId = '';
   // let reply = '';
@@ -224,26 +225,29 @@ const AdminMessages = () => {
                                 />
                               </ListItem>
                             </Grid>
-                            <Grid item container xs={2} justify="center">
-                              <div className="blog-btn pt--20">
-                                <a
-                                  className="rn-btn"
-                                  href="#"
-                                  // onClick={handleClickOpen}
-                                  onClick={(event) => {
-                                    handleClickOpen();
-                                    setMessageId(message._id);
-                                  }}
-                                  style={{
-                                    backgroundColor: "#b12222",
-                                    color: "#ffffff",
-                                    borderBlockStyle: "hidden",
-                                  }}
-                                >
-                                  Reply
-                                </a>
-                              </div>
-                            </Grid>
+                            {message.status === true ? null : (
+                              <Grid item container xs={2} justify="center">
+                                <div className="blog-btn pt--20">
+                                  <a
+                                    className="rn-btn"
+                                    href="#"
+                                    // onClick={handleClickOpen}
+                                    onClick={(event) => {
+                                      handleClickOpen();
+                                      setMessageId(message._id);
+                                      setMessage(message.message)
+                                    }}
+                                    style={{
+                                      backgroundColor: "#b12222",
+                                      color: "#ffffff",
+                                      borderBlockStyle: "hidden",
+                                    }}
+                                  >
+                                    Reply
+                                  </a>
+                                </div>
+                              </Grid>
+                            )}
                           </Grid>
                           <Grid item xs={11}>
                             <Divider />{" "}
@@ -270,8 +274,9 @@ const AdminMessages = () => {
             <DialogContent>
               <DialogContentText>
                 Please give your reply to the following student query to address
-                his concerns and click the send button.
+                his/her concerns and click the send button.
               </DialogContentText>
+              <h5 style={{ color: "#b12222" }}>{`" ${message} "`}</h5>
               <TextField
                 autoFocus
                 margin="dense"
