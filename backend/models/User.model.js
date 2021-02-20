@@ -6,6 +6,7 @@ var UserSchema = new Schema(
   {
     type: { type: Number, default: 4 },
     name: { type: String },
+    subscriber: { type: Boolean, default: false },
     photo: { type: String },
     dob: { type: String },
     phone: { type: String },
