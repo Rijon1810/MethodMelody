@@ -63,6 +63,7 @@ export const getCurrentMessageById = (id) => (dispatch) => {
       },
     })
     .then((res) => {
+      console.log(`current message api response = ${res.body}`)
       dispatch({
         type: GET_CURRENT_MESSAGE_BY_ID,
         payload: res.data,
@@ -144,6 +145,7 @@ export const getStudentMessage = () => (dispatch) => {
 };
 
 export const postMessage = (data) => (dispatch) => {
+  console.log(data);
   axios
     .post(`contact/`, data, {
       headers: {

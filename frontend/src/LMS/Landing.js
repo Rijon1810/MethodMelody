@@ -43,6 +43,7 @@ import {
   getCurrentVideoIndex,
   getSelectedCourseCategory,
 } from "../actions/getSelectedIdAction";
+import { getCurrentMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
 
 //constants
@@ -136,6 +137,9 @@ export default function Landing() {
     dispatch(getCart(`${userId}`));
     dispatch(getUserCourse(`${userId}`));
     dispatch(getSelectedCourseCategory(""));
+    if (isLoggedIn) {
+      dispatch(getCurrentMessageById(`${userId}`));
+    }
   }, [dispatch]);
 
   // view all course handler

@@ -135,7 +135,7 @@ class StudentContactForm extends Component {
 const mapStateToProps = (state) => ({
   userName: state.isLogged.payload.name,
   userEmail: state.isLogged.payload.email,
-  userId: state.isLogged.payload._id,
+  userId: state.isLogged.payload.id,
   posted_message_status: state.Messages.postConfirm,
 });
 
