@@ -5,8 +5,22 @@ const Contact = require("../models/Contact.model");
 const Mongoose = require("mongoose");
 const { query } = require("express");
 
-router.route("/getAll").get((req, res) => {
+router.route("/").get((req, res) => {
   Contact.find()
+    .sort({ updatedAt: "desc" })
+    .then((contact) => res.json(contact))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/student").get((req, res) => {
+  Contact.find({ type: "student" })
+    .sort({ updatedAt: "desc" })
+    .then((contact) => res.json(contact))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/general").get((req, res) => {
+  Contact.find({ type: "general" })
     .sort({ updatedAt: "desc" })
     .then((contact) => res.json(contact))
     .catch((err) => res.status(400).json("Error: " + err));
@@ -19,12 +33,17 @@ router.route("/").post((req, res) => {
   const to = req.body.to;
   const email = req.body.email;
   const message = req.body.message;
+  let type = "student";
+  const reply = "";
+  if (to === undefined) type = "general";
   const newContact = new Contact({
     name,
     from,
     to,
     email,
     message,
+    type,
+    reply,
   });
   newContact
     .save()
@@ -54,13 +73,47 @@ router.route("/search").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+//GET by ID
+router.route("/m/:id").get((req, res) => {
+  Contact.findById(req.params.id)
+    .then((doc) => {
+      if (doc) {
+        res.status(200).json(doc);
+      } else {
+        res.status(404).json(doc);
+      }
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+//GET ALL CURRENT by a USER ID
+router.route("/u/c/:userId").get((req, res) => {
+  Contact.find({
+    from: Mongoose.Types.ObjectId(req.params.userId),
+    status: false,
+  })
+    .sort({ updatedAt: "desc" })
+    .then((contact) => res.json(contact))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+//GET ALL PREVIOUS by a USER ID
+router.route("/u/p/:userId").get((req, res) => {
+  Contact.find({
+    from: Mongoose.Types.ObjectId(req.params.userId),
+    status: true,
+  })
+    .sort({ updatedAt: "desc" })
+    .then((contact) => res.json(contact))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 //UPDATE REPLY by ID
-router.route("/:contactId").put((req, res) => {
-  const contactId = Mongoose.Types.ObjectId(req.body.contactId);
+router.route("/r/:contactId").post((req, res) => {
   const reply = req.body.reply;
   Contact.findByIdAndUpdate(
-    contactId,
-    { $addToSet: { reply: reply } },
+    req.params.contactId,
+    { $set: { reply: reply, status: true } },
     { useFindAndModify: false }
   )
     .then((doc) => {
@@ -77,7 +130,6 @@ router.route("/:contactId").put((req, res) => {
 router.route("/:who/:userId").get((req, res) => {
   let query = {};
   query[req.params.who] = Mongoose.Types.ObjectId(req.params.userId);
-  console.log(query);
   Contact.find(query)
     .sort({ updatedAt: "asc" })
     .then((doc) => {
