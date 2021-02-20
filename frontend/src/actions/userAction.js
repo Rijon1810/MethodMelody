@@ -4,7 +4,12 @@ import {
   GET_USER_COURSE,
   USER_UPDATE,
   USER_SUSPEND,
-  GET_TYPED_USER,
+  GET_TYPED_USER_1,
+  GET_TYPED_USER_2,
+  GET_TYPED_USER_3,
+  GET_TYPED_USER_4,
+  GET_TYPED_USER_STUDENT,
+  GET_TYPED_USER_SUBSCRIBER,
 } from "./types";
 
 export const getUser = () => (dispatch) => {
@@ -34,10 +39,38 @@ export const getByType = (type) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch({
-        type: GET_TYPED_USER,
-        payload: res.data,
-      });
+      switch (type) {
+        case 1:
+          dispatch({
+            type: GET_TYPED_USER_1,
+            payload: res.data,
+          });
+          break;
+        case 2:
+          dispatch({
+            type: GET_TYPED_USER_2,
+            payload: res.data,
+          });
+          break;
+
+        case 3:
+          dispatch({
+            type: GET_TYPED_USER_3,
+            payload: res.data,
+          });
+          break;
+
+        case 4:
+          dispatch({
+            type: GET_TYPED_USER_4,
+            payload: res.data,
+          });
+          break;
+
+        default:
+          break;
+      }
+
       console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
@@ -53,10 +86,17 @@ export const getByStudentType = (tag) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch({
-        type: GET_TYPED_USER,
-        payload: res.data,
-      });
+      if (tag === "student") {
+        dispatch({
+          type: GET_TYPED_USER_STUDENT,
+          payload: res.data,
+        });
+      } else if (tag === "subscriber") {
+        dispatch({
+          type: GET_TYPED_USER_SUBSCRIBER,
+          payload: res.data,
+        });
+      }
       console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
