@@ -5,6 +5,7 @@ var ContactSchema = new Schema(
   {
     name: { type: String },
     from: { type: Schema.Types.ObjectId },
+    toName: { type: String },
     to: { type: Schema.Types.ObjectId },
     email: { type: String },
     message: { type: String },

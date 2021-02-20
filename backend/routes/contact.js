@@ -2,6 +2,7 @@ const router = require("express").Router();
 const multer = require("multer");
 const path = require("path");
 const Contact = require("../models/Contact.model");
+const Instructor = require("../models/Instructor.model");
 const Mongoose = require("mongoose");
 const { query } = require("express");
 
@@ -36,24 +37,29 @@ router.route("/").post((req, res) => {
   let type = "student";
   const reply = "";
   if (to === undefined) type = "general";
-  const newContact = new Contact({
-    name,
-    from,
-    to,
-    email,
-    message,
-    type,
-    reply,
+
+  Instructor.findById(to).then((doc) => {
+    const toName = doc.name;
+    const newContact = new Contact({
+      name,
+      from,
+      toName,
+      to,
+      email,
+      message,
+      type,
+      reply,
+    });
+    newContact
+      .save()
+      .then(() => {
+        res.status(200).json({
+          message: `New Message Added Successfully!`,
+          id: newContact._id,
+        });
+      })
+      .catch((err) => res.status(400).json("Error: " + err));
   });
-  newContact
-    .save()
-    .then(() => {
-      res.status(200).json({
-        message: `New Message Added Successfully!`,
-        id: newContact._id,
-      });
-    })
-    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 //Search
