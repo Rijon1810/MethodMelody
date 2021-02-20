@@ -3,7 +3,7 @@ import React, { Component } from "react";
 //custom components
 import GoogleMap from "./GoogleMap";
 import { connect } from "react-redux";
-import { submitGeneralContact } from "../../actions/messageAction";
+import { postMessage } from "../../actions/messageAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -80,34 +80,33 @@ class StudentContactForm extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
-                      let submitted = await this.props.submitGeneralContact({
+                      await this.props.postMessage({
                         name: this.props.userName,
                         to: this.state.rnInstructor,
                         from: this.props.userId,
                         email: this.props.userEmail,
                         message: this.state.rnMessage,
                       });
-                      if (submitted) {
-                        toast.success("Message sent!!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
-                      } else {
-                        toast.error("Failed sending message!!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
-                      }
+                      this.setState({ rnMessage: "" });
+                      this.props.posted_message_status === "post complete"
+                        ? toast.success("Message sent!!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          })
+                        : toast.error("Failed sending message!!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
                     }}
                   >
                     Submit
@@ -136,9 +135,8 @@ class StudentContactForm extends Component {
 const mapStateToProps = (state) => ({
   userName: state.isLogged.payload.name,
   userEmail: state.isLogged.payload.email,
-  userId: state.isLogged.payload._id,
+  userId: state.isLogged.payload.id,
+  posted_message_status: state.Messages.postConfirm,
 });
 
-export default connect(mapStateToProps, { submitGeneralContact })(
-  StudentContactForm
-);
+export default connect(mapStateToProps, { postMessage })(StudentContactForm);

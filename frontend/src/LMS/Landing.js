@@ -43,6 +43,7 @@ import {
   getCurrentVideoIndex,
   getSelectedCourseCategory,
 } from "../actions/getSelectedIdAction";
+import { getCurrentMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
 
 //constants
@@ -136,6 +137,9 @@ export default function Landing() {
     dispatch(getCart(`${userId}`));
     dispatch(getUserCourse(`${userId}`));
     dispatch(getSelectedCourseCategory(""));
+    if (isLoggedIn) {
+      dispatch(getCurrentMessageById(`${userId}`));
+    }
   }, [dispatch]);
 
   // view all course handler
@@ -192,7 +196,12 @@ export default function Landing() {
                         {isLoggedIn ? (
                           <div className="slide-btn">
                             <a
-                              className="rn-button-style--2" style={{ backgroundColor: "#b12222", color:"#ffffff", borderBlockStyle:"hidden" }}
+                              className="rn-button-style--2"
+                              style={{
+                                backgroundColor: "#b12222",
+                                color: "#ffffff",
+                                borderBlockStyle: "hidden",
+                              }}
                               href="/allcourses"
                             >
                               {value.buttonText}
@@ -201,7 +210,12 @@ export default function Landing() {
                         ) : (
                           <div className="slide-btn">
                             <a
-                              className="rn-button-style--2" style={{ backgroundColor: "#b12222", color:"#ffffff", borderBlockStyle:"hidden"  }}
+                              className="rn-button-style--2"
+                              style={{
+                                backgroundColor: "#b12222",
+                                color: "#ffffff",
+                                borderBlockStyle: "hidden",
+                              }}
                               href={`${value.buttonLink}`}
                             >
                               {value.buttonText}
@@ -647,12 +661,15 @@ export default function Landing() {
       {/* Start Faq Area */}
 
       {/* Start Contact Form Area */}
-      <div
-        className="portfolio-area pb--120  bg_color--6"
-        style={{ paddingTop: "10ch" }}
-      >
-        <ContactOne />
-      </div>
+      {!isLoggedIn ? (
+        <div
+          className="portfolio-area pb--120  bg_color--6"
+          style={{ paddingTop: "10ch" }}
+        >
+          <ContactOne />
+        </div>
+      ) : null}
+
       {/* End Contact Form Area */}
 
       {/* Start Back To Top */}

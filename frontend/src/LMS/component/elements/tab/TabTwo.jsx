@@ -98,26 +98,18 @@ class TabsTwo extends Component {
                   {/* Start Message */}
                   <TabPanel>
                     <div className="single-tab-content">
-                      <ul>
-                        <li>
-                          <a href="/service">
-                            Sr. Front-end Engineer<span> - Google</span>
-                          </a>{" "}
-                          2018 - Current
-                        </li>
-                        <li>
-                          <a href="/service">
-                            Front-end Engineer<span> - Microsoft</span>
-                          </a>{" "}
-                          2017 - 2018
-                        </li>
-                        <li>
-                          <a href="/service">
-                            Software Engineer<span> - Alibaba </span>
-                          </a>{" "}
-                          2013- 2014
-                        </li>
-                      </ul>
+                      <h3>Pending Messages</h3>
+                      <p className="theme-gradient">All your Pending Queries</p>
+                      <p>
+                        You can see all your pending queries which hasn't been yet answered in the below section.
+                      </p>
+                    </div>
+                    <div className="single-tab-content">
+                      <h3>Answered Messages</h3>
+                      <p className="theme-gradient">All your Answered Queries</p>
+                      <p>
+                        You can see all your answered queries which hasn't been yet answered in the below section.
+                      </p>
                     </div>
                   </TabPanel>
                   {/* End Message */}

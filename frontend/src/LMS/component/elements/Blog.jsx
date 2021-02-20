@@ -18,7 +18,7 @@ class Blog extends Component{
             <div className="active-dark">
                 <Header from="allcourses" />
                 {/* Start Breadcrump Area */}
-                <Breadcrumb title={'All Courses'}   />
+                <Breadcrumb from='All Courses'   />
                 {/* End Breadcrump Area */}
 
 
