@@ -3,6 +3,7 @@ import {
   GET_USER_COURSE,
   USER_UPDATE,
   USER_SUSPEND,
+  GET_TYPED_USER,
 } from "../actions/types";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   getUserCourse: {},
   payload: {},
   suspendStatus: "",
+  getByType: {},
 };
 
 const getAllUsersReducer = (state = initialState, action) => {
@@ -33,6 +35,11 @@ const getAllUsersReducer = (state = initialState, action) => {
       return {
         ...state,
         suspendStatus: action.payload,
+      };
+    case GET_TYPED_USER:
+      return {
+        ...state,
+        getByType: action.payload,
       };
     default:
       return { ...state };
