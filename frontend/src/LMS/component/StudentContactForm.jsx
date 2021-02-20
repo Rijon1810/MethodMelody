@@ -3,7 +3,7 @@ import React, { Component } from "react";
 //custom components
 import GoogleMap from "./GoogleMap";
 import { connect } from "react-redux";
-import { submitGeneralContact } from "../../actions/messageAction";
+import { postMessage } from "../../actions/messageAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -80,7 +80,7 @@ class StudentContactForm extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
-                      let submitted = await this.props.submitGeneralContact({
+                      let submitted = await this.props.postMessage({
                         name: this.props.userName,
                         to: this.state.rnInstructor,
                         from: this.props.userId,
@@ -139,6 +139,6 @@ const mapStateToProps = (state) => ({
   userId: state.isLogged.payload._id,
 });
 
-export default connect(mapStateToProps, { submitGeneralContact })(
+export default connect(mapStateToProps, { postMessage })(
   StudentContactForm
 );

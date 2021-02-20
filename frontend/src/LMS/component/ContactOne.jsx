@@ -3,7 +3,7 @@ import React, { Component } from "react";
 //custom components
 import GoogleMap from "./GoogleMap";
 import { connect } from "react-redux";
-import { submitGeneralContact } from "../../actions/messageAction";
+import { postMessage } from "../../actions/messageAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,12 +23,17 @@ class ContactOne extends Component {
           <div className="row row--35 align-items-center ">
             <div className="col-lg-8 order-2 order-lg-1 offset-lg-2">
               <div className="section-title text-left mb--50">
-                <h3 className="title" style={{color: "#b12222"}}>Contact Us.</h3>
+                <h3 className="title" style={{ color: "#b12222" }}>
+                  Contact Us.
+                </h3>
                 <p className="description">
                   For any queries regarding the Platform, Subscription Process,
                   Account Registration, etc. You can also reach us via <br></br>
                   <a href="tel:+8801923088574">01913130113</a> or email:
-                  <a href="mailto:admin@example.com"> info@methodmelody.com</a>{" "}
+                  <a href="mailto:admin@example.com">
+                    {" "}
+                    info@methodmelody.com
+                  </a>{" "}
                 </p>
               </div>
               <div className="form-wrapper">
@@ -78,32 +83,36 @@ class ContactOne extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
-                      let submitted = await this.props.submitGeneralContact({
+                      await this.props.postMessage({
                         name: this.state.rnName,
                         email: this.state.rnEmail,
                         message: this.state.rnMessage,
                       });
-                      if (submitted) {
-                        toast.success("Message sent!!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
-                      } else {
-                        toast.error("Failed sending message!!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
-                      }
+                      console.log(this.state.rnName);
+                      console.log(this.state.rnEmail);
+                      console.log(this.state.rnMessage);
+
+                      this.setState({ rnName: "", rnEmail: "", rnMessage: "" });
+
+                      this.props.posted_message_status === "post complete"
+                        ? toast.success("Message sent!!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          })
+                        : toast.error("Failed sending message!!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
                     }}
                   >
                     Submit
@@ -129,6 +138,8 @@ class ContactOne extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  posted_message_status: state.Messages.postConfirm,
+});
 
-export default connect(mapStateToProps, { submitGeneralContact })(ContactOne);
+export default connect(mapStateToProps, { postMessage })(ContactOne);

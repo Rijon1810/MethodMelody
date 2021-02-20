@@ -192,7 +192,12 @@ export default function Landing() {
                         {isLoggedIn ? (
                           <div className="slide-btn">
                             <a
-                              className="rn-button-style--2" style={{ backgroundColor: "#b12222", color:"#ffffff", borderBlockStyle:"hidden" }}
+                              className="rn-button-style--2"
+                              style={{
+                                backgroundColor: "#b12222",
+                                color: "#ffffff",
+                                borderBlockStyle: "hidden",
+                              }}
                               href="/allcourses"
                             >
                               {value.buttonText}
@@ -201,7 +206,12 @@ export default function Landing() {
                         ) : (
                           <div className="slide-btn">
                             <a
-                              className="rn-button-style--2" style={{ backgroundColor: "#b12222", color:"#ffffff", borderBlockStyle:"hidden"  }}
+                              className="rn-button-style--2"
+                              style={{
+                                backgroundColor: "#b12222",
+                                color: "#ffffff",
+                                borderBlockStyle: "hidden",
+                              }}
                               href={`${value.buttonLink}`}
                             >
                               {value.buttonText}
@@ -647,12 +657,15 @@ export default function Landing() {
       {/* Start Faq Area */}
 
       {/* Start Contact Form Area */}
-      <div
-        className="portfolio-area pb--120  bg_color--6"
-        style={{ paddingTop: "10ch" }}
-      >
-        <ContactOne />
-      </div>
+      {!isLoggedIn ? (
+        <div
+          className="portfolio-area pb--120  bg_color--6"
+          style={{ paddingTop: "10ch" }}
+        >
+          <ContactOne />
+        </div>
+      ) : null}
+
       {/* End Contact Form Area */}
 
       {/* Start Back To Top */}

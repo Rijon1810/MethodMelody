@@ -3,7 +3,7 @@ import React, { Component } from "react";
 //custom components
 
 import { connect } from "react-redux";
-import { submitGeneralContact } from "../../actions/messageAction";
+import { postMessage } from "../../actions/messageAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -82,7 +82,7 @@ class ContactTwo extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
-                      let submitted = await this.props.submitGeneralContact({
+                      let submitted = await this.props.postMessage({
                         name: this.state.rnName,
                         email: this.state.rnEmail,
                         message: this.state.rnMessage,
@@ -135,4 +135,4 @@ class ContactTwo extends Component {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, { submitGeneralContact })(ContactTwo);
+export default connect(mapStateToProps, { postMessage })(ContactTwo);
