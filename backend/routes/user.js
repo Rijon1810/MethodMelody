@@ -96,7 +96,7 @@ router.route(`/login`).post((req, res) => {
   const password = req.body.password;
   User.find({ email })
     .then((docs) => {
-      if (docs.length > 0 && suspend === false) {
+      if (docs.length > 0 && docs[0].suspend === false) {
         bcrypt.compare(password, docs[0].password, (err, result) => {
           // if (err) {
           // 	return res.status(401).json({ message: "Auth failed!" });
