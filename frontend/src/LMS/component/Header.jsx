@@ -324,6 +324,7 @@ export default function Header(props) {
                             <span
                               onClick={() => {
                                 dispatch(logOut());
+                                history.push("/");
                               }}
                             >
                               <Grid
@@ -372,6 +373,7 @@ export default function Header(props) {
                             <span
                               onClick={() => {
                                 dispatch(logOut());
+                                history.push("/");
                               }}
                             >
                               <Grid
@@ -420,6 +422,7 @@ export default function Header(props) {
                             <span
                               onClick={() => {
                                 dispatch(logOut());
+                                history.push("/");
                               }}
                             >
                               <Grid
@@ -453,6 +456,7 @@ export default function Header(props) {
                             <span
                               onClick={() => {
                                 dispatch(logOut());
+                                history.push("/");
                               }}
                             >
                               <Grid
