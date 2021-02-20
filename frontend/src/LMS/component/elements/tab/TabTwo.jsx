@@ -121,33 +121,37 @@ class TabsTwo extends Component {
                         You can see all your pending queries which hasn't been
                         yet answered in the below section.
                       </p>
-                      <div className="container-fluid mt--30 mt_sm--40 ">
-                        <Card raised="true">
-                          <List
-                            style={{
-                              maxHeight: 500,
-                              overflow: "auto",
-                              width: "100%",
-                            }}
-                          >
-                            {this.props.currentMessages.map((message) => (
-                              <div style={{ padding: "20px" }}>
-                                <h5 style={{ color: "#b12222" }}>
-                                  My message:
-                                </h5>
-                                <p style={{ color: "#000" }}>
-                                  {message.message}
-                                </p>
-                                <h5 style={{ color: "#b12222" }}>
-                                  Instructor's reply:
-                                </h5>
-                                <p style={{ color: "#000" }}>Pending</p>
-                                <Divider />{" "}
-                              </div>
-                            ))}
-                          </List>
-                        </Card>
-                      </div>
+                      {this.props.currentMessages.length === 0 ? (
+                        <h4>Currently you don't have any pending messages</h4>
+                      ) : (
+                        <div className="container-fluid mt--30 mt_sm--40 ">
+                          <Card raised="true">
+                            <List
+                              style={{
+                                maxHeight: 500,
+                                overflow: "auto",
+                                width: "100%",
+                              }}
+                            >
+                              {this.props.currentMessages.map((message) => (
+                                <div style={{ padding: "20px" }}>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    My message:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>
+                                    {message.message}
+                                  </p>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    Instructor's reply:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>Pending</p>
+                                  <Divider />{" "}
+                                </div>
+                              ))}
+                            </List>
+                          </Card>
+                        </div>
+                      )}
                     </div>
                     <div className="single-tab-content mt--60">
                       <h3>Answered Messages</h3>
@@ -158,33 +162,39 @@ class TabsTwo extends Component {
                         You can see all your answered queries which hasn't been
                         yet answered in the below section.
                       </p>
-                      <div className="container-fluid mt--30 mt_sm--40 ">
-                        <Card raised="true">
-                          <List
-                            style={{
-                              maxHeight: 500,
-                              overflow: "auto",
-                              width: "100%",
-                            }}
-                          >
-                            {this.props.previousMessages.map((message) => (
-                              <div style={{ padding: "20px" }}>
-                                <h5 style={{ color: "#b12222" }}>
-                                  My message:
-                                </h5>
-                                <p style={{ color: "#000" }}>
-                                  {message.message}
-                                </p>
-                                <h5 style={{ color: "#b12222" }}>
-                                  Instructor's reply:
-                                </h5>
-                                <p style={{ color: "#000" }}>{message.reply}</p>
-                                <Divider />{" "}
-                              </div>
-                            ))}
-                          </List>
-                        </Card>
-                      </div>
+                      {this.props.previousMessages.length === 0 ? (
+                        <h4>Currently you don't have any answered messages</h4>
+                      ) : (
+                        <div className="container-fluid mt--30 mt_sm--40 ">
+                          <Card raised="true">
+                            <List
+                              style={{
+                                maxHeight: 500,
+                                overflow: "auto",
+                                width: "100%",
+                              }}
+                            >
+                              {this.props.previousMessages.map((message) => (
+                                <div style={{ padding: "20px" }}>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    My message:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>
+                                    {message.message}
+                                  </p>
+                                  <h5 style={{ color: "#b12222" }}>
+                                    Instructor's reply:
+                                  </h5>
+                                  <p style={{ color: "#000" }}>
+                                    {message.reply}
+                                  </p>
+                                  <Divider />{" "}
+                                </div>
+                              ))}
+                            </List>
+                          </Card>
+                        </div>
+                      )}
                     </div>
                   </TabPanel>
                   {/* End Message */}
