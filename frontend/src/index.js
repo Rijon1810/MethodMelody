@@ -89,6 +89,7 @@ import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx";
 import CartPage from "./LMS/component/elements/CartPage.jsx";
 
 import ViewUserProfile  from "./LMS/component/ViewUserProfile.jsx";
+import ComingSoon from "./LMS/component/ComingSoonPage.jsx";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -405,6 +406,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/viewuser`}
             component={ViewUserProfile}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/comingsoon`}
+            component={ComingSoon}
           />
           <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
           <Route component={error404} />

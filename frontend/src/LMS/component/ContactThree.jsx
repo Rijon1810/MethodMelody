@@ -5,6 +5,7 @@ import { postCourse } from "../../actions/courseAction";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CircularProgress, Grid } from "@material-ui/core";
 
 class ContactThree extends Component {
   constructor(props) {
@@ -29,7 +30,8 @@ class ContactThree extends Component {
       refVideos: "",
       rnBanner: "",
       refBanner: "",
-      rnValidity:"",
+      rnValidity: "",
+      rnUploading: false,
     };
   }
   formd = new FormData();
@@ -438,9 +440,18 @@ class ContactThree extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
+                      this.setState({ rnUploading: true });
                       const body = new FormData(this.form);
                       toast("Upload started!!! please wait!!");
                       await this.props.postCourse(body);
+
+                      if(this.props.create_course_status === "failed" || this.props.create_course_status.message ===
+                      "Course Added Successfully!"){
+                        console.log(this.props.create_course_status.message);
+                        this.setState({ rnUploading: false });
+                      }
+
+                      // this.setState({ rnUploading: true });
                       this.props.create_course_status.message ===
                       "Course Added Successfully!"
                         ? toast.success("Course Added Successfully!", {
@@ -452,15 +463,15 @@ class ContactThree extends Component {
                             draggable: true,
                             progress: undefined,
                           })
-                        : toast.error("Course Add Failed!",{
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
+                        : toast.error("Course Add Failed!", {
+                            position: "bottom-center",
+                            autoClose: false,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          });
                     }}
                   >
                     Upload
@@ -480,6 +491,9 @@ class ContactThree extends Component {
               </div>
             </div>
           </div>
+          <Grid container justify="center">
+            {this.state.rnUploading ? <CircularProgress style={{color: "#b12222"}}/> : null}
+          </Grid>
         </div>
       </div>
     );
