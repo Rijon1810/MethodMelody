@@ -130,7 +130,7 @@ export default function CourseView(props) {
     if (isLogIn) {
       setOpen(true);
     } else {
-      alert("Please login first in order to buy the course");
+      history.push("/login")
     }
   };
   const handleWish = () => {
