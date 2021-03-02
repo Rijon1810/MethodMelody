@@ -43,7 +43,7 @@ router.route("/confirmation/:token").get((req, res) => {
     const { id } = jwt.verify(req.params.token, process.env.SECRET_KEY);
     User.findByIdAndUpdate(
       id,
-      { $set: { suspend: true } },
+      { $set: { emailVerify: true } },
       { useFindAndModify: false }
     ).catch((err) => res.status(400).json("email not vefied: " + err));
     res.redirect("http://63.250.33.174/login");
