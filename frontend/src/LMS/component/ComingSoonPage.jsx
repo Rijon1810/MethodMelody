@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PageHelmet from "./Helmet.jsx";
-import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import Breadcrumb from "../../elements/common/Breadcrumb.jsx";
 
 import ScrollToTop from "react-scroll-up";
 import { FiChevronUp } from "react-icons/fi";
@@ -34,26 +34,32 @@ const useStyles = makeStyles((theme) => ({
 
 const ComingSoonPage = () => {
   return (
-    <React.Fragment>
+    <div>
       {" "}
       <PageHelmet pageTitle="Admin Panel - Messages" />
-      <main>
-        {" "}
-        <Header from="admin" />
-        <Breadcrumb from="instructorpanel" />
-
-          <ComingSoon/>
-      
-        {/* Start Back To Top */}
-        <div className="backto-top">
-          <ScrollToTop showUnder={160}>
-            <FiChevronUp />
-          </ScrollToTop>
+      <div className="breadcrumb-area rn-bg-color ptb--100 bg_color--6" data-black-overlay="6">
+        <div className="container">
+          <div className="row">
+              <div className="col-lg-12">
+                      <div className="breadcrumb-inner pt--100">
+                          <h1 className="title text-white">Welcome to MethodMelody!</h1>
+                          <h3 className="title text-white">Stay with us, we're coming live in</h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
-        <Footer />
-        {/* End Back To Top */}
-      </main>
-    </React.Fragment>
+      <div className="rn-about-area ptb--120 bg_color--1">
+        <div className="container">
+            <div className="row  align-items-center">
+                <div className="col-lg-12 col-md-12">     
+                  <ComingSoon/>
+                </div>
+              </div>
+        </div> 
+      </div>  
+   
+    </div>
   );
 };
 

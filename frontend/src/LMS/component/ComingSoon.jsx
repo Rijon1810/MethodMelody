@@ -28,7 +28,7 @@ const getTimeDays = (time) => (time / daySeconds) | 0;
 
 export default function ComingSoon() {
   const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
-  const endTime = stratTime + 243248; // use UNIX timestamp in seconds
+  const endTime = stratTime + 864000; // use UNIX timestamp in seconds
 
   const remainingTime = endTime - stratTime;
   const days = Math.ceil(remainingTime / daySeconds);
@@ -37,19 +37,21 @@ export default function ComingSoon() {
   return (
     <div className="App">
     <div className="row">
-        <div className="col">
+        <div className="col-3">
         <CountdownCircleTimer
         {...timerProps}
         colors={[["#7E2E84"]]}
         duration={daysDuration}
         initialRemainingTime={remainingTime}
+        size="280"
+        strokeWidth="20"
       >
         {({ elapsedTime }) =>
           renderTime("days", getTimeDays(daysDuration - elapsedTime))
         }
       </CountdownCircleTimer>
         </div>
-        <div className="col">
+        <div className="col-3">
         <CountdownCircleTimer
         {...timerProps}
         colors={[["#D14081"]]}
@@ -58,6 +60,8 @@ export default function ComingSoon() {
         onComplete={(totalElapsedTime) => [
           remainingTime - totalElapsedTime > hourSeconds
         ]}
+        size="280"
+        strokeWidth="20"
       >
         {({ elapsedTime }) =>
           renderTime("hours", getTimeHours(daySeconds - elapsedTime))
@@ -73,6 +77,8 @@ export default function ComingSoon() {
         onComplete={(totalElapsedTime) => [
           remainingTime - totalElapsedTime > minuteSeconds
         ]}
+        size="280"
+        strokeWidth="20"
       >
         {({ elapsedTime }) =>
           renderTime("minutes", getTimeMinutes(hourSeconds - elapsedTime))
@@ -88,6 +94,8 @@ export default function ComingSoon() {
         onComplete={(totalElapsedTime) => [
           remainingTime - totalElapsedTime > 0
         ]}
+        size="280"
+        strokeWidth="20"
       >
         {({ elapsedTime }) =>
           renderTime("seconds", getTimeSeconds(elapsedTime))
