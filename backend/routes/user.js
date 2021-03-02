@@ -38,6 +38,14 @@ const user = multer({
 });
 
 //confirmation
+router.route("/timer").get((req, res) => {
+  var currentTime = new Date();
+  var endTime = new Date("2021-03-17");
+  const diffTime = Math.abs(Date.parse(endTime) - Date.parse(currentTime));
+  res.status(200).json(diffTime / 1000);
+});
+
+//confirmation
 router.route("/confirmation/:token").get((req, res) => {
   try {
     const { id } = jwt.verify(req.params.token, process.env.SECRET_KEY);
