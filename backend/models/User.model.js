@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema(
   {
     type: { type: Number, default: 4 },
+    emailVerify: { type: Boolean, default: false },
     name: { type: String },
     subscriber: { type: Boolean, default: false },
     photo: { type: String },
