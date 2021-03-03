@@ -36,9 +36,9 @@ const ComingSoonPage = () => {
   return (
     <div>
       {" "}
-      <PageHelmet pageTitle="Admin Panel - Messages" />
+      <PageHelmet pageTitle="Coming Soon!" />
       <div
-        className="breadcrumb-area rn-bg-color ptb--100 bg_color--6"
+        className="rn-about-area pt--120 pb--20 bg_color--6"
         data-black-overlay="6"
       >
         <div className="container">
