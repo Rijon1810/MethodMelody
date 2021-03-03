@@ -10,6 +10,10 @@ const { registerValidation, loginValidation } = require("../validation");
 const Analytics = require("../models/Analytics.model");
 const Course = require("../models/Course.model");
 let referralCodeGenerator = require("referral-code-generator");
+const nodemailer = require("nodemailer");
+const key = require("../key.json");
+
+const EMAIL_ADDRESS = "info@methodmelody.com";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -31,6 +35,29 @@ const user = multer({
   storage,
   limits: { fileSize: 1024 * 1024 * 10 },
   fileFilter,
+});
+
+//confirmation
+router.route("/timer").get((req, res) => {
+  var currentTime = new Date();
+  var endTime = new Date("2021-03-17");
+  const diffTime = Math.abs(Date.parse(endTime) - Date.parse(currentTime));
+  res.status(200).json(diffTime / 1000);
+});
+
+//confirmation
+router.route("/confirmation/:token").get((req, res) => {
+  try {
+    const { id } = jwt.verify(req.params.token, process.env.SECRET_KEY);
+    User.findByIdAndUpdate(
+      id,
+      { $set: { emailVerify: true } },
+      { useFindAndModify: false }
+    ).catch((err) => res.status(400).json("email not vefied: " + err));
+    res.redirect("http://63.250.33.174/login");
+  } catch (err) {
+    res.send("invalid signature");
+  }
 });
 
 //GET by ID
@@ -251,7 +278,38 @@ router
             });
             newUser
               .save()
-              .then(() => {
+              .then(async () => {
+                const transporter = nodemailer.createTransport({
+                  host: "smtp.gmail.com",
+                  port: "465",
+                  secure: true,
+                  auth: {
+                    type: "OAuth2",
+                    user: EMAIL_ADDRESS,
+                    serviceClient: key.client_id,
+                    privateKey: key.private_key,
+                  },
+                });
+                userid = newUser._id;
+                try {
+                  await transporter.verify();
+                  const emailToken = jwt.sign(
+                    { id: userid },
+                    process.env.SECRET_KEY,
+                    {
+                      expiresIn: "1h",
+                    }
+                  );
+                  const url = `http://63.250.33.174/api/v1/user/confirmation/${emailToken}`;
+                  await transporter.sendMail({
+                    from: EMAIL_ADDRESS,
+                    to: email,
+                    subject: "MethodMelody Email Verification",
+                    text: `link: ${url}`,
+                  });
+                } catch (err) {
+                  console.log(err);
+                }
                 Analytics.findOneAndUpdate(
                   { _id: "5fdb01d70379f5528c7f8928" },
                   { $inc: { user: 1 } },
