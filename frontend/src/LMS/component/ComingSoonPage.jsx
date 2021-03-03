@@ -6,6 +6,7 @@ import ScrollToTop from "react-scroll-up";
 import { FiChevronUp } from "react-icons/fi";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
+import { videoTagString, VideoTag } from "react-video-tag";
 
 import {
   makeStyles,
@@ -23,7 +24,6 @@ import {
   Grid,
 } from "@material-ui/core";
 
-
 import ComingSoon from "./ComingSoon.jsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,28 +37,41 @@ const ComingSoonPage = () => {
     <div>
       {" "}
       <PageHelmet pageTitle="Admin Panel - Messages" />
-      <div className="breadcrumb-area rn-bg-color ptb--100 bg_color--6" data-black-overlay="6">
+      <div
+        className="breadcrumb-area rn-bg-color ptb--100 bg_color--6"
+        data-black-overlay="6"
+      >
         <div className="container">
           <div className="row">
-              <div className="col-lg-12">
-                      <div className="breadcrumb-inner pt--100">
-                          <h1 className="title text-white">Welcome to MethodMelody!</h1>
-                          <h3 className="title text-white">Stay with us, we're coming live in</h3>
-                      </div>
-                  </div>
+            <div className="col-lg-12">
+              <div className="breadcrumb-inner">
+                <h1 className="title text-white">Welcome to MethodMelody!</h1>
+                <h3 className="title" style={{ color: "#b12222" }}>
+                  Stay with us, we're coming live soon...
+                </h3>
               </div>
+            </div>
           </div>
         </div>
-      <div className="rn-about-area ptb--120 bg_color--1">
+      </div>
+      <div className="rn-about-area bg_color--6">
         <div className="container">
-            <div className="row  align-items-center">
-                <div className="col-lg-12 col-md-12">     
-                  <ComingSoon/>
-                </div>
+          <div className="row  align-items-center">
+            <div className="col-lg-12 col-md-12">
+              <div class="embed-responsive embed-responsive-16by9">
+                <VideoTag
+                  autoPlay={`${true}`}
+                  muted={`${true}`}
+                  playsInline={`${true}`}
+                  loop={`${true}`}
+                  src={`${"/assets/images/service/clock.mp4"}`}
+                  // poster={`${"/assets/images/bg/bg-image-24.jpg"}`}
+                />
               </div>
-        </div> 
-      </div>  
-   
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
