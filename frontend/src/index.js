@@ -387,7 +387,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/adminmessages`}
             component={AdminMessages}
           />
-          <Route
+          <ProtectedRoute
             exact
             path={`${process.env.PUBLIC_URL}/studentpanel`}
             component={StudentPanel}
