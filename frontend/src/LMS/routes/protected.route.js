@@ -52,3 +52,78 @@ export const ProtectedAdminRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
+
+export const ProtectedStudentRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        console.log("auth" + auth.isStudent());
+        if (auth.isStudent() && auth.isAuthenticated()) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
+};
+
+export const ProtectedInstructorRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        console.log("auth" + auth.isInstructor());
+        if (auth.isInstructor() && auth.isAuthenticated()) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
+};
+
+export const ProtectedContentRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        console.log("auth" + auth.isContent());
+        if (auth.isContent() && auth.isAuthenticated()) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
+};

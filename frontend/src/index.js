@@ -68,6 +68,9 @@ import * as serviceWorker from "./serviceWorker";
 import {
   ProtectedRoute,
   ProtectedAdminRoute,
+  ProtectedStudentRoute,
+  ProtectedContentRoute,
+  ProtectedInstructorRoute,
 } from "./LMS/routes/protected.route";
 
 // Coustom Components
@@ -390,7 +393,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/adminmessages`}
             component={AdminMessages}
           />
-          <ProtectedAdminRoute
+          <ProtectedRoute
             exact
             path={`${process.env.PUBLIC_URL}/studentpanel`}
             component={StudentPanel}
