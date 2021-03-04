@@ -65,6 +65,21 @@ class Auth {
     if (parseInt(type) === 1) return true;
     else return false;
   }
+  isStudent() {
+    let type = localStorage.getItem("type");
+    if (parseInt(type) === 4) return true;
+    else return false;
+  }
+  isContent() {
+    let type = localStorage.getItem("type");
+    if (parseInt(type) === 2) return true;
+    else return false;
+  }
+  isInstructor() {
+    let type = localStorage.getItem("type");
+    if (parseInt(type) === 3) return true;
+    else return false;
+  }
 }
 
 export default new Auth();
