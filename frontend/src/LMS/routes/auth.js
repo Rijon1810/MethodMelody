@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 class Auth {
   constructor() {
     this.authenticated = false;
+    this.type = false;
   }
 
   login(v_token, email, type, name, id, course) {
@@ -58,6 +59,9 @@ class Auth {
     //     }
     //   });
     return this.authenticated;
+  }
+  isAdmin(type) {
+    if (type !== 1) return false;
   }
 }
 
