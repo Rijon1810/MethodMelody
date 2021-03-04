@@ -102,7 +102,7 @@ class Root extends Component {
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/`}
-            component={ComingSoon}
+            component={Landing}
           />
           <Route
             exact
