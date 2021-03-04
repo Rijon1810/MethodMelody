@@ -62,7 +62,8 @@ class Auth {
   }
   isAdmin() {
     let type = localStorage.getItem("type");
-    if (parseInt(type) !== 1) return false;
+    if (parseInt(type) === 1) return true;
+    else return false;
   }
 }
 
