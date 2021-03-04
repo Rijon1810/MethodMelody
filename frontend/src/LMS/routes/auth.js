@@ -7,11 +7,11 @@ class Auth {
     this.type = false;
   }
 
-  login(v_token, email, type, name, id, course) {
+  login(v_token, type) {
     //   this.authenticated = true;
     localStorage.setItem("v_token", v_token);
     //   localStorage.setItem("email", email);
-    //   localStorage.setItem("type", type);
+    localStorage.setItem("type", type);
     //   localStorage.setItem("name", name);
     //   localStorage.setItem("id", id);
     //   localStorage.setItem("v_auth", "OK");
@@ -60,7 +60,8 @@ class Auth {
     //   });
     return this.authenticated;
   }
-  isAdmin(type) {
+  isAdmin() {
+    let type = localStorage.getItem("type");
     if (type !== 1) return false;
   }
 }
