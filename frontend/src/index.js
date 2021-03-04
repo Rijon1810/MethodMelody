@@ -65,7 +65,10 @@ import PricingTable from "./blocks/PricingTable";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
 
-import { ProtectedRoute } from "./LMS/routes/protected.route";
+import {
+  ProtectedRoute,
+  ProtectedAdminRoute,
+} from "./LMS/routes/protected.route";
 
 // Coustom Components
 import Login from "./LMS/component/Login";
@@ -88,7 +91,7 @@ import StudentPanel from "./LMS/component/elements/StudentPanel";
 import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx";
 import CartPage from "./LMS/component/elements/CartPage.jsx";
 
-import ViewUserProfile  from "./LMS/component/ViewUserProfile.jsx";
+import ViewUserProfile from "./LMS/component/ViewUserProfile.jsx";
 import ComingSoon from "./LMS/component/ComingSoonPage.jsx";
 
 import { Provider } from "react-redux";
@@ -220,7 +223,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/terms`}
             component={Terms}
           />
-           <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/privacy`}
             component={Privacy}
@@ -352,7 +355,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/updateinstructor`}
             component={UpdateInstructor}
           />
-            <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/updatelesson`}
             component={UpdateLesson}
@@ -387,7 +390,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/adminmessages`}
             component={AdminMessages}
           />
-          <ProtectedRoute
+          <ProtectedAdminRoute
             exact
             path={`${process.env.PUBLIC_URL}/studentpanel`}
             component={StudentPanel}
@@ -402,7 +405,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/cart`}
             component={CartPage}
           />
-           <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/viewuser`}
             component={ViewUserProfile}

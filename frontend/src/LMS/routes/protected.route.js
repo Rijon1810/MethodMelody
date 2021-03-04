@@ -27,3 +27,28 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
+
+export const ProtectedAdminRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        console.log("auth" + auth.isAdmin());
+        if (auth.isAdmin() && auth.isAuthenticated()) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
+};
