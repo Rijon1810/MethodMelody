@@ -172,7 +172,7 @@ router.route(`/login`).post((req, res) => {
             jwt.sign(
               { email, password },
               process.env.SECRET_KEY,
-              { expiresIn: "1h" },
+              { expiresIn: "72h" },
               (err, token) => {
                 User.findByIdAndUpdate(
                   docs[0]._id,
@@ -198,6 +198,7 @@ router.route(`/login`).post((req, res) => {
                   studentId: docs[0].studentId,
                   createdAt: docs[0].createdAt,
                   updatedAt: docs[0].updatedAt,
+                  v_token: docs[0].v_token,
                 });
               }
             );
