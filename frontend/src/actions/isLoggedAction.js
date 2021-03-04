@@ -16,8 +16,7 @@ export const isLogged = (data) => (dispatch) => {
         payload: res.data,
         login: true,
       });
-      auth.login(res.data.v_token);
-      auth.isAdmin(res.data.type);
+      auth.login(res.data.v_token, res.data.type);
     })
     .catch((res) => {
       dispatch({
