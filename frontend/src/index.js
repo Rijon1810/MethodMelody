@@ -328,7 +328,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/signup`}
             component={Signup}
           />
-          <ProtectedRoute
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/courses`}
             component={CourseList}
@@ -338,7 +338,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/courseview`}
             component={CourseView}
           />
-          <Route
+          <ProtectedAdminRoute
             exact
             path={`${process.env.PUBLIC_URL}/admin`}
             component={Admin}
@@ -393,12 +393,12 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/adminmessages`}
             component={AdminMessages}
           />
-          <ProtectedRoute
+          <ProtectedStudentRoute
             exact
             path={`${process.env.PUBLIC_URL}/studentpanel`}
             component={StudentPanel}
           />
-          <Route
+          <ProtectedInstructorRoute
             exact
             path={`${process.env.PUBLIC_URL}/instructorpanel`}
             component={InstructorPanel}
