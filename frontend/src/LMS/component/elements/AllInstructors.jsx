@@ -16,9 +16,9 @@ class AllInstructors extends Component{
     render(){
         return(
             <div className="active-dark">
-                <Header from="landing" />
+                <Header from="allinstructors" />
                 {/* Start Breadcrump Area */}
-                <Breadcrumb title={'All Instructors'}   />
+                <Breadcrumb from={'All Instructors'}   />
                 {/* End Breadcrump Area */}
 
 

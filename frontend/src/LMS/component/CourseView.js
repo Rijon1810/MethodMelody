@@ -221,7 +221,7 @@ export default function CourseView(props) {
   return (
     <div className="active-dark">
       <PageHelmet pageTitle="Course" />
-      <Header from="landing" />
+      <Header  />
       <Breadcrumb from="courseview" />
       <div className="container">
         <div className="row">

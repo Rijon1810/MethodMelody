@@ -41,7 +41,7 @@ const InstructorVIew = () => {
   return (
     <React.Fragment>
       <PageHelmet pageTitle="Blog Details" />
-      <Header from="landing" />
+      <Header from="allinstructors" />
       <Breadcrumb from="instructorview" />
       {/* Start About Area  */}
       <div className="rn-about-area ptb--120 bg_color--6">

@@ -172,9 +172,8 @@ export default function Header(props) {
                                 {" "}
                                 <Avatar
                                   alt={category}
-                                  src={`${process.env.PUBLIC_URL}/${
-                                    categoryLists[category.split(" ")[0]].src
-                                  }`}
+                                  src={`${process.env.PUBLIC_URL}/${categoryLists[category.split(" ")[0]].src
+                                    }`}
                                 />
                               </Grid>
 
@@ -240,20 +239,21 @@ export default function Header(props) {
                       </Grid>
                     </Link>
                   </li>
-                ) : (
-                  <li className="has-droupdown">
-                    {props.from !== "landing" ? (
-                      <Link to="/">
-                        <Grid container direction="row" alignItems="center">
-                          <Grid item style={{ marginRight: 10 }}>
-                            <HomeOutlined />
-                          </Grid>
-                          <Grid item>Home</Grid>
+                ) : (null)}
+
+
+                <li className="has-droupdown">
+                  {props.from !== "landing" ? (
+                    <Link to="/">
+                      <Grid container direction="row" alignItems="center">
+                        <Grid item style={{ marginRight: 10 }}>
+                          <HomeOutlined />
                         </Grid>
-                      </Link>
-                    ) : null}
-                  </li>
-                )}
+                        <Grid item>Home</Grid>
+                      </Grid>
+                    </Link>
+                  ) : null}
+                </li>
 
                 {loginStatus ? (
                   <li className="has-droupdown">
