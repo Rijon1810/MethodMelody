@@ -123,10 +123,10 @@ export default function Header(props) {
 
   //constants
   const categoryLists = {
-    Guitar: { alt: "Guitar", src: "assets/images/icons/guitar-electric.png" },
-    Piano: { alt: "Piano & Keyboard", src: "assets/images/icons/piano.png" },
-    Bass: { alt: "Bass", src: "assets/images/icons/bass-guitar-electric.png" },
-    Percussion: { alt: "Percussion", src: "assets/images/icons/drums.png" },
+    Guitar: { alt: "Guitar", src: "assets/images/icons/guitar.png" },
+    Piano: { alt: "Piano & Keyboard", src: "assets/images/icons/keyboard.png" },
+    Bass: { alt: "Bass", src: "assets/images/icons/bass.png" },
+    Percussion: { alt: "Percussion", src: "assets/images/icons/drum.png" },
     Sound: {
       alt: "Sound Engineering",
       src: "assets/images/icons/sound-engineering.png",

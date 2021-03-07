@@ -138,6 +138,7 @@ class Signup extends Component {
                   type="date"
                   name="dob"
                   id="item06"
+                  max={new Date().toISOString().split("T")[0]}
                   value={this.state.rnDob}
                   onChange={(e) => {
                     this.setState({ rnDob: e.target.value });
