@@ -320,10 +320,30 @@ export default function Landing() {
                         </a>
                       </div>
                       <div className="blog-btn col-6">
-                        {wishList === undefined ? (<a className="rn-btn text-white" href="#"
-                          onClick={() => {
-                            if (isLoggedIn) {
-                              console.log("number of course in wishlist = " + wishListCourses.length);
+                        {wishList === undefined ?
+                          (<a className="rn-btn text-white" href="#"
+                            onClick={() => {
+                              if (isLoggedIn) {
+                                console.log("number of course in wishlist = " + wishListCourses.length);
+                                dispatch(
+                                  postWishListCourse({
+                                    user: userId,
+                                    course: course._id,
+                                  })
+                                );
+                                alert('Course added to Wishlish!')
+                                // setWish(true);
+                              }
+                              else {
+                                alert('Login first to add this course to your Wishlist')
+                              }
+                            }}>
+                            <Book />
+                          </a>
+                          ) :
+                          (wishList.indexOf(course._id) > -1 ?
+                            (null) :
+                            (<a className="rn-btn text-white" href="#" onClick={() => {
                               dispatch(
                                 postWishListCourse({
                                   user: userId,
@@ -331,29 +351,11 @@ export default function Landing() {
                                 })
                               );
                               alert('Course added to Wishlish!')
-                              // setWish(true);
-                            }
-                            else {
-                              alert('Login first to add this course to your Wishlist')
-                            }
-                          }}>
-                          <Book />
-                        </a>
-                        ) : (wishList.indexOf(course._id) > -1 ?
-                          (null) :
-                          (<a className="rn-btn text-white" href="#" onClick={() => {
-                            dispatch(
-                              postWishListCourse({
-                                user: userId,
-                                course: course._id,
-                              })
-                            );
-                            alert('Course added to Wishlish!')
-                            // setWish(true);                       
-                          }}
-                          >
-                            <Book />
-                          </a>))}
+                              // setWish(true);                       
+                            }}
+                            >
+                              <Book />
+                            </a>))}
 
                       </div>
                     </div>
@@ -725,14 +727,14 @@ export default function Landing() {
       {/* Start Faq Area */}
 
       {/* Start Contact Form Area */}
-      {!isLoggedIn ? (
-        <div
-          className="portfolio-area pb--120  bg_color--6"
-          style={{ paddingTop: "10ch" }}
-        >
-          <ContactOne />
-        </div>
-      ) : null}
+
+      <div
+        className="portfolio-area pb--120  bg_color--6"
+        style={{ paddingTop: "10ch" }}
+      >
+        <ContactOne />
+      </div>
+
 
       {/* End Contact Form Area */}
 
