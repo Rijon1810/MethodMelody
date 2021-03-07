@@ -12,6 +12,7 @@ import { Modal, Button, Backdrop, makeStyles, Fade, IconButton } from "@material
 import Select from 'react-select';
 import { connect } from "react-redux";
 import { getCourse } from "../../../actions/courseAction";
+import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -68,14 +69,48 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(2, 0, 0, 0),
     },
 }));
+
 export default function Blog() {
     const [open, setOpen] = React.useState(false);
     const classes = useStyles();
+    const catagory_data = useSelector((state) => state.getCourse.catagoryList);
+    const instructorList = useSelector((state) => state.getInstructor.instructorList);
     const handleOpen = () => {
         setOpen(true);
     };
     const handleClose = () => {
         setOpen(false);
+    };
+    const colourOptions = [
+        { value: "red", label: "Red" },
+        { value: "green", label: "Green" },
+        { value: "blue", label: "Blue" }
+    ];
+
+    var categoryOptions = [];
+    catagory_data.map((catagory) => {
+        var c = { value: catagory, label: catagory }
+        categoryOptions.push(c)
+    })
+
+    var instructorOptions = [];
+    instructorList.map((instructor) => {
+        var i = { value: instructor._id, label: instructor.name }
+        instructorOptions.push(i)
+    })
+
+    console.log(`catagory_data is a = ${categoryOptions}`)
+
+    const colourStyles = {
+        option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+            // const color = chroma(data.color);
+            console.log({ data, isDisabled, isFocused, isSelected });
+            return {
+                ...styles,
+                backgroundColor: isFocused ? "#999999" : null,
+                color: "#333333"
+            };
+        }
     };
     return (
         <div className="active-dark">
@@ -85,9 +120,6 @@ export default function Blog() {
             {/* End Breadcrump Area */}
 
             {/* Start Filter Area */}
-
-
-
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -104,7 +136,6 @@ export default function Blog() {
                 <Fade in={open}>
                     <div className={classes.paper}>
                         <div className="container">
-
                             <div className="d-flex flex-row-reverse">
                                 {" "}
                                 <IconButton onClick={handleClose}>
@@ -118,6 +149,7 @@ export default function Blog() {
                             </div>
                             <div className="row">
                                 <div className="col-lg-6">
+                                    {console.log(`category = ${catagory_data}`)}
                                     <Select
                                         className="basic-single"
                                         classNamePrefix="select category"
@@ -125,7 +157,8 @@ export default function Blog() {
                                         isClearable={true}
                                         isSearchable={true}
                                         name="color"
-                                    // options={colourOptions}
+                                        options={categoryOptions}
+                                        styles={colourStyles}
                                     />
                                 </div>
                                 <div className="col-lg-6">
@@ -136,7 +169,7 @@ export default function Blog() {
                                         isClearable={true}
                                         isSearchable={true}
                                         name="color"
-                                    // options={colourOptions}
+                                        options={instructorOptions}
                                     />
                                 </div>
 
