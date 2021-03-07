@@ -36,14 +36,11 @@ router.route("/").post((req, res) => {
   const message = req.body.message;
   let type = "student";
   const reply = "";
-  if (to === undefined) type = "general";
-
-  Instructor.findById(to).then((doc) => {
-    const toName = doc.name;
+  if (to === undefined) {
+    type = "general";
     const newContact = new Contact({
       name,
       from,
-      toName,
       to,
       email,
       message,
@@ -59,7 +56,30 @@ router.route("/").post((req, res) => {
         });
       })
       .catch((err) => res.status(400).json("Error: " + err));
-  });
+  } else {
+    Instructor.findById(to).then((doc) => {
+      const toName = doc.name;
+      const newContact = new Contact({
+        name,
+        from,
+        toName,
+        to,
+        email,
+        message,
+        type,
+        reply,
+      });
+      newContact
+        .save()
+        .then(() => {
+          res.status(200).json({
+            message: `New Message Added Successfully!`,
+            id: newContact._id,
+          });
+        })
+        .catch((err) => res.status(400).json("Error: " + err));
+    });
+  }
 });
 
 //Search
