@@ -35,7 +35,7 @@ import {
   getInstructor,
   getFeaturedInstructor,
 } from "../actions/instructorAction";
-import { getCart } from "../actions/cartAction";
+import { getCart, postCart } from "../actions/cartAction";
 import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
 import {
@@ -199,14 +199,30 @@ export default function Landing() {
       else {
         return (
           <div className="blog-btn col-6">
-            <a className="rn-btn text-white" href="#">
+            <a className="rn-btn text-white" href="#" onClick={async (event) => {
+              dispatch(
+                postCart({
+                  user: userId,
+                  course: id,
+                })
+              );
+              alert('Login first to add this course to your Cart')
+            }}>
               <ShoppingCart />
             </a>
           </div>
         )
       }
     } else {
-      return <ShoppingCart />
+      return (
+        <div className="blog-btn col-6">
+          <a className="rn-btn text-white" href="#" onClick={async (event) => {
+            alert('Login first to add this course to your Cart')
+          }}>
+            <ShoppingCart />
+          </a>
+        </div>
+      )
     }
   }
 
