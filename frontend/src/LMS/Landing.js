@@ -16,6 +16,7 @@ import { videoTagString, VideoTag } from "react-video-tag";
 
 //importing material components
 import { Grid } from "@material-ui/core";
+import { ShoppingCart, Book, RemoveShoppingCart } from '@material-ui/icons';
 
 //importing custom components
 import Header from "./component/Header.jsx";
@@ -45,6 +46,7 @@ import {
 } from "../actions/getSelectedIdAction";
 // import { getCurrentMessageById, getPreviousMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
+import { postWishListCourse, removeWishList } from "../actions/wishListAction";
 
 //constants
 const SlideList = [
@@ -101,6 +103,10 @@ const SlideList = [
 ];
 
 export default function Landing() {
+  const [wish, setWish] = React.useState(false);
+  const wishList = useSelector(
+    (state) => state.getAllUsers.getUserCourse.wishList
+  );
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
@@ -121,6 +127,18 @@ export default function Landing() {
   const dispatch = useDispatch();
 
   let history = useHistory();
+
+  var wishListCourses = [];
+  if (wishList !== undefined) {
+    wishList.forEach((wishItem) => {
+      for (let i = 0; i < courseList.length; i++) {
+        if (wishItem === courseList[i]._id) {
+          wishListCourses.push(courseList[i]);
+        }
+      }
+    });
+  }
+
 
   // const PostList = BlogContent.slice(0, 4);
   // dispatch(getInstructor());
@@ -295,6 +313,51 @@ export default function Landing() {
                         View Details
                       </a>
                     </div>
+                    <div className="row">
+                      <div className="blog-btn col-6">
+                        <a className="rn-btn text-white" href="#">
+                          <ShoppingCart />
+                        </a>
+                      </div>
+                      <div className="blog-btn col-6">
+                        {wishList === undefined ? (<a className="rn-btn text-white" href="#"
+                          onClick={() => {
+                            if (isLoggedIn) {
+                              console.log("number of course in wishlist = " + wishListCourses.length);
+                              dispatch(
+                                postWishListCourse({
+                                  user: userId,
+                                  course: course._id,
+                                })
+                              );
+                              alert('Course added to Wishlish!')
+                              // setWish(true);
+                            }
+                            else {
+                              alert('Login first to add this course to your Wishlist')
+                            }
+                          }}>
+                          <Book />
+                        </a>
+                        ) : (wishList.indexOf(course._id) > -1 ?
+                          (null) :
+                          (<a className="rn-btn text-white" href="#" onClick={() => {
+                            dispatch(
+                              postWishListCourse({
+                                user: userId,
+                                course: course._id,
+                              })
+                            );
+                            alert('Course added to Wishlish!')
+                            // setWish(true);                       
+                          }}
+                          >
+                            <Book />
+                          </a>))}
+
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -346,7 +409,7 @@ export default function Landing() {
       {/* Start CounterUp Area */}
       <div
         className="rn-counterup-area pt--25 pb--100 bg_color--1"
-        // style={{ paddingTop: "15ch" }}
+      // style={{ paddingTop: "15ch" }}
       >
         <div className="container">
           <div className="row">
