@@ -107,6 +107,24 @@ export default function Landing() {
   const wishList = useSelector(
     (state) => state.getAllUsers.getUserCourse.wishList
   );
+
+  const currentCourseList = useSelector(
+    (state) => state.getAllUsers.getUserCourse.course
+  );
+
+  var currentCourses = [];
+  if (currentCourseList !== undefined) {
+    currentCourseList.map((course_id) => {
+
+
+      currentCourses.push(course_id[0]);
+      console.log("current courses id for this user = " + course_id[0]);
+
+
+    });
+    console.log("number of current courses for this user = " + currentCourses.length);
+  }
+
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
@@ -122,7 +140,7 @@ export default function Landing() {
 
   const length = useSelector((state) => state.getInstructor.length);
 
-  const cart = useSelector((state) => state.getCart);
+  const cart = useSelector((state) => state.cartInfo.cart);
 
   const dispatch = useDispatch();
 
@@ -169,6 +187,28 @@ export default function Landing() {
   console.log(SlideList[0].bgImage);
 
   // var titleColor = {"Red": "#b12222"}
+
+  function cartRender(id) {
+    if (isLoggedIn) {
+      if (cart !== undefined && cart.indexOf(id) > -1) {
+        return null
+      }
+      else if (currentCourseList !== undefined && currentCourses.indexOf(id) > -1) {
+        return null
+      }
+      else {
+        return (
+          <div className="blog-btn col-6">
+            <a className="rn-btn text-white" href="#">
+              <ShoppingCart />
+            </a>
+          </div>
+        )
+      }
+    } else {
+      return <ShoppingCart />
+    }
+  }
 
   return (
     <div className="active-dark">
@@ -314,11 +354,10 @@ export default function Landing() {
                       </a>
                     </div>
                     <div className="row">
-                      <div className="blog-btn col-6">
-                        <a className="rn-btn text-white" href="#">
-                          <ShoppingCart />
-                        </a>
-                      </div>
+                      {/* Shopping cart */}
+
+                      {cartRender(course._id)}
+
                       <div className="blog-btn col-6">
                         {wishList === undefined ?
                           (<a className="rn-btn text-white" href="#"
