@@ -23,7 +23,7 @@ import {
   getCurrentVideoIndex,
 } from "../../actions/getSelectedIdAction";
 
-import { getUser } from "../../actions/userAction";
+import { getUser, suspend } from "../../actions/userAction";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -69,7 +69,7 @@ const AdminUserList = () => {
 
   const [list, setList] = React.useState("featured");
 
-  useEffect(() => {}, [list]);
+  useEffect(() => { }, [list]);
 
   const userList = useSelector((state) => state.getAllUsers.student);
   const subscriberList = useSelector((state) => state.getAllUsers.subscriber);
@@ -131,7 +131,7 @@ const AdminUserList = () => {
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#">
+                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
                                 </a>
                               </div>
@@ -195,7 +195,7 @@ const AdminUserList = () => {
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#">
+                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
                                 </a>
                               </div>
@@ -259,7 +259,7 @@ const AdminUserList = () => {
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#">
+                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
                                 </a>
                               </div>
@@ -323,7 +323,7 @@ const AdminUserList = () => {
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#">
+                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
                                 </a>
                               </div>
@@ -389,7 +389,7 @@ const AdminUserList = () => {
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#">
+                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
                                 </a>
                               </div>

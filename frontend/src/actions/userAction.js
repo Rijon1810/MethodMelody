@@ -151,6 +151,7 @@ export const updateUser = (data) => async (dispatch) => {
 };
 
 export const suspend = (id) => async (dispatch) => {
+  console.log(`user id for suspension = ${id}`)
   await axios
     .post(`user/${id}`, {
       headers: {
