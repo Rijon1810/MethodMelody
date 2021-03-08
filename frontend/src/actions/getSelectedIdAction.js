@@ -25,7 +25,7 @@ export const getSelectedCourseCategory = (category) => (dispatch) => {
     type: GET_SELECTED_COURSE_CATEGORY,
     payload: [],
   });
-  console.log(category);
+  console.log(`course category locked = ${category}`);
   let url = `course/search?catagory=${category}`;
   if(category===""){
     url = `course/search?catagory=`

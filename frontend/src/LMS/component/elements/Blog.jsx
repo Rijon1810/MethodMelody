@@ -12,6 +12,7 @@ import { Modal, Button, Backdrop, makeStyles, Fade, IconButton } from "@material
 import Select from 'react-select';
 import { connect } from "react-redux";
 import { getCourse } from "../../../actions/courseAction";
+import { getSelectedCourseCategory } from "../../../actions/getSelectedIdAction";
 import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(4),
         outline: "none",
-        width: "50%",
+        width: "80%",
     },
     button: {
         margin: theme.spacing(2, 0, 0, 0),
@@ -71,7 +72,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Blog() {
+    const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
+    const [selectedCategory, setSelectedCategory] = React.useState("");
+    const [selectedInstructor, setSelectedInstructor] = React.useState("");
+
     const classes = useStyles();
     const catagory_data = useSelector((state) => state.getCourse.catagoryList);
     const instructorList = useSelector((state) => state.getInstructor.instructorList);
@@ -89,15 +94,36 @@ export default function Blog() {
 
     var categoryOptions = [];
     catagory_data.map((catagory) => {
-        var c = { value: catagory, label: catagory }
+        var c = { value: catagory.split(" ")[0], label: catagory }
         categoryOptions.push(c)
     })
+    categoryOptions.unshift({ value: "", label: "All" });
 
     var instructorOptions = [];
     instructorList.map((instructor) => {
         var i = { value: instructor._id, label: instructor.name }
         instructorOptions.push(i)
     })
+    instructorOptions.unshift({value: "", label:"All"})
+
+    // handle onChange event of the dropdown
+    const handleCategoryChange = e => {
+        setSelectedCategory(e.value);
+        console.log(`selected select category = ${e.value}`)
+    }
+
+    const handleInstructorChange = e => {
+        setSelectedInstructor(e.value);
+        console.log(`selected select instructor = ${e.value}`)
+    }
+
+    const filterCourse = e => {
+        dispatch(
+            getSelectedCourseCategory(selectedCategory)
+        )
+        handleClose();
+    }
+
 
     console.log(`catagory_data is a = ${categoryOptions}`)
 
@@ -107,8 +133,8 @@ export default function Blog() {
             console.log({ data, isDisabled, isFocused, isSelected });
             return {
                 ...styles,
-                backgroundColor: isFocused ? "#999999" : null,
-                color: "#333333"
+                backgroundColor: isFocused ? "#b12222" : "#ffffff",
+                color: isFocused ? "#ffffff" : "#000000",
             };
         }
     };
@@ -142,13 +168,18 @@ export default function Blog() {
                                     <Cancel fontsize="small" className="text-white" />
                                 </IconButton>
                             </div>
-                            <div className="d-flex flex-row">
+                            <div className="d-flex mb--30">
+                                <a className="rn-btn" href="#" onClick={filterCourse}>
+                                    <span>Filter</span>
+                                </a>
+                            </div>
+                            {/* <div className="d-flex flex-row">
                                 <h3 className="fontWeight500 text-white">
                                     Filter and Search Course
                                 </h3>
-                            </div>
+                            </div> */}
                             <div className="row">
-                                <div className="col-lg-6">
+                                <div className="col-12">
                                     {console.log(`category = ${catagory_data}`)}
                                     <Select
                                         className="basic-single"
@@ -159,9 +190,10 @@ export default function Blog() {
                                         name="color"
                                         options={categoryOptions}
                                         styles={colourStyles}
+                                        onChange={handleCategoryChange}
                                     />
                                 </div>
-                                <div className="col-lg-6">
+                                {/* <div className="col-6">
                                     <Select
                                         className="basic-single"
                                         classNamePrefix="select category"
@@ -170,11 +202,12 @@ export default function Blog() {
                                         isSearchable={true}
                                         name="color"
                                         options={instructorOptions}
+                                        onChange={handleInstructorChange}
+                                        styles={colourStyles}
                                     />
-                                </div>
-
+                                </div> */}
                             </div>
-
+                            
                         </div>
                     </div>
                 </Fade>

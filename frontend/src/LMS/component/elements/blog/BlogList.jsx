@@ -15,6 +15,12 @@ const BLogList = () => {
     (state) => state.getSelectedId.getSelectedCourseCategoryList
   );
   console.log(categorySelectedList)
+
+  const selectedInstructor = useSelector(
+    (state) => state.getSelectedId.getSelectedInstructorId
+  )
+
+  console.log(`selected instructor id bloglist = ${selectedInstructor}`)
   
   const dispatch = useDispatch();
   return (
