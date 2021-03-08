@@ -121,6 +121,7 @@ class TabsTwo extends Component {
                         You can see all your pending queries which hasn't been
                         yet answered in the below section.
                       </p>
+                      {console.log(`my current message = ${this.props.currentMessages.length}`)}
                       {this.props.currentMessages.length === 0 ? (
                         <h4>Currently you don't have any pending messages</h4>
                       ) : (

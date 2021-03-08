@@ -170,6 +170,7 @@ const AdminMessages = () => {
           </div>
         </div>
         {/* End General Message Section */}
+        
         {/* Start Registered User Message Section */}
         <div
           className="rn-blog-area pt--50  mb-dec--30 ptb--100"

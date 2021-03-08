@@ -206,7 +206,7 @@ export default function Landing() {
                   course: id,
                 })
               );
-              alert('Login first to add this course to your Cart')
+              // alert('Login first to add this course to your Cart')
             }}>
               <ShoppingCart />
             </a>
@@ -437,18 +437,18 @@ export default function Landing() {
         container
         justify="center"
         direction="row"
-        className="ptb--100 bg_color--5"
+        className="ptb--60 bg_color--5"
       >
         <Grid item lg={8}>
           {" "}
           <div className="section-title text-center">
-            <h3 className="title pb--50 fontWeight500">
+            <h3 className="title fontWeight500">
               How the platform works
             </h3>
           </div>
         </Grid>
-        <Grid item lg={8} md={8}>
-          <div class="embed-responsive embed-responsive-21by9">
+        <Grid item lg={12} sm={12} md={12}>
+          <div class="embed-responsive embed-responsive-4by3">
             <VideoTag
               autoPlay={`${true}`}
               muted={`${true}`}
