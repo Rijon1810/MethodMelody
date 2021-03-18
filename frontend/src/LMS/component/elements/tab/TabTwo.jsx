@@ -10,6 +10,7 @@ import { isLogged } from "../../../../actions/isLoggedAction";
 import { getUserCourse, updateUser } from "../../../../actions/userAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import{ Link} from 'react-router-dom'
 import {
   makeStyles,
   Card,
@@ -238,7 +239,7 @@ class TabsTwo extends Component {
                           <div className="row">
                             <div className="col-lg-12">
                               <div className="thumbnail pt--20">
-                                <a href="#">
+                                <Link to="#">
                                   {this.state.rnPhotoSnap == "" ? (
                                     <img
                                       className="w-100"
@@ -252,7 +253,7 @@ class TabsTwo extends Component {
                                       alt="Blog Images"
                                     />
                                   )}
-                                </a>
+                                </Link>
                               </div>
                             </div>
                             <div className="col-lg-12 pt--50">

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link} from 'react-router-dom'
 
 import { connect } from "react-redux";
 import { getInstructor } from "../../../../actions/instructorAction";
@@ -24,35 +25,35 @@ const InstructorList = () => {
                   dispatch(getSelectedInstructorId(instructor));
                 }}
               >
-                <a href="/instructorview">
+                <Link to="/instructorview">
                   <img
                     className="w-100"
                     src={`http://63.250.33.174/` + instructor.photo}
                     alt="Blog Images"
                   />
-                </a>
+                </Link>
               </div>
               <div className="content">
                 <h4 className="title">
-                  <a
-                    href="/instructorview"
+                  <Link
+                    to="/instructorview"
                     onClick={async (event) => {
                       dispatch(getSelectedInstructorId(instructor));
                     }}
                   >
                     {instructor.name}
-                  </a>
+                  </Link>
                 </h4>
                 <div className="blog-btn">
-                  <a
+                  <Link
                     className="rn-btn text-white"
-                    href="/instructorview"
+                    to="/instructorview"
                     onClick={async (event) => {
                       dispatch(getSelectedInstructorId(instructor));
                     }}
                   >
                     View Instructor
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

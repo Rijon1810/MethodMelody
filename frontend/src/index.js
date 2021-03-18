@@ -108,13 +108,13 @@ class Root extends Component {
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/`}
-            component={ComingSoon}
+            component={Landing}
           />
-          <Route
+{/*           <Route
             exact
             path={`${process.env.PUBLIC_URL}/landing`}
             component={Landing}
-          />
+          /> */}
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/main-demo`}

@@ -5,6 +5,7 @@ import { Person } from "@material-ui/icons";
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
+import { Link} from 'react-router-dom'
 
 import { connect } from "react-redux";
 import { signUp } from "../../actions/signUpAction";
@@ -202,10 +203,10 @@ class Signup extends Component {
               </button>
 
               <div className=" text-right blog-btn mt_sm--10 mt_md--10">
-                <a href="/login" className="btn-transparent rn-btn-dark">
+                <Link to="/login" className="btn-transparent rn-btn-dark">
                   <br />
                   <span>Already have an account? Login</span>
-                </a>
+                </Link>
               </div>
             </form>
           </div>

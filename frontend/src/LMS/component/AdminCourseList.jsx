@@ -4,6 +4,7 @@ import { FiChevronUp } from "react-icons/fi";
 import ScrollToTop from "react-scroll-up";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
+import { Link} from 'react-router-dom'
 import PageHelmet from "./Helmet.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
@@ -112,7 +113,7 @@ const AdminCourseList = () => {
               </div>
               <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
-                  <a className="btn-transparent rn-btn-dark" href="#">
+                  <Link className="btn-transparent rn-btn-dark" to="#">
                     {list !== "featured" ? (
                       <span
                         className="text"
@@ -132,7 +133,7 @@ const AdminCourseList = () => {
                         View All Courses
                       </span>
                     )}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -153,84 +154,84 @@ const AdminCourseList = () => {
                     >
                       <div className="blog blog-style--1">
                         <div className="thumbnail">
-                          <a href="/courseview">
+                          <Link to="/courseview">
                             <img
                               className="w-100"
                               src={`http://63.250.33.174/${course.thumbnail}`}
                               alt="Blog Images"
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div className="content">
                           {/* <p className="blogtype">{instructor.bio}</p> */}
                           <h4 className="title">
-                            <a href="/courseview">{course.title}</a>
+                            <Link to="/courseview">{course.title}</Link>
                           </h4>
                           {list !== "featured" ? (
                             <div>
                               {" "}
                               <div className="blog-btn d-flex justify-content-center">
                                 {course.featured ? (
-                                  <a
+                                  <Link
                                     className="rn-btn text-white"
-                                    href="#"
+                                    to="#"
                                     onClick={() => {
                                       featureOrUnfeatureCourse(course);
                                     }}
                                   >
                                     Un Feature
-                                  </a>
+                                  </Link>
                                 ) : (
-                                  <a
+                                  <Link
                                     className="rn-btn text-white"
-                                    href="#"
+                                    to="#"
                                     onClick={() => {
                                       featureOrUnfeatureCourse(course);
                                     }}
                                   >
                                     Feature
-                                  </a>
+                                  </Link>
                                 )}
                               </div>
                               <div className="blog-btn d-flex justify-content-center">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="/courseview"
+                                  to="/courseview"
                                 >
                                   Un Publish
-                                </a>
+                                </Link>
                               </div>
                               <div className="blog-btn d-flex justify-content-center">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="/courseview"
+                                  to="/courseview"
                                 >
                                   View Details
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           ) : (
                             <div>
                               {" "}
                               <div className="blog-btn d-flex justify-content-center">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="#"
+                                  to="#"
                                   onClick={() => {
                                     console.log(course);
                                     featureOrUnfeatureCourse(course);
                                   }}
                                 >
                                   Un Feature
-                                </a>
+                                </Link>
                               </div>
                               <div className="blog-btn d-flex justify-content-center">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="/courseview"
+                                  to="/courseview"
                                 >
                                   View Details
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           )}
@@ -253,31 +254,31 @@ const AdminCourseList = () => {
                     >
                       <div className="blog blog-style--1">
                         <div className="thumbnail">
-                          <a href="/courseview">
+                          <Link to="/courseview">
                             <img
                               className="w-100"
                               src={`http://63.250.33.174/${course.thumbnail}`}
                               alt="Blog Images"
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div className="content">
                           {/* <p className="blogtype">{instructor.bio}</p> */}
                           <h4 className="title">
-                            <a href="/courseview">{course.title}</a>
+                            <Link to="/courseview">{course.title}</Link>
                           </h4>
 
                           <div className="blog-btn d-flex justify-content-center">
-                            <a className="rn-btn text-white" href="#" onClick={()=>{
+                            <Link className="rn-btn text-white" to="#" onClick={()=>{
                               featureOrUnfeatureCourse(course);
                             }}>
                               Un Feature
-                            </a>
+                            </Link>
                           </div>
                           <div className="blog-btn d-flex justify-content-center">
-                            <a className="rn-btn text-white" href="/courseview">
+                            <Link className="rn-btn text-white" to="/courseview">
                               View Details
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>

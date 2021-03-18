@@ -4,6 +4,7 @@ import Pagination from "../common/Pagination.jsx";
 import BlogList from "../blog/InstructorCourseList.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link} from 'react-router-dom'
 
 import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
@@ -70,7 +71,7 @@ class InstructorPanelTab extends Component {
                       <div className="row">
                         <div className="col-lg-12">
                           <div className="thumbnail pt--20">
-                            <a href="#">
+                            <Link to="#">
                               {this.state.rnPhotoSnap == "" ? (
                                 <img
                                   className="w-100"
@@ -84,7 +85,7 @@ class InstructorPanelTab extends Component {
                                   alt="Blog Images"
                                 />
                               )}
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>

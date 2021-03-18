@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { isLogged } from "../../actions/isLoggedAction";
 import Landing from "../Landing.js";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import { Link} from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -96,10 +97,10 @@ class Login extends Component {
               </button>
 
               <div className=" text-right blog-btn mt_sm--10 mt_md--10">
-                <a href="/signup" className="btn-transparent rn-btn-dark">
+                <Link to="/signup" className="btn-transparent rn-btn-dark">
                   <br />
                   <span>Don't have an account? Signup</span>
-                </a>
+                </Link>
               </div>
             </form>
           </div>

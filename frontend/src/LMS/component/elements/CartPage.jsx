@@ -10,6 +10,7 @@ import Footer from "../Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { checkout, removeCart, getCart } from "../../../actions/cartAction";
 import Paper from "@material-ui/core/Paper";
+import { Link } from 'react-router-dom'
 
 import {
   makeStyles,
@@ -108,9 +109,9 @@ const CartPage = () => {
                           </div>
 
                           <div className="blog-btn pt--20 row d-flex">
-                            <a
+                            <Link
                               className="rn-btn text-white"
-                              href="#"
+                              to="#"
                               onClick={() => {
                                 dispatch(
                                   removeCart({
@@ -122,7 +123,7 @@ const CartPage = () => {
                               }}
                             >
                               Remove from cart
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -157,9 +158,9 @@ const CartPage = () => {
                     </div>
                   </div>
                   <div className="blog-btn mt--20">
-                    <a
+                    <Link
                       className="rn-btn text-white"
-                      href="/"
+                      to="/"
                       onClick={(e) => {
                         e.preventDefault();
                         axios
@@ -197,7 +198,7 @@ const CartPage = () => {
                       }}
                     >
                       Proceed to checkout
-                    </a>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>

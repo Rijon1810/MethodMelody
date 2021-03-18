@@ -4,6 +4,7 @@ import BlogContent from "./BlogContent.jsx";
 import { connect } from "react-redux";
 import { getCourse } from "../../../../actions/courseAction";
 import { useSelector, useDispatch } from "react-redux";
+import { Link} from 'react-router-dom'
 import {
   getSelectedCourseId,
   getSelectedInstructorId,
@@ -74,28 +75,28 @@ const WishList = () => {
             >
               <div className="blog blog-style--1">
                 <div className="thumbnail">
-                  <a href="/courseview">
+                  <Link to="/courseview">
                     <img
                       className="w-100"
                       src={`http://63.250.33.174/` + course.thumbnail}
                       alt="Blog Images"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className="content">
                   <p className="blogtype">{course.catagory}</p>
                   <h4 className="title">
-                    <a href="/courseview">{course.title}</a>
+                    <Link to="/courseview">{course.title}</Link>
                   </h4>
                   <div className="blog-btn">
-                    <a className="rn-btn text-white" href="/courseview">
+                    <Link className="rn-btn text-white" to="/courseview">
                       View Course
-                    </a>
+                    </Link>
                   </div>
                   <div className="blog-btn">
-                    <a
+                    <Link
                       className="rn-btn text-white"
-                      href="#"
+                      to="#"
                       onClick={() => {
                         dispatch(
                           removeWishList({ user: userId, course: course._id })
@@ -104,7 +105,7 @@ const WishList = () => {
                       }}
                     >
                       Remove Course
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

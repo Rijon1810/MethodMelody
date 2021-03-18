@@ -7,6 +7,7 @@ import {
 } from "../../actions/courseAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link} from 'react-router-dom'
 
 import axios from "../api/Config";
 
@@ -169,9 +170,9 @@ class UpdateLessonForm extends Component {
                       <p >{video.status}</p>
                     </div>
                     <div className="col blog-btn d-flex justify-content-end">
-                    <a
+                    <Link
                         className="rn-btn"
-                        href="#"
+                        to="#"
                         onClick={() => {
                           console.log(video._id);
                           console.log(this.state.rnStatus); 
@@ -198,12 +199,12 @@ class UpdateLessonForm extends Component {
                         }}
                       >
                         Open
-                      </a>
+                      </Link>
                     </div>
                     <div className="col blog-btn d-flex justify-content-end">
-                    <a
+                    <Link
                         className="rn-btn"
-                        href="#"
+                        to="#"
                         onClick={() => {
                           console.log(video._id);
                           console.log(this.state.rnStatus);  
@@ -230,12 +231,12 @@ class UpdateLessonForm extends Component {
                         }}
                       >
                         Login
-                      </a>
+                      </Link>
                     </div>
                     <div className="col blog-btn d-flex justify-content-end">
-                      <a
+                      <Link
                         className="rn-btn"
-                        href="#"
+                        to="#"
                         onClick={() => {
                           console.log(video._id);
                           console.log(this.state.rnStatus);  
@@ -262,7 +263,7 @@ class UpdateLessonForm extends Component {
                         }}
                       >
                         Paid
-                      </a>
+                      </Link>
                     
                     </div>
                   </div>

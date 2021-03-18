@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+
 import { Link, useHistory } from "react-router-dom";
 import { FiX, FiMenu } from "react-icons/fi";
 import {
@@ -139,12 +140,12 @@ export default function Header(props) {
       <div className="header-wrapper" id="header-wrapper">
         <div className="header-left">
           <div className="logo">
-            <a href="/" onClick={() => dispatch(getSelectedCourseCategory(""))}>
+            <Link to="/" onClick={() => dispatch(getSelectedCourseCategory(""))}>
               <img
                 src="/assets/images/logo/logo-red.png"
                 alt="Digital Agency"
               />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="header-right">
@@ -193,8 +194,8 @@ export default function Header(props) {
                     <ul className="submenu" style={mystyle}>
                       {instructorList.map((instructor) => (
                         <li>
-                          <a
-                            href="/instructorview"
+                          <Link
+                            to="/instructorview"
                             onClick={async (event) => {
                               dispatch(getSelectedInstructorId(instructor));
                             }}
@@ -214,7 +215,7 @@ export default function Header(props) {
                                 {instructor.name}
                               </Grid>
                             </Grid>
-                          </a>
+                          </Link>
                         </li>
                       ))}
                       {/* <li><Link to="/service">{this.state.instructorList.length}</Link></li>
@@ -494,14 +495,14 @@ export default function Header(props) {
             {(props.from === "login" || props.from === "signup") && (
               <ul className="mainmenu">
                 <li className="has-droupdown">
-                  <a href="/">
+                  <Link to="/">
                     <Grid container direction="row">
                       <Grid item style={{ marginRight: 10 }}>
                         <HomeOutlined />
                       </Grid>
                       <Grid item> Home</Grid>
                     </Grid>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             )}
@@ -511,9 +512,9 @@ export default function Header(props) {
             loginStatus === false && (
               <div className="header-btn">
                 {console.log(localStorage.getItem("name"))}
-                <a className="rn-btn" href="/login">
+                <Link className="rn-btn" to="/login">
                   <span>Login</span>
-                </a>
+                </Link>
               </div>
             )}
 

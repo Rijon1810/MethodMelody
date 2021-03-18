@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import { portfolioSlick2 } from "../page-demo/script";
+import { Link} from 'react-router-dom'
 
 import { connect } from "react-redux";
 import { getCourse } from "../../actions/courseAction";
@@ -84,13 +85,13 @@ class Portfolio extends Component {
                     <div className="inner">
                       <h5>{course.catagory + " course"}</h5>
                       <h4>
-                        <a  href="/portfolio-details">{course.title}</a>
+                        <Link  to="/portfolio-details">{course.title}</Link>
                       </h4>
                       <h5>{course.subtitle}</h5>
                       <div className="portfolio-button">
-                        <a className="rn-btn" href="/courseview">
+                        <Link className="rn-btn" to="/courseview">
                           View Course
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

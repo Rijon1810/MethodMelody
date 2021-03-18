@@ -21,6 +21,7 @@ import {
   Dialog,
 } from "@material-ui/core";
 import { FiChevronUp } from "react-icons/fi";
+import { Link} from 'react-router-dom'
 import ScrollToTop from "react-scroll-up";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
@@ -142,9 +143,9 @@ const AdminMessages = () => {
                         </Grid>
                         <Grid item container xs={2} justify="center">
                           <div className="blog-btn pt--20">
-                            <a
+                            <Link
                               className="rn-btn"
-                              href="#"
+                              to="#"
                               onClick={() => {
                                 replyViaEmail(message);
                               }}
@@ -155,7 +156,7 @@ const AdminMessages = () => {
                               }}
                             >
                               Reply
-                            </a>
+                            </Link>
                           </div>
                         </Grid>
                       </Grid>
@@ -240,9 +241,9 @@ const AdminMessages = () => {
                             {message.status === true ? null : (
                               <Grid item container xs={2} justify="center">
                                 <div className="blog-btn pt--20">
-                                  <a
+                                  <Link
                                     className="rn-btn"
-                                    href="#"
+                                    to="#"
                                     // onClick={handleClickOpen}
                                     onClick={(event) => {
                                       handleClickOpen();
@@ -256,7 +257,7 @@ const AdminMessages = () => {
                                     }}
                                   >
                                     Reply
-                                  </a>
+                                  </Link>
                                 </div>
                               </Grid>
                             )}

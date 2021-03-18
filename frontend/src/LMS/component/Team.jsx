@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-
+import { Link} from 'react-router-dom'
 let TeamContent = [
   {
     images: "04",
@@ -44,7 +44,7 @@ class Team extends Component {
               <ul className="social-icon">
                 {value.socialNetwork.map((social, index) => (
                   <li key={index}>
-                    <a href={`${social.url}`}>{social.icon}</a>
+                    <Link to={`${social.url}`}>{social.icon}</Link>
                   </li>
                 ))}
               </ul>

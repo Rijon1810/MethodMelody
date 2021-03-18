@@ -4,6 +4,7 @@ import { Grid, Box } from "@material-ui/core";
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
+import { Link} from 'react-router-dom'
 
 import auth from "../routes/auth";
 import axios from "../api/Config";
@@ -107,10 +108,10 @@ export default function Login(){
                   </button>
   
                   <div className=" text-right blog-btn mt_sm--10 mt_md--10">
-                    <a href="/signup" className="btn-transparent rn-btn-dark">
+                    <Link to="/signup" className="btn-transparent rn-btn-dark">
                       <br />
                       <span>Don't have an account? Signup</span>
-                    </a>
+                    </Link>
                   </div>
                 </form>
               </div>

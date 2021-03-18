@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { FiChevronUp } from "react-icons/fi";
 import ScrollToTop from "react-scroll-up";
+import { Link} from 'react-router-dom'
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import PageHelmet from "./Helmet.jsx";
@@ -118,7 +119,7 @@ const AdminInstructorList = () => {
               </div>
               <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
-                  <a className="btn-transparent rn-btn-dark" href="#">
+                  <Link className="btn-transparent rn-btn-dark" to="#">
                     {list !== "featured" ? (
                       <span
                         className="text"
@@ -138,7 +139,7 @@ const AdminInstructorList = () => {
                         View All Instructors
                       </span>
                     )}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -156,64 +157,64 @@ const AdminInstructorList = () => {
                             dispatch(getSelectedInstructorId(instructor));
                           }}
                         >
-                          <a href="/instructorview">
+                          <Link to="/instructorview">
                             <img
                               className="w-100"
                               src={`http://63.250.33.174/${instructor.photo}`}
                               alt="Blog Images"
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div className="content">
                           {/* <p className="blogtype">{instructor.bio}</p> */}
                           <h4 className="title">
-                            <a
-                              href="/instructorview"
+                            <Link
+                              to="/instructorview"
                               onClick={async (event) => {
                                 dispatch(getSelectedInstructorId(instructor));
                               }}
                             >
                               {instructor.name}
-                            </a>
+                            </Link>
                           </h4>
                           <div className="blog-btn d-flex justify-content-center">
                             {instructor.featured ? (
-                              <a
+                              <Link
                                 className="rn-btn text-white"
-                                href="#"
+                                to="#"
                                 onClick={() => {
                                   featureOrUnfeatureInstructor(instructor);
                                 }}
                               >
                                 Un Feature
-                              </a>
+                              </Link>
                             ) : (
-                              <a
+                              <Link
                                 className="rn-btn text-white"
-                                href="#"
+                                to="#"
                                 onClick={() => {
                                   featureOrUnfeatureInstructor(instructor);
                                 }}
                               >
                                 Feature
-                              </a>
+                              </Link>
                             )}
                           </div>
                           <div className="blog-btn d-flex justify-content-center">
-                            <a className="rn-btn text-white" href="/courseview">
+                            <Link className="rn-btn text-white" to="/courseview">
                               Un Publish
-                            </a>
+                            </Link>
                           </div>
                           <div className="blog-btn d-flex justify-content-center">
-                            <a
+                            <Link
                               className="rn-btn text-white"
-                              href="/instructorview"
+                              to="/instructorview"
                               onClick={async (event) => {
                                 dispatch(getSelectedInstructorId(instructor));
                               }}
                             >
                               Read More
-                            </a>
+                            </Link>
                             {dispatch(getSelectedInstructorId(instructor))}
                           </div>
                         </div>
@@ -232,25 +233,25 @@ const AdminInstructorList = () => {
                             dispatch(getSelectedInstructorId(instructor));
                           }}
                         >
-                          <a href="/instructorview">
+                          <Link to="/instructorview">
                             <img
                               className="w-100"
                               src={`http://63.250.33.174/${instructor.photo}`}
                               alt="Blog Images"
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div className="content">
                           {/* <p className="blogtype">{instructor.bio}</p> */}
                           <h4 className="title">
-                            <a
-                              href="/instructorview"
+                            <Link
+                              to="/instructorview"
                               onClick={async (event) => {
                                 dispatch(getSelectedInstructorId(instructor));
                               }}
                             >
                               {instructor.name}
-                            </a>
+                            </Link>
                           </h4>
                           {list !== "featured" ? (
                             <div>
@@ -258,39 +259,39 @@ const AdminInstructorList = () => {
                               <div className="blog-btn">
                                 <div className="blog-btn d-flex justify-content-center">
                                   {instructor.featured ? (
-                                    <a
+                                    <Link
                                       className="rn-btn text-white"
-                                      href="#"
+                                      to="#"
                                       onClick={() => {
                                         featureOrUnfeatureInstructor(instructor);
                                       }}
                                     >
                                       Un Feature
-                                    </a>
+                                    </Link>
                                   ) : (
-                                    <a
+                                    <Link
                                       className="rn-btn text-white"
-                                      href="#"
+                                      to="#"
                                       onClick={() => {
                                         featureOrUnfeatureInstructor(instructor);
                                       }}
                                     >
                                       Feature
-                                    </a>
+                                    </Link>
                                   )}
                                 </div>
                                 <div className="blog-btn d-flex justify-content-center">
-                                  <a
+                                  <Link
                                     className="rn-btn text-white"
-                                    href="/courseview"
+                                    to="/courseview"
                                   >
                                     Un Publish
-                                  </a>
+                                  </Link>
                                 </div>
                                 <div className="blog-btn d-flex justify-content-center">
-                                  <a
+                                  <Link
                                     className="rn-btn text-white"
-                                    href="/instructorview"
+                                    to="/instructorview"
                                     onClick={async (event) => {
                                       dispatch(
                                         getSelectedInstructorId(instructor)
@@ -298,7 +299,7 @@ const AdminInstructorList = () => {
                                     }}
                                   >
                                     Read More
-                                  </a>
+                                  </Link>
                                 </div>
                                 {dispatch(getSelectedInstructorId(instructor))}
                               </div>
@@ -308,21 +309,21 @@ const AdminInstructorList = () => {
                               {" "}
                               <div className="blog-btn">
                                 <div className="blog-btn d-flex justify-content-center">
-                                  <a
+                                  <Link
                                     className="rn-btn text-white"
-                                    href="#"
+                                    to="#"
                                     onClick={() => {
                                       featureOrUnfeatureInstructor(instructor);
                                     }}
                                   >
                                     Un Feature
-                                  </a>
+                                  </Link>
                                 </div>
 
                                 <div className="blog-btn d-flex justify-content-center">
-                                  <a
+                                  <Link
                                     className="rn-btn text-white"
-                                    href="/instructorview"
+                                    to="/instructorview"
                                     onClick={async (event) => {
                                       dispatch(
                                         getSelectedInstructorId(instructor)
@@ -330,7 +331,7 @@ const AdminInstructorList = () => {
                                     }}
                                   >
                                     Read More
-                                  </a>
+                                  </Link>
                                 </div>
                                 {dispatch(getSelectedInstructorId(instructor))}
                               </div>

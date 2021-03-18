@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import {
-  FaTwitter,
-  FaInstagram,
-  FaFacebookF,
-  FaLinkedinIn,
+  FaFacebookF, FaInstagram,
+
+  FaLinkedinIn, FaTwitter
 } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const SocialShare = [
   {
@@ -34,17 +34,17 @@ class Footer extends Component {
                         <h4 className="theme-gradient">Explore</h4>
                         <ul className="ft-link">
                           <li>
-                            <a href="/allcourses">Courses</a>
+                            <Link to="/allcourses">Courses</Link>
                           </li>
                           <li>
-                            <a
-                              href="#"
+                            <Link
+                              to="#"
                               onClick={() =>
                                 alert("Metholdmelody Live is coming soon!!")
                               }
                             >
                               Metholdmelody Live
-                            </a>
+                            </Link>
                           </li>
                           {/* <li>
                             <a href="/contact">Articles</a>
@@ -63,16 +63,16 @@ class Footer extends Component {
                         <h4 className="theme-gradient">About</h4>
                         <ul className="ft-link">
                           <li>
-                            <a href="/about">About Us</a>
+                            <Link to="/about">About Us</Link>
                           </li>
                           <li>
-                            <a href="/privacy">Privacy</a>
+                            <Link to="/privacy">Privacy</Link>
                           </li>
                           <li>
-                            <a href="/terms">Terms</a>
+                            <Link to="/terms">Terms</Link>
                           </li>
                           <li>
-                            <a href="/contact">Support</a>
+                            <Link to="/contact">Support</Link>
                           </li>
                         </ul>
                       </div>
@@ -85,9 +85,9 @@ class Footer extends Component {
                         <h4 className="theme-gradient">Social</h4>
                         <ul className="ft-link">
                           <li>
-                            <a href="mailto:hr@example.com">
+                            <Link to="mailto:hr@example.com">
                               info@methodmelody.com
-                            </a>
+                            </Link>
                           </li>
                         </ul>
 
@@ -95,7 +95,7 @@ class Footer extends Component {
                           <ul className="social-share social-style--2 d-flex justify-content-start liststyle mt--15">
                             {SocialShare.map((val, i) => (
                               <li key={i}>
-                                <a href={`${val.link}`}>{val.Social}</a>
+                                <Link to={`${val.link}`}>{val.Social}</Link>
                               </li>
                             ))}
                           </ul>

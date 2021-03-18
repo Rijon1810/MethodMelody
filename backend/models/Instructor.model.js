@@ -3,13 +3,13 @@ var Schema = mongoose.Schema;
 
 var InstructorSchema = new Schema(
 	{
-		name: { type: String },
+		name: { type: String , required: true },
 		photo: { type: String },
 		banner: { type: String },
-		bio: { type: String },
+		bio: { type: String  , required: true },
 		earnings: { type: Number, default: 0 },
 		teaches: [{ type: String }],
-		band: { type: String },
+		band: { type: String  , required: true},
 		course: [{ type: Schema.Types.ObjectId }],
 		document: [{ type: Schema.Types.ObjectId }],
 		video: [
@@ -20,7 +20,7 @@ var InstructorSchema = new Schema(
 		sold: { type: Number, default: 0 },
 		featured: { type: Boolean, default: false },
 		published: { type: Boolean, default: true },
-		percentage: { type: Number, default: 30 }
+		percentage: { type: Number, default: 30  }
 	},
 	{ timestamps: true }
 );

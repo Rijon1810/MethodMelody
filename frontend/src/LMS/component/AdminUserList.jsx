@@ -7,6 +7,7 @@ import {
   Typography,
   CardContent,
 } from "@material-ui/core";
+import { Link} from 'react-router-dom'
 import { FiChevronUp } from "react-icons/fi";
 import ScrollToTop from "react-scroll-up";
 import Header from "./Header.jsx";
@@ -121,19 +122,19 @@ const AdminUserList = () => {
                           <div className="row">
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="/viewuser"
+                                  to="/viewuser"
                                 >
                                   View
-                                </a>
+                                </Link>
                               </div>
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
+                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -185,19 +186,19 @@ const AdminUserList = () => {
                           <div className="row">
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="/viewuser"
+                                  to="/viewuser"
                                 >
                                   View
-                                </a>
+                                </Link>
                               </div>
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
+                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -249,19 +250,19 @@ const AdminUserList = () => {
                           <div className="row">
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="/viewuser"
+                                  to="/viewuser"
                                 >
                                   View
-                                </a>
+                                </Link>
                               </div>
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
+                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -313,19 +314,19 @@ const AdminUserList = () => {
                           <div className="row">
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="/viewuser"
+                                  to="/viewuser"
                                 >
                                   View
-                                </a>
+                                </Link>
                               </div>
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
+                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -379,19 +380,19 @@ const AdminUserList = () => {
                           <div className="row">
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a
+                                <Link
                                   className="rn-btn text-white"
-                                  href="/viewuser"
+                                  to="/viewuser"
                                 >
                                   View
-                                </a>
+                                </Link>
                               </div>
                             </div>
                             <div className="col-6">
                               <div className="blog-btn pt--20">
-                                <a className="rn-btn text-white" href="#" onClick={(() => { dispatch(suspend(user._id)) })}>
+                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
                                   Suspend
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>

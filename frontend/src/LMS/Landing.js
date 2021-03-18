@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory , Link} from "react-router-dom";
 
 import Slider from "react-slick";
 import ScrollToTop from "react-scroll-up";
@@ -190,7 +190,7 @@ export default function Landing() {
 
   function cartRender(id) {
     if (isLoggedIn) {
-      if (cart !== undefined && cart.indexOf(id) > -1) {
+      if (cart !== undefined /* && cart.indexOf(id) > -1 */) {
         return null
       }
       else if (currentCourseList !== undefined && currentCourses.indexOf(id) > -1) {
@@ -199,7 +199,7 @@ export default function Landing() {
       else {
         return (
           <div className="blog-btn col-6">
-            <a className="rn-btn text-white" href="#" onClick={async (event) => {
+            <Link className="rn-btn text-white" to="#" onClick={async (event) => {
               dispatch(
                 postCart({
                   user: userId,
@@ -209,18 +209,18 @@ export default function Landing() {
               // alert('Login first to add this course to your Cart')
             }}>
               <ShoppingCart />
-            </a>
+            </Link>
           </div>
         )
       }
     } else {
       return (
         <div className="blog-btn col-6">
-          <a className="rn-btn text-white" href="#" onClick={async (event) => {
+          <Link className="rn-btn text-white" to="#" onClick={async (event) => {
             alert('Login first to add this course to your Cart')
           }}>
             <ShoppingCart />
-          </a>
+          </Link>
         </div>
       )
     }
@@ -270,31 +270,31 @@ export default function Landing() {
                         )} */}
                         {isLoggedIn ? (
                           <div className="slide-btn">
-                            <a
+                            <Link
                               className="rn-button-style--2"
                               style={{
                                 backgroundColor: "#b12222",
                                 color: "#ffffff",
                                 borderBlockStyle: "hidden",
                               }}
-                              href="/allcourses"
+                              to="/allcourses"
                             >
                               {value.buttonText}
-                            </a>
+                            </Link>
                           </div>
                         ) : (
                           <div className="slide-btn">
-                            <a
+                            <Link
                               className="rn-button-style--2"
                               style={{
                                 backgroundColor: "#b12222",
                                 color: "#ffffff",
                                 borderBlockStyle: "hidden",
                               }}
-                              href={`${value.buttonLink}`}
+                              to={`${value.buttonLink}`}
                             >
                               {value.buttonText}
-                            </a>
+                            </Link>
                           </div>
                         )}
                       </div>
@@ -324,13 +324,13 @@ export default function Landing() {
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
-                <a
+                <Link
                   className="btn-transparent rn-btn-dark"
-                  href="/allcourses"
+                  to="/allcourses"
                   onClick={dispatch(getSelectedCourseCategory(""))}
                 >
                   <span className="text">View All Courses</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -350,24 +350,24 @@ export default function Landing() {
               >
                 <div className="blog blog-style--1">
                   <div className="thumbnail">
-                    <a href="/courseview">
+                    <Link to="/courseview">
                       <img
                         className="w-100"
                         src={`http://63.250.33.174/${course.thumbnail}`}
                         alt="Blog Images"
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="content">
                     {/* <p className="blogtype">{instructor.bio}</p> */}
                     <h4 className="title">
-                      <a href="/courseview">{course.title}</a>
+                      <Link to="/courseview">{course.title}</Link>
                     </h4>
 
                     <div className="blog-btn">
-                      <a className="rn-btn text-white" href="/courseview">
+                      <Link className="rn-btn text-white" to="/courseview">
                         View Details
-                      </a>
+                      </Link>
                     </div>
                     <div className="row">
                       {/* Shopping cart */}
@@ -376,7 +376,7 @@ export default function Landing() {
 
                       <div className="blog-btn col-6">
                         {wishList === undefined ?
-                          (<a className="rn-btn text-white" href="#"
+                          (<Link className="rn-btn text-white" to="#"
                             onClick={() => {
                               if (isLoggedIn) {
                                 console.log("number of course in wishlist = " + wishListCourses.length);
@@ -394,11 +394,11 @@ export default function Landing() {
                               }
                             }}>
                             <Book />
-                          </a>
+                          </Link>
                           ) :
                           (wishList.indexOf(course._id) > -1 ?
                             (null) :
-                            (<a className="rn-btn text-white" href="#" onClick={() => {
+                            (<Link className="rn-btn text-white" to="#" onClick={() => {
                               dispatch(
                                 postWishListCourse({
                                   user: userId,
@@ -410,7 +410,7 @@ export default function Landing() {
                             }}
                             >
                               <Book />
-                            </a>))}
+                            </Link>))}
 
                       </div>
                     </div>
@@ -500,12 +500,12 @@ export default function Landing() {
             </div>
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="blog-btn text-left text-lg-right mt_sm--10 mt_md--10">
-                <a
+                <Link
                   className="btn-transparent rn-btn-dark"
-                  href="/instructorlist"
+                  to="/instructorlist"
                 >
                   <span className="text">View All Instructors</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -519,36 +519,36 @@ export default function Landing() {
                       dispatch(getSelectedInstructorId(instructor));
                     }}
                   >
-                    <a href="/instructorview">
+                    <Link to="/instructorview">
                       <img
                         className="w-100"
                         src={`http://63.250.33.174/${instructor.photo}`}
                         alt="Blog Images"
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="content">
                     {/* <p className="blogtype">{instructor.bio}</p> */}
                     <h4 className="title">
-                      <a
-                        href="/instructorview"
+                      <Link
+                        to="/instructorview"
                         onClick={async (event) => {
                           dispatch(getSelectedInstructorId(instructor));
                         }}
                       >
                         {instructor.name}
-                      </a>
+                      </Link>
                     </h4>
                     <div className="blog-btn">
-                      <a
+                      <Link
                         className="rn-btn text-white"
-                        href="/instructorview"
+                        to="/instructorview"
                         onClick={async (event) => {
                           dispatch(getSelectedInstructorId(instructor));
                         }}
                       >
                         Read More
-                      </a>
+                      </Link>
                       {dispatch(getSelectedInstructorId(instructor))}
                     </div>
                   </div>

@@ -1,46 +1,49 @@
-import React, { useState, useEffect } from "react";
-import ScrollToTop from "react-scroll-up";
-import { FiChevronUp } from "react-icons/fi";
 import {
-  PlayArrow,
-  Lock,
-  FilterNone,
-  OndemandVideo,
-  VerifiedUser,
-  Timer,
-  Description,
-  Smartphone,
-  Cancel,
-} from "@material-ui/icons";
-import {
-  makeStyles,
-  List,
-  ListItem,
-  Button,
-  ListItemText,
-  Backdrop,
-  Avatar,
-  Modal,
-  Grid,
+  Avatar, Backdrop,
+
+
+
   Fade,
-  IconButton,
+  IconButton, List,
+  ListItem,
+
+  ListItemText, makeStyles,
+
+
+
+
+
+
+  Modal
 } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
+import {
+  Cancel, Description, FilterNone, Lock,
+
+  OndemandVideo, PlayArrow,
+
+
+
+
+
+
+  Smartphone, Timer, VerifiedUser
+} from "@material-ui/icons";
+import React, { useEffect } from "react";
+import { FiChevronUp } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import ScrollToTop from "react-scroll-up";
+import { postCart } from "../../actions/cartAction";
+import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
+import { postWishListCourse } from "../../actions/wishListAction";
+import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import Footer from "./Footer.jsx";
 //custom components
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
-import Footer from "./Footer.jsx";
 import ReactPlayer from "./ReactPlayer";
-import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-
-import Column from "../../blocks/Columns.jsx";
-import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
-import { postCart } from "../../actions/cartAction";
-import { isLogged } from "../../actions/isLoggedAction";
-import { getUserCourse } from "../../actions/userAction";
-import { postWishListCourse } from "../../actions/wishListAction";
 import StudentContactForm from "./StudentContactForm.jsx";
-import { useHistory } from "react-router-dom";
+import { Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -146,14 +149,14 @@ export default function CourseView(props) {
   };
 
   useEffect(() => {
-    if (isLogIn) {
+    if (isLogIn && userCourses ) {
       userCourses.forEach((c) => {
-        if (c[0] == selectedCourse._id) {
+        if (c[0] === selectedCourse._id) {
           setPaid(true);
         }
       });
     }
-  }, [paid, wish]);
+  }, [isLogIn, paid, selectedCourse._id, userCourses, wish]);
 
   const renderPlayButton = (lesson_status, course_id) => {
     if (lesson_status === "open") {
@@ -261,17 +264,17 @@ export default function CourseView(props) {
             </p>
             {paid != true ? (
               <div className="d-flex flex-row-reverse">
-                <a className="rn-btn" href="#" onClick={handleOpen}>
+                <Link className="rn-btn" to="#" onClick={handleOpen}>
                   <span>Get Enrolled !</span>
-                </a>
+                </Link>
               </div>
             ) : null}
 
             <div className="d-flex flex-row-reverse" style={{ marginTop: 20 }}>
               {wish != true ? (
-                <a
+                <Link
                   className="rn-btn"
-                  href="#"
+                  to="#"
                   onClick={() => {
                     dispatch(
                       postWishListCourse({
@@ -283,7 +286,7 @@ export default function CourseView(props) {
                   }}
                 >
                   <span>Add to Wish List !</span>
-                </a>
+                </Link>
               ) : null}
             </div>
             <Modal

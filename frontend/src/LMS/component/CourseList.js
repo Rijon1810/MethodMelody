@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from "react";
-import ScrollToTop from "react-scroll-up";
+import { ArrowDropDown, FilterList } from "@material-ui/icons";
+import React, { useEffect, useState } from "react";
 import { FiChevronUp } from "react-icons/fi";
-
-//custom components
-import Header from "./HeaderFive.jsx";
+import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+import ScrollToTop from "react-scroll-up";
+import Slider from "react-slick";
+import { slickDot } from "../page-demo/script";
 import BlogList from "./elements/blog/BlogList";
 import Pagination from "./elements/common/Pagination.jsx";
-import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import PageHelmet from "./Helmet.jsx";
 import Footer from "./Footer.jsx";
-import Slider from "react-slick";
-import { slickDot, portfolioSlick2 } from "../page-demo/script";
+//custom components
+import Header from "./HeaderFive.jsx";
+import PageHelmet from "./Helmet.jsx";
 
-//importing custom scripts
-import axios from "../api/Config";
-import { Grid, Link, Avatar } from "@material-ui/core";
-import { ArrowDropDown, FilterList } from "@material-ui/icons";
-import { useSelector, useDispatch } from "react-redux";
+
 
 export default function CourseList(props) {
   //hooks
@@ -43,7 +40,7 @@ export default function CourseList(props) {
   useEffect(() => {
     getAllCourses();
     getFeaturedCourses();
-  }, []);
+  }, [getAllCourses, getFeaturedCourses]);
 
   // custom functions
 
@@ -324,14 +321,14 @@ export default function CourseList(props) {
                           <div className="inner">
                             <p>{featuredCourse.catagory}</p>
                             <h4>
-                              <a href="/portfolio-details">
+                              <Link to="/portfolio-details">
                                 {featuredCourse.title}
-                              </a>
+                              </Link>
                             </h4>
                             <div className="portfolio-button">
-                              <a className="rn-btn" href="/portfolio-details">
+                              <Link className="rn-btn" to="/portfolio-details">
                                 View Course
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -382,14 +379,14 @@ export default function CourseList(props) {
                           <div className="inner">
                             <p>{popularCourse.catagory}</p>
                             <h4>
-                              <a href="/portfolio-details">
+                              <Link to="/portfolio-details">
                                 {popularCourse.title}
-                              </a>
+                              </Link>
                             </h4>
                             <div className="portfolio-button">
-                              <a className="rn-btn" href="/portfolio-details">
+                              <Link className="rn-btn" to="/portfolio-details">
                                 View Course
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>

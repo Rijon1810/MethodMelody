@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FiCast, FiLayers, FiUsers, FiMonitor, FiMusic } from "react-icons/fi";
-
+import { Link} from 'react-router-dom'
 import { Avatar } from "@material-ui/core";
 
 export default function ServiceTwo() {
@@ -46,9 +46,9 @@ export default function ServiceTwo() {
             <h3 className="title">{title}</h3>
             <p className="theme-gradient">{description}</p>
             <div className="service-btn">
-              <a className="btn-transparent rn-btn-dark" href="/service">
+              <Link className="btn-transparent rn-btn-dark" to="/service">
                 <span className="text">View Details</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+import { Link} from 'react-router-dom'
 
 const TabOne = [
     {
@@ -237,15 +238,15 @@ class TabStyleThree extends Component {
                                         <div className="portfolio-static">
                                             <div className="thumbnail-inner">
                                                 <div className="thumbnail">
-                                                    <a href="#portfolio-details">
+                                                    <Link to="#portfolio-details">
                                                         <img src={`/assets/images/portfolio/dp-portfolio-${value.image}.jpg`} alt="Portfolio Images"/>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             <div className="content">
                                                 <div className="inner">
                                                     <p>{value.category}</p>
-                                                    <h4><a href="#portfolio-details">{value.title}</a></h4>
+                                                    <h4><Link to="#portfolio-details">{value.title}</Link></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -283,15 +284,15 @@ class TabStyleThree extends Component {
                                         <div className="portfolio-static">
                                             <div className="thumbnail-inner">
                                                 <div className="thumbnail">
-                                                    <a href="#portfolio-details">
+                                                    <Link to="#portfolio-details">
                                                         <img src={`/assets/images/portfolio/dp-portfolio-${value.image}.jpg`} alt="Portfolio Images"/>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             <div className="content">
                                                 <div className="inner">
                                                     <p>{value.category}</p>
-                                                    <h4><a href="#portfolio-details">{value.title}</a></h4>
+                                                    <h4><Link to="#portfolio-details">{value.title}</Link></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -329,15 +330,15 @@ class TabStyleThree extends Component {
                                         <div className="portfolio-static">
                                             <div className="thumbnail-inner">
                                                 <div className="thumbnail">
-                                                    <a href="#portfolio-details">
+                                                    <Link to="#portfolio-details">
                                                         <img src={`/assets/images/portfolio/dp-portfolio-${value.image}.jpg`} alt="Portfolio Images"/>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             <div className="content">
                                                 <div className="inner">
                                                     <p>{value.category}</p>
-                                                    <h4><a href="#portfolio-details">{value.title}</a></h4>
+                                                    <h4><Link to="#portfolio-details">{value.title}</Link></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -375,15 +376,15 @@ class TabStyleThree extends Component {
                                         <div className="portfolio-static">
                                             <div className="thumbnail-inner">
                                                 <div className="thumbnail">
-                                                    <a href="#portfolio-details">
+                                                    <Link to="#portfolio-details">
                                                         <img src={`/assets/images/portfolio/dp-portfolio-${value.image}.jpg`} alt="Portfolio Images"/>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             <div className="content">
                                                 <div className="inner">
                                                     <p>{value.category}</p>
-                                                    <h4><a href="#portfolio-details">{value.title}</a></h4>
+                                                    <h4><Link to="#portfolio-details">{value.title}</Link></h4>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getInstructor, postInstructor } from "../../actions/instructorAction";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getInstructor } from "../../actions/instructorAction";
 import { signUp } from "../../actions/signUpAction";
 
 class CreateInstructorAccountForm extends Component {

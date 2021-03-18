@@ -4,6 +4,7 @@ import Breadcrumb from "./common/Breadcrumb.jsx";
 import Pagination from "../elements/common/Pagination";
 import BlogList from "../elements/blog/BlogList";
 import ScrollToTop from 'react-scroll-up';
+import  { Link} from 'react-router-dom'
 import { FiChevronUp } from "react-icons/fi";
 import Header from "../Header.jsx";
 import Footer from "../Footer.jsx";
@@ -169,9 +170,9 @@ export default function Blog() {
                                 </IconButton>
                             </div>
                             <div className="d-flex mb--30">
-                                <a className="rn-btn" href="#" onClick={filterCourse}>
+                                <Link className="rn-btn" to="#" onClick={filterCourse}>
                                     <span>Filter</span>
-                                </a>
+                                </Link>
                             </div>
                             {/* <div className="d-flex flex-row">
                                 <h3 className="fontWeight500 text-white">
@@ -220,9 +221,9 @@ export default function Blog() {
             <div className="rn-blog-area ptb--60 bg_color--1">
                 <div className="container">
                     <div className="d-flex flex-row-reverse mb--50">
-                        <a className="rn-btn" href="#" onClick={handleOpen}>
+                        <Link className="rn-btn" to="#" onClick={handleOpen}>
                             <span>Filter Course</span>
-                        </a>
+                        </Link>
                     </div>
                     {/* <Button className="rn-button-style--2" onClick={handleOpen}>Open Modal</Button> */}
                     <BlogList />

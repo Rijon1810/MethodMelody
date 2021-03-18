@@ -132,7 +132,7 @@ class HeaderFive extends Component {
               <div className="col-lg-3 col-md-4 col-6">
                 <div className="header-left">
                   <div className="logo">
-                    <a href="/">{logoUrl}</a>
+                    <Link to="/">{logoUrl}</Link>
                   </div>
                 </div>
               </div>
@@ -277,9 +277,9 @@ class HeaderFive extends Component {
                     </ul>
                   </nav>
                   <div className="header-btn">
-                    <a className="rn-btn" href="/login">
+                    <Link className="rn-btn" to="/login">
                       <span>login</span>
-                    </a>
+                    </Link>
                   </div>
                   {/* Start Humberger Menu  */}
                   <div className="humberger-menu d-block d-lg-none pl--20">
