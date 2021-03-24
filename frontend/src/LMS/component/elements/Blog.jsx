@@ -15,7 +15,61 @@ import { connect } from "react-redux";
 import { getCourse } from "../../../actions/courseAction";
 import { getSelectedCourseCategory } from "../../../actions/getSelectedIdAction";
 import { useSelector, useDispatch } from "react-redux";
-
+import Slider from "react-slick";
+import { slideSlick } from "../../page-demo/script";
+//constants
+const SlideList = [
+    {
+      textPosition: "text-center",
+      bgImage: "bg_image--21",
+      category: "",
+      title: "Guitar",
+      description:
+        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
+      buttonText: "Upcoming Courses",
+      buttonLink: "/allcourses",
+    },
+    {
+      textPosition: "text-center",
+      bgImage: "bg_image--22",
+      category: "",
+      title: "Guitar",
+      description:
+        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
+      buttonText: "Bass",
+      buttonLink: "/allcourses",
+    },
+    {
+      textPosition: "text-center",
+      bgImage: "bg_image--23",
+      category: "",
+      title: "Guitar",
+      description:
+        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
+      buttonText: "Upcoming Courses",
+      buttonLink: "/allcourses",
+    },
+    {
+      textPosition: "text-center",
+      bgImage: "bg_image--24",
+      category: "",
+      title: "Piano",
+      description:
+        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
+      buttonText: "Upcoming Courses",
+      buttonLink: "/allcourses",
+    },
+    {
+      textPosition: "text-center",
+      bgImage: "bg_image--26",
+      category: "",
+      title: "Persussion",
+      description:
+        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
+      buttonText: "Upcoming Courses",
+      buttonLink: "/allcourses",
+    },
+  ];
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
@@ -142,6 +196,75 @@ export default function Blog() {
     return (
         <div className="active-dark">
             <Header from="allcourses" />
+                  {/* Start Slider Area   */}
+      <div className="slider-wrapper">
+
+        
+<div className="slider-activation slider-startup">
+  <Slider className="rn-slick-dot dot-light" {...slideSlick}>
+    {SlideList.map((value, index) => (
+      // Start Single Slider
+      <div
+        className={`slide slide-style-2 fullscreen d-flex align-items-center justify-content-center bg_image ${value.bgImage}`}
+        key={index}
+        data-black-overlay="8"
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className={`inner ${value.textPosition}`}>
+                {value.category ? <span>{value.category}</span> : ""}
+                {value.title ? (
+                  <h1 style={{ color: "#b12222" }}>{value.title}</h1>
+                ) : (
+                  ""
+                )}
+                {value.description ? (
+                  <p className="description">{value.description}</p>
+                ) : (
+                  ""
+                )}
+                {/* {value.buttonText ? (
+                  <div className="slide-btn">
+                    <a
+                      className="rn-button-style--2 btn-primary-color"
+                      href={`${value.buttonLink}`}
+                    >
+                      {value.buttonText}
+                    </a>
+                  </div>
+                ) : (
+                  ""
+                )} */}
+                {
+                  <div className="slide-btn">
+                    <Link
+                      className="rn-button-style--2"
+                      style={{
+                        backgroundColor: "#b12222",
+                        color: "#ffffff",
+                        borderBlockStyle: "hidden",
+                      }}
+                      to="/allcourses"
+                    >
+                      {value.buttonText}
+                    </Link>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      // End Single Slider
+    ))}
+  </Slider>
+</div>
+
+
+
+</div>
+{/* End Slider Area   */}
             {/* Start Breadcrump Area */}
             <Breadcrumb from='All Courses' />
             {/* End Breadcrump Area */}

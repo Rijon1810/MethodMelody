@@ -59,10 +59,12 @@ const CartPage = () => {
   const [remove, setRemove] = React.useState("");
 
   var cartCoursesList = [];
+  
 
   cartItems.forEach((cartItem) => {
     for (let i = 0; i < courseList.length; i++) {
-      if (cartItem == courseList[i]._id) {
+      if (cartItem === courseList[i]._id) {
+        console.log(courseList[i]);
         cartCoursesList.push(courseList[i]);
         total = parseFloat(courseList[i].price) + parseFloat(total);
       }

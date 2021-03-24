@@ -1,10 +1,9 @@
-import {
-  GET_SELECTED_COURSE_ID,
-  GET_SELECTED_INSTRUCTOR_ID,
-  GET_SELECTED_LESSON_ID,
-  GET_SELECTED_COURSE_CATEGORY,
-} from "./types";
 import axios from "../LMS/api/Config";
+import {
+  GET_SELECTED_COURSE_CATEGORY, GET_SELECTED_COURSE_ID,
+  GET_SELECTED_INSTRUCTOR_ID,
+  GET_SELECTED_LESSON_ID
+} from "./types";
 
 export const getSelectedCourseId = (course) => (dispatch) => {
   dispatch({

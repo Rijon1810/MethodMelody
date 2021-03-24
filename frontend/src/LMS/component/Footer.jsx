@@ -37,14 +37,9 @@ class Footer extends Component {
                             <Link to="/allcourses">Courses</Link>
                           </li>
                           <li>
-                            <Link
-                              to="#"
-                              onClick={() =>
-                                alert("Metholdmelody Live is coming soon!!")
-                              }
-                            >
-                              Metholdmelody Live
-                            </Link>
+                          <li>
+                            <Link to="/">Home</Link>
+                          </li>
                           </li>
                           {/* <li>
                             <a href="/contact">Articles</a>

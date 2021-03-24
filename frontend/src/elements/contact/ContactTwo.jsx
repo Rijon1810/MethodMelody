@@ -82,12 +82,20 @@ class ContactTwo extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
+                      
                       let submitted = await this.props.postMessage({
                         name: this.state.rnName,
                         email: this.state.rnEmail,
                         message: this.state.rnMessage,
                       });
-                      if (submitted) {
+                      function isEmpty (obj) {
+                        for (var k in obj) 
+                           if (obj.hasOwnProperty(k))
+                               return false;
+                        return true;
+                    }
+                      
+                      if (isEmpty(submitted)) {
                         toast.success("Message sent!!", {
                           position: "bottom-center",
                           autoClose: false,
@@ -97,6 +105,11 @@ class ContactTwo extends Component {
                           draggable: true,
                           progress: undefined,
                         });
+                        this.setState({ 
+                          rnMessage: ' ' ,
+                          rnEmail : ' ',
+                          rnName: ' '
+                      });
                       } else {
                         toast.error("Failed sending message!!", {
                           position: "bottom-center",

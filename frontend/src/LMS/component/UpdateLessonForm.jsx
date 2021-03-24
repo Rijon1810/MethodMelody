@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   getCourse,
-  updateCourse,
-  getCourseById,
-} from "../../actions/courseAction";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Link} from 'react-router-dom'
 
+  getCourseById, updateCourse
+} from "../../actions/courseAction";
 import axios from "../api/Config";
+
 
 class UpdateLessonForm extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class UpdateLessonForm extends Component {
     // this.setState({ showCourse: id });
     {
       this.props.courseList.map((course) => {
-        if (course._id == id) {
+        if (course._id === id) {
           this.setState({ showVideos: course.videos });
           console.log(course.videos);
         }

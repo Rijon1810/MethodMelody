@@ -1,19 +1,15 @@
 import React, { Component } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import Pagination from "../common/Pagination.jsx";
-import BlogList from "../blog/InstructorCourseList.jsx";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Link} from 'react-router-dom'
-
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { getCourse } from "../../../../actions/courseAction";
-import { isLogged } from "../../../../actions/isLoggedAction";
 import { updateUser } from "../../../../actions/userAction";
+import BlogList from "../blog/InstructorCourseList.jsx";
+import Pagination from "../common/Pagination.jsx";
 
-import { MailOutline, Event } from "@material-ui/icons";
-//importing material components
-import { Grid } from "@material-ui/core";
+
 
 class InstructorPanelTab extends Component {
   constructor(props) {
@@ -72,7 +68,7 @@ class InstructorPanelTab extends Component {
                         <div className="col-lg-12">
                           <div className="thumbnail pt--20">
                             <Link to="#">
-                              {this.state.rnPhotoSnap == "" ? (
+                              {this.state.rnPhotoSnap === "" ? (
                                 <img
                                   className="w-100"
                                   src={`http://63.250.33.174/${this.props.profile.photo}`}

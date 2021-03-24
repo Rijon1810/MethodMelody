@@ -58,7 +58,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/login",
+    buttonLink: "/allcourses",
   },
   {
     textPosition: "text-center",
@@ -68,7 +68,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/login",
+    buttonLink:"/allcourses",
   },
   {
     textPosition: "text-center",
@@ -78,7 +78,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/login",
+    buttonLink: "/allcourses",
   },
   {
     textPosition: "text-center",
@@ -88,7 +88,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/login",
+    buttonLink: "/allcourses",
   },
   {
     textPosition: "text-center",
@@ -98,7 +98,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/login",
+    buttonLink: "/allcourses",
   },
 ];
 
@@ -232,6 +232,8 @@ export default function Landing() {
 
       {/* Start Slider Area   */}
       <div className="slider-wrapper">
+
+        
         <div className="slider-activation slider-startup">
           <Slider className="rn-slick-dot dot-light" {...slideSlick}>
             {SlideList.map((value, index) => (
@@ -306,6 +308,9 @@ export default function Landing() {
             ))}
           </Slider>
         </div>
+
+
+
       </div>
       {/* End Slider Area   */}
 
