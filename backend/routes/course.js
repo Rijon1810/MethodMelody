@@ -149,6 +149,7 @@ router
     const certificate = req.body.certificate;
     const whoFor = req.body.whoFor;
     const featured = req.body.featured;
+    const courseType = req.body.courseType;
     const newCourse = new Course({
       title,
       subtitle,
@@ -173,6 +174,7 @@ router
       certificate,
       whoFor,
       featured,
+      courseType
     });
     newCourse
       .save()
@@ -223,6 +225,11 @@ router.route("/search").get((req, res) => {
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
+  
+
+router.post('/filter', async(req,res)=> {
+      
+})
 
 router.route("/featured").get((req, res) => {
   Course.find({ featured: true })

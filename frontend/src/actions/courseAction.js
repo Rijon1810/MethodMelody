@@ -1,11 +1,14 @@
 import axios from "../LMS/api/Config";
 import {
-  GET_COURSE,
-  GET_FEATURED_COURSE,
+  GET_CATAGORY, GET_COURSE,
+
+
+
+
+  GET_COURSE_BY_ID, GET_FEATURED_COURSE,
   POST_COURSE,
-  GET_CATAGORY,
-  UPDATE_COURSE,
-  GET_COURSE_BY_ID,
+
+  UPDATE_COURSE
 } from "./types";
 
 export const getCourse = () => (dispatch) => {

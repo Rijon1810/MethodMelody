@@ -1,11 +1,11 @@
+import { CircularProgress, Grid } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getInstructor } from "../../actions/instructorAction";
-import { postCourse } from "../../actions/courseAction";
-
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { CircularProgress, Grid } from "@material-ui/core";
+import { postCourse } from "../../actions/courseAction";
+import { getInstructor } from "../../actions/instructorAction";
+
 
 class ContactThree extends Component {
   constructor(props) {
@@ -31,6 +31,7 @@ class ContactThree extends Component {
       rnBanner: "",
       refBanner: "",
       rnValidity: "",
+      courseType:"",
       rnUploading: false,
     };
   }
@@ -251,6 +252,28 @@ class ContactThree extends Component {
                           >
                             <option value={true}>Yes</option>
                             <option value={false}>No</option>
+                          </select>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-4">
+                      <div className="form-group">
+                        <label htmlFor="exampleFormControlFile1">
+                          Course Type *
+                        </label>
+                        <label htmlFor="courseType *">
+                          <select
+                            name="courseType"
+                            className="form-control"
+                            onSelect={(e) => {
+                              console.log(e.target.value);
+                              this.setState({ courseType: e.target.value });
+                            }}
+                          >
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advance">Advance</option>
                           </select>
                         </label>
                       </div>
