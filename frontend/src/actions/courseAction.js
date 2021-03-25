@@ -8,6 +8,8 @@ import {
   GET_COURSE_BY_ID, GET_FEATURED_COURSE,
   POST_COURSE,
 
+  POST_FILTER,
+
   UPDATE_COURSE
 } from "./types";
 
@@ -81,6 +83,28 @@ export const postCourse = (data) => async (dispatch) => {
       console.log(err);
     });
 };
+export const courseFilter= (data) => async (dispatch) => {
+  await axios
+    .post("course/filter", data, {
+      headers: {
+        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+        "Content-type": "multipart/form-data",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: POST_FILTER,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: POST_FILTER,
+        payload: "failed",
+      });
+      console.log(err);
+    });
+};
 
 export const updateCourse = (id, data) => async (dispatch) => {
   console.log(id);
@@ -130,3 +154,5 @@ export const getCourseById = (id) => async (dispatch) => {
       console.log(err);
     });
 };
+
+

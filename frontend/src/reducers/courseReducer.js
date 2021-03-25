@@ -5,6 +5,7 @@ import {
   GET_CATAGORY,
   GET_COURSE_BY_ID,
   UPDATE_COURSE,
+  POST_FILTER
 } from "../actions/types";
 
 const initialState = {
@@ -50,6 +51,17 @@ export const getCourseReducer = (state = initialState, action) => {
 export const postCourseReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_COURSE:
+      return {
+        ...state,
+        payload: action.payload,
+      };
+    default:
+      return { ...state };
+  }
+};
+export const postCourseFilter = (state = initialState, action) => {
+  switch (action.type) {
+    case POST_FILTER:
       return {
         ...state,
         payload: action.payload,

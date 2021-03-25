@@ -8,10 +8,7 @@ var CourseSchema = new Schema(
     subtitle: { type: String },
     desc: { type: String },
     catagory: { type: String },
-    courseType: {
-      type : String ,
-      default : 'beginner'
-    },
+    courseType : { type : String},
     level: { type: String },
     sublevel: { type: String },
     thumbnail: { type: String },

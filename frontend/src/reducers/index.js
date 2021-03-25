@@ -5,7 +5,7 @@ import {
   getInstructorReducer,
   postInstructorReducer,
 } from "./instructorReducer";
-import { getCourseReducer, postCourseReducer } from "./courseReducer";
+import { getCourseReducer, postCourseReducer , postCourseFilter } from "./courseReducer";
 import getAnalyticsReducer from "./getAnalyticsReducer";
 import getSelectedIdReducer from "./getSelectedIdReducer";
 import cartStatusReducer from "./cartReducer";
@@ -18,6 +18,7 @@ const allReducers = combineReducers({
   postInstructor: postInstructorReducer,
   getCourse: getCourseReducer,
   postCourse: postCourseReducer,
+  courseFilter : postCourseFilter,
   getAnalytics: getAnalyticsReducer,
   getSelectedId: getSelectedIdReducer,
   cartInfo: cartStatusReducer,

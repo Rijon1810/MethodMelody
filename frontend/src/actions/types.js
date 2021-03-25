@@ -48,3 +48,4 @@ export const POST_WISHLIST = "POST_WISHLIST";
 export const USER_UPDATE = "USER_UPDATE";
 
 export const USER_SUSPEND = "USER_SUSPEND";
+export const POST_FILTER= "POST_FILTER"

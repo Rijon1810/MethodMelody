@@ -7,6 +7,7 @@ import ScrollToTop from 'react-scroll-up';
 import  { Link} from 'react-router-dom'
 import { FiChevronUp } from "react-icons/fi";
 import Header from "../Header.jsx";
+import Form from '../ContactFilter'
 import Footer from "../Footer.jsx";
 import { Cancel } from "@material-ui/icons";
 import { Modal, Button, Backdrop, makeStyles, Fade, IconButton } from "@material-ui/core";
@@ -303,7 +304,8 @@ export default function Blog() {
                                 </h3>
                             </div> */}
                             <div className="row">
-                                <div className="col-12">
+                                   <Form/>
+{/*                                 <div className="col-12">
                                     {console.log(`category = ${catagory_data}`)}
                                     <Select
                                         className="basic-single"
@@ -316,7 +318,7 @@ export default function Blog() {
                                         styles={colourStyles}
                                         onChange={handleCategoryChange}
                                     />
-                                </div>
+                                </div> */}
                                 {/* <div className="col-6">
                                     <Select
                                         className="basic-single"
