@@ -10,6 +10,7 @@ import { isLogged } from "../../../../actions/isLoggedAction";
 import { getUserCourse, updateUser } from "../../../../actions/userAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import{ Link} from 'react-router-dom'
 import {
   makeStyles,
@@ -40,6 +41,8 @@ class TabsTwo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: `http://localhost:3000/signup/${this.props.profile.referralCode}`,
+      copied: false,
       rnName: "",
       rnPhone: "",
       rnAddress: "",
@@ -327,6 +330,27 @@ class TabsTwo extends Component {
                                   Referral Code:{" "}
                                   {this.props.profile.referralCode}
                                 </Grid>
+                              </Grid>
+                            </div>
+                            <div className="col-lg-12 pt--20">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                                justify="center"
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <LocalOffer />
+                                </Grid>
+                                <CopyToClipboard text={this.state.value}
+                                     onCopy={() => this.setState({copied: true})}>
+                            <button>Copy to clipboard </button>
+                             </CopyToClipboard>
+
+        {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
                               </Grid>
                             </div>
                             <div className="col-lg-12 ptb--20">

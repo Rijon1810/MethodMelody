@@ -1,104 +1,101 @@
 // React Required
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-
-// Create Import File
-import "./index.scss";
-
-// Common Layout
-// import Layout from "./component/common/App";
-
-// My Home Layout
-import Landing from "./LMS/Landing";
-
-// Home layout
-import MainDemo from "./home/MainDemo";
-import Startup from "./home/Startup";
-import Paralax from "./home/Paralax";
-import HomePortfolio from "./home/HomePortfolio";
-import DigitalAgency from "./home/DigitalAgency";
-import CreativeAgency from "./home/CreativeAgency";
-import PersonalPortfolio from "./home/PersonalPortfolio";
-import Business from "./home/Business";
-import StudioAgency from "./home/StudioAgency";
-import PortfolioLanding from "./home/PortfolioLanding";
-import CreativeLanding from "./home/CreativeLanding";
-import HomeParticles from "./home/HomeParticles";
-import CreativePortfolio from "./home/CreativePortfolio";
-import DesignerPortfolio from "./home/DesignerPortfolio";
-import InteriorLanding from "./home/Interior";
-import CorporateBusiness from "./home/CorporateBusiness";
-
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Brand from "./blocks/Brand";
+import Columns from "./blocks/Columns";
+import ContactForm from "./blocks/ContactForm";
+import Counters from "./blocks/Counters";
+import Gallery from "./blocks/Gallery";
+import GoogleMap from "./blocks/GoogleMap";
+import Portfolio from "./blocks/Portfolio";
+import PricingTable from "./blocks/PricingTable";
+import ProgressBar from "./blocks/ProgressBar";
+// Blocks Layout
+import Team from "./blocks/Team";
+import Testimonial from "./blocks/Testimonial";
+import VideoPopup from "./blocks/VideoPopup";
 // Dark Home Layout
 import DarkMainDemo from "./dark/MainDemo";
 import DarkPortfolioLanding from "./dark/PortfolioLanding";
-
+import About from "./elements/About";
+import BlogDetails from "./elements/BlogDetails";
+import Contact from "./elements/Contact";
+import error404 from "./elements/error404";
+import PortfolioDetails from "./elements/PortfolioDetails";
 // Element Layout
 import Service from "./elements/Service";
 import ServiceDetails from "./elements/ServiceDetails";
-import About from "./elements/About";
-import Terms from "./LMS/component/Terms.jsx";
-import Privacy from "./LMS/component/Privacy.jsx";
-import Contact from "./elements/Contact";
-import PortfolioDetails from "./elements/PortfolioDetails";
-import Blog from "./LMS/component/elements/Blog.jsx";
-import AllInstructors from "./LMS/component/elements/AllInstructors.jsx";
-import InstructorView from "./LMS/component/elements/blog/InstructorView.jsx";
-import BlogDetails from "./elements/BlogDetails";
-import error404 from "./elements/error404";
-
-// Blocks Layout
-
-import Team from "./blocks/Team";
-import Counters from "./blocks/Counters";
-import Testimonial from "./blocks/Testimonial";
-import Portfolio from "./blocks/Portfolio";
-import VideoPopup from "./blocks/VideoPopup";
-import Gallery from "./blocks/Gallery";
-import Brand from "./blocks/Brand";
-import ProgressBar from "./blocks/ProgressBar";
-import ContactForm from "./blocks/ContactForm";
-import GoogleMap from "./blocks/GoogleMap";
-import Columns from "./blocks/Columns";
-import PricingTable from "./blocks/PricingTable";
-
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import * as serviceWorker from "./serviceWorker";
-
-import {
-  ProtectedRoute,
-  ProtectedAdminRoute,
-  ProtectedStudentRoute,
-  ProtectedContentRoute,
-  ProtectedInstructorRoute,
-} from "./LMS/routes/protected.route";
-
-// Coustom Components
-import Login from "./LMS/component/Login";
-import Signup from "./LMS/component/Signup";
-import CourseList from "./LMS/component/CourseList";
-import CourseView from "./LMS/component/CourseView";
-import Admin from "./LMS/component/Admin.jsx";
+import Business from "./home/Business";
+import CorporateBusiness from "./home/CorporateBusiness";
+import CreativeAgency from "./home/CreativeAgency";
+import CreativeLanding from "./home/CreativeLanding";
+import CreativePortfolio from "./home/CreativePortfolio";
+import DesignerPortfolio from "./home/DesignerPortfolio";
+import DigitalAgency from "./home/DigitalAgency";
+import HomeParticles from "./home/HomeParticles";
+import HomePortfolio from "./home/HomePortfolio";
+import InteriorLanding from "./home/Interior";
+// Home layout
+import MainDemo from "./home/MainDemo";
+import Paralax from "./home/Paralax";
+import PersonalPortfolio from "./home/PersonalPortfolio";
+import PortfolioLanding from "./home/PortfolioLanding";
+import Startup from "./home/Startup";
+import StudioAgency from "./home/StudioAgency";
+// Create Import File
+import "./index.scss";
 import AddCourse from "./LMS/component/AddCourse.jsx";
 import AddInstructor from "./LMS/component/AddInstructor.jsx";
+import Admin from "./LMS/component/Admin.jsx";
+import AdminCourseList from "./LMS/component/AdminCourseList.jsx";
+import AdminInstructorList from "./LMS/component/AdminInstructorList.jsx";
+import AdminMessages from "./LMS/component/AdminMessages.jsx";
+import AdminUserList from "./LMS/component/AdminUserList.jsx";
+import ComingSoon from "./LMS/component/ComingSoonPage.jsx";
+import CourseList from "./LMS/component/CourseList";
+import CourseView from "./LMS/component/CourseView";
+import CreateAccount from "./LMS/component/CreateAccount.jsx";
+import AllInstructors from "./LMS/component/elements/AllInstructors.jsx";
+import Blog from "./LMS/component/elements/Blog.jsx";
+import InstructorView from "./LMS/component/elements/blog/InstructorView.jsx";
+import CartPage from "./LMS/component/elements/CartPage.jsx";
+import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx";
+import StudentPanel from "./LMS/component/elements/StudentPanel";
+// Coustom Components
+import Login from "./LMS/component/Login";
+import Privacy from "./LMS/component/Privacy.jsx";
+import Signup from "./LMS/component/Signup";
+import Terms from "./LMS/component/Terms.jsx";
 import UpdateCourse from "./LMS/component/UpdateCourse.jsx";
 import UpdateInstructor from "./LMS/component/UpdateInstructor.jsx";
 import UpdateLesson from "./LMS/component/UpdateLesson.jsx";
-import CreateAccount from "./LMS/component/CreateAccount.jsx";
-import AdminCourseList from "./LMS/component/AdminCourseList.jsx";
-import AdminInstructorList from "./LMS/component/AdminInstructorList.jsx";
-import AdminUserList from "./LMS/component/AdminUserList.jsx";
-import AdminMessages from "./LMS/component/AdminMessages.jsx";
-
-import StudentPanel from "./LMS/component/elements/StudentPanel";
-import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx";
-import CartPage from "./LMS/component/elements/CartPage.jsx";
-
 import ViewUserProfile from "./LMS/component/ViewUserProfile.jsx";
-import ComingSoon from "./LMS/component/ComingSoonPage.jsx";
+// Common Layout
+// import Layout from "./component/common/App";
+// My Home Layout
+import Landing from "./LMS/Landing";
+import {
+  ProtectedAdminRoute,
 
-import { Provider } from "react-redux";
+
+  ProtectedInstructorRoute, ProtectedStudentRoute
+} from "./LMS/routes/protected.route";
+import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Root extends Component {
   render() {
@@ -328,9 +325,14 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/login`}
             component={Login}
           />
-          <Route
+            <Route
             exact
             path={`${process.env.PUBLIC_URL}/signup`}
+            component={Signup}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/signup/:refercode`}
             component={Signup}
           />
           <Route

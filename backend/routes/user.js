@@ -225,6 +225,7 @@ router.route(`/login`).post((req, res) => {
       });
     });
 });
+//signiup without refercode
 
 router
   // .use(apiAuth)
@@ -247,6 +248,27 @@ router
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
+    const refercode = req.body.refercode;
+    console.log(refercode);
+    var refBonus = 0;
+
+    if(refercode)
+    {
+      refBonus+=200;
+      User.findOneAndUpdate(
+        {   referralCode : refercode},
+           { $inc: { referralBonus: 200 } }
+         ).then((doc) => {
+            
+             if (doc) {
+               res.status(200).json(doc);
+             } else {
+               res.status(404).json(doc);
+             }
+           })
+           .catch((err) => res.status(400).json("Error: " + err));
+        
+    }
     let photo = "";
     if (req.file) {
       photo = req.file.path;
@@ -258,10 +280,15 @@ router
     const course = req.body.course;
     const instructor = Mongoose.Types.ObjectId(req.body.instructor);
     const previousCourse = req.body.previousCourse;
+    
     User.find({ email }).then((user) => {
+
       if (user.length >= 1) {
         return res.status(409).json({ message: "Mail exists" });
       } else {
+
+
+
         bcrypt.hash(password, 10, (err, hash) => {
           if (err) {
             return res.status(400).json({ error: err });
@@ -280,6 +307,7 @@ router
               previousCourse,
               referralCode,
               studentId,
+              referralBonus: refBonus
             });
             newUser
               .save()
@@ -331,6 +359,9 @@ router
       }
     });
   });
+//signup with refercode
+
+
 
 router
   .use(apiAuth)

@@ -26,7 +26,7 @@ var UserSchema = new Schema(
     previousCourse: [{ type: Schema.Types.ObjectId }],
     referralCode: { type: String },
     studentId: { type: String },
-    referralBonus: { type: String, default: 0 },
+    referralBonus: { type: Number, default: 0 },
     v_token: { type: String },
     purchaseHistory: [{ type: [Schema.Types.Mixed] }],
     currentCartStatus: { type: Boolean, default: false },

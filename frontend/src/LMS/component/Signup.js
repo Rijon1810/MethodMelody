@@ -1,19 +1,20 @@
+import { Avatar, Box, IconButton } from "@material-ui/core";
 import React, { Component } from "react";
-import { Grid, Box, IconButton, Avatar } from "@material-ui/core";
-import { Person } from "@material-ui/icons";
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import { signUp } from "../../actions/signUpAction";
+import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
-import { Link} from 'react-router-dom'
 
-import { connect } from "react-redux";
-import { signUp } from "../../actions/signUpAction";
-import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import { Redirect } from "react-router-dom";
 class Signup extends Component {
   constructor(props) {
     super(props);
+    
+    const refercode = this.props.match.params.refercode;
+   
     this.state = {
       rnName: "",
       rnEmail: "",
@@ -24,6 +25,7 @@ class Signup extends Component {
       rnPhone: "",
       rnAddress: "",
       rnPhotoSnap: "",
+      refercode: refercode
     };
   }
   render() {
@@ -189,6 +191,7 @@ class Signup extends Component {
                   fd.append("dob", this.state.rnDob);
                   fd.append("phone", this.state.rnPhone);
                   fd.append("address", this.state.rnAddress);
+                  fd.append("refercode" , this.state.refercode);
 
                   await this.props.signUp(fd);
                   this.props.history.push("/login");
