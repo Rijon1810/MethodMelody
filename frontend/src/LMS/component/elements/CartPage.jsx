@@ -53,6 +53,7 @@ const CartPage = () => {
   let total = 0;
   console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
+  var referralBonus = parseFloat(useSelector((state) => state.getAllUsers.getUserCourse.referralBonus));
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
@@ -70,7 +71,16 @@ const CartPage = () => {
       }
     }
   });
+  if(referralBonus > 0 && referralBonus)
+  {
+   var val= Math.min(referralBonus, total);
+   total= total-val;
+     referralBonus  = referralBonus - val;
+    
+ }
+
   useEffect(() => {
+    
     dispatch(getCart(`${userID}`));
     for (var j = 0; j < cartCoursesList.length; j++) {
       if (cartCoursesList[j]._id === remove) {
@@ -191,7 +201,29 @@ const CartPage = () => {
                             }
                           )
                           .then((res) => {
+                            axios
+                            .post(
+                              "http://localhost:8080/api/v1/user/referbonus",
+                              {
+                                id: userID ,
+                                leftBonus : referralBonus
+                       
+                              },
+                              {
+                                headers: {
+                                  "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                                  "Content-type": "application/json",
+                                },
+                              }
+                            )
+                            .then((res) => {
+                       
+                            })
+                            .catch((err) => {
+                              console.log(err);
+                            });
                             window.location.href = res.data.GatewayPageURL;
+                            
                             // goes into redux
                           })
                           .catch((err) => {

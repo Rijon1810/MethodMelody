@@ -157,6 +157,8 @@ router
       .catch((err) => res.status(400).json("Error: " + err));
   });
 
+
+
 //LOGIN
 router.route(`/login`).post((req, res) => {
   const email = req.body.email;
@@ -361,7 +363,25 @@ router
   });
 //signup with refercode
 
-
+//put/referBonus-Update
+router
+.use(apiAuth)
+.route("/referbonus").post((req, res) => {
+  const id = req.body.id;
+  const leftBonus = req.body.leftBonus;
+  User.findOneAndUpdate(
+    {   _id : id},
+       { $inc: { referralBonus: -leftBonus } }
+     ).then((doc) => {
+          
+      if (doc) {
+        res.status(200).json(doc);
+      } else {
+        res.status(404).json(doc);
+      }
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 
 router
   .use(apiAuth)
