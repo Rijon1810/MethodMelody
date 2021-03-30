@@ -54,7 +54,7 @@ router.route("/confirmation/:token").get((req, res) => {
       { $set: { emailVerify: true } },
       { useFindAndModify: false }
     ).catch((err) => res.status(400).json("email not vefied: " + err));
-    res.redirect("http://63.250.33.174/login");
+    res.redirect("http://localhost:3000/login");
   } catch (err) {
     res.send("invalid signature");
   }
@@ -254,12 +254,13 @@ router
     console.log(refercode);
     var refBonus = 0;
 
-    if(refercode)
+    if(refercode!=='undefined')
     {
       refBonus+=200;
       User.findOneAndUpdate(
         {   referralCode : refercode},
-           { $inc: { referralBonus: 200 } }
+           { $inc: { pending_balance: 200 } }
+        
          ).then((doc) => {
             
              if (doc) {
@@ -309,25 +310,15 @@ router
               previousCourse,
               referralCode,
               studentId,
-              referralBonus: refBonus
+              balance: refBonus,
+              refered_by : refercode
             });
             newUser
               .save()
               .then(async () => {
-                const transporter = nodemailer.createTransport({
-                  host: "smtp.gmail.com",
-                  port: "465",
-                  secure: true,
-                  auth: {
-                    type: "OAuth2",
-                    user: EMAIL_ADDRESS,
-                    serviceClient: key.client_id,
-                    privateKey: key.private_key,
-                  },
-                });
+
                 userid = newUser._id;
                 try {
-                  await transporter.verify();
                   const emailToken = jwt.sign(
                     { id: userid },
                     process.env.SECRET_KEY,
@@ -335,8 +326,15 @@ router
                       expiresIn: "1h",
                     }
                   );
-                  const url = `http://63.250.33.174/api/v1/user/confirmation/${emailToken}`;
-                  await transporter.sendMail({
+                  let mailer = nodemailer.createTransport({
+                    service : 'gmail',
+                    auth : {
+                      user : 'Info@methodmelody.com',
+                      pass : 'asdzxc12'
+                    }
+                  })
+                  const url = `http://localhost:8080/api/v1/user/confirmation/${emailToken}`;
+                  await mailer.sendMail({
                     from: EMAIL_ADDRESS,
                     to: email,
                     subject: "MethodMelody Email Verification",

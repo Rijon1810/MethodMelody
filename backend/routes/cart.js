@@ -34,15 +34,39 @@ router.route("/success/:userId").post(async (req, res) => {
         },
         { useFindAndModify: false }
       )
-        .then((cart) => {
-          console.log(cart.cart);
+        .then(async (cart) => {
+          console.log(cart.cart );
+          //find my referer and update balance and pending balance also user my balance
+         const  users = await User.findOne({ _id : user})
+         /* console.log(users); */
+          if(users && users.first_purchase ===true)
+          {
+            users.first_purchase = false;
+            users.balance = users.balance - 200;
+            const referer = users.refered_by;
+            const refer = await User.findOne({ referralCode : referer });
+            if(refer)
+            {
+                   refer.balance = refer.balance+ 200;
+                   refer.pending_balance = refer.pending_balance - 200;
+            }
+         
+          await  users.save();
+          await  refer.save();
+
+          }
+          /* console.log(users); */
+
+              
+
+          
 
           cart.cart.forEach(async (item) => {
             console.log(user);
             console.log(typeof item.toString());
             await axios
               .post(
-                "http://63.250.33.174/api/v1/buy",
+                "http://localhost:8080/api/v1/buy",
                 {
                   user: user.toString(),
                   course: item.toString(),
@@ -63,7 +87,7 @@ router.route("/success/:userId").post(async (req, res) => {
               .then(async () => {
                 await axios
                   .post(
-                    "http://63.250.33.174/api/v1/cart/remove_all",
+                    "http://localhost:8080/api/v1/cart/remove_all",
                     {
                       user: user.toString(),
                     },
@@ -76,7 +100,7 @@ router.route("/success/:userId").post(async (req, res) => {
                   )
                   .then((cartRemove) => {
                     console.log(cartRemove.data.message);
-                    res.redirect("http://63.250.33.174/studentpanel");
+                    res.redirect("http://localhost:8080/studentpanel");
                   })
                   .catch((a) => {
                     console.log(a);
@@ -109,7 +133,8 @@ router.route("/ssl").post((req, res) => {
   const cart = req.body.cart;
   const currency = req.body.currency;
   const user = req.body.cart.id;
-  const success_url = `http://63.250.33.174/api/v1/cart/success/${user}`;
+  const success_url = `http://localhost:8080/api/v1/cart/success/${user}`;
+
 
   let post_body = {};
   post_body["total_amount"] = total_amount;
@@ -119,8 +144,8 @@ router.route("/ssl").post((req, res) => {
   post_body["discount_amount"] = discount_amount;
   post_body["num_of_item"] = num_of_item;
   post_body["success_url"] = success_url;
-  post_body["fail_url"] = "http://63.250.33.174/api/v1/cart/fail/";
-  post_body["cancel_url"] = "http://63.250.33.174/api/v1/cart/cancel/";
+  post_body["fail_url"] = "http://localhost:8080/api/v1/cart/fail/";
+  post_body["cancel_url"] = "http://localhost:8080/api/v1/cart/cancel/";
   post_body["emi_option"] = 0;
   post_body["cus_name"] = cus_name;
   post_body["cus_email"] = cus_email;

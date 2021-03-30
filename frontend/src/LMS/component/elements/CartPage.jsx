@@ -1,32 +1,22 @@
-import React, { Component, useState, useEffect, Route } from "react";
-import { useHistory } from "react-router-dom";
+import {
+  Card,
+
+
+
+  CardContent, CardMedia, makeStyles
+} from "@material-ui/core";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { FiChevronUp } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import ScrollToTop from "react-scroll-up";
+import { getCart, removeCart } from "../../../actions/cartAction";
+import Footer from "../Footer.jsx";
+import Header from "../Header.jsx";
 import PageHelmet from "../Helmet.jsx";
 import Breadcrumb from "./common/Breadcrumb.jsx";
-import axios from "axios";
-import ScrollToTop from "react-scroll-up";
-import { FiChevronUp } from "react-icons/fi";
-import Header from "../Header.jsx";
-import Footer from "../Footer.jsx";
-import { useSelector, useDispatch } from "react-redux";
-import { checkout, removeCart, getCart } from "../../../actions/cartAction";
-import Paper from "@material-ui/core/Paper";
-import { Link } from 'react-router-dom'
 
-import {
-  makeStyles,
-  Card,
-  CardMedia,
-  Button,
-  Typography,
-  CardContent,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Divider,
-  Avatar,
-  Grid,
-} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -53,7 +43,14 @@ const CartPage = () => {
   let total = 0;
   console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
-  var referralBonus = parseFloat(useSelector((state) => state.getAllUsers.getUserCourse.referralBonus));
+  var referralBonus=0
+   referralBonus = parseFloat(useSelector((state) => state.getAllUsers.getUserCourse.balance));
+ 
+  
+
+ 
+    
+  
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
@@ -71,11 +68,12 @@ const CartPage = () => {
       }
     }
   });
+  var subTotal = total;
   if(referralBonus > 0 && referralBonus)
   {
    var val= Math.min(referralBonus, total);
    total= total-val;
-     referralBonus  = referralBonus - val;
+     
     
  }
 
@@ -87,7 +85,7 @@ const CartPage = () => {
         cartCoursesList.splice(j, 1);
       }
     }
-  }, [dispatch, cartCoursesList]);
+  }, [dispatch, cartCoursesList, userID, remove]);
   return (
     <React.Fragment>
       {" "}
@@ -160,6 +158,24 @@ const CartPage = () => {
                   ))}
                   <div className="row d-flex align-items-center  mt--50">
                     <div className="col">
+                      <h4 className="text-white">SubTotal: </h4>
+                    </div>
+                    <div className="col">
+                      <h4 style={{ color: "#b12222" }}>{subTotal}</h4>
+                    </div>
+                    <div className="col">
+                      <h4 className="text-white">(BDT)</h4>
+                    </div>
+                    <div className="col">
+                      <h4 className="text-white">Referal Bonus: </h4>
+                    </div>
+                    <div className="col">
+                      <h4 style={{ color: "#b12222" }}>{referralBonus}</h4>
+                    </div>
+                    <div className="col">
+                      <h4 className="text-white">(BDT)</h4>
+                    </div>
+                    <div className="col">
                       <h4 className="text-white">Total: </h4>
                     </div>
                     <div className="col">
@@ -201,27 +217,6 @@ const CartPage = () => {
                             }
                           )
                           .then((res) => {
-                            axios
-                            .post(
-                              "http://localhost:8080/api/v1/user/referbonus",
-                              {
-                                id: userID ,
-                                leftBonus : referralBonus
-                       
-                              },
-                              {
-                                headers: {
-                                  "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-                                  "Content-type": "application/json",
-                                },
-                              }
-                            )
-                            .then((res) => {
-                       
-                            })
-                            .catch((err) => {
-                              console.log(err);
-                            });
                             window.location.href = res.data.GatewayPageURL;
                             
                             // goes into redux

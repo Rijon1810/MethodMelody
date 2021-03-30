@@ -1,41 +1,39 @@
-import React, { useEffect, useState } from "react";
-
-
-import { Link, useHistory } from "react-router-dom";
-import { FiX, FiMenu } from "react-icons/fi";
-import {
-  LocalLibraryOutlined,
-  PowerSettingsNewOutlined,
-  AccountCircleOutlined,
-  ForumOutlined,
-  ShoppingCartOutlined,
-  HomeOutlined,
-  Dashboard,
-} from "@material-ui/icons";
-
-import { connect } from "react-redux";
-import { isLogged } from "../../actions/isLoggedAction";
-import { logOut } from "../../actions/logOutAction";
-import { getCourse } from "../../actions/courseAction";
-import { getCart } from "../../actions/cartAction";
-import { getUserCourse, getByType, getByStudentType } from "../../actions/userAction";
-
 //importing material components
-import { Avatar, Grid, Badge } from "@material-ui/core";
-
+import { Avatar, Badge, Grid } from "@material-ui/core";
 import {
-  getSelectedCourseId,
-  getSelectedInstructorId,
-  getSelectedCourseCategory,
+  AccountCircleOutlined,
+
+
+
+  Dashboard, HomeOutlined, LocalLibraryOutlined,
+  PowerSettingsNewOutlined,
+
+
+  ShoppingCartOutlined
+} from "@material-ui/icons";
+import React, { useEffect } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { getCart } from "../../actions/cartAction";
+import {
+  getSelectedCourseCategory, getSelectedInstructorId
 } from "../../actions/getSelectedIdAction";
+import { logOut } from "../../actions/logOutAction";
 import {
   getCurrentMessageById,
-  getPreviousMessageById,
-  getGeneralMessage,
-  getStudentMessage,
-} from "../../actions/messageAction";
 
-import { useSelector, useDispatch } from "react-redux";
+  getGeneralMessage, getPreviousMessageById,
+
+  getStudentMessage
+} from "../../actions/messageAction";
+import { getByStudentType, getByType, getUserCourse } from "../../actions/userAction";
+
+
+
+
+
+
 
 export default function Header(props) {
   const dispatch = useDispatch();
@@ -76,7 +74,7 @@ export default function Header(props) {
     }
 
     // dispatch(getSelectedCourseCategory(""));
-  }, [dispatch, cart_number, username]);
+  }, [/* dispatch, loginStatus, userId, user_type */]);
 
   // const logOut = useSelector((state) => state.logOut);
   //   console.log("is logged in: " + isLoggedIn);
