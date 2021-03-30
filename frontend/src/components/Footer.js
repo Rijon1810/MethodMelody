@@ -1,231 +1,78 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography, Link } from "@material-ui/core";
+import React, { Component } from "react";
+import {FaTwitter ,FaInstagram ,FaFacebookF , FaLinkedinIn} from "react-icons/fa";
 
-import {
-  Twitter,
-  Instagram,
-  Facebook,
-  YouTube,
-  LinkedIn,
-} from "@material-ui/icons";
+const SocialShare = [
+    {Social: <FaFacebookF /> , link: 'https://www.facebook.com/'},
+    {Social: <FaLinkedinIn /> , link: 'https://www.linkedin.com/'},
+    {Social: <FaInstagram /> , link: 'https://www.instagram.com/'},
+    {Social: <FaTwitter /> , link: 'https://twitter.com/'},
+]
+class Footer extends Component{
+    render(){
+        return(
+            <React.Fragment>
+                <footer className="footer-area">
+                    <div className="footer-wrapper">
+                        <div className="row align-items-end row--0">
+                            <div className="col-lg-6">
+                                <div className="footer-left">
+                                    <div className="inner">
+                                        <span>Ready To Do This</span>
+                                        <h2>Let's get <br /> to work</h2>
+                                        <a className="rn-button-style--2" href="/contact">
+                                            <span>Contact Us</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-6">
+                                <div className="footer-right" data-black-overlay="6">
+                                    <div className="row">
+                                        {/* Start Single Widget  */}
+                                        <div className="col-lg-6 col-sm-6 col-12">
+                                            <div className="footer-link">
+                                                <h4>Quick Link</h4>
+                                                <ul className="ft-link">
+                                                    <li><a href="/portfolio">Work</a></li>
+                                                    <li><a href="/about">About</a></li>
+                                                    <li><a href="/contact">Let's Talk</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        {/* End Single Widget  */}
+                                        {/* Start Single Widget  */}
+                                        <div className="col-lg-6 col-sm-6 col-12 mt_mobile--30">
+                                            <div className="footer-link">
+                                                <h4>Say Hello</h4>
+                                                <ul className="ft-link">
+                                                    <li><a href="mailto:admin@example.com">admin@example.com</a></li>
+                                                    <li><a href="mailto:hr@example.com">hr@example.com</a></li>
+                                                </ul>
 
-import "../theme";
+                                                <div className="social-share-inner">
+                                                    <ul className="social-share social-style--2 d-flex justify-content-start liststyle mt--15">
+                                                        {SocialShare.map((val , i) => (
+                                                            <li key={i}><a href={`${val.link}`}>{val.Social}</a></li>
+                                                        ))}
+                                                    </ul>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        {/* End Single Widget  */}
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-
-  TypographyTitle: {
-    color: theme.palette.secondary.main,
-  },
-  SocialIconColor: {
-    color: theme.palette.text.secondary,
-  },
-}));
-
-export default function ButtonAppBar() {
-  const classes = useStyles();
-
-  return (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      className={classes.root}
-    >
-      <Grid item lg={4} md={4} xs={12}>
-        <Grid container direction="column" spacing={3} alignContent="center">
-          <Grid item>
-            <Typography
-              variant="subtitle2"
-              align="left"
-              className={classes.TypographyTitle}
-            >
-              Explore
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Classes</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Metholdmelody Live</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Articles</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Sitemap</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-
-      <Grid item lg={4} md={4} xs={12}>
-        <Grid container direction="column" spacing={3} alignContent="center">
-          <Grid item>
-            <Typography
-              variant="subtitle2"
-              align="left"
-              className={classes.TypographyTitle}
-            >
-              About
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Link color="inherit" size="small">
-                <Typography variant="body2">
-                  Diversity, Equity and Inclusion
-                </Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Privacy</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Terms</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Support</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item lg={4} md={4} xs={12}>
-        <Grid container direction="column" spacing={3} alignContent="center">
-          <Grid item>
-            <Typography
-              variant="subtitle2"
-              align="left"
-              className={classes.TypographyTitle}
-            >
-              Social
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Twitter fontSize="small" />
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Twitter</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Instagram fontSize="small" />
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Instagram</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <Facebook fontSize="small" />
-              <Link color="inherit" size="small">
-                <Typography variant="body2">Facebook</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="center"
-            >
-              <LinkedIn fontSize="small" />
-              <Link color="inherit" size="small">
-                <Typography variant="body2">LinkedIn</Typography>
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
-  );
+                                        <div className="col-lg-12">
+                                            <div className="copyright-text">
+                                                <p>Copyright © 2020 Rainbow-Themes. All Rights Reserved.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </React.Fragment>
+        )
+    }
 }
+export default Footer;

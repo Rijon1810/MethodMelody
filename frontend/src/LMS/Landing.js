@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory , Link} from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import Slider from "react-slick";
 import ScrollToTop from "react-scroll-up";
@@ -16,9 +16,10 @@ import { videoTagString, VideoTag } from "react-video-tag";
 
 //importing material components
 import { Grid } from "@material-ui/core";
-import { ShoppingCart, Book, RemoveShoppingCart } from '@material-ui/icons';
-
+import { ShoppingCart, Book, RemoveShoppingCart } from "@material-ui/icons";
+import { portfolioSlick2 } from "../page-demo/script";
 //importing custom components
+
 import Header from "./component/Header.jsx";
 import Footer from "./component/Footer.jsx";
 import { slideSlick } from "./page-demo/script";
@@ -68,7 +69,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink:"/allcourses",
+    buttonLink: "/allcourses",
   },
   {
     textPosition: "text-center",
@@ -115,14 +116,12 @@ export default function Landing() {
   var currentCourses = [];
   if (currentCourseList !== undefined) {
     currentCourseList.map((course_id) => {
-
-
       currentCourses.push(course_id[0]);
       console.log("current courses id for this user = " + course_id[0]);
-
-
     });
-    console.log("number of current courses for this user = " + currentCourses.length);
+    console.log(
+      "number of current courses for this user = " + currentCourses.length
+    );
   }
 
   const instructorList = useSelector(
@@ -157,7 +156,6 @@ export default function Landing() {
     });
   }
 
-
   // const PostList = BlogContent.slice(0, 4);
   // dispatch(getInstructor());
   // life-cycle methods
@@ -191,49 +189,57 @@ export default function Landing() {
   function cartRender(id) {
     if (isLoggedIn) {
       if (cart !== undefined /* && cart.indexOf(id) > -1 */) {
-        return null
-      }
-      else if (currentCourseList !== undefined && currentCourses.indexOf(id) > -1) {
-        return null
-      }
-      else {
+        return null;
+      } else if (
+        currentCourseList !== undefined &&
+        currentCourses.indexOf(id) > -1
+      ) {
+        return null;
+      } else {
         return (
           <div className="blog-btn col-6">
-            <Link className="rn-btn text-white" to="#" onClick={async (event) => {
-              dispatch(
-                postCart({
-                  user: userId,
-                  course: id,
-                })
-              );
-              // alert('Login first to add this course to your Cart')
-            }}>
+            <Link
+              className="rn-btn text-white"
+              to="#"
+              onClick={async (event) => {
+                dispatch(
+                  postCart({
+                    user: userId,
+                    course: id,
+                  })
+                );
+                // alert('Login first to add this course to your Cart')
+              }}
+            >
               <ShoppingCart />
             </Link>
           </div>
-        )
+        );
       }
     } else {
       return (
         <div className="blog-btn col-6">
-          <Link className="rn-btn text-white" to="#" onClick={async (event) => {
-            alert('Login first to add this course to your Cart')
-          }}>
+          <Link
+            className="rn-btn text-white"
+            to="#"
+            onClick={async (event) => {
+              history.push('/login')
+              //alert("Login first to add this course to your Cart");
+            }}
+          >
             <ShoppingCart />
           </Link>
         </div>
-      )
+      );
     }
   }
 
   return (
-    <div className="active-dark">
+    <div className="active-dark ">
       <Header from="landing" />
 
       {/* Start Slider Area   */}
       <div className="slider-wrapper">
-
-        
         <div className="slider-activation slider-startup">
           <Slider className="rn-slick-dot dot-light" {...slideSlick}>
             {SlideList.map((value, index) => (
@@ -308,9 +314,6 @@ export default function Landing() {
             ))}
           </Slider>
         </div>
-
-
-
       </div>
       {/* End Slider Area   */}
 
@@ -339,91 +342,51 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          <div className="row mt--60 mt_sm--40">
-            {courseList.map((course) => (
-              <div
-                className="col-lg-3 col-md-4 col-12"
-                key={course._id}
-                onClick={async (event) => {
-                  dispatch(getSelectedCourseId(course));
-                  instructorList.forEach((instructor) => {
-                    if (instructor._id === course.instructor) {
-                      dispatch(getSelectedInstructorId(instructor));
-                    }
-                  });
-                }}
-              >
-                <div className="blog blog-style--1">
-                  <div className="thumbnail">
-                    <Link to="/courseview">
-                      <img
-                        className="w-100"
-                        src={`http://63.250.33.174/${course.thumbnail}`}
-                        alt="Blog Images"
-                      />
-                    </Link>
-                  </div>
-                  <div className="content">
-                    {/* <p className="blogtype">{instructor.bio}</p> */}
-                    <h4 className="title">
-                      <Link to="/courseview">{course.title}</Link>
-                    </h4>
-
-                    <div className="blog-btn">
-                      <Link className="rn-btn text-white" to="/courseview">
-                        View Details
-                      </Link>
-                    </div>
-                    <div className="row">
-                      {/* Shopping cart */}
-
-                      {cartRender(course._id)}
-
-                      <div className="blog-btn col-6">
-                        {wishList === undefined ?
-                          (<Link className="rn-btn text-white" to="#"
-                            onClick={() => {
-                              if (isLoggedIn) {
-                                console.log("number of course in wishlist = " + wishListCourses.length);
-                                dispatch(
-                                  postWishListCourse({
-                                    user: userId,
-                                    course: course._id,
-                                  })
-                                );
-                                alert('Course added to Wishlish!')
-                                // setWish(true);
-                              }
-                              else {
-                                alert('Login first to add this course to your Wishlist')
-                              }
-                            }}>
-                            <Book />
+          <div className="portfolio-area ptb--120 ">
+            <div className="portfolio-sacousel-inner mb--55">
+              <div portfolio-slick-activation mt--70 mt_sm--40>
+                <Slider {...portfolioSlick2}>
+                  {courseList.map((course) => (
+                    <div
+                      className="portfolio"
+                      key={course._id}
+                      onClick={async (event) => {
+                        dispatch(getSelectedCourseId(course));
+                        instructorList.forEach((instructor) => {
+                          if (instructor._id === course.instructor) {
+                            dispatch(getSelectedInstructorId(instructor));
+                          }
+                        });
+                      }}
+                    >
+                      <div className="thumbnail-inner">
+                        <div className="thumbnail">
+                          <Link to="/courseview">
+                            <img
+                              src={`http://63.250.33.174/${course.thumbnail}`}
+                              alt="Blog Images"
+                            />
                           </Link>
-                          ) :
-                          (wishList.indexOf(course._id) > -1 ?
-                            (null) :
-                            (<Link className="rn-btn text-white" to="#" onClick={() => {
-                              dispatch(
-                                postWishListCourse({
-                                  user: userId,
-                                  course: course._id,
-                                })
-                              );
-                              alert('Course added to Wishlish!')
-                              // setWish(true);                       
-                            }}
-                            >
-                              <Book />
-                            </Link>))}
+                        </div>
+                      </div>
+                      <div className="content">
+                        {/* <p className="blogtype">{instructor.bio}</p> */}
+                        <h4 className="title">
+                          <Link to="/courseview">{course.title}</Link>
+                        </h4>
+
+                        <div className="portfolio-btn">
+                          <Link className="rn-btn text-white" to="/courseview">
+                            View Details
+                          </Link>
+                        </div>
 
                       </div>
                     </div>
-
-                  </div>
-                </div>
+                  ))}
+                </Slider>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
@@ -447,9 +410,7 @@ export default function Landing() {
         <Grid item lg={8}>
           {" "}
           <div className="section-title text-center">
-            <h3 className="title fontWeight500">
-              How the platform works
-            </h3>
+            <h3 className="title fontWeight500">How the platform works</h3>
           </div>
         </Grid>
         <Grid item lg={12} sm={12} md={12}>
@@ -471,7 +432,7 @@ export default function Landing() {
       {/* Start CounterUp Area */}
       <div
         className="rn-counterup-area pt--25 pb--100 bg_color--1"
-      // style={{ paddingTop: "15ch" }}
+        // style={{ paddingTop: "15ch" }}
       >
         <div className="container">
           <div className="row">
@@ -794,7 +755,6 @@ export default function Landing() {
       >
         <ContactOne />
       </div>
-
 
       {/* End Contact Form Area */}
 

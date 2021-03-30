@@ -1,10 +1,4 @@
-import {
-  Card,
-
-
-
-  CardContent, CardMedia, makeStyles
-} from "@material-ui/core";
+import { Card, CardContent, CardMedia, makeStyles } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
@@ -16,7 +10,6 @@ import Footer from "../Footer.jsx";
 import Header from "../Header.jsx";
 import PageHelmet from "../Helmet.jsx";
 import Breadcrumb from "./common/Breadcrumb.jsx";
-
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -43,21 +36,17 @@ const CartPage = () => {
   let total = 0;
   console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
-  var referralBonus=0
-   referralBonus = parseFloat(useSelector((state) => state.getAllUsers.getUserCourse.balance));
- 
-  
+  var referralBonus = 0;
+  referralBonus = parseFloat(
+    useSelector((state) => state.getAllUsers.getUserCourse.balance)
+  );
 
- 
-    
-  
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
   const [remove, setRemove] = React.useState("");
 
   var cartCoursesList = [];
-  
 
   cartItems.forEach((cartItem) => {
     for (let i = 0; i < courseList.length; i++) {
@@ -69,16 +58,12 @@ const CartPage = () => {
     }
   });
   var subTotal = total;
-  if(referralBonus > 0 && referralBonus)
-  {
-   var val= Math.min(referralBonus, total);
-   total= total-val;
-     
-    
- }
+  if (referralBonus > 0 && referralBonus) {
+    var val = Math.min(referralBonus, total);
+    total = total - val;
+  }
 
   useEffect(() => {
-    
     dispatch(getCart(`${userID}`));
     for (var j = 0; j < cartCoursesList.length; j++) {
       if (cartCoursesList[j]._id === remove) {
@@ -218,7 +203,7 @@ const CartPage = () => {
                           )
                           .then((res) => {
                             window.location.href = res.data.GatewayPageURL;
-                            
+
                             // goes into redux
                           })
                           .catch((err) => {
