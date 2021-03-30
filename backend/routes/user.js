@@ -13,7 +13,8 @@ let referralCodeGenerator = require("referral-code-generator");
 const nodemailer = require("nodemailer");
 const key = require("../key.json");
 
-const EMAIL_ADDRESS = "info@methodmelody.com";
+//const EMAIL_ADDRESS = "info@methodmelody.com";
+const EMAIL_ADDRESS = "rokaiyaothoi@gmail.com";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -329,8 +330,8 @@ router
                   let mailer = nodemailer.createTransport({
                     service : 'gmail',
                     auth : {
-                      user : 'Info@methodmelody.com',
-                      pass : 'asdzxc12'
+                      user : 'rokaiyaothoi@gmail.com',
+                      pass : '@123rokyeaa@123rokyeaa@'
                     }
                   })
                   const url = `http://localhost:8080/api/v1/user/confirmation/${emailToken}`;
