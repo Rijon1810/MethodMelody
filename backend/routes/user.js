@@ -332,7 +332,7 @@ router
                     html: `<img src="http://methodmelody.com/assets/images/logo/logo-red.png"><h2>Welcome to METHODMELODY- very first music learning platform of  the country </h2><br>
                     To complete the signup please proceed with the link<br>
                     ${url} <br><br>
-                    if you have any problem while procedding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
+                    if you have any problem while proceeding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
                   });
                 } catch (err) {
                   console.log(err);
