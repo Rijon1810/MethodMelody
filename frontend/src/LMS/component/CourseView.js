@@ -31,7 +31,7 @@ import {
 import React, { useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ScrollToTop from "react-scroll-up";
 import { postCart } from "../../actions/cartAction";
 import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
@@ -43,7 +43,6 @@ import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 import ReactPlayer from "./ReactPlayer";
 import StudentContactForm from "./StudentContactForm.jsx";
-import { Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -158,8 +158,6 @@ router
       .catch((err) => res.status(400).json("Error: " + err));
   });
 
-
-
 //LOGIN
 router.route(`/login`).post((req, res) => {
   const email = req.body.email;
@@ -255,23 +253,20 @@ router
     console.log(refercode);
     var refBonus = 0;
 
-    if(refercode!=='undefined')
-    {
-      refBonus+=200;
+    if (refercode !== "undefined") {
+      refBonus += 200;
       User.findOneAndUpdate(
-        {   referralCode : refercode},
-           { $inc: { pending_balance: 200 } }
-        
-         ).then((doc) => {
-            
-             if (doc) {
-               res.status(200).json(doc);
-             } else {
-               res.status(404).json(doc);
-             }
-           })
-           .catch((err) => res.status(400).json("Error: " + err));
-        
+        { referralCode: refercode },
+        { $inc: { pending_balance: 200 } }
+      )
+        .then((doc) => {
+          if (doc) {
+            res.status(200).json(doc);
+          } else {
+            res.status(404).json(doc);
+          }
+        })
+        .catch((err) => res.status(400).json("Error: " + err));
     }
     let photo = "";
     if (req.file) {
@@ -284,15 +279,11 @@ router
     const course = req.body.course;
     const instructor = Mongoose.Types.ObjectId(req.body.instructor);
     const previousCourse = req.body.previousCourse;
-    
-    User.find({ email }).then((user) => {
 
+    User.find({ email }).then((user) => {
       if (user.length >= 1) {
         return res.status(409).json({ message: "Mail exists" });
       } else {
-
-
-
         bcrypt.hash(password, 10, (err, hash) => {
           if (err) {
             return res.status(400).json({ error: err });
@@ -312,12 +303,11 @@ router
               referralCode,
               studentId,
               balance: refBonus,
-              refered_by : refercode
+              refered_by: refercode,
             });
             newUser
               .save()
               .then(async () => {
-
                 userid = newUser._id;
                 try {
                   const emailToken = jwt.sign(
@@ -328,18 +318,21 @@ router
                     }
                   );
                   let mailer = nodemailer.createTransport({
-                    service : 'gmail',
-                    auth : {
-                      user : 'rokaiyaothoi@gmail.com',
-                      pass : '@123rokyeaa@123rokyeaa@'
-                    }
-                  })
+                    service: "gmail",
+                    auth: {
+                      user: "rokaiyaothoi@gmail.com",
+                      pass: "@123rokyeaa@123rokyeaa@",
+                    },
+                  });
                   const url = `http://localhost:8080/api/v1/user/confirmation/${emailToken}`;
                   await mailer.sendMail({
                     from: EMAIL_ADDRESS,
                     to: email,
-                    subject: "MethodMelody Email Verification",
-                    text: `link: ${url}`,
+                    subject: "Verify Your Methodmelody Account",
+                    html: `<img src="http://methodmelody.com/assets/images/logo/logo-red.png"><h2>Welcome to METHODMELODY- very first music learning platform of  the country </h2><br>
+                    To complete the signup please proceed with the link<br>
+                    ${url} <br><br>
+                    if you have any problem while procedding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
                   });
                 } catch (err) {
                   console.log(err);
@@ -364,23 +357,21 @@ router
 
 //put/referBonus-Update
 router
-.use(apiAuth)
-.route("/referbonus").post((req, res) => {
-  const id = req.body.id;
-  const leftBonus = req.body.leftBonus;
-  User.findOneAndUpdate(
-    {   _id : id},
-       { $inc: { referralBonus: -leftBonus } }
-     ).then((doc) => {
-          
-      if (doc) {
-        res.status(200).json(doc);
-      } else {
-        res.status(404).json(doc);
-      }
-    })
-    .catch((err) => res.status(400).json("Error: " + err));
-});
+  .use(apiAuth)
+  .route("/referbonus")
+  .post((req, res) => {
+    const id = req.body.id;
+    const leftBonus = req.body.leftBonus;
+    User.findOneAndUpdate({ _id: id }, { $inc: { referralBonus: -leftBonus } })
+      .then((doc) => {
+        if (doc) {
+          res.status(200).json(doc);
+        } else {
+          res.status(404).json(doc);
+        }
+      })
+      .catch((err) => res.status(400).json("Error: " + err));
+  });
 
 router
   .use(apiAuth)

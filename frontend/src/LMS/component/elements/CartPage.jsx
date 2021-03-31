@@ -75,7 +75,7 @@ const CartPage = () => {
     <React.Fragment>
       {" "}
       <PageHelmet pageTitle="Cart" />
-      <main>
+      <main style={{backgroundColor: "#262626"}}>
         {" "}
         <Header from="admin" />
         <Breadcrumb from="cart" />
@@ -132,7 +132,7 @@ const CartPage = () => {
                 <CardContent>
                   <h2 style={{ color: "#b12222" }}>Checkout</h2>
 
-                  <h4 className="text-white  mt--50">Your Checkout List: </h4>
+                  <h4 className="text-white  mt--50">Course List: </h4>
 
                   {cartCoursesList.map((course, idx) => (
                     <div>
@@ -143,33 +143,32 @@ const CartPage = () => {
                   ))}
                   <div className="row d-flex align-items-center  mt--50">
                     <div className="col">
-                      <h4 className="text-white">SubTotal: </h4>
+                      <h6 className="text-white">SubTotal: </h6>
                     </div>
                     <div className="col">
-                      <h4 style={{ color: "#b12222" }}>{subTotal}</h4>
+                      <h6 style={{ color: "#b12222" }}>৳{subTotal}</h6>
+                    </div>
+                  </div> 
+                  {/* end of row */}
+                  {/* referral bonus */}
+                  <div className="row d-flex justify-content-end">
+                  <div className="col">
+                      <h6 className="text-white">Referal Bonus: </h6>
                     </div>
                     <div className="col">
-                      <h4 className="text-white">(BDT)</h4>
+                      <h6 style={{ color: "#b12222" }}>৳{referralBonus}</h6>
                     </div>
-                    <div className="col">
-                      <h4 className="text-white">Referal Bonus: </h4>
-                    </div>
-                    <div className="col">
-                      <h4 style={{ color: "#b12222" }}>{referralBonus}</h4>
-                    </div>
-                    <div className="col">
-                      <h4 className="text-white">(BDT)</h4>
-                    </div>
-                    <div className="col">
+                  </div>
+                  <div className="row d-flex align-items-center ">
+                  <div className="col">
                       <h4 className="text-white">Total: </h4>
                     </div>
                     <div className="col">
-                      <h4 style={{ color: "#b12222" }}>{total}</h4>
+                      <h4 style={{ color: "#b12222" }}>৳{total}</h4>
                     </div>
-                    <div className="col">
-                      <h4 className="text-white">(BDT)</h4>
                     </div>
-                  </div>
+
+
                   <div className="blog-btn mt--20">
                     <Link
                       className="rn-btn text-white"

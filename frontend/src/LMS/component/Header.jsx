@@ -141,7 +141,7 @@ export default function Header(props) {
             <Link to="/" onClick={() => dispatch(getSelectedCourseCategory(""))}>
               <img
                 src="/assets/images/logo/logo-red.png"
-                alt="Digital Agency"
+                alt="Method Melody"
               />
             </Link>
           </div>

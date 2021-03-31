@@ -413,7 +413,7 @@ export default function Landing() {
             <h3 className="title fontWeight500">How the platform works</h3>
           </div>
         </Grid>
-        <Grid item lg={12} sm={12} md={12}>
+        <Grid item lg={8} sm={10} md={10}>
           <div class="embed-responsive embed-responsive-4by3">
             <VideoTag
               autoPlay={`${true}`}
@@ -438,8 +438,8 @@ export default function Landing() {
           <div className="row">
             <div className="col-lg-12">
               <div className="section-title text-center">
-                <h3 className="fontWeight500" style={{ paddingTop: "5ch" }}>
-                  Our Platform
+                <h3 style={{ paddingTop: "2ch" }}>
+                  Insights
                 </h3>
               </div>
             </div>
@@ -476,7 +476,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="row mt--60 mt_sm--40">
-            {featuredInstructorList.map((instructor) => (
+            {featuredInstructorList.slice(0, 10).map((instructor) => (
               <div className="col-lg-3 col-md-4 col-12" key={instructor._id}>
                 <div className="blog blog-style--1">
                   <div

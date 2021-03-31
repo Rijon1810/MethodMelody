@@ -78,24 +78,11 @@ import ViewUserProfile from "./LMS/component/ViewUserProfile.jsx";
 import Landing from "./LMS/Landing";
 import {
   ProtectedAdminRoute,
-
-
-  ProtectedInstructorRoute, ProtectedStudentRoute
+  ProtectedInstructorRoute,
+  ProtectedStudentRoute,
 } from "./LMS/routes/protected.route";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Root extends Component {
   render() {
@@ -107,7 +94,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/`}
             component={Landing}
           />
-{/*           <Route
+          {/*           <Route
             exact
             path={`${process.env.PUBLIC_URL}/landing`}
             component={Landing}
@@ -325,7 +312,7 @@ class Root extends Component {
             path={`${process.env.PUBLIC_URL}/login`}
             component={Login}
           />
-            <Route
+          <Route
             exact
             path={`${process.env.PUBLIC_URL}/signup`}
             component={Signup}
