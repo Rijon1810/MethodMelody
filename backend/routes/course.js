@@ -211,19 +211,40 @@ router.route("/addVideo").post((req, res) => {
 });
 
 router.route("/search").get((req, res) => {
-  var query = {};
-  for (var key in req.query) {
-    query[key] = new RegExp(`${req.query[key]}`, "i");
-  }
-  Course.find(query)
-    .then((doc) => {
-      if (doc) {
-        res.status(200).json(doc);
-      } else {
-        res.status(404).json(doc);
-      }
-    })
-    .catch((err) => res.status(400).json("Error: " + err));
+     let keyword,instructor,type;
+     keyword = req.query.catagory;
+     instructor = req.query.instructor;
+     type = req.query.type;
+     console.log( keyword, instructor, type);
+     console.log(type ,"type");
+     if((keyword==="undefined" || instructor==="undefined" || type==="undefined") || (keyword==="" && instructor==="" &&type===""))
+     {
+      Course.find({})
+      .then((doc) => {
+        if (doc) {
+          res.status(200).json(doc);
+        } else {
+          res.status(404).json(doc);
+        }
+      })
+      .catch((err) => res.status(400).json("Error: " + err));
+     }
+     else {
+
+       docs = [{ catagory : keyword} ,{ instructor : instructor} , {courseType : type}]
+       Course.find({$or : docs})
+       .then((doc) => {
+         if (doc) {
+           console.log(doc);
+           res.status(200).json(doc);
+         } else {
+           res.status(404).json(doc);
+         }
+       })
+       .catch((err) => res.status(400).json("Error: " + err));
+     }
+
+
 });
 
 router.route("/filter").get((req, res) => {

@@ -19,16 +19,16 @@ export const getSelectedInstructorId = (instructor) => (dispatch) => {
   });
 };
 
-export const getSelectedCourseCategory = (category) => (dispatch) => {
+export const getSelectedCourseCategory = (category,instructor,type) => (dispatch) => {
   dispatch({
     type: GET_SELECTED_COURSE_CATEGORY,
     payload: [],
   });
   console.log(`course category locked = ${category}`);
-  let url = `course/search?catagory=${category}`;
-  if(category===""){
+  let url = `course/search?catagory=${category}&instructor=${instructor}&type=${type}`;
+ /*  if(category===""){
     url = `course/search?catagory=`
-  }
+  } */
   axios
     .get(url, {
       headers: {

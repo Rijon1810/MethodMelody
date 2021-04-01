@@ -99,8 +99,7 @@ class ContactFilter extends Component {
                             name="courseType"
                             className="form-control"
                             onSelect={(e) => {
-                              console.log(e.target.value);
-                              this.setState({ courseType: e.target.value });
+                              courseType(e.target.value)
                             }}
                           >
                             <option value="beginner">Beginner</option>
