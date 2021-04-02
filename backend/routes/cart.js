@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Mongoose = require("mongoose");
 const User = require("../models/User.model");
+const Cupon = require("../models/Cupon.model");
 const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = "rokaiyaothoi@gmail.com";
 // const Purchase = require("../models/Purchase.model");
@@ -255,5 +256,33 @@ router.route("/remove_all").post((req, res) => {
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
+router
+  .route("/cupon")
+  .post((req, res) => {
+    const cuponCode = req.body.cuponCode;
+    const discount = req.body.discount;
+    const useLimit = req.body.useLimit;
+    const expireDate = req.body.expireDate;
 
+
+            const newCupon = new Cupon({
+              cuponCode,
+              discount,
+              useLimit,
+              expireDate
+
+            });
+            newCupon
+              .save()
+              .then((doc)=>{
+                res.status(201).json(doc)
+                console.log(doc);
+              }
+              
+              )
+              .catch((err) => res.status(500).json("Error: " + err));
+          }
+
+  );
+//signup with refercode
 module.exports = router;

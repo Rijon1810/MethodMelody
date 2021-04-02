@@ -67,6 +67,7 @@ import StudentPanel from "./LMS/component/elements/StudentPanel";
 import Login from "./LMS/component/Login";
 import Privacy from "./LMS/component/Privacy.jsx";
 import Signup from "./LMS/component/Signup";
+import Cupon from "./LMS/component/Cupon";
 import Terms from "./LMS/component/Terms.jsx";
 import UpdateCourse from "./LMS/component/UpdateCourse.jsx";
 import UpdateInstructor from "./LMS/component/UpdateInstructor.jsx";
@@ -341,6 +342,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/addcourse`}
             component={AddCourse}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/cupon`}
+            component={Cupon}
           />
           <Route
             exact

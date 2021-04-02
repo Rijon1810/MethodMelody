@@ -90,6 +90,9 @@ export default function PermanentDrawerLeft() {
       case 11:
         history.push("/createaccount");
         break;
+      case 12:
+        history.push("/cupon");
+        break;
       default:
         break;
     }
@@ -131,6 +134,34 @@ export default function PermanentDrawerLeft() {
               <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
             <ListItemText primary="Add New Course" style={{ color: "#fff" }} />
+          </ListItem>
+          <ListItem
+            button
+            key="addinstructor"
+            onClick={(event) => handleListItemClick(event, 2)}
+            selected={selectedIndex === 2}
+          >
+            <ListItemIcon>
+              <AssignmentInd style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText
+              primary="Add New Instructor"
+              style={{ color: "#fff" }}
+            />
+          </ListItem>
+        </List>
+        <Divider style={{ background: "#1d1e24" }} />
+        <List>
+          <ListItem
+            button
+            key="createcupon"
+            onClick={(event) => handleListItemClick(event, 12)}
+            selected={selectedIndex === 12}
+          >
+            <ListItemIcon>
+              <ImportContacts style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText primary="Create Cupon" style={{ color: "#fff" }} />
           </ListItem>
           <ListItem
             button

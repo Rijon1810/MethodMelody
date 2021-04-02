@@ -103,19 +103,19 @@ export default function Blog() {
     var c = { value: catagory.split(" ")[0], label: catagory };
     categoryOptions.push(c);
   });
-  categoryOptions.unshift({ value: "", label: "All" });
+  categoryOptions.unshift({ value: "All", label: "All" });
 
   var instructorOptions = [];
   instructorList.map((instructor) => {
     var i = { value: instructor._id, label: instructor.name };
     instructorOptions.push(i);
   });
-  instructorOptions.unshift({ value: "", label: "All" });
+  instructorOptions.unshift({ value: "All", label: "All" });
    var typeOptions = [];
    typeOptions.push({ value :"beginner" , label : "Beginner"})
    typeOptions.push({ value : "intermediate" , label : "Intermediate"})
    typeOptions.push({ value: "advance" , label : "Advance"})
-   typeOptions.unshift({ value: "", label: "All" });
+   typeOptions.unshift({ value: "All", label: "All" });
 
 
 
