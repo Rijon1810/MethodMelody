@@ -3,11 +3,12 @@ const Mongoose = require("mongoose");
 const User = require("../models/User.model");
 const Cupon = require("../models/Cupon.model");
 const nodemailer = require("nodemailer");
-const EMAIL_ADDRESS = "rokaiyaothoi@gmail.com";
+const EMAIL_ADDRESS = "no-reply@methodmelody.com";
 // const Purchase = require("../models/Purchase.model");
 const SSLCommerz = require("sslcommerz-nodejs");
 const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
+const { find } = require("../models/User.model");
 
 let settings = {
   isSandboxMode: true, //false if live version
@@ -62,30 +63,30 @@ router.route("/success/:userId").post(async (req, res) => {
             const mail = users.email;
             const name = users.name;
             var transporter = nodemailer.createTransport({
-              service: 'gmail',
+              service: "gmail",
               auth: {
                 user: EMAIL_ADDRESS,
-                pass: '@123rokyeaa@123rokyeaa@'
-              }
+                pass: "asdzxc12#12",
+              },
             });
-            
+
             var mailOptions = {
               from: EMAIL_ADDRESS,
               to: mail,
-              subject: 'Thanks for purchasing course - Methodmelody',
+              subject: "Thanks for purchasing course - Methodmelody",
               html: `<img src="http://methodmelody.com/assets/images/logo/logo-red.png"><h2>Thanks for purchasing course from METHODMELODY- very first music learning platform of  the country </h2><br>
                     What happens next? <br>
                     Login to your account and you will find the course in your library.<br>
                     if you have any problem while proceeding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
             };
-            
-            transporter.sendMail(mailOptions, function(error, info){
+
+            transporter.sendMail(mailOptions, function (error, info) {
               if (error) {
-              //  console.log(error);
+                //  console.log(error);
               } else {
-               // console.log('Email sent: ' + info.response);
+                // console.log('Email sent: ' + info.response);
               }
-            }); 
+            });
           }
 
           cart.cart.forEach(async (item) => {
@@ -256,33 +257,43 @@ router.route("/remove_all").post((req, res) => {
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
-router
-  .route("/cupon")
-  .post((req, res) => {
-    const cuponCode = req.body.cuponCode;
-    const discount = req.body.discount;
-    const useLimit = req.body.useLimit;
-    const expireDate = req.body.expireDate;
+router.route("/cupon").post((req, res) => {
+  const cuponCode = req.body.cuponCode;
+  const discount = req.body.discount;
+  const useLimit = req.body.useLimit;
+  const expireDate = req.body.expireDate;
 
-
-            const newCupon = new Cupon({
-              cuponCode,
-              discount,
-              useLimit,
-              expireDate
-
-            });
-            newCupon
-              .save()
-              .then((doc)=>{
-                res.status(201).json(doc)
-                console.log(doc);
-              }
-              
-              )
-              .catch((err) => res.status(500).json("Error: " + err));
-          }
-
-  );
+  const newCupon = new Cupon({
+    cuponCode,
+    discount,
+    useLimit,
+    expireDate,
+  });
+  newCupon
+    .save()
+    .then((doc) => {
+      res.status(201).json(doc);
+      console.log(doc);
+    })
+    .catch((err) => res.status(500).json("Error: " + err));
+});
+router.route("/cupon/list").get((req, res) => {
+  Cupon.find({})
+    .then((doc) => {
+      if (doc) {
+        console.log(doc);
+        res.status(200).json(doc);
+      } else {
+        res.status(404).json(doc);
+      }
+    })
+    .catch((err) => res.status(500).json("Error: " + err));
+});
+router.route("/cupon/success").post(async (req, res) => {
+  const cuponCode = req.body.cuponCode;
+  const cupon = await Cupon.findOne({ cuponCode });
+  cupon.presentCount += 1;
+  await cupon.save();
+});
 //signup with refercode
 module.exports = router;

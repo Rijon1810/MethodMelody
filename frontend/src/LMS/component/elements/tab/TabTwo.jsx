@@ -347,7 +347,7 @@ class TabsTwo extends Component {
                                 </Grid>
                                 <CopyToClipboard text={this.state.value}
                                      onCopy={() => this.setState({copied: true})}>
-                            <button>Copy to clipboard </button>
+                            <button  style={{ marginRight: 10, color: "#f9004c" }}>Copy Referal Link</button>
                              </CopyToClipboard>
 
         {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}

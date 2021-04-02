@@ -14,7 +14,7 @@ const nodemailer = require("nodemailer");
 const key = require("../key.json");
 
 //const EMAIL_ADDRESS = "info@methodmelody.com";
-const EMAIL_ADDRESS = "rokaiyaothoi@gmail.com";
+const EMAIL_ADDRESS = "no-reply@methodmelody.com";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -320,8 +320,8 @@ router
                   let mailer = nodemailer.createTransport({
                     service: "gmail",
                     auth: {
-                      user: "rokaiyaothoi@gmail.com",
-                      pass: "@123rokyeaa@123rokyeaa@",
+                      user: EMAIL_ADDRESS,
+                      pass: "asdzxc12#12",
                     },
                   });
                   const url = `http://localhost:8080/api/v1/user/confirmation/${emailToken}`;

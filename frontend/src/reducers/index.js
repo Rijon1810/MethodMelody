@@ -9,7 +9,7 @@ import { getCourseReducer, postCourseReducer , postCourseFilter } from "./course
 import getAnalyticsReducer from "./getAnalyticsReducer";
 import getSelectedIdReducer from "./getSelectedIdReducer";
 import cartStatusReducer from "./cartReducer";
-import getCuponReducer from './cuponReducer';
+import { getCuponReducer } from './cuponReducer';
 import getAllUsersReducer from "./userReducer";
 import getAllMessagesReducer from "./messageReducer";
 

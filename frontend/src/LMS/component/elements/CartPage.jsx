@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import ScrollToTop from "react-scroll-up";
 import { getCart, removeCart } from "../../../actions/cartAction";
+import { cupon, getCupon} from '../../../actions/cuponAction'
+//import { getCupon} from  '../../../'
 import Footer from "../Footer.jsx";
 import Header from "../Header.jsx";
 import PageHelmet from "../Helmet.jsx";
@@ -31,8 +33,14 @@ const CartPage = () => {
   const dispatch = useDispatch();
   let history = useHistory();
   const classes = useStyles();
+  const [useCuponCode , setUseCuponCode]= React.useState("")
   const cartItems = useSelector((state) => state.cartInfo.cart);
   const userID = useSelector((state) => state.isLogged.payload.id);
+
+   var  cuponList = JSON.parse(JSON.stringify(useSelector((state)=> state.getCupon.cuponList)))
+      console.log(cuponList);
+  
+  //console.log("cupon list" + cuponList);
   let total = 0;
   console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
@@ -62,15 +70,35 @@ const CartPage = () => {
     var val = Math.min(referralBonus, total);
     total = total - val;
   }
+  for (var j = 0; j < cartCoursesList.length; j++) {
+    console.log(cartCoursesList[j]._id);
+    if (cartCoursesList[j]._id === remove) {
+      cartCoursesList.splice(j, 1);
+    }
+  }
+  
+  for ( j = 0; j < cuponList.length; j++) {
+    if (cuponList[j].cuponCode=== useCuponCode) {
+       var discount = parseFloat(cuponList[j].discount)
+       discount = discount / 100.00;
+       console.log("discafdsf",discount);
+       total = (total - (discount*total));
+       total=Math.max(total, 0)
+          break;
+    }
+  }
+  
+
 
   useEffect(() => {
     dispatch(getCart(`${userID}`));
-    for (var j = 0; j < cartCoursesList.length; j++) {
-      if (cartCoursesList[j]._id === remove) {
-        cartCoursesList.splice(j, 1);
-      }
-    }
-  }, [dispatch, cartCoursesList, userID, remove]);
+    dispatch(getCupon());
+  }, [ ]);
+  const inputHandler = (e)=>{
+           e.preventDefault();
+           setUseCuponCode(e.target.value);
+           console.log(e.target.value);
+  }
   return (
     <React.Fragment>
       {" "}
@@ -157,6 +185,15 @@ const CartPage = () => {
                     </div>
                     <div className="col">
                       <h6 style={{ color: "#b12222" }}>৳{referralBonus}</h6>
+                    </div>
+                  </div>
+                  <div className="row d-flex justify-content-end">
+                  <div className="col">
+                      <h6 className="text-white">Enter Cupon code: </h6>
+                    </div>
+                    <div className="col">
+                      <input type="text" onChange={inputHandler}  style={{ color: "#b12222" }}/>
+                    {/*   <h6 style={{ color: "#b12222" }}>৳{referralBonus}</h6> */}
                     </div>
                   </div>
                   <div className="row d-flex align-items-center ">

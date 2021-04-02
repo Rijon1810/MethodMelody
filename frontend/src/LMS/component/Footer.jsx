@@ -31,7 +31,7 @@ class Footer extends Component {
                   <div className="inner">
                     <span>Ready To Do This</span>
                     <h2>
-                      Let's get <br /> to work
+                      Let's Play <br /> The Music
                     </h2>
                     <Link className="rn-button-style--2" to="/contact">
                       <span>Contact Us</span>
@@ -50,16 +50,18 @@ class Footer extends Component {
                         <h4 className="theme-gradient">Explore</h4>
                         <ul className="ft-link">
                           <li>
+                            <Link to="/instructorlist">Musicians</Link>
+                          </li>
+                          <li>
                             <Link to="/allcourses">Courses</Link>
                           </li>
                           <li>
+                            <Link to="/allcourses">On sale Courses</Link>
                           </li>
-                          {/* <li>
-                            <a href="/contact">Articles</a>
-                          </li> */}
-                          {/* <li>
-                            <a href="/contact">Sitemap</a>
-                          </li> */}
+                          <li>
+                            <Link to="/#">Events</Link>
+                          </li>
+
                         </ul>
                       </div>
                     </div>
@@ -94,19 +96,16 @@ class Footer extends Component {
                                      <div className="col-lg-4 col-sm-6 col-12 mt_mobile--30">
                       <div className="footer-link">
                         <h4 className="theme-gradient">Social</h4>
-                        <ul className="ft-link">
+{/*                         <ul className="ft-link">
                           <li>
-                            <Link to="mailto:hr@example.com">
-                              info@methodmelody.com
-                            </Link>
                           </li>
-                        </ul>
+                        </ul> */}
 
                         <div className="social-share-inner">
                           <ul className="social-share social-style--2 d-flex justify-content-start liststyle mt--15">
                             {SocialShare.map((val, i) => (
                               <li key={i}>
-                                <Link to={`${val.link}`}>{val.Social}</Link>
+                                <a href={`${val.link}`}>{val.Social}</a>
                               </li>
                             ))}
                           </ul>
