@@ -45,7 +45,7 @@ router.route("/").post((req, res) => {
                   }
                 )
                   .then((doc) => {
-                    console.log(doc);
+                    //console.log(doc);
                     res
                       .status(200)
                       .json(parseFloat(price - (10 * price) / 100));

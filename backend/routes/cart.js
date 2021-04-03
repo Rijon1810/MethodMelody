@@ -107,10 +107,10 @@ router.route("/success/:userId").post(async (req, res) => {
                 }
               )
               .then((buy) => {
-                console.log(buy.data);
+              //  console.log(buy.data);
               })
               .catch((a) => {
-                console.log(a);
+              //  console.log(a);
               })
               .then(async () => {
                 await axios
@@ -127,11 +127,11 @@ router.route("/success/:userId").post(async (req, res) => {
                     }
                   )
                   .then((cartRemove) => {
-                    console.log(cartRemove.data.message);
+                 //   console.log(cartRemove.data.message);
                     res.redirect("http://localhost:8080/studentpanel");
                   })
                   .catch((a) => {
-                    console.log(a);
+                  //  console.log(a);
                   });
               });
           });
@@ -195,7 +195,7 @@ router.route("/ssl").post((req, res) => {
       res.status(200).json(response);
     })
     .catch((error) => {
-      console.log(error);
+   //   console.log(error);
     });
 });
 
@@ -273,7 +273,7 @@ router.route("/cupon").post((req, res) => {
     .save()
     .then((doc) => {
       res.status(201).json(doc);
-      console.log(doc);
+   //   console.log(doc);
     })
     .catch((err) => res.status(500).json("Error: " + err));
 });
@@ -281,7 +281,7 @@ router.route("/cupon/list").get((req, res) => {
   Cupon.find({})
     .then((doc) => {
       if (doc) {
-        console.log(doc);
+    //    console.log(doc);
         res.status(200).json(doc);
       } else {
         res.status(404).json(doc);

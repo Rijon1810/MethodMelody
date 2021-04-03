@@ -1,16 +1,20 @@
+var path = require("path");
 const express = require("express");
+require("dotenv").config();
 const cors = require("cors");
 const mongoose = require("mongoose");
-var path = require("path");
 var bodyParser = require("body-parser");
-
-require("dotenv").config();
+const morgan = require("morgan")
 
 const app = express();
-const port = process.env.PORT || 5000;
+if(process.env.NODE_ENV ==="development"){
+  app.use(morgan('dev'))
+}
+
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
+
 
 app.use(cors());
 app.use(express.json());
@@ -71,6 +75,7 @@ const User = require("./models/User.model");
 const Course = require("./models/Course.model");
 
 const { apiAuth, my_cors } = require("./middleware/authentication");
+
 
 cron.schedule(
   "00 00 12 * * 0-6",
@@ -179,10 +184,22 @@ app.use(
 app.get("/storage(/*)?", (req, res) => {
   res.sendStatus(403);
 });
-app.get("(/*)?", function (req, res) {
+/* app.get("(/*)?", function (req, res) {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});
+}); */
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  )
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running....')
+  })
+}
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });

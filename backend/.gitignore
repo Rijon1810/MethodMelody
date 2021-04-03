@@ -12,8 +12,8 @@ package-lock.json
 /storage
 
 # production
-/build
-.env
+/frontend/build
+#.env
 
 *.tmp*
 

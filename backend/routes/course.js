@@ -215,8 +215,8 @@ router.route("/search").get((req, res) => {
      keyword = req.query.catagory;
      instructor = req.query.instructor;
      type = req.query.type;
-     console.log( keyword, instructor, type);
-     console.log(type ,"type");
+    // console.log( keyword, instructor, type);
+     //console.log(type ,"type");
      if((keyword==="undefined" || instructor==="undefined" || type==="undefined") || (keyword==="" && instructor==="" &&type===""))
      {
       Course.find({})
@@ -235,7 +235,7 @@ router.route("/search").get((req, res) => {
        Course.find({$or : docs})
        .then((doc) => {
          if (doc) {
-           console.log(doc);
+          // console.log(doc);
            res.status(200).json(doc);
          } else {
            res.status(404).json(doc);
@@ -252,7 +252,7 @@ router.route("/filter").get((req, res) => {
   var catagory = req.param('catagory')
   var courseType = req.param('coursetype')
   var instructor= req.param('instructorId')
-  console.log(catagory + " " + courseType + " "+ instructor);
+  //console.log(catagory + " " + courseType + " "+ instructor);
 
   Course.find({ catagory : catagory, courseType: courseType })
     .then((doc) => {

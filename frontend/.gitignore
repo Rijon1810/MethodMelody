@@ -7,9 +7,9 @@
 
 # testing
 /coverage
-.env
+#.env
 # production
-/build
+/frontend/build
 /.vscode
 
 # misc

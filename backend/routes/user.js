@@ -250,7 +250,7 @@ router
     const email = req.body.email;
     const password = req.body.password;
     const refercode = req.body.refercode;
-    console.log(refercode);
+    //console.log(refercode);
     var refBonus = 0;
 
     if (refercode !== "undefined") {
@@ -335,7 +335,7 @@ router
                     if you have any problem while proceeding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
                   });
                 } catch (err) {
-                  console.log(err);
+                //  console.log(err);
                 }
                 Analytics.findOneAndUpdate(
                   { _id: "5fdb01d70379f5528c7f8928" },
