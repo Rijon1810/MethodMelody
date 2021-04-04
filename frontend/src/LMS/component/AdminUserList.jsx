@@ -1,23 +1,30 @@
+import React, { useState, useEffect } from "react";
 import {
-    Card,
-
-
-
-    CardContent, CardMedia, makeStyles
+  makeStyles,
+  Card,
+  CardMedia,
+  Button,
+  Typography,
+  CardContent,
 } from "@material-ui/core";
-import React, { useEffect } from "react";
+import { Link} from 'react-router-dom'
 import { FiChevronUp } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
 import ScrollToTop from "react-scroll-up";
-import { getUser, suspend } from "../../actions/userAction";
-import AdminDrawer from "./elements/AdminDrawer.jsx";
-import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 import PageHelmet from "./Helmet.jsx";
+import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import AdminDrawer from "./elements/AdminDrawer.jsx";
+import { useSelector, useDispatch } from "react-redux";
 
+import { getCourse } from "../../actions/courseAction";
+import {
+  getSelectedCourseId,
+  getSelectedInstructorId,
+  getCurrentVideoIndex,
+} from "../../actions/getSelectedIdAction";
 
+import { getUser, suspend } from "../../actions/userAction";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -137,7 +144,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://localhost:8080/${user.photo}`}
+                      image={`http://63.250.33.174/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -201,7 +208,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://localhost:8080/${user.photo}`}
+                      image={`http://63.250.33.174/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -265,7 +272,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://localhost:8080/${user.photo}`}
+                      image={`http://63.250.33.174/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -329,7 +336,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://localhost:8080/${user.photo}`}
+                      image={`http://63.250.33.174/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -395,7 +402,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://localhost:8080/${user.photo}`}
+                      image={`http://63.250.33.174/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>

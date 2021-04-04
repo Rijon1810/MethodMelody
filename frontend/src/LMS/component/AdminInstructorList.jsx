@@ -1,20 +1,22 @@
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
-import React, { useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
 import ScrollToTop from "react-scroll-up";
-import {
-    getSelectedInstructorId
-} from "../../actions/getSelectedIdAction";
-import { getInstructor } from "../../actions/instructorAction";
-import axios from "../api/Config";
-import AdminDrawer from "./elements/AdminDrawer.jsx";
-import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import Footer from "./Footer.jsx";
+import { Link} from 'react-router-dom'
 import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 import PageHelmet from "./Helmet.jsx";
+import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import AdminDrawer from "./elements/AdminDrawer.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "../api/Config";
 
+import { getInstructor } from "../../actions/instructorAction";
+import {
+  getSelectedCourseId,
+  getSelectedInstructorId,
+  getCurrentVideoIndex,
+} from "../../actions/getSelectedIdAction";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -158,7 +160,7 @@ const AdminInstructorList = () => {
                           <Link to="/instructorview">
                             <img
                               className="w-100"
-                              src={`htpp://localhost:8080/${instructor.photo}`}
+                              src={`http://63.250.33.174/${instructor.photo}`}
                               alt="Blog Images"
                             />
                           </Link>
@@ -234,7 +236,7 @@ const AdminInstructorList = () => {
                           <Link to="/instructorview">
                             <img
                               className="w-100"
-                              src={`htpp://localhost:8080/${instructor.photo}`}
+                              src={`http://63.250.33.174/${instructor.photo}`}
                               alt="Blog Images"
                             />
                           </Link>

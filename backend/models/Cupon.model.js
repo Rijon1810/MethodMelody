@@ -8,7 +8,6 @@ var CuponSchema = new Schema(
 		useLimit: { type: Number },
 		expireDate: { type: String  , required: true },
 		presentCount: { type: Number, default: 0 },
-		whoUsed : [{type : String}]
 	},
 	{ timestamps: true }
 );

@@ -1,8 +1,11 @@
-import React, { Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
-import { getSelectedCourseId, getSelectedInstructorId } from "../../../../actions/getSelectedIdAction";
+import React, { Component, Fragment } from "react";
+import BlogContent from "./BlogContent.jsx";
+import { Link} from 'react-router-dom'
 
+import { connect } from "react-redux";
+import { getCourse } from "../../../../actions/courseAction";
+import { useSelector, useDispatch } from "react-redux";
+import {getSelectedCourseId,getSelectedInstructorId} from "../../../../actions/getSelectedIdAction";
 
 const BLogList = () => {
   const courseList = useSelector((state) => state.getCourse.courseList);
@@ -44,7 +47,7 @@ const BLogList = () => {
                 <Link to="/courseview">
                   <img
                     className="w-100"
-                    src={`htpp://localhost:8080/` + course.thumbnail}
+                    src={`http://63.250.33.174/` + course.thumbnail}
                     alt="Blog Images"
                   />
                 </Link>

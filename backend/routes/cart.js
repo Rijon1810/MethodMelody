@@ -28,22 +28,6 @@ router.route("/success/:userId").post(async (req, res) => {
     },
   })
     .then(async (doc) => {
-      console.log("I from ssl commezr",doc.data);
-      const cuponCode = doc.data.value_b;
-      const codeUseOrNot = doc.data.value_a;
-      if(codeUseOrNot==="true")
-      {
-       const cupon = await Cupon.findOne({ cuponCode});
-       cupon.presentCount = cupon.presentCount + 1;
-       cupon.whoUsed.push(user);
-
-       await cupon.save();
-
-      }
-
-
-
-
       await User.findOneAndUpdate(
         { _id: user },
         {
@@ -144,7 +128,7 @@ router.route("/success/:userId").post(async (req, res) => {
                   )
                   .then((cartRemove) => {
                  //   console.log(cartRemove.data.message);
-                    res.redirect("http://localhost:/studentpanel");
+                    res.redirect("http://localhost:8080/studentpanel");
                   })
                   .catch((a) => {
                   //  console.log(a);
@@ -166,9 +150,6 @@ router.route("/ssl").post((req, res) => {
   const total_amount = req.body.total_amount;
   const discount_amount = req.body.discount_amount;
   const cus_name = req.body.cus_name;
-  //cupon code use or not
-  const value_a = req.body.value_a;
-  const value_b = req.body.value_b;
   const cus_phone = req.body.cus_phone;
   const cus_email = req.body.email;
   const cus_add1 = req.body.cus_add1;
@@ -207,8 +188,6 @@ router.route("/ssl").post((req, res) => {
   post_body["product_category"] = "ecommerce";
   post_body["product_profile"] = "non-physical-goods";
   post_body["product_amount"] = total_amount;
-  post_body["value_a"]=value_a;
-  post_body["value_b"] = value_b;
 
   sslcommerz
     .init_transaction(post_body)

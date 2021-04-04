@@ -1,46 +1,53 @@
+import React, { useEffect, useState } from "react";
+import { useHistory, Link } from "react-router-dom";
+
+import Slider from "react-slick";
+import ScrollToTop from "react-scroll-up";
+import { FiChevronUp } from "react-icons/fi";
+import "react-accessible-accordion/dist/fancy-example.css";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemPanel,
+  AccordionItemButton,
+} from "react-accessible-accordion";
+import { videoTagString, VideoTag } from "react-video-tag";
+
 //importing material components
 import { Grid } from "@material-ui/core";
-import { ShoppingCart } from "@material-ui/icons";
-import React, { useEffect } from "react";
+import { ShoppingCart, Book, RemoveShoppingCart } from "@material-ui/icons";
+import { portfolioSlick2 } from "../page-demo/script";
+//importing custom components
+
+import Header from "./component/Header.jsx";
+import Footer from "./component/Footer.jsx";
+import { slideSlick } from "./page-demo/script";
+import Portfolio from "./component/Portfolio.jsx";
+import CounterOne from "./component/CounterOne.jsx";
+import ContactOne from "./component/ContactOne.jsx";
+// import BlogContent from "./component/elements/blog/BlogContent.jsx";
+import Team from "./component/Team.jsx";
+import Testimonial from "./component/TestimonialOne.jsx";
+import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
+
+import { useSelector, useDispatch } from "react-redux";
 import {
-    Accordion,
-    AccordionItem,
-
-
-    AccordionItemButton, AccordionItemHeading,
-    AccordionItemPanel
-} from "react-accessible-accordion";
-import "react-accessible-accordion/dist/fancy-example.css";
-import { FiChevronUp } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import ScrollToTop from "react-scroll-up";
-import Slider from "react-slick";
-import { VideoTag } from "react-video-tag";
+  getInstructor,
+  getFeaturedInstructor,
+} from "../actions/instructorAction";
 import { getCart, postCart } from "../actions/cartAction";
 import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
 import {
-    getCurrentVideoIndex,
-    getSelectedCourseCategory, getSelectedCourseId,
-    getSelectedInstructorId
+  getSelectedCourseId,
+  getSelectedInstructorId,
+  getCurrentVideoIndex,
+  getSelectedCourseCategory,
 } from "../actions/getSelectedIdAction";
-import {
-    getFeaturedInstructor, getInstructor
-} from "../actions/instructorAction";
 // import { getCurrentMessageById, getPreviousMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
-import { portfolioSlick2 } from "../page-demo/script";
-import ContactOne from "./component/ContactOne.jsx";
-import CounterOne from "./component/CounterOne.jsx";
-import ServiceTwo from "./component/elements/service/ServiceTwo.jsx";
-import Footer from "./component/Footer.jsx";
-//importing custom components
-import Header from "./component/Header.jsx";
-import { slideSlick } from "./page-demo/script";
-
-
-
+import { postWishListCourse, removeWishList } from "../actions/wishListAction";
 
 //constants
 const SlideList = [
@@ -356,7 +363,7 @@ export default function Landing() {
                         <div className="thumbnail">
                           <Link to="/courseview">
                             <img
-                              src={`htpp://localhost:8080/${course.thumbnail}`}
+                              src={`http://63.250.33.174/${course.thumbnail}`}
                               alt="Blog Images"
                             />
                           </Link>
