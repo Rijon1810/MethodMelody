@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
-import { portfolioSlick2 } from "../page-demo/script";
-import { Link} from 'react-router-dom'
-
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import Slider from "react-slick";
 import { getCourse } from "../../actions/courseAction";
+import { portfolioSlick2 } from "../page-demo/script";
+
 
 //importing custom scripts
 
@@ -77,7 +77,7 @@ class Portfolio extends Component {
                     {/* <div className={`thumbnail ${"http://162.0.231.67"+course.thumbnail}`}></div>
                                         <div className={`bg-blr-image ${"http://162.0.231.67"+course.thumbnail}`}></div> */}
                     <img
-                      src={"http://63.250.33.174/" + course.thumbnail}
+                      src={"htpp://localhost:8080/" + course.thumbnail}
                       width="100%"
                     />
                   </div>
