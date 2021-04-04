@@ -1,10 +1,8 @@
-import React, { Component, Fragment } from "react";
-import { Link} from 'react-router-dom'
-
-import { connect } from "react-redux";
-import { getInstructor } from "../../../../actions/instructorAction";
-import { useSelector, useDispatch } from "react-redux";
+import React, { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import { getSelectedInstructorId } from "../../../../actions/getSelectedIdAction";
+
 const InstructorList = () => {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
@@ -28,7 +26,7 @@ const InstructorList = () => {
                 <Link to="/instructorview">
                   <img
                     className="w-100"
-                    src={`http://63.250.33.174/` + instructor.photo}
+                    src={`htpp://localhost:8080/` + instructor.photo}
                     alt="Blog Images"
                   />
                 </Link>

@@ -1,39 +1,35 @@
-import React, { Component } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import Pagination from "../common/Pagination.jsx";
-import BlogList from "../blog/ClassroomCourseList.jsx";
-import WishList from "../blog/WishList.jsx";
-import PurchaseHistoryList from "../blog/PurchaseHistoryList.jsx";
-import { connect } from "react-redux";
-import { getCourse } from "../../../../actions/courseAction";
-import { isLogged } from "../../../../actions/isLoggedAction";
-import { getUserCourse, updateUser } from "../../../../actions/userAction";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import{ Link} from 'react-router-dom'
 import {
-  makeStyles,
-  Card,
-  CardMedia,
-  Button,
-  Typography,
-  CardContent,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Divider,
-  Avatar,
-  Grid,
-} from "@material-ui/core";
+    Card,
 
+
+
+
+
+
+
+
+    Divider,
+
+    Grid, List
+} from "@material-ui/core";
 import {
-  MailOutline,
-  Event,
-  LocalOffer,
-  AssignmentInd,
+    AssignmentInd, Event,
+    LocalOffer, MailOutline
 } from "@material-ui/icons";
+import React, { Component } from "react";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { getCourse } from "../../../../actions/courseAction";
+import { getUserCourse, updateUser } from "../../../../actions/userAction";
+import BlogList from "../blog/ClassroomCourseList.jsx";
+import PurchaseHistoryList from "../blog/PurchaseHistoryList.jsx";
+import WishList from "../blog/WishList.jsx";
+import Pagination from "../common/Pagination.jsx";
+
 //importing material components
 // import { Grid } from "@material-ui/core";
 
@@ -246,7 +242,7 @@ class TabsTwo extends Component {
                                   {this.state.rnPhotoSnap == "" ? (
                                     <img
                                       className="w-100"
-                                      src={`http://63.250.33.174/${this.props.profile.photo}`}
+                                      src={`htpp://localhost:8080/${this.props.profile.photo}`}
                                       alt="Blog Images"
                                     />
                                   ) : (

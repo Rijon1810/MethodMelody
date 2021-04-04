@@ -1,15 +1,11 @@
-import React, { Component, Fragment, useState, useEffect } from "react";
-import BlogContent from "./BlogContent.jsx";
-import { Link} from 'react-router-dom'
-import { connect } from "react-redux";
-import { getCourse } from "../../../../actions/courseAction";
-import { useSelector, useDispatch } from "react-redux";
+import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import {
-  getSelectedCourseId,
-  getSelectedInstructorId,
+    getSelectedCourseId,
+    getSelectedInstructorId
 } from "../../../../actions/getSelectedIdAction";
 import { getUserCourse } from "../../../../actions/userAction";
-import { removeWishList } from "../../../../actions/wishListAction";
 
 const PurchaseHistoryList = () => {
   console.log("Inside Purchase History");
@@ -71,7 +67,7 @@ const PurchaseHistoryList = () => {
                 <Link to="/courseview">
                   <img
                     className="w-100"
-                    src={`http://63.250.33.174/` + course.thumbnail}
+                    src={`htpp://localhost:8080/` + course.thumbnail}
                     alt="Blog Images"
                   />
                 </Link>

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import ScrollToTop from "react-scroll-up";
 import { getCart, removeCart } from "../../../actions/cartAction";
-import { cupon, getCupon} from '../../../actions/cuponAction'
+import { getCupon } from "../../../actions/cuponAction";
 //import { getCupon} from  '../../../'
 import Footer from "../Footer.jsx";
 import Header from "../Header.jsx";
@@ -33,18 +33,20 @@ const CartPage = () => {
   const dispatch = useDispatch();
   let history = useHistory();
   const classes = useStyles();
-  const [useCuponCode , setUseCuponCode]= React.useState("")
+  const [useCuponCode, setUseCuponCode] = React.useState("");
   const cartItems = useSelector((state) => state.cartInfo.cart);
   const userID = useSelector((state) => state.isLogged.payload.id);
 
-   var  cuponList = JSON.parse(JSON.stringify(useSelector((state)=> state.getCupon.cuponList)))
-      console.log(cuponList);
-  
+  var cuponList = JSON.parse(
+    JSON.stringify(useSelector((state) => state.getCupon.cuponList))
+  );
+  console.log(cuponList);
+
   //console.log("cupon list" + cuponList);
   let total = 0;
   console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
-  var referralBonus = 0;
+  let referralBonus = 0;
   referralBonus = parseFloat(
     useSelector((state) => state.getAllUsers.getUserCourse.balance)
   );
@@ -76,34 +78,44 @@ const CartPage = () => {
       cartCoursesList.splice(j, 1);
     }
   }
-  
-  for ( j = 0; j < cuponList.length; j++) {
-    if (cuponList[j].cuponCode=== useCuponCode) {
-       var discount = parseFloat(cuponList[j].discount)
-       discount = discount / 100.00;
-       console.log("discafdsf",discount);
-       total = (total - (discount*total));
-       total=Math.max(total, 0)
-          break;
+  var value_a = false;
+  var value_b;
+  var isoDate = new Date().toISOString();
+  var today = isoDate.slice(0, 10);
+
+
+  for (j = 0; j < cuponList.length; j++) {
+    if (
+      cuponList[j].cuponCode === useCuponCode &&
+      cuponList[j].useLimit >= cuponList[j].presentCount &&
+      cuponList[j].expireDate >= today
+    ) {
+      console.log(today + " " + cuponList[j].expireDate);
+      var discount = parseFloat(cuponList[j].discount);
+      discount = discount / 100.0;
+      console.log("discafdsf", discount);
+      total = total - discount * total;
+      total = Math.max(total, 0);
+      value_a = true;
+      value_b = useCuponCode;
+      break;
     }
   }
-  
-
 
   useEffect(() => {
     dispatch(getCart(`${userID}`));
     dispatch(getCupon());
-  }, [ ]);
-  const inputHandler = (e)=>{
-           e.preventDefault();
-           setUseCuponCode(e.target.value);
-           console.log(e.target.value);
-  }
+  }, [dispatch, userID]);
+  const inputHandler = (e) => {
+    e.preventDefault();
+    setUseCuponCode(e.target.value);
+    console.log(e.target.value);
+  };
   return (
     <React.Fragment>
       {" "}
       <PageHelmet pageTitle="Cart" />
-      <main style={{backgroundColor: "#262626"}}>
+      <main style={{ backgroundColor: "#262626" }}>
         {" "}
         <Header from="admin" />
         <Breadcrumb from="cart" />
@@ -115,7 +127,7 @@ const CartPage = () => {
                   <Card className={classes.root} raised="true">
                     <CardMedia
                       className={classes.cover}
-                      image={`http://63.250.33.174/${course.thumbnail}`}
+                      image={`htpp://localhost:8080/${course.thumbnail}`}
                       title="Live from space album cover"
                     />
                     <CardContent>
@@ -176,11 +188,11 @@ const CartPage = () => {
                     <div className="col">
                       <h6 style={{ color: "#b12222" }}>৳{subTotal}</h6>
                     </div>
-                  </div> 
+                  </div>
                   {/* end of row */}
                   {/* referral bonus */}
                   <div className="row d-flex justify-content-end">
-                  <div className="col">
+                    <div className="col">
                       <h6 className="text-white">Referal Bonus: </h6>
                     </div>
                     <div className="col">
@@ -188,23 +200,26 @@ const CartPage = () => {
                     </div>
                   </div>
                   <div className="row d-flex justify-content-end">
-                  <div className="col">
+                    <div className="col">
                       <h6 className="text-white">Enter Cupon code: </h6>
                     </div>
                     <div className="col">
-                      <input type="text" onChange={inputHandler}  style={{ color: "#b12222" }}/>
-                    {/*   <h6 style={{ color: "#b12222" }}>৳{referralBonus}</h6> */}
+                      <input
+                        type="text"
+                        onChange={inputHandler}
+                        style={{ color: "#b12222" }}
+                      />
+                      {/*   <h6 style={{ color: "#b12222" }}>৳{referralBonus}</h6> */}
                     </div>
                   </div>
                   <div className="row d-flex align-items-center ">
-                  <div className="col">
+                    <div className="col">
                       <h4 className="text-white">Total: </h4>
                     </div>
                     <div className="col">
                       <h4 style={{ color: "#b12222" }}>৳{total}</h4>
                     </div>
-                    </div>
-
+                  </div>
 
                   <div className="blog-btn mt--20">
                     <Link
@@ -214,7 +229,7 @@ const CartPage = () => {
                         e.preventDefault();
                         axios
                           .post(
-                            "http://63.250.33.174/api/v1/cart/ssl/",
+                            "http://localhost:8080/api/v1/cart/ssl/",
                             {
                               total_amount: "1000",
                               discount_amount: "0",
@@ -228,6 +243,9 @@ const CartPage = () => {
                               num_of_item: "3",
                               product_name: "Course",
                               cart: { id: userID, course: [] },
+                              //cuponCode Used or not
+                              value_a: value_a,
+                              value_b: value_b,
                               currency: "BDT",
                             },
                             {

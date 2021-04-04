@@ -1,32 +1,32 @@
 import {
-  Avatar, Backdrop,
+    Avatar, Backdrop,
 
 
 
-  Fade,
-  IconButton, List,
-  ListItem,
+    Fade,
+    IconButton, List,
+    ListItem,
 
-  ListItemText, makeStyles,
-
-
+    ListItemText, makeStyles,
 
 
 
 
-  Modal
+
+
+    Modal
 } from "@material-ui/core";
 import {
-  Cancel, Description, FilterNone, Lock,
+    Cancel, Description, FilterNone, Lock,
 
-  OndemandVideo, PlayArrow,
-
-
+    OndemandVideo, PlayArrow,
 
 
 
 
-  Smartphone, Timer, VerifiedUser
+
+
+    Smartphone, Timer, VerifiedUser
 } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
@@ -240,7 +240,7 @@ export default function CourseView(props) {
                 {" "}
                 <Avatar
                   alt={selectedInstructor.name}
-                  src={"http://63.250.33.174/" + selectedInstructor.photo}
+                  src={"htpp://localhost:8080/" + selectedInstructor.photo}
                   className={classes.large}
                   // style={avatar}
                 />
@@ -373,7 +373,7 @@ export default function CourseView(props) {
           <div onContextMenu={(e) => e.preventDefault()} className="col-lg-9">
             <ReactPlayer
               url={
-                "http://63.250.33.174/" +
+                "htpp://localhost:8080/" +
                 selectedCourse.videos[selectedLesson].path
               }
               config={{
