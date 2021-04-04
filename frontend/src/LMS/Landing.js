@@ -481,7 +481,7 @@ export default function Landing() {
                     <Link to="/instructorview">
                       <img
                         className="w-100"
-                        src={`http://63.250.33.174/${instructor.photo}`}
+                        src={`http://localhost:8080/${instructor.photo}`}
                         alt="Blog Images"
                       />
                     </Link>

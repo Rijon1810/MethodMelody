@@ -1,7 +1,5 @@
-import React, { Component } from "react";
-import { FiCast, FiLayers, FiUsers, FiMonitor, FiMusic } from "react-icons/fi";
-import { Link} from 'react-router-dom'
-import { Avatar } from "@material-ui/core";
+import React from "react";
+import { Link } from 'react-router-dom';
 
 export default function ServiceTwo() {
   const ServiceList = [
@@ -30,7 +28,7 @@ export default function ServiceTwo() {
         "The keyboardist plays a vital role in keeping the harmony of the song set. It works like a chaperone, guiding all the members through the song!",
     },
     {
-      icon: <FiMusic />,
+      icon: `/assets/images/icons/engineering.png`,
       title: "Sound Engineering",
       description:
         "Sound engineer works in order to produce the best output of the instruments playing so the end result has the best quality possible!",
