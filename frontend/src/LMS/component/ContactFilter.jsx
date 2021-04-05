@@ -26,6 +26,7 @@ class ContactFilter extends Component {
       "Percussion",
       "Piano & Keyboard",
       "Sound Engineering",
+      
     ];
     return (
       <div className="contact-form--1">

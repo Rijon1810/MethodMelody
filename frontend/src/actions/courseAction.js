@@ -51,6 +51,7 @@ export const getCourse = () => (dispatch) => {
       },
     })
     .then((res) => {
+      console.log("this is another problem",res.data);
       dispatch({
         type: GET_CATAGORY,
         payload: res.data,

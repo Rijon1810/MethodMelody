@@ -83,7 +83,16 @@ export default function Header(props) {
     (state) => state.getInstructor.instructorList
   );
 
-  const catagory_data = useSelector((state) => state.getCourse.catagoryList);
+  const catagory_datas = useSelector((state) => state.getCourse.catagoryList);
+  //console.log("this is the problem",catagory_datas);
+  var catagory_data=[];
+  for(var i=0;i<catagory_datas.length;i++){
+    if(catagory_datas[i]){
+          catagory_data.push(catagory_datas[i])
+    }
+
+  }
+  //console.log("is it ok",catagory_data);
 
   // const PostList = BlogContent.slice(0, 4);
   // dispatch(getInstructor());
