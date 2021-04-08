@@ -85,7 +85,7 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = React.useState("");
   const [selectedInstructor, setSelectedInstructor] = React.useState("");
   const [selectedCourseType, setSelectedCourseType] = React.useState("");
-
+      
   const classes = useStyles();
   const catagory_data = useSelector((state) => state.getCourse.catagoryList);
   const instructorList = useSelector(
@@ -199,6 +199,7 @@ export default function Blog() {
               <div className="row">
                 <div className="col-4">
                   {console.log(`category = ${catagory_data}`)}
+                  <h3 className="theme-gradient">Instrument</h3>
                   <Select
                     className="basic-single"
                     classNamePrefix="select category"
@@ -212,6 +213,7 @@ export default function Blog() {
                   />
                 </div>
                 <div className="col-4">
+                <h3 className="theme-gradient">Artist</h3>
                   <Select
                     className="basic-single"
                     classNamePrefix="select category"
@@ -226,6 +228,7 @@ export default function Blog() {
                 </div>
 
                 <div className="col-4">
+                <h3 className="theme-gradient">Level</h3>
                   <Select
                     className="basic-single"
                     classNamePrefix="select category"
@@ -256,7 +259,7 @@ export default function Blog() {
             </Link>
           </div>
           {/* <Button className="rn-button-style--2" onClick={handleOpen}>Open Modal</Button> */}
-          <BlogList />
+          <BlogList selectedCategory={selectedCategory} selectedInstructor={selectedInstructor} selectedCourseType={selectedCourseType}/>
           <div className="row mt--20">
             <div className="col-lg-12">
               {/* Start Pagination Area */}

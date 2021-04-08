@@ -49,6 +49,7 @@ export default function Header(props) {
   const user_type = useSelector((state) => state.isLogged.payload.type);
   const login_data = useSelector((state) => state.isLogged.payload);
   const loginStatus = useSelector((state) => state.isLogged.login);
+  
   useEffect(() => {
     // dispatch(isLogged());
     // dispatch(logOut());
@@ -74,7 +75,7 @@ export default function Header(props) {
     }
 
     // dispatch(getSelectedCourseCategory(""));
-  }, [dispatch, loginStatus, userId, user_type , cart_number]);
+  }, [dispatch, loginStatus, userId, user_type , /* cart_number */]);
 
   // const logOut = useSelector((state) => state.logOut);
   //   console.log("is logged in: " + isLoggedIn);

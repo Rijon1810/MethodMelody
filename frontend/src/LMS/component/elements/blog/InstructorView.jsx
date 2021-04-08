@@ -6,17 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ScrollToTop from "react-scroll-up";
 import {
-    getSelectedCourseId,
-    getSelectedInstructorId
+  getSelectedCourseId,
+  getSelectedInstructorId,
 } from "../../../../actions/getSelectedIdAction";
+import { getCart, postCart } from "../../../../actions/cartAction";
+import { postWishListCourse } from "../../../../actions/wishListAction";
 import Footer from "../../Footer.jsx";
 import Header from "../../Header.jsx";
 import PageHelmet from "../../Helmet.jsx";
 import Breadcrumb from "../common/Breadcrumb.jsx";
+import Slider from "react-slick";
+/* import { portfolioSlick2 } from "../page-demo/script"; */
 
-
-
-
+import { portfolioSlick2 } from "../../../page-demo/script";
 const InstructorVIew = () => {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
@@ -26,6 +28,7 @@ const InstructorVIew = () => {
     (state) => state.getSelectedId.getSelectedInstructorId
   );
   var instructorCourseList = [];
+  const userId = useSelector((state) => state.isLogged.payload.id);
   function findInstructorCourses() {
     courseList.forEach((course) => {
       if (course.instructor === instructor._id) {
@@ -50,7 +53,7 @@ const InstructorVIew = () => {
                 <div className="thumbnail">
                   <img
                     className="w-100"
-                    src={`htpp://localhost:8080/${instructor.photo}`}
+                    src={`https://localhost:8080/${instructor.photo}`}
                     alt="About Images"
                   />
                 </div>
@@ -105,49 +108,92 @@ const InstructorVIew = () => {
               </div>
             </div>
           </div>
-          <div className="row mt--60 mt_sm--40">
-            {instructorCourseList.map((course) => (
-              <div
-                className="col-lg-3 col-md-4 col-12"
-                key={course._id}
-                onClick={async (event) => {
-                  dispatch(getSelectedCourseId(course));
-                  instructorList.forEach((instructor) => {
-                    if (instructor._id === course.instructor) {
-                      dispatch(getSelectedInstructorId(instructor));
-                    }
-                  });
-                }}
-              >
-                <div className="blog blog-style--1">
-                  <div className="thumbnail">
-                    <Link to="/courseview">
-                      <img
-                        className="w-100"
-                        src={`htpp://localhost:8080/${course.thumbnail}`}
-                        alt="Blog Images"
-                      />
-                    </Link>
-                  </div>
-                  <div className="content">
-                    {/* <p className="blogtype">{instructor.bio}</p> */}
-                    <h4 className="title">
-                      <Link to="/courseview">{course.title}</Link>
-                    </h4>
+          
+        </div>
+      </div>
 
-                    <div className="blog-btn">
-                      <Link className="rn-btn text-white" to="/courseview">
-                        View Details
-                      </Link>
+      {/* End course Area */}
+      <div className="rn-blog-area ptb--100  mb-dec--30 bg_color--6">
+        <div className="container">
+          <div className="portfolio-area ptb--120 ">
+            <div className="portfolio-sacousel-inner mb--55">
+              <div portfolio-slick-activation mt--70 mt_sm--40>
+                <Slider {...portfolioSlick2}>
+                  {instructorCourseList.map((course) => (
+                    <div
+                      className="portfolio"
+                      key={course._id}
+                      onClick={async (event) => {
+                        dispatch(getSelectedCourseId(course));
+                        instructorList.forEach((instructor) => {
+                          if (instructor._id === course.instructor) {
+                            dispatch(getSelectedInstructorId(instructor));
+                          }
+                        });
+                      }}
+                    >
+                      <div className="thumbnail-inner">
+                        <div className="thumbnail">
+                          <Link to="/courseview">
+                            <img
+                              src={`https://localhost:8080/${course.thumbnail}`}
+                              alt="Blog Images"
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                      <div className="content">
+                        {/* <p className="blogtype">{instructor.bio}</p> */}
+                        <h4 className="title">
+                          <Link to="/courseview">{course.title}</Link>
+                        </h4>
+
+                        <div className="portfolio-btn">
+                          <Link className="rn-btn text-white" to="/courseview">
+                            View Details
+                          </Link>
+                        </div>
+                        <button
+                          variant="contained"
+                          className="rn-button-style--2 btn-solid"
+                          fullWidth={true}
+                          style={{ width: "100%", marginTop: "50px" }}
+                          onClick={async (event) => {
+                            dispatch(
+                              postCart({
+                                user: userId,
+                                course: course._id,
+                              })
+                            );
+                          }}
+                        >
+                          Add to cart
+                        </button>
+                        <button
+                          variant="contained"
+                          className="rn-button-style--2 btn-solid"
+                          fullWidth={true}
+                          style={{ width: "100%", marginTop: "50px" }}
+                          onClick={async (event) => {
+                            dispatch(
+                              postWishListCourse({
+                                user: userId,
+                                course: course._id,
+                              })
+                            );
+                          }}
+                        >
+                          Add to wishlist
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  ))}
+                </Slider>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
-      {/* End course Area */}
 
       {/* <div className="col-lg-12">
           <div className="text-center ptb--50"></div>

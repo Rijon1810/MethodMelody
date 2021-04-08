@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Mongoose = require("mongoose");
 const User = require("../models/User.model");
 const Cupon = require("../models/Cupon.model");
+const Order = require("../models/Order.model");
 const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = "no-reply@methodmelody.com";
 // const Purchase = require("../models/Purchase.model");
@@ -31,7 +32,6 @@ router.route("/success/:userId").post(async (req, res) => {
       console.log("I from ssl commezr",doc.data);
       const cuponCode = doc.data.value_b;
       const codeUseOrNot = doc.data.value_a;
-      console.log("Cart page ", cart);
       if(codeUseOrNot==="true")
       {
        const cupon = await Cupon.findOne({ cuponCode});
@@ -42,6 +42,25 @@ router.route("/success/:userId").post(async (req, res) => {
 
       }
 
+      const orderId = doc.data.value_c;
+      
+      if(orderId)
+      {
+        const order = await Order.findOne({ _id : orderId});
+        order.paid = true;
+        console.log("it ok" ,order);
+      
+        const courses = order.courses;
+        const me = await User.findOne({ _id: user})
+        me.purchaseHistory = order;
+        for(var i=0;i<courses.length ;i++)
+        {
+            me.course.push(courses[i]);
+        }
+        await me.save();
+        await order.save();
+      }
+      
 
 
 
@@ -56,7 +75,7 @@ router.route("/success/:userId").post(async (req, res) => {
         { useFindAndModify: false }
       )
         .then(async (cart) => {
-          console.log(cart.cart);
+         // console.log(cart.cart);
           //find my referer and update balance and pending balance also user my balance
           const users = await User.findOne({ _id: user });
           /* console.log(users); */
@@ -76,7 +95,7 @@ router.route("/success/:userId").post(async (req, res) => {
           /* console.log(users); */
           //course purchase mail
           if (users) {
-            console.log(users.email);
+            //console.log(users.email);
             const mail = users.email;
             const name = users.name;
             var transporter = nodemailer.createTransport({
@@ -107,8 +126,8 @@ router.route("/success/:userId").post(async (req, res) => {
           }
 
           cart.cart.forEach(async (item) => {
-            console.log(user);
-            console.log(typeof item.toString());
+           // console.log(user);
+            //console.log(typeof item.toString());
             await axios
               .post(
                 "http://localhost:8080/api/v1/buy",
@@ -145,7 +164,7 @@ router.route("/success/:userId").post(async (req, res) => {
                   )
                   .then((cartRemove) => {
                  //   console.log(cartRemove.data.message);
-                 res.redirect("https://methodmelody.com/studentpanel");
+                    res.redirect("http://localhost:3000/studentpanel");
                   })
                   .catch((a) => {
                   //  console.log(a);
@@ -170,6 +189,7 @@ router.route("/ssl").post((req, res) => {
   //cupon code use or not
   const value_a = req.body.value_a;
   const value_b = req.body.value_b;
+  const value_c = req.body.value_c;
   const cus_phone = req.body.cus_phone;
   const cus_email = req.body.email;
   const cus_add1 = req.body.cus_add1;
@@ -182,7 +202,6 @@ router.route("/ssl").post((req, res) => {
   const currency = req.body.currency;
   const user = req.body.cart.id;
   const success_url = `http://localhost:8080/api/v1/cart/success/${user}`;
-
 
   let post_body = {};
   post_body["total_amount"] = total_amount;
@@ -211,6 +230,7 @@ router.route("/ssl").post((req, res) => {
   post_body["product_amount"] = total_amount;
   post_body["value_a"]=value_a;
   post_body["value_b"] = value_b;
+  post_body["value_c"] = value_c;
 
   sslcommerz
     .init_transaction(post_body)

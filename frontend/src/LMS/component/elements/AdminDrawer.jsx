@@ -96,6 +96,9 @@ export default function PermanentDrawerLeft() {
       case 13:
         history.push("/admincuponlist");
         break;
+      case 14:
+        history.push("/adminorderlist");
+        break;
       default:
         break;
     }
@@ -176,6 +179,17 @@ export default function PermanentDrawerLeft() {
               <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
             <ListItemText primary="View Cupon List" style={{ color: "#fff" }} />
+          </ListItem>
+          <ListItem
+            button
+            key="adminorderlist"
+            onClick={(event) => handleListItemClick(event, 14)}
+            selected={selectedIndex === 14}
+          >
+            <ListItemIcon>
+              <ImportContacts style={{ color: "#f9004d" }} />
+            </ListItemIcon>
+            <ListItemText primary="View Order List" style={{ color: "#fff" }} />
           </ListItem>
           <ListItem
             button

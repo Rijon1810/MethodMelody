@@ -54,6 +54,7 @@ import AdminInstructorList from "./LMS/component/AdminInstructorList.jsx";
 import AdminMessages from "./LMS/component/AdminMessages.jsx";
 import AdminUserList from "./LMS/component/AdminUserList.jsx";
 import AdminCuponList from "./LMS/component/AdminCuponList.jsx";
+import AdminOrderList from "./LMS/component/AdminOrderList.jsx";
 import ComingSoon from "./LMS/component/ComingSoonPage.jsx";
 import CourseList from "./LMS/component/CourseList";
 import CourseView from "./LMS/component/CourseView";
@@ -407,6 +408,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/admincuponlist`}
             component={AdminCuponList}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/adminorderlist`}
+            component={AdminOrderList}
           />
           <Route
             exact

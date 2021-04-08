@@ -57,6 +57,7 @@ connection.once("open", () => {
 });
 
 const courseRouter = require("./routes/course");
+const orderRouter = require("./routes/order")
 const loginRouter = require("./routes/user");
 const videoRouter = require("./routes/video");
 const instructorRouter = require("./routes/instructor");
@@ -128,6 +129,12 @@ app.use(
   apiAuth,
   my_cors,
   courseRouter
+);
+app.use(
+  `/api/${process.env.API_VERSION}/order`,
+  apiAuth,
+  my_cors,
+  orderRouter
 );
 app.use(`/api/${process.env.API_VERSION}/user`, my_cors, loginRouter);
 app.use(`/api/${process.env.API_VERSION}/video`, apiAuth, my_cors, videoRouter);

@@ -30,7 +30,7 @@ import {
 } from "../actions/instructorAction";
 // import { getCurrentMessageById, getPreviousMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
-import { postWishListCourse } from '../actions/wishListAction';
+import { postWishListCourse } from "../actions/wishListAction";
 import { portfolioSlick2 } from "../page-demo/script";
 import ContactOne from "./component/ContactOne.jsx";
 import CounterOne from "./component/CounterOne.jsx";
@@ -53,7 +53,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },
   {
     textPosition: "text-center",
@@ -63,7 +63,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },
   {
     textPosition: "text-center",
@@ -73,7 +73,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },
   {
     textPosition: "text-center",
@@ -83,7 +83,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },
   {
     textPosition: "text-center",
@@ -93,7 +93,7 @@ const SlideList = [
     description:
       "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration.",
     buttonText: "Let's Get Started",
-    buttonLink: "/allcourses",
+    buttonLink: "/login",
   },
 ];
 
@@ -357,7 +357,7 @@ export default function Landing() {
                         <div className="thumbnail">
                           <Link to="/courseview">
                             <img
-                              src={`htpp://localhost:8080/${course.thumbnail}`}
+                              src={`https://localhost:8080/${course.thumbnail}`}
                               alt="Blog Images"
                             />
                           </Link>
@@ -514,7 +514,7 @@ export default function Landing() {
                     <Link to="/instructorview">
                       <img
                         className="w-100"
-                        src={`http://localhost:8080/${instructor.photo}`}
+                        src={`https://localhost:8080/${instructor.photo}`}
                         alt="Blog Images"
                       />
                     </Link>

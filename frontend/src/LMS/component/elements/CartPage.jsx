@@ -229,24 +229,12 @@ const CartPage = () => {
                         e.preventDefault();
                         axios
                           .post(
-                            "http://localhost:8080/api/v1/cart/ssl/",
+                            "http://localhost:8080/api/v1/order",
                             {
-                              total_amount: "1000",
-                              discount_amount: "0",
-                              cus_name: "Shanewas",
-                              cus_phone: "+8801521108012",
-                              cus_email: "shanewas@potato.com",
-                              cus_add1: "asda",
-                              cus_city: "Dhaka",
-                              cus_country: "Bangladesh",
-                              cus_postcode: "1206",
-                              num_of_item: "3",
-                              product_name: "Course",
-                              cart: { id: userID, course: cartCoursesList },
-                              //cuponCode Used or not
-                              value_a: value_a,
-                              value_b: value_b,
-                              currency: "BDT",
+                              amount: total,
+                              paid : false,
+                              userId : userID,
+                              courses : cartCoursesList
                             },
                             {
                               headers: {
@@ -256,9 +244,45 @@ const CartPage = () => {
                             }
                           )
                           .then((res) => {
-                            window.location.href = res.data.GatewayPageURL;
+                            //console.log("order done mama" ,res.data);
+                            axios
+                            .post(
+                              "http://localhost:8080/api/v1/cart/ssl/",
+                              {
+                                total_amount: "1000",
+                                discount_amount: "0",
+                                cus_name: "Shanewas",
+                                cus_phone: "+8801521108012",
+                                cus_email: "shanewas@potato.com",
+                                cus_add1: "asda",
+                                cus_city: "Dhaka",
+                                cus_country: "Bangladesh",
+                                cus_postcode: "1206",
+                                num_of_item: "3",
+                                product_name: "Course",
+                                cart: { id: userID },
+                                //cuponCode Used or not
+                                value_a: value_a,
+                                value_b: value_b,
+                                value_c : res.data._id,
+                                currency: "BDT",
+                              },
+                              {
+                                headers: {
+                                  "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                                  "Content-type": "application/json",
+                                },
+                              }
+                            )
+                            .then((res) => {
+                              window.location.href = res.data.GatewayPageURL;
+  
+                              // goes into redux
+                            })
+                            .catch((err) => {
+                              console.log(err);
+                            });
 
-                            // goes into redux
                           })
                           .catch((err) => {
                             console.log(err);

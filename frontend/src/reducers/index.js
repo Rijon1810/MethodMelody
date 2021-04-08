@@ -10,6 +10,7 @@ import getAnalyticsReducer from "./getAnalyticsReducer";
 import getSelectedIdReducer from "./getSelectedIdReducer";
 import cartStatusReducer from "./cartReducer";
 import { getCuponReducer } from './cuponReducer';
+import { getOrderReducer } from './orderReducer';
 import getAllUsersReducer from "./userReducer";
 import getAllMessagesReducer from "./messageReducer";
 
@@ -25,6 +26,7 @@ const allReducers = combineReducers({
   cartInfo: cartStatusReducer,
   getAllUsers: getAllUsersReducer,
   getCupon: getCuponReducer,
+  getOrder : getOrderReducer,
   Messages: getAllMessagesReducer
 });
 

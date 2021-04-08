@@ -18,14 +18,18 @@ const ClassroomCourseList = () => {
   // console.log(categorySelectedList)
 
   var currentCourses = [];
-  currentCourseList.map((course_id) => {
-    console.log(`current course id = ${course_id}}`);
-    for (var i = 0; i < courseList.length; i++) {
-      if (course_id[0] == courseList[i]._id) {
-        currentCourses.push(courseList[i]);
+  if(currentCourseList)
+  {
+    currentCourseList.map((course_id) => {
+      console.log(`current course id = ${course_id}}`);
+      for (var i = 0; i < courseList.length; i++) {
+        if (course_id[0] === courseList[i]._id) {
+          currentCourses.push(courseList[i]);
+        }
       }
-    }
-  });
+    });
+  }
+
 
   const dispatch = useDispatch();
   return (

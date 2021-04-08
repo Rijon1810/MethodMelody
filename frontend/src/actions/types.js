@@ -13,6 +13,8 @@ export const GET_FEATURED_INSTRUCTOR = "GET_FEATURED_INSTRUCTOR";
 export const SIGN_UP = "SIGN_UP";
 export const CUPON = "CUPON";
 export const GET_CUPON = "GET_CUPON";
+export const ORDER = "ORDER";
+export const GET_ORDER = "GET_ORDER";
 
 export const ANALYTICS = "ANALYTICS";
 export const GET_SELECTED_COURSE_ID = "GET_SELECTED_COURSE_ID";
