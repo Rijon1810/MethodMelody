@@ -3,12 +3,12 @@ import { Grid } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import {
-    Accordion,
-    AccordionItem,
+  Accordion,
+  AccordionItem,
 
 
-    AccordionItemButton, AccordionItemHeading,
-    AccordionItemPanel
+  AccordionItemButton, AccordionItemHeading,
+  AccordionItemPanel
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import { FiChevronUp } from "react-icons/fi";
@@ -21,15 +21,16 @@ import { getCart, postCart } from "../actions/cartAction";
 import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
 import {
-    getCurrentVideoIndex,
-    getSelectedCourseCategory, getSelectedCourseId,
-    getSelectedInstructorId
+  getCurrentVideoIndex,
+  getSelectedCourseCategory, getSelectedCourseId,
+  getSelectedInstructorId
 } from "../actions/getSelectedIdAction";
 import {
-    getFeaturedInstructor, getInstructor
+  getFeaturedInstructor, getInstructor
 } from "../actions/instructorAction";
 // import { getCurrentMessageById, getPreviousMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
+import { postWishListCourse } from '../actions/wishListAction';
 import { portfolioSlick2 } from "../page-demo/script";
 import ContactOne from "./component/ContactOne.jsx";
 import CounterOne from "./component/CounterOne.jsx";
@@ -168,7 +169,7 @@ export default function Landing() {
     //   dispatch(getCurrentMessageById(`${userId}`));
     //   dispatch(getPreviousMessageById(`${userId}`));
     // }
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   // view all course handler
   function handleViewAllCourse() {
@@ -373,6 +374,38 @@ export default function Landing() {
                             View Details
                           </Link>
                         </div>
+                        <button
+                        variant="contained"
+                        className="rn-button-style--2 btn-solid"
+                        fullWidth={true}
+                        style={{ width: "100%", marginTop: "50px" }}
+                        onClick={async (event) => {
+                          dispatch(
+                            postCart({
+                              user: userId,
+                              course: course._id,
+                            })
+                          );
+                        }}
+                      >
+                        Add to cart
+                      </button>
+                        <button
+                        variant="contained"
+                        className="rn-button-style--2 btn-solid"
+                        fullWidth={true}
+                        style={{ width: "100%", marginTop: "50px" }}
+                        onClick={async (event) => {
+                          dispatch(
+                            postWishListCourse({
+                              user: userId,
+                              course: course._id,
+                            })
+                          );
+                        }}
+                      >
+                        Add to wishlist
+                      </button>
 
                       </div>
                     </div>

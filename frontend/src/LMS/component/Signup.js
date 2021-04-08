@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { signUp } from "../../actions/signUpAction";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import { withAlert } from 'react-alert'
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
@@ -29,6 +30,7 @@ class Signup extends Component {
     };
   }
   render() {
+    const alert = this.props.alert;
     return (
       <div>
         <PageHelmet pageTitle="Sign Up" />
@@ -194,6 +196,7 @@ class Signup extends Component {
                   fd.append("refercode" , this.state.refercode);
 
                   await this.props.signUp(fd);
+                  alert.show('Please check your email to verify your account!!')
                   this.props.history.push("/login");
 
                   // return <Redirect to="/login" />;
@@ -225,4 +228,5 @@ const mapStateToProps = (state) => ({
   create_user_status: state.isLogged.payload,
 });
 
-export default connect(mapStateToProps, { signUp })(Signup);
+
+export default connect(mapStateToProps, { signUp })(withAlert()(Signup));

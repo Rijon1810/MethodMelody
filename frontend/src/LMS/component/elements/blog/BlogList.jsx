@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { getSelectedCourseId, getSelectedInstructorId } from "../../../../actions/getSelectedIdAction";
-
+import { postCart } from '../../../../actions/cartAction'
+import { postWishListCourse } from '../../../../actions/wishListAction'
 
 const BLogList = () => {
   const courseList = useSelector((state) => state.getCourse.courseList);
@@ -18,6 +19,7 @@ const BLogList = () => {
     (state) => state.getSelectedId.getSelectedInstructorId
   )
 
+  const userId = useSelector((state) => state.isLogged.payload.id);
   console.log(`selected instructor id bloglist = ${selectedInstructor}`)
   
   const dispatch = useDispatch();
@@ -59,6 +61,38 @@ const BLogList = () => {
                     View Course
                   </Link>
                 </div>
+                <button
+                        variant="contained"
+                        className="rn-button-style--2 btn-solid"
+                        fullWidth={true}
+                        style={{ width: "100%", marginTop: "50px" }}
+                        onClick={async (event) => {
+                          dispatch(
+                            postCart({
+                              user: userId,
+                              course: course._id,
+                            })
+                          );
+                        }}
+                      >
+                        Add to cart
+                      </button>
+                        <button
+                        variant="contained"
+                        className="rn-button-style--2 btn-solid"
+                        fullWidth={true}
+                        style={{ width: "100%", marginTop: "50px" }}
+                        onClick={async (event) => {
+                          dispatch(
+                            postWishListCourse({
+                              user: userId,
+                              course: course._id,
+                            })
+                          );
+                        }}
+                      >
+                        Add to wishlist
+                      </button>
               </div>
             </div>
           </div>

@@ -242,7 +242,7 @@ const CartPage = () => {
                               cus_postcode: "1206",
                               num_of_item: "3",
                               product_name: "Course",
-                              cart: { id: userID, course: [] },
+                              cart: { id: userID, course: cartCoursesList },
                               //cuponCode Used or not
                               value_a: value_a,
                               value_b: value_b,

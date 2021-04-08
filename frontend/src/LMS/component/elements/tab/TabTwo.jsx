@@ -1,25 +1,14 @@
+import { Card, Divider, Grid, List } from "@material-ui/core";
 import {
-    Card,
-
-
-
-
-
-
-
-
-    Divider,
-
-    Grid, List
-} from "@material-ui/core";
-import {
-    AssignmentInd, Event,
-    LocalOffer, MailOutline
+  AssignmentInd,
+  Event,
+  LocalOffer,
+  MailOutline,
 } from "@material-ui/icons";
 import React, { Component } from "react";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,7 +26,7 @@ class TabsTwo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: `http://localhost:3000/signup/${this.props.profile.referralCode}`,
+      value: `http://methodmelody.com/signup/${this.props.profile.referralCode}`,
       copied: false,
       rnName: "",
       rnPhone: "",
@@ -121,7 +110,9 @@ class TabsTwo extends Component {
                         You can see all your pending queries which hasn't been
                         yet answered in the below section.
                       </p>
-                      {console.log(`my current message = ${this.props.currentMessages.length}`)}
+                      {console.log(
+                        `my current message = ${this.props.currentMessages.length}`
+                      )}
                       {this.props.currentMessages.length === 0 ? (
                         <h4>Currently you don't have any pending messages</h4>
                       ) : (
@@ -341,12 +332,23 @@ class TabsTwo extends Component {
                                 >
                                   <LocalOffer />
                                 </Grid>
-                                <CopyToClipboard text={this.state.value}
-                                     onCopy={() => this.setState({copied: true})}>
-                            <button  style={{ marginRight: 10, color: "#f9004c" }}>Copy Referal Link</button>
-                             </CopyToClipboard>
+                                <CopyToClipboard
+                                  text={this.state.value}
+                                  onCopy={() => this.setState({ copied: true })}
+                                >
+                                  <button
+                                    style={{
+                                      marginRight: 10,
+                                      color: "#f9004c",
+                                    }}
+                                  >
+                                    Copy Referal Link
+                                  </button>
+                                </CopyToClipboard>
 
-        {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+                                {this.state.copied ? (
+                                  <span style={{ color: "red" }}>Copied.</span>
+                                ) : null}
                               </Grid>
                             </div>
                             <div className="col-lg-12 ptb--20">

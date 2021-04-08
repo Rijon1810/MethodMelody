@@ -31,6 +31,7 @@ router.route("/success/:userId").post(async (req, res) => {
       console.log("I from ssl commezr",doc.data);
       const cuponCode = doc.data.value_b;
       const codeUseOrNot = doc.data.value_a;
+      console.log("Cart page ", cart);
       if(codeUseOrNot==="true")
       {
        const cupon = await Cupon.findOne({ cuponCode});
@@ -144,7 +145,7 @@ router.route("/success/:userId").post(async (req, res) => {
                   )
                   .then((cartRemove) => {
                  //   console.log(cartRemove.data.message);
-                    res.redirect("http://localhost:/studentpanel");
+                 res.redirect("https://methodmelody.com/studentpanel");
                   })
                   .catch((a) => {
                   //  console.log(a);
@@ -181,6 +182,7 @@ router.route("/ssl").post((req, res) => {
   const currency = req.body.currency;
   const user = req.body.cart.id;
   const success_url = `http://localhost:8080/api/v1/cart/success/${user}`;
+
 
   let post_body = {};
   post_body["total_amount"] = total_amount;

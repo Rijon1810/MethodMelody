@@ -74,7 +74,7 @@ export default function Header(props) {
     }
 
     // dispatch(getSelectedCourseCategory(""));
-  }, [dispatch, loginStatus, userId, user_type]);
+  }, [dispatch, loginStatus, userId, user_type , cart_number]);
 
   // const logOut = useSelector((state) => state.logOut);
   //   console.log("is logged in: " + isLoggedIn);
