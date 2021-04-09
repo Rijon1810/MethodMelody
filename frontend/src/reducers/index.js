@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
 import loggedReducer from "./isLoggedReducer";
+import upcomingReducer from "./upcomingReducer";
 import {
   getInstructorReducer,
   postInstructorReducer,
@@ -16,6 +17,7 @@ import getAllMessagesReducer from "./messageReducer";
 
 const allReducers = combineReducers({
   isLogged: loggedReducer,
+  upcoming: upcomingReducer,
   getInstructor: getInstructorReducer,
   postInstructor: postInstructorReducer,
   getCourse: getCourseReducer,

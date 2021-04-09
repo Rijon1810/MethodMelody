@@ -3,6 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const Mongoose = require("mongoose");
 const Course = require("../models/Course.model");
+const Upcoming = require("../models/Upcoming.model");
 const Video = require("../models/Video.model");
 const Document = require("../models/Document.model");
 const Analytics = require("../models/Analytics.model");
@@ -52,8 +53,12 @@ router.route("/").get((req, res) => {
   Course.find({ published: true })
     .then((courses) => res.status(200).json(courses))
     .catch((err) => res.status(400).json("Error: " + err));
+});    
+router.route("/upcoming").get((req, res) => {
+  Upcoming.find({})
+    .then((courses) => res.status(200).json(courses))
+    .catch((err) => res.status(400).json("Error: " + err));
 });
-
 router.route("/catagory").get((req, res) => {
   catagory = [];
   Course.find({ published: true })

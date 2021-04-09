@@ -5,7 +5,8 @@ import {
   GET_CATAGORY,
   GET_COURSE_BY_ID,
   UPDATE_COURSE,
-  POST_FILTER
+  POST_FILTER,
+  GET_UPCOMING_COURSE
 } from "../actions/types";
 
 const initialState = {
@@ -14,7 +15,9 @@ const initialState = {
   featuredCourseList: [],
   catagoryList: [],
   updateConfirmation: [],
+  upcomingList : []
 };
+
 
 export const getCourseReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -27,6 +30,11 @@ export const getCourseReducer = (state = initialState, action) => {
       return {
         ...state,
         courseList: action.payload,
+      };
+    case GET_UPCOMING_COURSE:
+      return {
+        ...state,
+        upcomingList: action.payload,
       };
     case GET_CATAGORY:
       return {

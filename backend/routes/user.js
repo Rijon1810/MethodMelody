@@ -5,6 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const Mongoose = require("mongoose");
 const User = require("../models/User.model");
+const Upcoming = require("../models/Upcoming.model");
 const { authentication, apiAuth } = require("../middleware/authentication");
 const { registerValidation, loginValidation } = require("../validation");
 const Analytics = require("../models/Analytics.model");
@@ -335,7 +336,7 @@ router
                     if you have any problem while proceeding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
                   });
                 } catch (err) {
-                //  console.log(err);
+                  //  console.log(err);
                 }
                 Analytics.findOneAndUpdate(
                   { _id: "5fdb01d70379f5528c7f8928" },
@@ -355,6 +356,33 @@ router
   });
 //signup with refercode
 
+//upcoming course
+router
+  // .use(apiAuth)
+ 
+  .route("/upcoming")
+  .post((req, res) => {
+    let name = req.body.name;
+    
+
+    let photo = "";
+    if (req.file) {
+      photo = req.file.path;
+    }
+   
+
+    const newUser = new Upcoming({
+      name,
+      photo,
+    });
+    newUser
+      .save()
+      .then((doc)=>{
+        res.status(200).json(doc)
+      })
+      .catch((err) => res.status(500).json("Error: " + err));
+  });
+//upcoming course
 //put/referBonus-Update
 router
   .use(apiAuth)

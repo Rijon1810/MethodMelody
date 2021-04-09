@@ -232,7 +232,7 @@ export default function CourseVIew(props) {
           <Grid item container direction="column" lg={8} sm={12}>
             <Grid item>
               {console.log("player video url:" + video)}
-              <VideoPlayer url={"http://162.0.231.67/" + video} />
+              <VideoPlayer url={"http://localhost:8080/" + video} />
             </Grid>
 
             <Grid item className={classes.gridContainer}>

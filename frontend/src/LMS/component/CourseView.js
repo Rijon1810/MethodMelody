@@ -1,32 +1,24 @@
 import {
-    Avatar, Backdrop,
-
-
-
-    Fade,
-    IconButton, List,
-    ListItem,
-
-    ListItemText, makeStyles,
-
-
-
-
-
-
-    Modal
+  Avatar,
+  Backdrop,
+  Fade,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+  Modal,
 } from "@material-ui/core";
 import {
-    Cancel, Description, FilterNone, Lock,
-
-    OndemandVideo, PlayArrow,
-
-
-
-
-
-
-    Smartphone, Timer, VerifiedUser
+  Cancel,
+  Description,
+  FilterNone,
+  Lock,
+  OndemandVideo,
+  PlayArrow,
+  Smartphone,
+  Timer,
+  VerifiedUser,
 } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
@@ -132,7 +124,7 @@ export default function CourseView(props) {
     if (isLogIn) {
       setOpen(true);
     } else {
-      history.push("/login")
+      history.push("/login");
     }
   };
   const handleWish = () => {
@@ -148,7 +140,7 @@ export default function CourseView(props) {
   };
 
   useEffect(() => {
-    if (isLogIn && userCourses ) {
+    if (isLogIn && userCourses) {
       userCourses.forEach((c) => {
         if (c[0] === selectedCourse._id) {
           setPaid(true);
@@ -223,7 +215,7 @@ export default function CourseView(props) {
   return (
     <div className="active-dark">
       <PageHelmet pageTitle="Course" />
-      <Header  />
+      <Header />
       <Breadcrumb from="courseview" />
       <div className="container">
         <div className="row">
@@ -359,7 +351,7 @@ export default function CourseView(props) {
                           );
                           setPaid(true);
                           handleClose();
-                          history.push('/cart');
+                          history.push("/cart");
                         }}
                       >
                         Buy now

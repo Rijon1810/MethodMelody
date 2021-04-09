@@ -1,16 +1,13 @@
 import axios from "../LMS/api/Config";
 import {
-  GET_CATAGORY, GET_COURSE,
-
-
-
-
-  GET_COURSE_BY_ID, GET_FEATURED_COURSE,
+  GET_CATAGORY,
+  GET_COURSE,
+  GET_UPCOMING_COURSE,
+  GET_COURSE_BY_ID,
+  GET_FEATURED_COURSE,
   POST_COURSE,
-
   POST_FILTER,
-
-  UPDATE_COURSE
+  UPDATE_COURSE,
 } from "./types";
 
 export const getCourse = () => (dispatch) => {
@@ -45,13 +42,28 @@ export const getCourse = () => (dispatch) => {
       console.log(err);
     });
   axios
+    .get("course/upcoming", {
+      headers: {
+        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: GET_UPCOMING_COURSE,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  axios
     .get("course/catagory/", {
       headers: {
         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
       },
     })
     .then((res) => {
-      console.log("this is another problem",res.data);
+      console.log("this is another problem", res.data);
       dispatch({
         type: GET_CATAGORY,
         payload: res.data,
@@ -84,7 +96,7 @@ export const postCourse = (data) => async (dispatch) => {
       console.log(err);
     });
 };
-export const courseFilter= (data) => async (dispatch) => {
+export const courseFilter = (data) => async (dispatch) => {
   await axios
     .post("course/filter", data, {
       headers: {
@@ -155,5 +167,3 @@ export const getCourseById = (id) => async (dispatch) => {
       console.log(err);
     });
 };
-
-

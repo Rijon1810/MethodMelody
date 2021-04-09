@@ -1,31 +1,12 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { postCart } from '../../../../actions/cartAction';
 import { getSelectedCourseId, getSelectedInstructorId } from "../../../../actions/getSelectedIdAction";
 import { postWishListCourse } from '../../../../actions/wishListAction';
 
-const BLogList = ({Category , Instructor , CourseType}) => {
-  const courseList = useSelector((state) => state.getCourse.courseList);
-  const [visibleCourses, setVisibleCourses] = useState(courseList);
-  const [keyword, setKeyword] = useState("");
+const BLogList = ({courseList } ) => {
 
-  const search = (keyword) => {
-    if (keyword !== "") {
-      setKeyword(keyword);
-      const filteredCourses = courseList.filter(
-        (course) =>
-          course.title.toLowerCase().includes(keyword.toLowerCase()) && courseList
-      );
-      setVisibleCourses(filteredCourses);
-    } else {
-      setKeyword("");
-      setVisibleCourses(courseList);
-    }
-  };
-  search(Category)
-  search(Instructor)
-  search(CourseType)
   
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
@@ -33,22 +14,22 @@ const BLogList = ({Category , Instructor , CourseType}) => {
   const categorySelectedList = useSelector(
     (state) => state.getSelectedId.getSelectedCourseCategoryList
   );
-  console.log(categorySelectedList)
+  //console.log(categorySelectedList)
 
   const selectedInstructor = useSelector(
     (state) => state.getSelectedId.getSelectedInstructorId
   )
-
   const userId = useSelector((state) => state.isLogged.payload.id);
-  console.log(`selected instructor id bloglist = ${selectedInstructor}`)
+
+  //console.log(`selected instructor id bloglist = ${selectedInstructor}`)
   
   const dispatch = useDispatch();
   return (
     <Fragment>
       <div className="row">
-        {console.log("course list size in BlogList.js= " + courseList.length)}
+        {/* console.log("course list size in BlogList.js= " + courseList.length) */}
 
-        {visibleCourses.map((course) => (          
+        {courseList.map((course) => (          
           <div
             className="col-lg-3 col-md-6 col-sm-6 col-12"
             key={course._id}
@@ -66,7 +47,7 @@ const BLogList = ({Category , Instructor , CourseType}) => {
                 <Link to="/courseview">
                   <img
                     className="w-100"
-                    src={`htpp://localhost:8080/` + course.thumbnail}
+                    src={`https://server.methodmelody.com/` + course.thumbnail}
                     alt="Blog Images"
                   />
                 </Link>
