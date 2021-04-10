@@ -35,7 +35,7 @@ import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 import ReactPlayer from "./ReactPlayer";
 import StudentContactForm from "./StudentContactForm.jsx";
-
+import PlayerApp from './PlayerApp.js';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -97,7 +97,25 @@ export default function CourseView(props) {
   const history = useHistory();
 
   const isLogIn = useSelector((state) => state.isLogged.login);
+  //finding my courses
+  const courseList = useSelector((state) => state.getCourse.courseList);
+  const currentCourseList = useSelector(
+    (state) => state.getAllUsers.getUserCourse.course
+  );
+  // console.log(categorySelectedList)
 
+  var myCourses = [];
+  if (currentCourseList) {
+    currentCourseList.map((course_id) => {
+      for (var i = 0; i < courseList.length; i++) {
+        if (course_id[0] === courseList[i]._id) {
+          myCourses.push(courseList[i]);
+        }
+      }
+    });
+    console.log("my courses", myCourses);
+  }
+  //finding my courses end
   const userCourses = useSelector(
     (state) => state.getAllUsers.getUserCourse.course
   );
@@ -120,7 +138,7 @@ export default function CourseView(props) {
   const [wish, setWish] = React.useState(false);
 
   const handleOpen = () => {
-    console.log(`is user logged in = ${isLogIn}`);
+    // console.log(`is user logged in = ${//isLogIn}`);
     if (isLogIn) {
       setOpen(true);
     } else {
@@ -128,26 +146,27 @@ export default function CourseView(props) {
     }
   };
   const handleWish = () => {
-    console.log(`is user logged in = ${isLogIn}`);
+    // console.log(`is user logged in = ${isLogIn}`);
     if (isLogIn) {
       setWish(true);
     }
   };
 
   const handleClose = () => {
-    console.log(`handleClose called`);
+    //console.log(`handleClose called`);
     setOpen(false);
   };
 
   useEffect(() => {
-    if (isLogIn && userCourses) {
-      userCourses.forEach((c) => {
-        if (c[0] === selectedCourse._id) {
+    if (isLogIn && myCourses) {
+      for (var i = 0; i < myCourses.length; i++) {
+        if (myCourses[i]._id === selectedCourse._id) {
           setPaid(true);
+          break;
         }
-      });
+      }
     }
-  }, [isLogIn, paid, selectedCourse._id, userCourses, wish]);
+  }, [isLogIn, paid, selectedCourse._id, myCourses, wish]);
 
   const renderPlayButton = (lesson_status, course_id) => {
     if (lesson_status === "open") {
@@ -172,21 +191,22 @@ export default function CourseView(props) {
       }
     } else if (lesson_status === "paid") {
       if (isLogIn) {
-        if (userCourses !== undefined) {
-          console.log(typeof userCourses);
+        if (myCourses !== undefined) {
+          console.log(typeof myCourses);
 
-          if (userCourses.length === 0) {
+          if (myCourses.length === 0) {
             return (
               <Avatar className={classes.Avatar}>
                 <Lock className={classes.Icon} />
               </Avatar>
             );
           } else {
-            let userCoursesIdArr = [];
-            userCourses.forEach((c) => {
-              userCoursesIdArr.push(c._id);
-            });
-            var a = userCoursesIdArr.indexOf(course_id);
+            let myCoursesIdArr = [];
+            for (var i = 0; i < myCourses.length; i++) {
+              myCoursesIdArr.push(myCourses[i]._id);
+            }
+
+            var a = myCoursesIdArr.indexOf(course_id);
             if (a < 0) {
               return (
                 <Avatar className={classes.Avatar}>
@@ -253,7 +273,7 @@ export default function CourseView(props) {
             <p className="text-white text-lg-right">
               BDT {selectedCourse.price}
             </p>
-            {paid != true ? (
+            {paid !== true ? (
               <div className="d-flex flex-row-reverse">
                 <Link className="rn-btn" to="#" onClick={handleOpen}>
                   <span>Get Enrolled !</span>
@@ -363,21 +383,11 @@ export default function CourseView(props) {
             </Modal>
           </div>
           <div onContextMenu={(e) => e.preventDefault()} className="col-lg-9">
-            <ReactPlayer
-              url={
+
+            <PlayerApp url={
                 "htpp://localhost:8080/" +
                 selectedCourse.videos[selectedLesson].path
-              }
-              config={{
-                file: {
-                  attributes: {
-                    onContextMenu: (e) => e.preventDefault(),
-                    controlsList: "nodownload",
-                  },
-                },
-              }}
-              controls
-            />
+              }/>
             {/* <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} /> */}
           </div>
           <div className="col-lg-3">
@@ -388,32 +398,23 @@ export default function CourseView(props) {
                     button
                     className={classes.ListItem}
                     onClick={async (event) => {
-                      if (lesson.status === "open") {
-                        dispatch(getCurrentVideoIndex(index));
-                      } else if (lesson.status === "login") {
-                        if (isLogIn) {
-                          dispatch(getCurrentVideoIndex(index));
-                        } else {
+                      if (paid === true && isLogIn === true) {
+                        for (var i = 0; i < myCourses.length; i++) {
+                          if (myCourses[i]._id === selectedCourse._id) {
+                            console.log(index);
+                            dispatch(getCurrentVideoIndex(index));
+                          }
+                        }
+                      } else if (isLogIn) {
+                        if (paid === false) {
                           alert(
-                            "Please login first in order to play this lesson"
+                            'Please buy the course first by clicking on the "Get Enrolled!" button to play this lesson'
                           );
                         }
-                      } else if (lesson.status === "paid" && isLogIn === true) {
-                        console.log(`course id = ${selectedCourse._id}`);
-                        console.log(`lesson status = ${lesson.status}`);
-                        userCourses.forEach((c) => {
-                          console.log(c[0]);
-                          if (c[0] === selectedCourse._id) {
-                            dispatch(getCurrentVideoIndex(index));
-                          } else {
-                            alert(
-                              'Please buy the course first by clicking on the "Get Enrolled!" button first to play this lesson'
-                            );
-                          }
-                        });
-                      } else {
+                      }
+                      else{
                         alert(
-                          'Please buy the course first by clicking on the "Get Enrolled!" button to play this lesson'
+                          'Please login and buy the course first by clicking on the "Get Enrolled!" button to play this lesson'
                         );
                       }
                     }}
@@ -522,7 +523,7 @@ export default function CourseView(props) {
       </div>
 
       {/* Start Contact Form Area */}
-      {paid == true ? (
+      {paid === true ? (
         <div
           className="portfolio-area pb--120  bg_color--1"
           style={{ paddingTop: "10ch" }}
