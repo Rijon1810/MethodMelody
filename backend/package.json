@@ -27,6 +27,7 @@
     "node-cron": "^2.0.3",
     "nodemailer": "^6.5.0",
     "referral-code-generator": "^1.0.8",
+    "secure-random-password": "^0.2.2",
     "sslcommerz-nodejs": "^1.0.8",
     "uuid": "^8.3.2"
   },

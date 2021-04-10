@@ -1,24 +1,22 @@
 import React, { Component } from "react";
-import { Grid, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
-
+import axios from "../../api/Config.js";
 import { connect } from "react-redux";
 import { isLogged } from "../../actions/isLoggedAction";
-import Landing from "../Landing.js";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import { Link } from "react-router-dom";
 import { withAlert } from "react-alert";
-class Login extends Component {
+class Forgetpassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
       rnEmail: "",
-      rnPassword: "",
     };
   }
 
@@ -34,45 +32,31 @@ class Login extends Component {
     }
     return (
       <div>
-        <PageHelmet pageTitle="Login" />
-        <Header from="login" />
-        <Breadcrumb from="login" />
+        <PageHelmet pageTitle="Forget Password" />
+        <Header from="forgetpassword" />
+        <Breadcrumb from="forgetpassword" />
         <Box display="flex" justifyContent="center" alignItems="center">
           <div className="contact-form--1 col-xl-6 col-lg-6 col-md-8 col-sm-10 ptb--50">
             <div className="row d-flex align-items-center">
               <div className="col-12 pb--20">
-                <h3 className=" title">Login to your account.</h3>
+                <h3 className=" title">Enter User Email</h3>
 
                 <p>
-                  Please enter your registered email and password for login.
+                  Please enter your user email for access your account.
                 </p>
               </div>
             </div>
             <form>
-              <label htmlFor="item02">
+              <label htmlFor="item01">
                 <input
                   type="text"
                   name="email"
-                  id="item02"
+                  id="item01"
                   value={this.state.rnEmail}
                   onChange={(e) => {
                     this.setState({ rnEmail: e.target.value });
                   }}
                   placeholder="Your email"
-                />
-              </label>
-
-              <label htmlFor="item03">
-                <input
-                  type="password"
-                  name="password"
-                  id="item03"
-                  value={this.state.rnSubject}
-                  onChange={(e) => {
-                    this.setState({ rnPassword: e.target.value });
-                  }}
-                  placeholder="Your password"
-                  data-toggle="password"
                 />
               </label>
 
@@ -89,20 +73,29 @@ class Login extends Component {
                 }}
                 onClick={async (event) => {
                   event.preventDefault();
-                  const pass = this.state.rnPassword;
 
                   const email = this.state.rnEmail;
-
-                  if (email === "" || pass === "") {
+                  console.log("my email",email);
+             
+                  if (email === "") {
                     alert.show("Any of the field is not fillup!!!");
                   } else {
-                    await this.props.isLogged({
-                      email: this.state.rnEmail,
-                      password: this.state.rnPassword,
+                    
+                    axios
+                    .post(`user/passwordreset/${email}`, {
+                      headers: {
+                        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                        "Content-type": "multipart/form-data",
+                      },
+                    })
+                    .then((res) => {
+                      alert.show("Check Your Email for password reset!!");
+                      
+                    })
+                    .catch((err) => {
+                      console.log(err);
                     });
-                    this.props.loginStatus
-                      ? this.props.history.push("/")
-                      : this.props.history.push("/login");
+
                   }
                 }}
               >
@@ -115,12 +108,6 @@ class Login extends Component {
                   <span>Don't have an account? Signup</span>
                 </Link>
               </div>
-              <div className=" text-right blog-btn mt_sm--10 mt_md--10">
-                <Link to="/forgetpassword" className="btn-transparent rn-btn-dark">
-                  <br />
-                  <span>Forget Password/password reset?</span>
-                </Link>
-              </div>
             </form>
           </div>
         </Box>
@@ -131,13 +118,13 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
+Forgetpassword.propTypes = {
   userData: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isLogged: state.isLogged.payload,
-  loginStatus: state.isLogged.login,
+  loginStatus: state.isLogged.Forgetpassword,
 });
 
-export default connect(mapStateToProps, { isLogged })(withAlert()(Login));
+export default connect(mapStateToProps, { isLogged })(withAlert()(Forgetpassword));

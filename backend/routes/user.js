@@ -13,7 +13,7 @@ const Course = require("../models/Course.model");
 let referralCodeGenerator = require("referral-code-generator");
 const nodemailer = require("nodemailer");
 const key = require("../key.json");
-
+const reset_password = require("secure-random-password");
 //const EMAIL_ADDRESS = "info@methodmelody.com";
 const EMAIL_ADDRESS = "no-reply@methodmelody.com";
 
@@ -59,6 +59,98 @@ router.route("/confirmation/:token").get((req, res) => {
     res.redirect("http://localhost:3000/login");
   } catch (err) {
     res.send("invalid signature");
+  }
+});
+//confirmation reset password
+router.route("/confirmation/password/:token").get(async (req, res) => {
+  try {
+    const { id } = jwt.verify(req.params.token, process.env.SECRET_KEY);
+    /* console.log("From confirm",id); */
+    reset_password.randomPassword({
+      characters: [
+        reset_password.lower,
+        reset_password.upper,
+        reset_password.digits,
+      ],
+    });
+    const rj = reset_password.randomPassword({
+      length: 6,
+      characters: [
+        reset_password.lower,
+        reset_password.upper,
+        reset_password.digits,
+      ],
+    });
+    //console.log(rj);
+    bcrypt.hash(rj, 10, async (err, hash) => {
+      if (err) {
+        return res.status(400).json({ error: err });
+      } else {
+        /*   console.log(hash); */
+        const user = await User.findOne({ _id: id });
+        if (user) {
+          user.password = hash;
+          const email = user.email;
+          await user.save().then(async (doc) => {
+            //console.log(doc);
+            let mailer = nodemailer.createTransport({
+              service: "gmail",
+              auth: {
+                user: EMAIL_ADDRESS,
+                pass: "asdzxc12#12",
+              },
+            });
+            /*                   console.log(user.email);
+                    console.log(rj); */
+            await mailer.sendMail({
+              from: EMAIL_ADDRESS,
+              to: email,
+              subject: "Your new Password!!",
+              html: `<img src="http://methodmelody.com/assets/images/logo/logo-red.png"><h2>Welcome to METHODMELODY- very first music learning platform of  the country </h2><br>
+                                 This is your new passowrd for methodmelody account <br>
+                                  Use this password : ${rj} <br><br>
+                                  if you have any problem while proceeding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
+            });
+          });
+        }
+      }
+    });
+  } catch (err) {
+    res.send("invalid signature");
+  }
+});
+///passwordreset
+router.route("/passwordreset/:email").post(async (req, res) => {
+  const email = req.params.email;
+  //console.log(email);
+
+  const user = await User.findOne({ email });
+  console.log(user._id);
+  if (user) {
+    try {
+      const emailToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+        expiresIn: "1h",
+      });
+      let mailer = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: EMAIL_ADDRESS,
+          pass: "asdzxc12#12",
+        },
+      });
+      const url = `http://localhost:8080/api/v1/user/confirmation/password/${emailToken}`;
+      await mailer.sendMail({
+        from: EMAIL_ADDRESS,
+        to: email,
+        subject: "Wants to reset your password?",
+        html: `<img src="http://methodmelody.com/assets/images/logo/logo-red.png"><h2>Welcome to METHODMELODY- very first music learning platform of  the country </h2><br>
+                    To complete the reset password please proceed with the link<br>
+                    ${url} <br><br>
+                    if you have any problem while proceeding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
+      });
+    } catch (err) {
+      //  console.log(err);
+    }
   }
 });
 
@@ -359,17 +451,15 @@ router
 //upcoming course
 router
   // .use(apiAuth)
- 
+
   .route("/upcoming")
   .post((req, res) => {
     let name = req.body.name;
-    
 
     let photo = "";
     if (req.file) {
       photo = req.file.path;
     }
-   
 
     const newUser = new Upcoming({
       name,
@@ -377,8 +467,8 @@ router
     });
     newUser
       .save()
-      .then((doc)=>{
-        res.status(200).json(doc)
+      .then((doc) => {
+        res.status(200).json(doc);
       })
       .catch((err) => res.status(500).json("Error: " + err));
   });

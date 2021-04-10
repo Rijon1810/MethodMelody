@@ -67,6 +67,7 @@ import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx";
 import StudentPanel from "./LMS/component/elements/StudentPanel";
 // Coustom Components
 import Login from "./LMS/component/Login";
+import Forgetpassword from "./LMS/component/Forgetpassword";
 import Privacy from "./LMS/component/Privacy.jsx";
 import Signup from "./LMS/component/Signup";
 import Upcoming from "./LMS/component/Upcoming";
@@ -329,6 +330,11 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/login`}
             component={Login}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/forgetpassword`}
+            component={Forgetpassword}
           />
           <Route
             exact

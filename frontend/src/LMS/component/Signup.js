@@ -1,10 +1,10 @@
 import { Avatar, Box, IconButton } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { signUp } from "../../actions/signUpAction";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import { withAlert } from 'react-alert'
+import { withAlert } from "react-alert";
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
@@ -13,9 +13,9 @@ import PageHelmet from "./Helmet.jsx";
 class Signup extends Component {
   constructor(props) {
     super(props);
-    
+
     const refercode = this.props.match.params.refercode;
-   
+
     this.state = {
       rnName: "",
       rnEmail: "",
@@ -26,7 +26,7 @@ class Signup extends Component {
       rnPhone: "",
       rnAddress: "",
       rnPhotoSnap: "",
-      refercode: refercode
+      refercode: refercode,
     };
   }
   render() {
@@ -184,20 +184,47 @@ class Signup extends Component {
                 id="mc-embedded-subscribe"
                 onClick={async (event) => {
                   event.preventDefault();
-                  let fd = new FormData();
-                  fd.append("name", this.state.rnName);
-                  fd.append("email", this.state.rnEmail);
-                  fd.append("password", this.state.rnPassword);
-                  fd.append("confirmPassword", this.state.rnConfirmPassword);
-                  fd.append("photo", this.state.rnPhoto);
-                  fd.append("dob", this.state.rnDob);
-                  fd.append("phone", this.state.rnPhone);
-                  fd.append("address", this.state.rnAddress);
-                  fd.append("refercode" , this.state.refercode);
+                  const pass = this.state.rnPassword;
+                  const confirm = this.state.rnConfirmPassword;
+                  const name = this.state.name;
+                  const email = this.state.email;
+                  const password = this.state.password;
+                  const confirmpassword = this.state.password;
+                  const rnPhoto = this.state.rnPhoto;
+                  const rnDob = this.state.rnDob;
+                  const rnAddress = this.state.rnAddress;
+                  if (
+                    name === "" ||
+                    email === "" ||
+                    password === "" ||
+                    confirmpassword === "" ||
+                    rnPhoto === "" ||
+                    rnDob === "" ||
+                    rnAddress === ""
+                  ) {
+                    alert.show("Any of the field is not fillup!!!");
+                  } else if (pass !== confirm) {
+                    alert.show("password and confirm password is not match!");
+                  } else if (pass.length < 6) {
+                    alert.show("password length must be more then 5 character");
+                  } else {
+                    let fd = new FormData();
+                    fd.append("name", this.state.rnName);
+                    fd.append("email", this.state.rnEmail);
+                    fd.append("password", this.state.rnPassword);
+                    fd.append("confirmPassword", this.state.rnConfirmPassword);
+                    fd.append("photo", this.state.rnPhoto);
+                    fd.append("dob", this.state.rnDob);
+                    fd.append("phone", this.state.rnPhone);
+                    fd.append("address", this.state.rnAddress);
+                    fd.append("refercode", this.state.refercode);
 
-                  await this.props.signUp(fd);
-                  alert.show('Please check your email to verify your account!!')
-                  this.props.history.push("/login");
+                    await this.props.signUp(fd);
+                    alert.show(
+                      "Please check your email to verify your account!!"
+                    );
+                    this.props.history.push("/login");
+                  }
 
                   // return <Redirect to="/login" />;
                   // this.props.create_user_status.message === "user added!"
@@ -227,6 +254,5 @@ class Signup extends Component {
 const mapStateToProps = (state) => ({
   create_user_status: state.isLogged.payload,
 });
-
 
 export default connect(mapStateToProps, { signUp })(withAlert()(Signup));
