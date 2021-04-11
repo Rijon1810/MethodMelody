@@ -169,7 +169,7 @@ router.route("/success/:userId").post(async (req, res) => {
                   )
                   .then((cartRemove) => {
                  //   console.log(cartRemove.data.message);
-                    res.redirect("http://localhost:3000/studentpanel");
+                    res.redirect("http://methodmelody.com/studentpanel");
                   })
                   .catch((a) => {
                   //  console.log(a);
