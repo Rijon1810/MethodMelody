@@ -58,7 +58,7 @@ const InstructorCourseList = () => {
                 <Link to="/courseview">
                   <img
                     className="w-100"
-                    src={`htpp://localhost:8080/` + course.thumbnail}
+                    src={`htpp://server.methodmelody.com/` + course.thumbnail}
                     alt="Blog Images"
                   />
                 </Link>

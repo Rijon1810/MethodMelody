@@ -1,29 +1,29 @@
-import React, {Component, Fragment} from "react";
-import ScrollToTop from 'react-scroll-up';
-import Particles from 'react-particles-js';
+import React, { Component, Fragment } from "react";
+import {
+    Accordion,
+    AccordionItem,
+
+
+    AccordionItemButton, AccordionItemHeading,
+    AccordionItemPanel
+} from 'react-accessible-accordion';
+// Demo styles, see 'Styles' section below for some notes on use.
+import 'react-accessible-accordion/dist/fancy-example.css';
 import {
     FaReact,
     FaSass
 } from "react-icons/fa";
 import {
-    FiSmartphone,
-    FiCode,
-    FiDownload,
-    FiCommand,
-    FiHeadphones,
     FiBold,
-    FiChevronUp
+    FiChevronUp, FiCode,
+
+    FiCommand, FiDownload,
+
+    FiHeadphones, FiSmartphone
 } from "react-icons/fi";
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemHeading,
-    AccordionItemPanel,
-    AccordionItemButton,
-} from 'react-accessible-accordion';
-// Demo styles, see 'Styles' section below for some notes on use.
-import 'react-accessible-accordion/dist/fancy-example.css';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Particles from 'react-particles-js';
+import ScrollToTop from 'react-scroll-up';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 
 const featureList = [
@@ -828,7 +828,7 @@ class Demo extends Component {
                                                 <AccordionItemPanel>
                                                     <div>
                                                         <p>
-                                                            You can be presenting any home page instead of splash page. http://localhost:3000 you can showing any page as your you are like. First you have to go index.js page then:
+                                                            You can be presenting any home page instead of splash page. http://methodmelody.com you can showing any page as your you are like. First you have to go index.js page then:
                                                         </p>
                                                         <p>First Step (replace your choose demo page): Example: import Demo form './home/MainDemo' Instead of './home/PortfolioLanding'</p>
                                                         <p>Example: <a className="theme-gradient" href="https://www.dropbox.com/s/ysornwsweh836wi/change-home-page.png?dl=0">https://www.dropbox.com/s/ysornwsweh836wi/change-home-page.png?dl=0</a></p>

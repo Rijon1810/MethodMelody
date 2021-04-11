@@ -311,7 +311,7 @@ export default function CourseList(props) {
                         <div className="thumbnail-inner">
                           <img
                             src={
-                              "htpp://localhost:8080/" + featuredCourse.thumbnail
+                              "htpp://server.methodmelody.com/" + featuredCourse.thumbnail
                             }
                             width="100%"
                           ></img>

@@ -77,7 +77,7 @@ class Portfolio extends Component {
                     {/* <div className={`thumbnail ${"http://162.0.231.67"+course.thumbnail}`}></div>
                                         <div className={`bg-blr-image ${"http://162.0.231.67"+course.thumbnail}`}></div> */}
                     <img
-                      src={"htpp://localhost:8080/" + course.thumbnail}
+                      src={"htpp://server.methodmelody.com/" + course.thumbnail}
                       width="100%"
                     />
                   </div>

@@ -1,17 +1,14 @@
 //importing material components
 import { Grid } from "@material-ui/core";
-import { ShoppingCart } from "@material-ui/icons";
+import { FavoriteBorderOutlined, ShoppingBasket, ShoppingCart } from "@material-ui/icons";
 import React, { useEffect } from "react";
-import { ShoppingBasket } from "@material-ui/icons";
-import { AddShoppingCart, FavoriteBorderOutlined } from "@material-ui/icons";
-
 import {
-  Accordion,
-  AccordionItem,
+    Accordion,
+    AccordionItem,
 
 
-  AccordionItemButton, AccordionItemHeading,
-  AccordionItemPanel
+    AccordionItemButton, AccordionItemHeading,
+    AccordionItemPanel
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import { FiChevronUp } from "react-icons/fi";
@@ -24,12 +21,12 @@ import { getCart, postCart } from "../actions/cartAction";
 import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
 import {
-  getCurrentVideoIndex,
-  getSelectedCourseCategory, getSelectedCourseId,
-  getSelectedInstructorId
+    getCurrentVideoIndex,
+    getSelectedCourseCategory, getSelectedCourseId,
+    getSelectedInstructorId
 } from "../actions/getSelectedIdAction";
 import {
-  getFeaturedInstructor, getInstructor
+    getFeaturedInstructor, getInstructor
 } from "../actions/instructorAction";
 // import { getCurrentMessageById, getPreviousMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
@@ -42,6 +39,7 @@ import Footer from "./component/Footer.jsx";
 //importing custom components
 import Header from "./component/Header.jsx";
 import { slideSlick } from "./page-demo/script";
+
 
 
 
@@ -368,7 +366,7 @@ export default function Landing() {
                         <div className="thumbnail">
                           <Link to="/courseview">
                             <img
-                              src={`https://localhost:8080/${course.thumbnail}`}
+                              src={`https://server.methodmelody.com/${course.thumbnail}`}
                               alt="Blog Images"
                             />
                           </Link>
@@ -528,7 +526,7 @@ export default function Landing() {
                     <Link to="/instructorview">
                       <img
                         className="w-100"
-                        src={`https://localhost:8080/${instructor.photo}`}
+                        src={`https://server.methodmelody.com/${instructor.photo}`}
                         alt="Blog Images"
                       />
                     </Link>

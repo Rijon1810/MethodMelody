@@ -71,7 +71,7 @@ class InstructorPanelTab extends Component {
                               {this.state.rnPhotoSnap === "" ? (
                                 <img
                                   className="w-100"
-                                  src={`htpp://localhost:8080/${this.props.profile.photo}`}
+                                  src={`htpp://server.methodmelody.com/${this.props.profile.photo}`}
                                   alt="Blog Images"
                                 />
                               ) : (

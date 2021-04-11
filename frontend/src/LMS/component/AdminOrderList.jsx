@@ -5,10 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ScrollToTop from "react-scroll-up";
 import { getCupon } from '../../actions/cuponAction';
 import { getOrder } from '../../actions/orderAction';
-import { getUser } from "../../actions/userAction";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
@@ -121,7 +119,7 @@ const AdminOrderList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://localhost:8080/${order.photo}`}
+                      image={`htpp://server.methodmelody.com/${order.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>

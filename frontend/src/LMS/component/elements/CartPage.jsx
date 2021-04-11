@@ -128,7 +128,7 @@ console.log(cartItems ," MY CART OPTION");
                   <Card className={classes.root} raised="true">
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://localhost:8080/${course.thumbnail}`}
+                      image={`htpp://server.methodmelody.com/${course.thumbnail}`}
                       title="Live from space album cover"
                     />
                     <CardContent>
@@ -230,7 +230,7 @@ console.log(cartItems ," MY CART OPTION");
                         e.preventDefault();
                         axios
                           .post(
-                            "http://localhost:8080/api/v1/order",
+                            "http://server.methodmelody.com/api/v1/order",
                             {
                               amount: total,
                               paid : false,
@@ -248,7 +248,7 @@ console.log(cartItems ," MY CART OPTION");
                             //console.log("order done mama" ,res.data);
                             axios
                             .post(
-                              "http://localhost:8080/api/v1/cart/ssl/",
+                              "http://server.methodmelody.com/api/v1/cart/ssl/",
                               {
                                 total_amount: "1000",
                                 discount_amount: "0",
