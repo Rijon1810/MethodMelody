@@ -439,12 +439,12 @@ class UpdateCourseForm extends Component {
                         ) {
                           if (pair[1].name != "") {
                             console.log(
-                              pair[0] + ", " + JSON.stringify(pair[1].name)
+                             //pair[0] + ", " + JSON.stringify(pair[1].name)
                             );
                             data.append(pair[0], body.get(pair[0]));
                           }
                         } else if (pair[1]) {
-                          console.log(pair[0] + ", " + pair[1]);
+                          //console.log(pair[0] + ", " + pair[1]);
                           data.append(pair[0], body.get(pair[0]));
                         }
                       }

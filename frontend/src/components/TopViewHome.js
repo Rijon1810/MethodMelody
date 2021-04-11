@@ -66,7 +66,7 @@ export default function SimplePaper() {
         setVideo(data.file);
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
       });
   }
 

@@ -46,11 +46,11 @@ export default function InstructorPage(props) {
   const instructor = props.location.state;
   const imageUrl = "http://162.0.231.67/" + instructor.photo;
 
-  console.log("instructor name inside single course view: " + instructor);
+  //"instructor name inside single course view: " + instructor);
   // getWindowHeight();
   function getWindowHeight() {
     let intViewportHeight = window.innerHeight / 2;
-    console.log("window height = " + intViewportHeight);
+   // console.log("window height = " + intViewportHeight);
     setImageHeight(intViewportHeight);
   }
 
@@ -90,7 +90,7 @@ export default function InstructorPage(props) {
 
         setCoursesTopSellers(topSellerList);
 
-        console.log("course list fetched in home: " + res.data.length);
+        //console.log("course list fetched in home: " + res.data.length);
       });
   }
 
@@ -100,7 +100,7 @@ export default function InstructorPage(props) {
   }, []);
   return (
     <div className="App">
-      {console.log("photo url: " + instructor.photo)}
+      {/* {console.log("photo url: " + instructor.photo)} */}
       <Topnav />
       <Toolbar />
 

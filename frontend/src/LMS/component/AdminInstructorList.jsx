@@ -33,9 +33,9 @@ const findFeaturedInstructors = (instructors) => {
 };
 
 const featureOrUnfeatureInstructor = (instructor) => {
-  console.log(`instructor for featuring = ${instructor._id}`)
+ // console.log(`instructor for featuring = ${instructor._id}`)
   var data = { "featured": [], "unFeatured": [] };
-  console.log(`instructor status = ${instructor.featured}`);
+  //console.log(`instructor status = ${instructor.featured}`);
   if (instructor.featured) {
     data.unFeatured.push(instructor._id);
   } else {
@@ -48,10 +48,10 @@ const featureOrUnfeatureInstructor = (instructor) => {
       },
     })
     .then((res) => {
-      console.log(`instructor feature api response = ${res.data}`);
+     // console.log(`instructor feature api response = ${res.data}`);
     })
     .catch((err) => {
-      console.log(`instructor feature api response = ${err}`);
+      //console.log(`instructor feature api response = ${err}`);
     });
 };
 
@@ -65,7 +65,7 @@ const AdminInstructorList = () => {
 
   const featuredInstructorList = findFeaturedInstructors(instructorList);
 
-  console.log(`featured course list size = ${featuredInstructorList.length}`);
+  //console.log(`featured course list size = ${featuredInstructorList.length}`);
 
   const dispatch = useDispatch();
   dispatch(getInstructor());

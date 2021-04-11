@@ -8,7 +8,7 @@ import {
 
 
 export const getWishlistCourseById = (id) => async (dispatch) => {
-  console.log(id);
+// console.log(id);
   await axios
     .get(`course/${id}/`, {
       headers: {
@@ -26,7 +26,7 @@ export const getWishlistCourseById = (id) => async (dispatch) => {
         type: GET_WISHLIST_BY_ID,
         payload: "failed",
       });
-      console.log(err);
+     // console.log(err);
     });
 };
 
@@ -46,7 +46,7 @@ export const postWishListCourse = (data) => (dispatch) => {
       // alert(res.data.message);
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
     });
 };
 
@@ -63,6 +63,6 @@ export const removeWishList = (data) => (dispatch) => {
       getUserCourse(data.user);
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
     });
 };

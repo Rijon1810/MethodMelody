@@ -37,7 +37,7 @@ const InstructorVIew = () => {
     });
   }
   findInstructorCourses();
-  console.log(instructorCourseList.length);
+  //console.log(instructorCourseList.length);
   const dispatch = useDispatch();
   return (
     <React.Fragment>

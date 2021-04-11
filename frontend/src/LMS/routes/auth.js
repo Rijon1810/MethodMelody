@@ -31,13 +31,13 @@ class Auth {
 
   isAuthenticated() {
     let _id = localStorage.getItem("v_token");
-    console.log("_id" + _id);
+   // console.log("_id" + _id);
     try {
       const { id } = jwt.verify(_id, "potatoPotatopOtato726");
-      console.log("verifedid " + id);
+     // console.log("verifedid " + id);
       this.authenticated = true;
     } catch (error) {
-      console.log("expired");
+    //  console.log("expired");
       this.authenticated = false;
     }
     // axios

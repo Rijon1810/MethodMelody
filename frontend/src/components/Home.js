@@ -63,7 +63,7 @@ function App() {
         setVideo(data.file);
       })
       .catch((error) => {
-        console.log(error);
+       // console.log(error);
       });
   }
 
@@ -78,7 +78,7 @@ function App() {
       })
       .then((res) => {
         console.log(
-          "analytics fetched in admin: " + JSON.stringify(res.data[0])
+          //"analytics fetched in admin: " + JSON.stringify(res.data[0])
         );
         setAnalytics(res.data[0]);
       })
@@ -112,7 +112,7 @@ function App() {
       .then((res, err) => {
         const courseList = res.data;
         setCourseList(courseList);
-        console.log("course list fetched in home: " + res.data.length);
+      //  console.log("course list fetched in home: " + res.data.length);
       });
   }
 
@@ -127,7 +127,7 @@ function App() {
       .then((res) => {
         const instructorList = res.data;
         setInstructorList(instructorList);
-        console.log("instructor list fetched in home: " + instructorList);
+       // console.log("instructor list fetched in home: " + instructorList);
       });
   }
 

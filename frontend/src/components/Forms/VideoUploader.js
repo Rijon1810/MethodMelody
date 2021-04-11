@@ -104,7 +104,7 @@ export default function VideoUploader(props) {
 
   function addVideo(data, event) {
     setUploading(true);
-    console.log(
+/*     console.log(
       "form data in videoUploader = " +
         "title = " +
         " " +
@@ -125,8 +125,8 @@ export default function VideoUploader(props) {
       // +
       // "document = " +
       // data.document[0]
-    );
-    console.log("course id selected in videoUploader = " + course);
+    ); */
+    //console.log("course id selected in videoUploader = " + course);
     // uploadDocument(data.document[0]);
     uploadVideo(data, event);
   }
@@ -151,7 +151,7 @@ export default function VideoUploader(props) {
       .then((res) => {
         const response = res.data;
         event.target.reset();
-        console.log("response for video upload request: " + response.id);
+        //console.log("response for video upload request: " + response.id);
         // props.videoIdCallback(response.id);
         setUploading(false);
         setOpen(true);
@@ -172,7 +172,7 @@ export default function VideoUploader(props) {
       })
       .then((res) => {
         const response = res.data;
-        console.log("response for document upload request: " + response.id);
+       // console.log("response for document upload request: " + response.id);
       });
   };
 
@@ -202,7 +202,7 @@ export default function VideoUploader(props) {
       .then((res) => {
         setCourseList(res.data);
         console.log(
-          "course list fetched in videoUploader: " + res.data[0].title
+          //"course list fetched in videoUploader: " + res.data[0].title
         );
       });
   }
@@ -226,7 +226,7 @@ export default function VideoUploader(props) {
         }
       )
       .then((res) => {
-        console.log("response for video uploaded to course = " + res.data);
+       // console.log("response for video uploaded to course = " + res.data);
       });
   }
 

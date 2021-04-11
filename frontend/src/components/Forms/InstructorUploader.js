@@ -65,7 +65,7 @@ export default function InstructorUploader(props) {
   const state = props.location.state;
 
   function addInstructor(data, e) {
-    console.log(data);
+  //  console.log(data);
 
     const formData = new FormData();
     formData.append("name", data.name);
@@ -84,11 +84,11 @@ export default function InstructorUploader(props) {
         },
       })
       .then((res) => {
-        console.log(JSON.stringify(res));
+       // console.log(JSON.stringify(res));
         e.target.reset();
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   }
 

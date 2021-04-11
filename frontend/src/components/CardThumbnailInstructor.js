@@ -86,7 +86,7 @@ export default function CardThumbnailInstructor(props) {
         <CardContent className={classes.cardContent}>
           <Typography variant="h6" component="h6">
             {instructor.name}
-            {console.log("instructor name: " + instructor.name)}
+          {/*   {console.log("instructor name: " + instructor.name)} */}
           </Typography>
           <Typography>12 lessons</Typography>
         </CardContent>

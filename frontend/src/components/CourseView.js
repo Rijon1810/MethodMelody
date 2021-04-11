@@ -131,7 +131,7 @@ export default function CourseVIew(props) {
 
   const state = props.location.state;
 
-  console.log("course name inside single course view: " + state);
+  //console.log("course name inside single course view: " + state);
 
   useEffect(() => {
     getCourseData();
@@ -139,7 +139,7 @@ export default function CourseVIew(props) {
   }, []);
 
   function getCourseData() {
-    console.log("state data inside: " + state);
+   // console.log("state data inside: " + state);
     setCourse(state);
   }
 
@@ -157,7 +157,7 @@ export default function CourseVIew(props) {
         setVideo(data.file);
       })
       .catch((error) => {
-        console.log(error);
+       // console.log(error);
       });
   }
 
@@ -231,7 +231,7 @@ export default function CourseVIew(props) {
         <Grid container direction="row" lg={12} className={classes.gridItem}>
           <Grid item container direction="column" lg={8} sm={12}>
             <Grid item>
-              {console.log("player video url:" + video)}
+             {/*  {console.log("player video url:" + video)} */}
               <VideoPlayer url={"http://localhost:8080/" + video} />
             </Grid>
 

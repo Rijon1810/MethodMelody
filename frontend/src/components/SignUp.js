@@ -82,9 +82,9 @@ export default function SignUp() {
 		formData.append("email", data.email);
 		formData.append("password", data.password);
 
-		console.log("siingi" + JSON.stringify(data));
+	//	console.log("siingi" + JSON.stringify(data));
 
-		console.log("siingi" + formData);
+	//	console.log("siingi" + formData);
 
 		axios
 			.post("user/signup/", formData, {
@@ -94,11 +94,11 @@ export default function SignUp() {
 				},
 			})
 			.then((res) => {
-				console.log("siingi" + res.data);
+			//	console.log("siingi" + res.data);
 				e.target.reset();
 			})
 			.catch((err) => {
-				console.log(err);
+			//	console.log(err);
 			});
 	};
 

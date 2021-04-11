@@ -10,7 +10,7 @@ import { removeWishList } from "../../../../actions/wishListAction";
 
 const WishList = () => {
   const dispatch = useDispatch();
-  console.log("Inside wishlist");
+  //console.log("Inside wishlist");
   const [render, setRender] = useState(false);
   const courseList = useSelector(
     (state) => state.getAllUsers.getUserCourse.wishList
@@ -23,7 +23,7 @@ const WishList = () => {
     (state) => state.getSelectedId.getSelectedCourseCategoryList
   );
   const userId = useSelector((state) => state.isLogged.payload.id);
-  console.log(categorySelectedList);
+  //console.log(categorySelectedList);
 
   // const selectedCourse = (()=>{
   //   courseListAll.map((course)=>{
@@ -55,7 +55,7 @@ const WishList = () => {
     <Fragment>
       {wishListCourses.length != 0 ? (
         <div className="row">
-          {console.log("course list size in BlogList.js= " + courseList.length)}
+          
 
           {wishListCourses.map((course) => (
             <div

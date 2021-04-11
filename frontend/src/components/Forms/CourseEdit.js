@@ -167,11 +167,11 @@ export default function CourseEdit(props) {
       })
       .then((res) => {
         setCourseList(res.data);
-        console.log("course list fetched in CourseEdit: " + res.data[0].title);
+       /*  console.log("course list fetched in CourseEdit: " + res.data[0].title); */
       });
   }
   function addCourse(data, e) {
-    console.log(data);
+   /*  console.log(data); */
 
     var formData = new FormData();
 
@@ -214,7 +214,7 @@ export default function CourseEdit(props) {
       }
     }
 
-    for (var pair of formData.entries()) console.log(pair[0] + ", " + pair[1]);
+    for (var pair of formData.entries()) /* console.log(pair[0] + ", " + pair[1]) */;
 
     // formData.append("video", videoIdArray);
 
@@ -223,9 +223,9 @@ export default function CourseEdit(props) {
 
   function updateCourse(data, e, courseId) {
     const url = "course/" + courseId;
-    console.log("changed value to upload = " + data);
+   /*  console.log("changed value to upload = " + data); */
 
-    console.log(url);
+   /*  console.log(url); */
     axios
       .put(url, data, {
         headers: {
@@ -234,11 +234,11 @@ export default function CourseEdit(props) {
         },
       })
       .then((res) => {
-        console.log(JSON.stringify(res.data));
+        /* console.log(JSON.stringify(res.data)); */
         e.target.reset();
       })
       .catch((err) => {
-        console.log(err);
+       /*  console.log(err); */
       });
   }
   const handleCourseChange = (event) => {

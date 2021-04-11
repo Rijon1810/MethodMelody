@@ -53,7 +53,7 @@ export default function PermanentDrawerLeft() {
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
-    console.log(index + " clicked");
+   // console.log(index + " clicked");
 
     switch (index) {
       case 0:

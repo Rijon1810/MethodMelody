@@ -108,14 +108,14 @@ export default function CourseFeatureList() {
         setInstructorList(instructorList);
 
         console.log(
-          "course list fetched in feature list: " + courserList.length
+          //"course list fetched in feature list: " + courserList.length
         );
 
         const tempRight = [];
         const tempLeft = [];
         for (var i = 0; i < courserList.length; i++) {
           if (courserList[i].featured === true) {
-            console.log(courserList[i].name);
+            //console.log(courserList[i].name);
             // setRight([...right, instructorList[i]]);
             tempRight.push(courserList[i]);
           } else {
@@ -129,32 +129,32 @@ export default function CourseFeatureList() {
           setLeft(tempLeft);
         }
 
-        console.log("right array length = " + right.length);
+        //console.log("right array length = " + right.length);
       });
   }
 
   // uploadFeaturedInstructorList();
   //function to upload all featured instructos
   function uploadFeaturedCourseList() {
-    console.log("size of instructor featured list to upload = " + right.length);
+    //console.log("size of instructor featured list to upload = " + right.length);
     for (let i = 0; i < right.length; i++) {
       var temp = right[i].featured;
       right[i].featured = true;
       console.log(
-        `previous value: ${temp} and current value: ${right[i].featured}`
+       // `previous value: ${temp} and current value: ${right[i].featured}`
       );
     }
     for (let j = 0; j < left.length; j++) {
       var temp = left[j].featured;
       left[j].featured = false;
       console.log(
-        `previous value: ${temp} and current value: ${left[j].featured}`
+       // `previous value: ${temp} and current value: ${left[j].featured}`
       );
     }
     var tempArray = left.concat(right);
     for (var k = 0; k < tempArray.length; k++) {
       console.log(
-        `finaly value for ${tempArray[k].name} featured = ${tempArray[k].featured}`
+       // `finaly value for ${tempArray[k].name} featured = ${tempArray[k].featured}`
       );
       pushUpdate(tempArray[k]);
     }
@@ -172,7 +172,7 @@ export default function CourseFeatureList() {
         },
       })
       .then((res) => {
-        console.log("response in CourseFeatureList = " + res.data);
+      //  console.log("response in CourseFeatureList = " + res.data);
       });
   }
 

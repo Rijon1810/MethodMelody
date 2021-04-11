@@ -142,7 +142,7 @@ class CreateInstructorAccountForm extends Component {
                       event.preventDefault();
                       const body = new FormData(this.form);
                       for (var pair of body.entries()) {
-                        console.log(pair[0] + ", " + pair[1]);
+                       /// console.log(pair[0] + ", " + pair[1]);
                       }
                     
                       await this.props.signUp(body);

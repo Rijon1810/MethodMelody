@@ -73,12 +73,12 @@ export default function InstructorViewHome(props) {
 
   const instructorList = props.instructors;
   console.log(
-    "instructor list inside InstructorViewHome: " + instructorList.length
+   // "instructor list inside InstructorViewHome: " + instructorList.length
   );
 
   const history = useHistory();
   function navigateToInstructorList() {
-    console.log("cliked on button");
+   // console.log("cliked on button");
     history.push("/instructor/all");
   }
   function navigateToInstructor(instructor) {

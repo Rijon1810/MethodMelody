@@ -27,7 +27,7 @@ export const getInstructor = () => (dispatch) => {
         payload: [],
         length: 0,
       });
-      console.log(err);
+     // console.log(err);
     });
   return "True";  
 };
@@ -52,7 +52,7 @@ export const getFeaturedInstructor = () => (dispatch) => {
         payload: [],
         length: 0,
       });
-      console.log(err);
+     // console.log(err);
     });  
 };
 
@@ -65,7 +65,7 @@ export const postInstructor = (data) => async (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(res.data);
+     // console.log(res.data);
       dispatch({
         type: POST_INSTRUCTOR,
         payload: res.data,
@@ -76,7 +76,7 @@ export const postInstructor = (data) => async (dispatch) => {
         type: POST_INSTRUCTOR,
         payload: "failed",
       });
-      console.log(err);
+     // console.log(err);
     });
 };
 
@@ -99,12 +99,12 @@ export const updateInstructor = (id, data) => async (dispatch) => {
         type: UPDATE_INSTRUCTOR,
         payload: "failed",
       });
-      console.log(err);
+      //console.log(err);
     });
 };
 
 export const getinstructorById = (id) => async (dispatch) => {
-  console.log(id);
+ // console.log(id);
   await axios
     .get(`instructor/${id}/`, {
       headers: {
@@ -122,6 +122,6 @@ export const getinstructorById = (id) => async (dispatch) => {
         type: GET_INSTRUCTOR_BY_ID,
         payload: "failed",
       });
-      console.log(err);
+    //  console.log(err);
     });
 };

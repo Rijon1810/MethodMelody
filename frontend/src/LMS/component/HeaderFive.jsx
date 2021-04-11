@@ -47,7 +47,7 @@ class HeaderFive extends Component {
     this.CLoseMenuTrigger = this.CLoseMenuTrigger.bind(this);
     //  this.subMetuTrigger = this.subMetuTrigger.bind(this);
     window.addEventListener("load", function () {
-      console.log("All assets are loaded");
+    //  console.log("All assets are loaded");
     });
     this.state = {
       instructorList: [],
@@ -75,7 +75,7 @@ class HeaderFive extends Component {
         // setInstructorList(instructorList);
         this.setState({ instructorList: instructorList });
         console.log(
-          "instructor list size fetched in navbar: " + instructorList.length
+          //"instructor list size fetched in navbar: " + instructorList.length
         );
       });
   }

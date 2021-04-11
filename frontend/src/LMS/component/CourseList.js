@@ -175,7 +175,7 @@ export default function CourseList(props) {
                           to="#"
                           onClick={() => {
                             selectCategory(category);
-                            console.log(`category selected: ${category}`);
+                          
                           }}
                         >
                           {" "}
@@ -197,7 +197,7 @@ export default function CourseList(props) {
                           to="#"
                           onClick={() => {
                             selectLevel(level);
-                            console.log(`level selected: ${level}`);
+                           
                           }}
                         >
                           {level}
@@ -218,7 +218,7 @@ export default function CourseList(props) {
                           to="#"
                           onClick={() => {
                             selectModule(module);
-                            console.log(`module selected: ${module}`);
+                            //console.log(`module selected: ${module}`);
                           }}
                         >
                           {module}
@@ -240,7 +240,7 @@ export default function CourseList(props) {
                           onClick={() => {
                             selectInstructor(instructor._id);
                             console.log(
-                              `instructor seleected: ${instructor._id}`
+                             // `instructor seleected: ${instructor._id}`
                             );
                           }}
                         >

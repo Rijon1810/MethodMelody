@@ -2,7 +2,7 @@ import axios from "../LMS/api/Config";
 import { SIGN_UP } from "./types";
 
 export const signUp = (data) => (dispatch) => {
-  console.log();
+ // console.log();
   axios
     .post("user/signup/", data, {
       headers: {
@@ -19,7 +19,7 @@ export const signUp = (data) => (dispatch) => {
       // alert(res.data.message);
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
      /*  alert("failed try again"); */
     });
 };

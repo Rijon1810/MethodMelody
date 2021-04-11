@@ -73,10 +73,10 @@ export default function MCarousel() {
 
         // setState({ video: url });
         setInstructor(data);
-        console.log("instructor carousel: " + data);
+       // console.log("instructor carousel: " + data);
       })
       .catch((error) => {
-        console.log(error);
+       // console.log(error);
       });
   }
 

@@ -21,7 +21,7 @@ const ClassroomCourseList = () => {
   if(currentCourseList)
   {
     currentCourseList.map((course_id) => {
-      console.log(`current course id = ${course_id}}`);
+     // console.log(`current course id = ${course_id}}`);
       for (var i = 0; i < courseList.length; i++) {
         if (course_id[0] === courseList[i]._id) {
           currentCourses.push(courseList[i]);
@@ -36,7 +36,7 @@ const ClassroomCourseList = () => {
     <Fragment>
       {currentCourses.length != 0 ? (
         <div className="row">
-          {console.log("course list size in BlogList.js= " + courseList.length)}
+          {/* console.log("course list size in BlogList.js= " + courseList.length) */}
 
           {currentCourses.map((course) => (
             <div

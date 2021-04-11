@@ -81,9 +81,9 @@ export default function InstructorUpdate(props) {
       .then((res) => {
         const instructorList = res.data;
         setInstructorList(instructorList);
-        console.log(
+/*         console.log(
           "instructor list fetched in courseuploader: " + instructorList
-        );
+        ); */
       });
   }
 
@@ -104,7 +104,7 @@ export default function InstructorUpdate(props) {
       if (data.name !== "") {
         formData.append("name", data.name);
       }
-      console.log(...formData);
+    // console.log(...formData);
 
       uploadInstructor(formData, e);
     }
@@ -120,13 +120,13 @@ export default function InstructorUpdate(props) {
         },
       })
       .then((res) => {
-        console.log(
+/*         console.log(
           "response got from instructor edit: " + JSON.stringify(res)
-        );
+        ); */
         e.target.reset();
       })
       .catch((err) => {
-        console.log(err);
+       // console.log(err);
       });
   }
 

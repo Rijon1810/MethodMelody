@@ -104,10 +104,10 @@ class Cupon extends Component {
                   fd.append("discount", this.state.discount);
                   fd.append("useLimit", this.state.useLimit);
                   fd.append("expireDate", this.state.expireDate); */
-                  console.log(this.state.cuponCode);
-                  console.log(this.state.discount);
-                  console.log(this.state.useLimit);
-                  console.log(this.state.expireDate);
+                //  console.log(this.state.cuponCode);
+                //  console.log(this.state.discount);
+                //  console.log(this.state.useLimit);
+                 // console.log(this.state.expireDate);
                   await this.props.cupon(this.state.cuponCode,this.state.discount,this.state.useLimit,this.state.expireDate);
                   this.props.history.push("/cupon");
                 }}

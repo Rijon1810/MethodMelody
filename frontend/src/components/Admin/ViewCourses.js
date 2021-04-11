@@ -53,7 +53,7 @@ export default function ViewCourses(props) {
   const state = props.location.state;
 
   useEffect(() => {
-    console.log("called from: " + state);
+    //console.log("called from: " + state);
     switch (state) {
       case "All Courses":
         getCourses();
@@ -109,19 +109,19 @@ export default function ViewCourses(props) {
         }
       )
       .then((res) => {
-        console.log("feature response in featureCourse: " + res.data);
+        //console.log("feature response in featureCourse: " + res.data);
       });
   }
 
   //delete course: unpublish it
   function deleteCourse(item, course) {
-    console.log("onclick delete = " + item);
+    //console.log("onclick delete = " + item);
     var url = "course/" + item;
     // const data = new FormData();
     // data.append("published", false);
     var index = courseList.indexOf(course);
     if (buttonText === "Un-feature") {
-      console.log(`un-featured course id: ${item} was at index ${index}`);
+      //console.log(`un-featured course id: ${item} was at index ${index}`);
       axios
         .put(
           url,
@@ -135,17 +135,17 @@ export default function ViewCourses(props) {
           }
         )
         .then((res) => {
-          console.log("un-featured response in ViewCourse = " + res.data);
-          console.log("courseList size before = " + courseList.length);
+         // console.log("un-featured response in ViewCourse = " + res.data);
+          //console.log("courseList size before = " + courseList.length);
           courseList.splice(index, 1);
-          console.log("courseList size after = " + courseList.length);
+         // console.log("courseList size after = " + courseList.length);
           setCourseList(courseList);
         })
         .catch((err) => {
           console.log(JSON.stringify(err));
         });
     } else {
-      console.log(`deleted course id: ${item} was at index ${index}`);
+     // console.log(`deleted course id: ${item} was at index ${index}`);
       axios
         .put(
           url,
@@ -159,14 +159,14 @@ export default function ViewCourses(props) {
           }
         )
         .then((res) => {
-          console.log("delete response in ViewCourse = " + res.data);
-          console.log("courseList size before = " + courseList.length);
-          courseList.splice(index, 1);
-          console.log("courseList size after = " + courseList.length);
+        //  console.log("delete response in ViewCourse = " + res.data);
+         // console.log("courseList size before = " + courseList.length);
+         // courseList.splice(index, 1);
+        //  console.log("courseList size after = " + courseList.length);
           setCourseList(courseList);
         })
         .catch((err) => {
-          console.log(JSON.stringify(err));
+         // console.log(JSON.stringify(err));
         });
     }
   }

@@ -21,7 +21,7 @@ export default function CourseList(props) {
       })
       .then((res, err) => {
         setCourses(res.data);
-        console.log("course list fetched in home: " + res.data.length);
+       /*  console.log("course list fetched in home: " + res.data.length); */
       });
   }
 

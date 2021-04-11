@@ -113,12 +113,12 @@ export default function AdminPanel() {
       })
       .then((res) => {
         console.log(
-          "analytics fetched in admin: " + JSON.stringify(res.data[0])
+         // "analytics fetched in admin: " + JSON.stringify(res.data[0])
         );
         setAnalytics(res.data[0]);
       })
       .catch((err) => {
-        console.log(err);
+      //  console.log(err);
       });
   }
 
@@ -132,12 +132,12 @@ export default function AdminPanel() {
       })
       .then((res) => {
         console.log(
-          "number of messages fetched: " + JSON.stringify(res.data.length)
+        //  "number of messages fetched: " + JSON.stringify(res.data.length)
         );
         setMessageList(res.data);
       })
       .catch((err) => {
-        console.log(err);
+       // console.log(err);
       });
   }
 
@@ -153,7 +153,7 @@ export default function AdminPanel() {
         const instructorList = res.data;
         setInstructorList(instructorList);
         console.log(
-          "instructor list fetched in admin: " + instructorList.length
+         // "instructor list fetched in admin: " + instructorList.length
         );
       });
   }
@@ -169,7 +169,7 @@ export default function AdminPanel() {
       .then((res, err) => {
         const courseList = res.data;
         setCourseList(courseList);
-        console.log("course list fetched in admin: " + courseList.length);
+        //"course list fetched in admin: " + courseList.length);
       });
   }
 

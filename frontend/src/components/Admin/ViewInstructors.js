@@ -58,7 +58,7 @@ export default function ViewInstructors(props) {
   const state = props.location.state;
 
   useEffect(() => {
-    console.log("called from: " + state);
+   // console.log("called from: " + state);
     switch (state) {
       case "All Instructors":
         getInstructors();
@@ -114,19 +114,19 @@ export default function ViewInstructors(props) {
         }
       )
       .then((res) => {
-        console.log("feature response in featureInstructor: " + res.data);
+       // console.log("feature response in featureInstructor: " + res.data);
       });
   }
 
   //delete instructor: unpublish it
   function deleteInstructor(item, instructor) {
-    console.log("onclick delete = " + item);
+   // console.log("onclick delete = " + item);
     var url = "instructor/" + item;
     // const data = new FormData();
     // data.append("published", false);
     var index = instructorList.indexOf(instructor);
     if (buttonText === "Un-feature") {
-      console.log(`un-featured course id: ${item} was at index ${index}`);
+      //console.log(`un-featured course id: ${item} was at index ${index}`);
       axios
         .put(
           url,
@@ -140,17 +140,17 @@ export default function ViewInstructors(props) {
           }
         )
         .then((res) => {
-          console.log("un-featured response in ViewCourse = " + res.data);
-          console.log("instructorList size before = " + instructorList.length);
+         // console.log("un-featured response in ViewCourse = " + res.data);
+         // console.log("instructorList size before = " + instructorList.length);
           instructorList.splice(index, 1);
-          console.log("instructorList size after = " + instructorList.length);
+         // console.log("instructorList size after = " + instructorList.length);
           setInstructorList(instructorList);
         })
         .catch((err) => {
-          console.log(JSON.stringify(err));
+         // console.log(JSON.stringify(err));
         });
     } else {
-      console.log(`deleted course id: ${item} was at index ${index}`);
+    // console.log(`deleted course id: ${item} was at index ${index}`);
       axios
         .put(
           url,
@@ -164,14 +164,14 @@ export default function ViewInstructors(props) {
           }
         )
         .then((res) => {
-          console.log("delete response in ViewCourse = " + res.data);
-          console.log("instructorList size before = " + instructorList.length);
+         /*  console.log("delete response in ViewCourse = " + res.data);
+          console.log("instructorList size before = " + instructorList.length); */
           instructorList.splice(index, 1);
-          console.log("instructorList size after = " + instructorList.length);
+          /* console.log("instructorList size after = " + instructorList.length); */
           setInstructorList(instructorList);
         })
         .catch((err) => {
-          console.log(JSON.stringify(err));
+         /*  console.log(JSON.stringify(err)); */
         });
     }
   }

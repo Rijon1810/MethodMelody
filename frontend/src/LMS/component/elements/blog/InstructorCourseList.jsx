@@ -21,7 +21,7 @@ const InstructorCourseList = () => {
     (state) => state.isLogged.payload.instructor
   ); */
   const instructorId =  useSelector((state) => state.isLogged.payload.instructor);
-  console.log("Hello this is me : ",instructorId);
+  //console.log("Hello this is me : ",instructorId);
   var instructorCourses = [];
   for(var i=0;i<courseList.length;i++)
   {

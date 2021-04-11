@@ -27,7 +27,7 @@ class Auth {
 
   isAuthenticated() {
     let _id = localStorage.getItem("v_token");
-    console.log("_id" + _id);
+   // console.log("_id" + _id);
     axios
       .get(`user/_ga/${_id}`, {
         headers: {
@@ -36,7 +36,7 @@ class Auth {
       })
       .then((res) => {
         if (res.data.status === "OK") {
-          console.log("authas" + JSON.stringify(res.data.status));
+         // console.log("authas" + JSON.stringify(res.data.status));
           this.authenticated = true;
         } else {
           // localStorage.removeItem("v_token");

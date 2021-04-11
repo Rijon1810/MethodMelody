@@ -78,7 +78,7 @@ const AdminMessages = () => {
   };
 
   const sendReply = () => {
-    console.log(`message id = ${messageId} and reply message = ${reply}`);
+  /*   console.log(`message id = ${messageId} and reply message = ${reply}`); */
     dispatch(replyMessage(messageId, { reply: reply }));
   };
   return (

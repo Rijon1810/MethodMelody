@@ -193,7 +193,7 @@ export default function CourseView(props) {
     } else if (lesson_status === "paid") {
       if (isLogIn) {
         if (myCourses !== undefined) {
-          console.log(typeof myCourses);
+         // console.log(typeof myCourses);
 
           if (myCourses.length === 0) {
             return (
@@ -403,7 +403,7 @@ export default function CourseView(props) {
                       if (paid === true && isLogIn === true) {
                         for (var i = 0; i < myCourses.length; i++) {
                           if (myCourses[i]._id === selectedCourse._id) {
-                            console.log(index);
+                           // console.log(index);
                             dispatch(getCurrentVideoIndex(index));
                           }
                         }

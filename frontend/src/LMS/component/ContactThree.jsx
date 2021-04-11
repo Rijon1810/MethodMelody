@@ -267,7 +267,7 @@ class ContactThree extends Component {
                             name="courseType"
                             className="form-control"
                             onSelect={(e) => {
-                              console.log(e.target.value);
+                              /* console.log(e.target.value); */
                               this.setState({ courseType: e.target.value });
                             }}
                           >
@@ -470,7 +470,7 @@ class ContactThree extends Component {
 
                       if(this.props.create_course_status === "failed" || this.props.create_course_status.message ===
                       "Course Added Successfully!"){
-                        console.log(this.props.create_course_status.message);
+                       
                         this.setState({ rnUploading: false });
                       }
 

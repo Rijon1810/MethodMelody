@@ -41,7 +41,7 @@ export default function InstructorView(props) {
 
   function getInstructor() {
     let endpoint = "instructor/" + instructorId;
-    console.log("Endpoint to send in request = " + endpoint);
+   // console.log("Endpoint to send in request = " + endpoint);
     axios
       .get(endpoint, {
         headers: {
@@ -51,10 +51,10 @@ export default function InstructorView(props) {
       .then((res) => {
         const instructorGot = res.data;
         // setInstructorList(instructorList);
-        console.log(
+/*         console.log(
           "instructor fetched in instructorView: " +
             JSON.stringify(instructorGot)
-        );
+        ); */
         if (instructor === "") {
           setInstructor(instructorGot);
         }

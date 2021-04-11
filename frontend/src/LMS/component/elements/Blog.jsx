@@ -122,7 +122,7 @@ export default function Blog() {
           course.courseType.toLowerCase() === selectedCourseType.toLowerCase()
       );
     }
-    console.log(filteredCourse);
+   // console.log(filteredCourse);
     setCourseList(filteredCourse);
   };
 
@@ -147,7 +147,7 @@ export default function Blog() {
 
   // handle onChange event of the dropdown
   const handleCategoryChange = (e) => {
-    console.log("catagory change ", e.value);
+   // console.log("catagory change ", e.value);
     if (e.value !== "") {
       setSelectedCategory(e.value);
     } else {
@@ -159,7 +159,7 @@ export default function Blog() {
   }, [selectedCategory, selectedInstructor, selectedCourseType]);
 
   const handleInstructorChange = (e) => {
-    console.log("instructor change ", e.value);
+   // console.log("instructor change ", e.value);
     if (e.value !== "") {
       setSelectedInstructor(e.value);
     } else {

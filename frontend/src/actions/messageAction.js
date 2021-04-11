@@ -25,7 +25,7 @@ export const getMessage = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
       dispatch({
         type: GET_ALL_MESSAGE,
         payload: "",
@@ -47,7 +47,7 @@ export const getMessageById = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
       dispatch({
         type: GET_MESSAGE_BY_ID,
         payload: "",
@@ -63,14 +63,14 @@ export const getCurrentMessageById = (id) => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(`current message api response = ${res.data}`)
+     // console.log(`current message api response = ${res.data}`)
       dispatch({
         type: GET_CURRENT_MESSAGE_BY_ID,
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
       dispatch({
         type: GET_CURRENT_MESSAGE_BY_ID,
         payload: "",
@@ -87,14 +87,14 @@ export const getPreviousMessageById = (id) => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(`previous message api response = ${res.data}`)
+     // console.log(`previous message api response = ${res.data}`)
       dispatch({
         type: GET_PREVIOUS_MESSAGE_BY_ID,
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       dispatch({
         type: GET_PREVIOUS_MESSAGE_BY_ID,
         payload: "",
@@ -116,7 +116,7 @@ export const getGeneralMessage = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
       dispatch({
         type: GET_GENERAL_MESSAGE,
         payload: "",
@@ -138,7 +138,7 @@ export const getStudentMessage = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       dispatch({
         type: GET_STUDENT_MESSAGE,
         payload: "",
@@ -147,7 +147,7 @@ export const getStudentMessage = () => (dispatch) => {
 };
 
 export const postMessage = (data) => (dispatch) => {
-  console.log(data);
+ // console.log(data);
   axios
     .post(`contact/`, data, {
       headers: {
@@ -161,7 +161,7 @@ export const postMessage = (data) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
       dispatch({
         type: POST_MESSAGE,
         payload: "post failed",
@@ -185,7 +185,7 @@ export const replyMessage = (id, data) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+    //  console.log(err);
       dispatch({
         type: REPLY_MESSAGE,
         payload: "reply failed",
@@ -208,7 +208,7 @@ export const getAllMessageDynamicallyByTag = (tag, id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       dispatch({
         type: GET_DYNAMICALLY_BY_TAG,
         payload: "",

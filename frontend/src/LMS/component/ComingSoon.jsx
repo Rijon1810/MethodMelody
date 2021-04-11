@@ -42,11 +42,11 @@ export default function ComingSoon() {
     axios
       .get(`user/timer/`)
       .then((res) => {
-        console.log(`time left = ${res.data}`);
+     /*    console.log(`time left = ${res.data}`); */
         setRemainingTime(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        /* console.log(err); */
         return 0;
       });
   }

@@ -117,9 +117,9 @@ export default function Landing() {
       currentCourses.push(course_id[0]);
       console.log("current courses id for this user = " + course_id[0]);
     });
-    console.log(
+/*     console.log(
       "number of current courses for this user = " + currentCourses.length
-    );
+    ); */
   }
 
   const instructorList = useSelector(
@@ -131,7 +131,7 @@ export default function Landing() {
   const userId = useSelector((state) => state.isLogged.payload.id);
 
   const isLoggedIn = useSelector((state) => state.isLogged.login);
-  console.log("is logged in: " + isLoggedIn);
+  //console.log("is logged in: " + isLoggedIn);
 
   const courseList = useSelector((state) => state.getCourse.featuredCourseList);
 
@@ -186,7 +186,7 @@ export default function Landing() {
     history.push("/courses", { courses: "all" });
   }
 
-  console.log(SlideList[0].bgImage);
+ // console.log(SlideList[0].bgImage);
 
   // var titleColor = {"Red": "#b12222"}
 

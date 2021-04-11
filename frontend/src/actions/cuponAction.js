@@ -8,7 +8,7 @@ export const cupon = (cuponCode ,discount,useLimit,expireDate) => (dispatch) => 
     useLimit,
     expireDate
   }
-  console.log(data);
+//  console.log(data);
   axios
     .post("cart/cupon", data, {
       headers: {

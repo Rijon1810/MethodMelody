@@ -52,7 +52,7 @@ export default function ContactUsForm(props) {
   const { register, handleSubmit, errors } = useForm();
 
   function sendMessage(data, e) {
-    console.log(data);
+   /*  console.log(data); */
     axios
       .post(
         "contact/add/",
@@ -68,11 +68,11 @@ export default function ContactUsForm(props) {
         }
       )
       .then((res) => {
-        console.log(res);
+       /*  console.log(res); */
         e.target.reset(); // reset after form submit
       })
       .catch((err) => {
-        console.log(err);
+       /*  console.log(err); */
       });
   }
   return (

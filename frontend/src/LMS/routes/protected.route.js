@@ -8,7 +8,7 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        console.log("auth" + auth.isAuthenticated());
+       // console.log("auth" + auth.isAuthenticated());
         if (auth.isAuthenticated()) {
           return <Component {...props} />;
         } else {
@@ -33,7 +33,7 @@ export const ProtectedAdminRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        console.log("auth" + auth.isAdmin());
+       // console.log("auth" + auth.isAdmin());
         if (auth.isAdmin() && auth.isAuthenticated()) {
           return <Component {...props} />;
         } else {
@@ -58,7 +58,7 @@ export const ProtectedStudentRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        console.log("auth" + auth.isStudent());
+       // console.log("auth" + auth.isStudent());
         if (auth.isStudent() && auth.isAuthenticated()) {
           return <Component {...props} />;
         } else {
@@ -83,7 +83,7 @@ export const ProtectedInstructorRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        console.log("auth" + auth.isInstructor());
+       // console.log("auth" + auth.isInstructor());
         if (auth.isInstructor() && auth.isAuthenticated()) {
           return <Component {...props} />;
         } else {
@@ -108,7 +108,7 @@ export const ProtectedContentRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        console.log("auth" + auth.isContent());
+       // console.log("auth" + auth.isContent());
         if (auth.isContent() && auth.isAuthenticated()) {
           return <Component {...props} />;
         } else {

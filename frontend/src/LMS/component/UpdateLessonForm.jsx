@@ -26,13 +26,13 @@ class UpdateLessonForm extends Component {
   componentDidMount() {}
 
   courseToShow = (id) => {
-    console.log(`rnCourse value = ${id}`);
+   // console.log(`rnCourse value = ${id}`);
     // this.setState({ showCourse: id });
     {
       this.props.courseList.map((course) => {
         if (course._id === id) {
           this.setState({ showVideos: course.videos });
-          console.log(course.videos);
+         // console.log(course.videos);
         }
       });
     }
@@ -174,8 +174,8 @@ class UpdateLessonForm extends Component {
                         className="rn-btn"
                         to="#"
                         onClick={() => {
-                          console.log(video._id);
-                          console.log(this.state.rnStatus); 
+                          //console.log(video._id);
+                         // console.log(this.state.rnStatus); 
                           axios
                             .post(
                               "course/status/",
@@ -194,7 +194,7 @@ class UpdateLessonForm extends Component {
                               alert(`lesson status updated successfully`);
                             })
                             .catch((err) => {
-                              console.log(err);
+                             // console.log(err);
                             });                         
                         }}
                       >
@@ -206,8 +206,8 @@ class UpdateLessonForm extends Component {
                         className="rn-btn"
                         to="#"
                         onClick={() => {
-                          console.log(video._id);
-                          console.log(this.state.rnStatus);  
+                        //  console.log(video._id);
+                         // console.log(this.state.rnStatus);  
                           axios
                             .post(
                               "course/status/",
@@ -226,7 +226,7 @@ class UpdateLessonForm extends Component {
                               alert(`lesson status updated successfully`);
                             })
                             .catch((err) => {
-                              console.log(err);
+                              //console.log(err);
                             });                        
                         }}
                       >
@@ -238,8 +238,8 @@ class UpdateLessonForm extends Component {
                         className="rn-btn"
                         to="#"
                         onClick={() => {
-                          console.log(video._id);
-                          console.log(this.state.rnStatus);  
+                        //  console.log(video._id);
+                        //  console.log(this.state.rnStatus);  
                           axios
                             .post(
                               "course/status/",
@@ -258,7 +258,7 @@ class UpdateLessonForm extends Component {
                               alert(`lesson status updated successfully`);
                             })
                             .catch((err) => {
-                              console.log(err);
+                             // console.log(err);
                             });                         
                         }}
                       >

@@ -173,7 +173,7 @@ export default function CourseUploader(props) {
 
   const { register, handleSubmit, errors } = useForm();
   function addCourse(data, e) {
-    console.log(data);
+   /*  console.log(data); */
 
     let formData = new FormData();
     formData.append("title", data.title);
@@ -189,9 +189,9 @@ export default function CourseUploader(props) {
     formData.append("courseHour", data.coursehour);
     formData.append("desc", data.description);
 
-    for (var pair of formData.entries()) console.log(pair[0] + ", " + pair[1]);
+    for (var pair of formData.entries()) /* console.log(pair[0] + ", " + pair[1]) */;
 
-    console.log("array inside upload course = " + videoIdArray);
+    /* console.log("array inside upload course = " + videoIdArray); */
 
     // formData.append("video", videoIdArray);
 
@@ -206,11 +206,11 @@ export default function CourseUploader(props) {
         },
       })
       .then((res) => {
-        console.log(JSON.stringify(res.data));
+        /* console.log(JSON.stringify(res.data)); */
         e.target.reset();
       })
       .catch((err) => {
-        console.log(err);
+        /* console.log(err); */
       });
   }
 
@@ -267,26 +267,26 @@ export default function CourseUploader(props) {
       .then((res) => {
         const instructorList = res.data;
         setInstructorList(instructorList);
-        console.log(
+/*         console.log(
           "instructor list fetched in courseuploader: " + instructorList
-        );
+        ); */
       });
   }
 
   //get file selected for thumbnail
   function fileSelectedHandler(event) {
-    console.log("file selected: " + event.target.files[0]);
+   // console.log("file selected: " + event.target.files[0]);
     setThumbnail(event.target.files[0]);
   }
 
   //callback function send to VideoUploader to upload videoIdArray
   const setVideoId = (videoId) => {
     videoIdArray.push(videoId);
-    console.log(
+/*     console.log(
       "stored response for video upload request in CourseUploader: " +
         videoIdArray
-    );
-    console.log("number of videos uploaded: " + videoIdArray.length);
+    ); */
+   // console.log("number of videos uploaded: " + videoIdArray.length);
   };
 
   return (

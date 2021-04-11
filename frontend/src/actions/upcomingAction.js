@@ -17,7 +17,7 @@ export const upcoming = (data) => (dispatch) => {
       // alert(res.data.message);
     })
     .catch((err) => {
-      console.log(err);
-      alert("failed try again");
+      //console.log(err);
+      //alert("failed try again");
     });
 };

@@ -128,13 +128,13 @@ export default function Navbar(props) {
         const instructorList = res.data;
         setInstructorList(instructorList);
         console.log(
-          "instructor list fetched in navbar: " + instructorList[0].photo
+         // "instructor list fetched in navbar: " + instructorList[0].photo
         );
       });
   }
 
   // const instructorList = props.instructors;
-  console.log("instructor list inside NavBar: " + instructorList);
+  //console.log("instructor list inside NavBar: " + instructorList);
 
   //Course menu click handlers
   const handleClick = (event) => {

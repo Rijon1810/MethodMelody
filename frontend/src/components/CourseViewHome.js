@@ -118,7 +118,7 @@ export default function CourseViewHome(props) {
   }
 
   useEffect(() => {
-    console.log("course list inside CourseViewHome: " + courseList.length);
+   // console.log("course list inside CourseViewHome: " + courseList.length);
   }, [courseList]);
 
   function buyCourse(id) {
@@ -136,7 +136,7 @@ export default function CourseViewHome(props) {
         }
       )
       .then((res) => {
-        console.log("bought: " + res.data);
+       // console.log("bought: " + res.data);
         setOpen(true);
       });
   }

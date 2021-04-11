@@ -133,7 +133,7 @@ export default function CoursePublishList() {
     for (let i = 0; i < left.length; i++) {
       publish.push(left(i));
     }
-    console.log("size of courses published list to upload = " + publish.length);
+   // console.log("size of courses published list to upload = " + publish.length);
   }
 
   function pushUpdate(item) {
@@ -148,7 +148,7 @@ export default function CoursePublishList() {
         },
       })
       .then((res) => {
-        console.log("response in CourseFeatureList = " + res.data);
+        //console.log("response in CourseFeatureList = " + res.data);
       });
   }
 

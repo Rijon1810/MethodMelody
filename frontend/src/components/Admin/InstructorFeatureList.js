@@ -108,14 +108,14 @@ export default function InstructorFeatureList() {
         setInstructorList(instructorList);
 
         console.log(
-          "instructor list fetched in feature list: " + instructorList.length
+         // "instructor list fetched in feature list: " + instructorList.length
         );
 
         const tempRight = [];
         const tempLeft = [];
         for (var i = 0; i < instructorList.length; i++) {
           if (instructorList[i].featured === true) {
-            console.log(instructorList[i].name);
+           // console.log(instructorList[i].name);
             // setRight([...right, instructorList[i]]);
             tempRight.push(instructorList[i]);
           } else {
@@ -129,7 +129,7 @@ export default function InstructorFeatureList() {
           setLeft(tempLeft);
         }
 
-        console.log("right array length = " + right.length);
+       // console.log("right array length = " + right.length);
       });
   }
 
@@ -141,20 +141,20 @@ export default function InstructorFeatureList() {
       var temp = right[i].featured;
       right[i].featured = true;
       console.log(
-        `previous value: ${temp} and current value: ${right[i].featured}`
+        //`previous value: ${temp} and current value: ${right[i].featured}`
       );
     }
     for (let j = 0; j < left.length; j++) {
       var temp = left[j].featured;
       left[j].featured = false;
       console.log(
-        `previous value: ${temp} and current value: ${left[j].featured}`
+       // `previous value: ${temp} and current value: ${left[j].featured}`
       );
     }
     var tempArray = left.concat(right);
     for (var k = 0; k < tempArray.length; k++) {
       console.log(
-        `finaly value for ${tempArray[k].name} featured = ${tempArray[k].featured}`
+        //`finaly value for ${tempArray[k].name} featured = ${tempArray[k].featured}`
       );
       pushUpdate(tempArray[k]);
     }
@@ -172,7 +172,7 @@ export default function InstructorFeatureList() {
         },
       })
       .then((res) => {
-        console.log("response in InstructorFeatureList = " + res.data);
+       // console.log("response in InstructorFeatureList = " + res.data);
       });
   }
 

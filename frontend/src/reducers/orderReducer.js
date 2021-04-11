@@ -6,7 +6,7 @@ const initialState = {
 
 
 export const getOrderReducer = (state = initialState, action) => {
-  console.log(action.payload);
+  //console.log(action.payload);
   switch (action.type) {
 
     case GET_ORDER:

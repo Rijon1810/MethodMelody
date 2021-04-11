@@ -17,7 +17,7 @@ export default function Login(){
     
     const userLogin = (data)=>{
         // localStorage.setItem("user-data", data.email);
-        console.log(data.email);
+       // console.log(data.email);
         axios
           .post("user/login/", data, {
             headers: {

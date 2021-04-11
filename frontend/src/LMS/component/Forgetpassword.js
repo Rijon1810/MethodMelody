@@ -75,7 +75,7 @@ class Forgetpassword extends Component {
                   event.preventDefault();
 
                   const email = this.state.rnEmail;
-                  console.log("my email",email);
+                //  console.log("my email",email);
              
                   if (email === "") {
                     alert.show("Any of the field is not fillup!!!");
@@ -93,7 +93,7 @@ class Forgetpassword extends Component {
                       
                     })
                     .catch((err) => {
-                      console.log(err);
+                     // console.log(err);
                     });
                     alert.show("Check Your Email for password reset!!");
                     this.props.history.push("/login");

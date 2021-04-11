@@ -200,21 +200,21 @@ class UpdateInstructorForm extends Component {
                       body.delete("instructorId");
                       const data = new FormData();
                       for (var pair of body.entries()) {
-                        if (pair[0] == "banner" || pair[0] == "thumbnail") {
-                          if (pair[1].name != "") {
-                            console.log(
+                        if (pair[0] === "banner" || pair[0] === "thumbnail") {
+                          if (pair[1].name !== "") {
+                           /*  console.log(
                               pair[0] + ", " + JSON.stringify(pair[1].name)
-                            );
+                            ) */;
                             data.append(pair[0], body.get(pair[0]));
                           }
                         } else if (pair[1]) {
-                          console.log(pair[0] + ", " + pair[1]);
+                         // console.log(pair[0] + ", " + pair[1]);
                           data.append(pair[0], body.get(pair[0]));
                         }
                       }
                       toast("Upload started!!! please wait!!");
                       await this.props.updateInstructor(id, body);
-                      console.log(this.props.instructor_update_status);
+                     // console.log(this.props.instructor_update_status);
                       this.props.instructor_update_status ===
                       "Instructor Updated Successfully!"
                         ? toast.success("Instructor Updated Successfully!", {

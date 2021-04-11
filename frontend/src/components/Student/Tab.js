@@ -90,7 +90,7 @@ export default function ScrollableTabsButtonAuto() {
         },
       })
       .then((res) => {
-        console.log("User: " + JSON.stringify(res.data));
+       // console.log("User: " + JSON.stringify(res.data));
         setUser(res.data);
       });
   }
@@ -109,7 +109,7 @@ export default function ScrollableTabsButtonAuto() {
         }
       )
       .then((res) => {
-        console.log("Course: " + JSON.stringify(res.data));
+       // console.log("Course: " + JSON.stringify(res.data));
         setUserCourses(res.data);
       });
   }

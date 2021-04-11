@@ -89,9 +89,9 @@ class ContactOne extends Component {
                         email: this.state.rnEmail,
                         message: this.state.rnMessage,
                       });
-                      console.log(this.state.rnName);
+                    /*   console.log(this.state.rnName);
                       console.log(this.state.rnEmail);
-                      console.log(this.state.rnMessage);
+                      console.log(this.state.rnMessage); */
 
                       this.setState({ rnName: "", rnEmail: "", rnMessage: "" });
 

@@ -24,7 +24,7 @@ export const getCourse = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
     });
   axios
     .get("course/", {
@@ -39,7 +39,7 @@ export const getCourse = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+   //   console.log(err);
     });
   axios
     .get("course/upcoming", {
@@ -54,7 +54,7 @@ export const getCourse = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+    //  console.log(err);
     });
   axios
     .get("course/catagory/", {
@@ -63,14 +63,14 @@ export const getCourse = () => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log("this is another problem", res.data);
+   //   console.log("this is another problem", res.data);
       dispatch({
         type: GET_CATAGORY,
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
+    //  console.log(err);
     });
 };
 
@@ -93,7 +93,7 @@ export const postCourse = (data) => async (dispatch) => {
         type: POST_COURSE,
         payload: "failed",
       });
-      console.log(err);
+    //  console.log(err);
     });
 };
 export const courseFilter = (data) => async (dispatch) => {
@@ -115,13 +115,13 @@ export const courseFilter = (data) => async (dispatch) => {
         type: POST_FILTER,
         payload: "failed",
       });
-      console.log(err);
+    // console.log(err);
     });
 };
 
 export const updateCourse = (id, data) => async (dispatch) => {
-  console.log(id);
-  console.log(data);
+ // console.log(id);
+ // console.log(data);
 
   await axios
     .post(`course/${id}/`, data, {
@@ -141,12 +141,12 @@ export const updateCourse = (id, data) => async (dispatch) => {
         type: UPDATE_COURSE,
         payload: "failed",
       });
-      console.log(err);
+     // console.log(err);
     });
 };
 
 export const getCourseById = (id) => async (dispatch) => {
-  console.log(id);
+ // console.log(id);
   await axios
     .get(`course/${id}/`, {
       headers: {
@@ -164,6 +164,6 @@ export const getCourseById = (id) => async (dispatch) => {
         type: GET_COURSE_BY_ID,
         payload: "failed",
       });
-      console.log(err);
+    //  console.log(err);
     });
 };

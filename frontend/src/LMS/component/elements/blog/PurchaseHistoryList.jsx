@@ -8,7 +8,7 @@ import {
 import { getUserCourse } from "../../../../actions/userAction";
 
 const PurchaseHistoryList = () => {
-  console.log("Inside Purchase History");
+ // console.log("Inside Purchase History");
   const [render, setRender] = useState(false);
   
   const courseListAll = useSelector((state) => state.getCourse.courseList);

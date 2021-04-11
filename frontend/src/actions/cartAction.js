@@ -15,7 +15,7 @@ export const getCart = (data) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+    //  console.log(err);
     });
 };
 
@@ -34,7 +34,7 @@ export const postCart = (data) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+   //   console.log(err);
     });
 };
 
@@ -53,7 +53,7 @@ export const removeCart = (data) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+   //   console.log(err);
     });
 };
 
@@ -72,6 +72,6 @@ export const checkout = (data) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+    //  console.log(err);
     });
 };

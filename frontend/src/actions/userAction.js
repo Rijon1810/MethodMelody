@@ -24,10 +24,10 @@ export const getUser = () => (dispatch) => {
         type: GET_ALL_USER,
         payload: res.data,
       });
-      console.log(`all users = ${res.data}`);
+     // console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
     });
 };
 
@@ -71,10 +71,10 @@ export const getByType = (type) => (dispatch) => {
           break;
       }
 
-      console.log(`all users = ${res.data}`);
+    //  console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
-      console.log(err);
+    //  console.log(err);
     });
 };
 
@@ -97,10 +97,10 @@ export const getByStudentType = (tag) => (dispatch) => {
           payload: res.data,
         });
       }
-      console.log(`all users = ${res.data}`);
+     // console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
     });
 };
 
@@ -123,7 +123,7 @@ export const getUserCourse = (id) => async (dispatch) => {
         type: GET_USER_COURSE,
         payload: "failed",
       });
-      console.log(err);
+      //console.log(err);
     });
 };
 
@@ -146,12 +146,12 @@ export const updateUser = (data) => async (dispatch) => {
         type: USER_UPDATE,
         payload: "failed",
       });
-      console.log(err);
+     // console.log(err);
     });
 };
 
 export const suspend = (id) => async (dispatch) => {
-  console.log(`user id for suspension = ${id}`)
+ // console.log(`user id for suspension = ${id}`)
   await axios
     .post(`user/${id}`, {
       headers: {
@@ -170,6 +170,6 @@ export const suspend = (id) => async (dispatch) => {
         type: USER_SUSPEND,
         payload: "failed",
       });
-      console.log(err);
+     // console.log(err);
     });
 };

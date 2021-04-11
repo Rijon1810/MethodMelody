@@ -47,7 +47,7 @@ const AdminCuponList = () => {
 
   const featuredInstructorList = findFeaturedInstructors(instructorList);
 
-  console.log(`featured course list size = ${featuredInstructorList.length}`);
+ // console.log(`featured course list size = ${featuredInstructorList.length}`);
 
   const dispatch = useDispatch();
 

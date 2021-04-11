@@ -33,9 +33,9 @@ const findFeaturedCourses = (courses) => {
 };
 
 const featureOrUnfeatureCourse = (course) => {
-  console.log(`course for featuring = ${course._id}`)
+ // console.log(`course for featuring = ${course._id}`)
   var data = { "featured": [], "unFeatured": [] };
-  console.log(`course status = ${course.featured}`);
+ // console.log(`course status = ${course.featured}`);
   if (course.featured) {
     data.unFeatured.push(course._id);
   } else {
@@ -48,10 +48,10 @@ const featureOrUnfeatureCourse = (course) => {
       },
     })
     .then((res) => {
-      console.log(res.data);
+     // console.log(res.data);
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
     });
 };
 
@@ -62,7 +62,7 @@ const AdminCourseList = () => {
 
   var featuredCourseList = findFeaturedCourses(courseList);
 
-  console.log(`featured course list size = ${featuredCourseList.length}`);
+  //console.log(`featured course list size = ${featuredCourseList.length}`);
 
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
@@ -217,7 +217,7 @@ const AdminCourseList = () => {
                                   className="rn-btn text-white"
                                   to="#"
                                   onClick={() => {
-                                    console.log(course);
+                                   // console.log(course);
                                     featureOrUnfeatureCourse(course);
                                   }}
                                 >
