@@ -9,6 +9,7 @@ import {
 
 const InstructorCourseList = () => {
   const courseList = useSelector((state) => state.getCourse.courseList);
+ 
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
@@ -16,24 +17,28 @@ const InstructorCourseList = () => {
     (state) => state.getSelectedId.getSelectedCourseCategoryList
   );
 
-  const instructorId = useSelector(
+/*   const instructorId = useSelector(
     (state) => state.isLogged.payload.instructor
-  );
-
+  ); */
+  const instructorId =  useSelector((state) => state.isLogged.payload.instructor);
+  console.log("Hello this is me : ",instructorId);
   var instructorCourses = [];
-  courseList.map((course) => {
-    if (course.instructor === instructorId) {
-      instructorCourses.push(course);
-    }
-  });
+  for(var i=0;i<courseList.length;i++)
+  {
 
-  console.log(categorySelectedList);
+    if (courseList[i].instructor === instructorId) {
+     
+      instructorCourses.push(courseList[i]);
+    }
+  }
+
+ 
 
   const dispatch = useDispatch();
   return (
     <Fragment>
       <div className="row">
-        {console.log("course list size in BlogList.js= " + courseList.length)}
+        {/* console.log("course list size in BlogList.js= " + courseList.length) */}
 
         {instructorCourses.map((course) => (
           <div
@@ -62,6 +67,9 @@ const InstructorCourseList = () => {
                 <p className="blogtype">{course.catagory}</p>
                 <h4 className="title">
                   <Link to="/courseview">{course.title}</Link>
+                </h4>
+                <h4 className="title">
+                   Number of sold : { course.sold}
                 </h4>
                 <div className="blog-btn">
                   <Link className="rn-btn text-white" to="/courseview">

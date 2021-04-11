@@ -89,25 +89,21 @@ class Forgetpassword extends Component {
                       },
                     })
                     .then((res) => {
-                      alert.show("Check Your Email for password reset!!");
+                     
                       
                     })
                     .catch((err) => {
                       console.log(err);
                     });
+                    alert.show("Check Your Email for password reset!!");
+                    this.props.history.push("/login");
 
                   }
+
                 }}
               >
                 Submit
               </button>
-
-              <div className=" text-right blog-btn mt_sm--10 mt_md--10">
-                <Link to="/signup" className="btn-transparent rn-btn-dark">
-                  <br />
-                  <span>Don't have an account? Signup</span>
-                </Link>
-              </div>
             </form>
           </div>
         </Box>

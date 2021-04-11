@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getInstructor } from "../../actions/instructorAction";
 import { signUp } from "../../actions/signUpAction";
-
+import { withAlert } from "react-alert";
 class CreateInstructorAccountForm extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,8 @@ class CreateInstructorAccountForm extends Component {
       rnInstructorProfileId: "",
     };
   }
-  render() {    
+  render() {   
+    const alert = this.props.alert; 
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -143,14 +144,18 @@ class CreateInstructorAccountForm extends Component {
                       for (var pair of body.entries()) {
                         console.log(pair[0] + ", " + pair[1]);
                       }
-                      toast("Upload started!!! please wait!!");
+                    
                       await this.props.signUp(body);
+                      alert.show(
+                        "Please tell, to check instructor  email to verify instructor account!!"
+                      );
+                    /*   toast("Upload started!!! please wait!!"); */
                       this.setState({ rnName: "",
                       rnEmail: "",
                       rnPassword: "",
                       rnUserType: 3,
                       rnInstructorProfileId: "",})
-                      this.props.create_user_status.message === "user added!"
+                     /*  this.props.create_user_status.message === "user added!"
                         ? toast.success("Instructor Created Successfully!", {
                             position: "bottom-center",
                             autoClose: false,
@@ -168,7 +173,7 @@ class CreateInstructorAccountForm extends Component {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                          });
+                          }); */
                     }}
                   >
                     Submit
@@ -200,5 +205,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { signUp, getInstructor })(
-  CreateInstructorAccountForm
+  withAlert()(CreateInstructorAccountForm)
 );

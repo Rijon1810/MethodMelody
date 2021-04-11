@@ -323,7 +323,7 @@ const AdminMessages = () => {
             <FiChevronUp />
           </ScrollToTop>
         </div>
-        <Footer />
+        {/* <Footer /> */}
         {/* End Back To Top */}
       </main>
       <AdminDrawer />

@@ -2,6 +2,9 @@
 import { Grid } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import React, { useEffect } from "react";
+import { ShoppingBasket } from "@material-ui/icons";
+import { AddShoppingCart, FavoriteBorderOutlined } from "@material-ui/icons";
+
 import {
   Accordion,
   AccordionItem,
@@ -99,6 +102,7 @@ const SlideList = [
 
 export default function Landing() {
   const [wish, setWish] = React.useState(false);
+  const [select, setSelect] = React.useState('');
   const wishList = useSelector(
     (state) => state.getAllUsers.getUserCourse.wishList
   );
@@ -165,11 +169,17 @@ export default function Landing() {
     dispatch(getCart(`${userId}`));
     dispatch(getUserCourse(`${userId}`));
     dispatch(getSelectedCourseCategory(""));
+    dispatch(
+      postCart({
+        user: userId,
+        course: select,
+      })
+    );
     // if (isLoggedIn) {
     //   dispatch(getCurrentMessageById(`${userId}`));
     //   dispatch(getPreviousMessageById(`${userId}`));
     // }
-  }, [dispatch, userId]);
+  }, [dispatch, userId , select]);
 
   // view all course handler
   function handleViewAllCourse() {
@@ -196,6 +206,7 @@ export default function Landing() {
               className="rn-btn text-white"
               to="#"
               onClick={async (event) => {
+                
                 dispatch(
                   postCart({
                     user: userId,
@@ -312,7 +323,7 @@ export default function Landing() {
       {/* End Slider Area   */}
 
       {/* Start Featured Course Area Area */}
-      <div className="rn-blog-area ptb--100  mb-dec--30 bg_color--6">
+      <div className="rn-blog-area pt--100  mb-dec--30 bg_color--6">
         <div className="container">
           <div className="row align-items-end">
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
@@ -374,21 +385,17 @@ export default function Landing() {
                             View Details
                           </Link>
                         </div>
+                        <div className="col-12 d-flex">
                         <button
                         variant="contained"
                         className="rn-button-style--2 btn-solid"
                         fullWidth={true}
                         style={{ width: "100%", marginTop: "50px" }}
                         onClick={async (event) => {
-                          dispatch(
-                            postCart({
-                              user: userId,
-                              course: course._id,
-                            })
-                          );
+                          setSelect(course._id)
                         }}
                       >
-                        Add to cart
+                        <ShoppingBasket />
                       </button>
                         <button
                         variant="contained"
@@ -404,8 +411,9 @@ export default function Landing() {
                           );
                         }}
                       >
-                        Add to wishlist
+                        <FavoriteBorderOutlined />
                       </button>
+                      </div>
 
                       </div>
                     </div>
@@ -435,8 +443,11 @@ export default function Landing() {
       >
         <Grid item lg={8}>
           {" "}
-          <div className="section-title text-center">
-            <h3 className="title fontWeight500">How the platform works</h3>
+          <div className="section-title ">
+            <h3 className="title fontWeight500 ">How the platform works</h3>
+            <p className="p theme-gradient text-left">
+              At a glance video of methodmelody, your next platform for practicing music
+            </p>
           </div>
         </Grid>
         <Grid item lg={8} sm={10} md={10}>
@@ -463,10 +474,13 @@ export default function Landing() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <div className="section-title text-center">
-                <h3 style={{ paddingTop: "2ch" }}>
+              <div className="section-title">
+                <h3 className="title text-left" style={{ paddingTop: "2ch" }}>
                   Insights
                 </h3>
+                <p style={{ color: "#b12222" }}>
+                  Learn from the best of the Best
+                </p>
               </div>
             </div>
           </div>
@@ -585,7 +599,7 @@ export default function Landing() {
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
               <div className="section-title text-left pb--30">
-                <h3 style={{ color: "#b12222" }}>Do you have any Question</h3>
+                <h3 style={{ color: "#b12222" }}>Here are some common Questions.</h3>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ const path = require("path");
 const Mongoose = require("mongoose");
 const Course = require("../models/Course.model");
 const Upcoming = require("../models/Upcoming.model");
+const Instructor = require("../models/Instructor.model");
 const Video = require("../models/Video.model");
 const Document = require("../models/Document.model");
 const Analytics = require("../models/Analytics.model");
@@ -183,7 +184,20 @@ router
     });
     newCourse
       .save()
-      .then(() => {
+      .then( async (doc) => {
+        const cours = doc.instructor;
+      //  console.log("This is course id", cours);
+        //instructor
+       const instruct = instructor;
+
+       const ins = await Instructor.findOne({ _id : cours })
+       console.log(ins);
+
+         ins.course.push(doc._id);
+
+         await ins.save()
+
+
         Analytics.findOneAndUpdate(
           { _id: "5fdb01d70379f5528c7f8928" },
           { $inc: { course: 1 } },

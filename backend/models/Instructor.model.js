@@ -10,7 +10,7 @@ var InstructorSchema = new Schema(
 		earnings: { type: Number, default: 0 },
 		teaches: [{ type: String }],
 		band: { type: String  , required: true},
-		course: [{ type: Schema.Types.ObjectId }],
+		course: [{ type : String}],
 		document: [{ type: Schema.Types.ObjectId }],
 		video: [
 			{

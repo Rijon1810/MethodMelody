@@ -55,8 +55,6 @@ function AddInstructor() {
           </ScrollToTop>
         </div>
         {/* End Back To Top */}
-
-        <Footer />
       </main>
 
       <AdminDrawer />

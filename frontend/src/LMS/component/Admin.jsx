@@ -85,7 +85,7 @@ function Admin() {
         </div>
         {/* End Back To Top */}
 
-        <Footer />
+        
       </main>
 
       <AdminDrawer />

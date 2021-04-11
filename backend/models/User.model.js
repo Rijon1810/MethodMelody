@@ -20,7 +20,8 @@ var UserSchema = new Schema(
     },
     password: { type: String, required: true },
     course: [[{ type: String }, { type: String }]],
-    instructor: { type: Schema.Types.ObjectId },
+    instructor: { type: String },
+/*     instructor: { type: Schema.Types.ObjectId }, */
     cart: [{ type: Schema.Types.ObjectId }],
     wishList: [{ type: Schema.Types.ObjectId }],
     previousCourse: [{ type: Schema.Types.ObjectId }],

@@ -14,8 +14,11 @@ var CourseSchema = new Schema(
     thumbnail: { type: String },
     banner: { type: String },
     videos: [{ type: Object }],
-    instructor: {
+/*     instructor: {
       type: Schema.Types.ObjectId,
+    }, */
+    instructor: {
+      type:String,
     },
     topic: [{ type: String }],
     preRequisite: [{ type: Schema.Types.ObjectId }],

@@ -11,7 +11,7 @@ export const getOrder = () => (dispatch) => {
       }
     })
     .then((res) => {
-      console.log(res+ "piea gechi");
+    //  console.log(res+ "piea gechi");
       dispatch({
         type: GET_ORDER,
         payload: res.data,

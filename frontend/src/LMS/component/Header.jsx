@@ -49,7 +49,10 @@ export default function Header(props) {
   const user_type = useSelector((state) => state.isLogged.payload.type);
   const login_data = useSelector((state) => state.isLogged.payload);
   const loginStatus = useSelector((state) => state.isLogged.login);
-  
+    
+  useEffect(()=>{
+      
+  },[])
   useEffect(() => {
     // dispatch(isLogged());
     // dispatch(logOut());
@@ -115,6 +118,7 @@ export default function Header(props) {
     overflow: "auto",
     maxHeight: "50ch",
     scrollbar: "auto",
+    margin: "0vw 0vw 0vw -14vw",
   };
 
   const avatar = {
@@ -519,9 +523,9 @@ export default function Header(props) {
             props.from !== "signup" &&
             loginStatus === false && (
               <div className="header-btn">
-                {console.log(localStorage.getItem("name"))}
-                <Link className="rn-btn" to="/login">
-                  <span>Login</span>
+                {/* console.log(localStorage.getItem("name")) */}
+                <Link className="rn-btn" to="/login" style={{"backgroundColor":"rgb(177, 34, 34)","color":"rgb(255, 255, 255)","borderBlockStyle":"hidden"}}>
+                  <span>Log in</span>
                 </Link>
               </div>
             )}

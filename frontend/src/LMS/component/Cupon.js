@@ -119,7 +119,7 @@ class Cupon extends Component {
         </Box>
         <AdminDrawer />
 
-        <Footer />
+       {/*  <Footer /> */}
       </div>
     );
   }

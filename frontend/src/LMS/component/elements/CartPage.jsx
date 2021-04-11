@@ -36,15 +36,16 @@ const CartPage = () => {
   const [useCuponCode, setUseCuponCode] = React.useState("");
   const cartItems = useSelector((state) => state.cartInfo.cart);
   const userID = useSelector((state) => state.isLogged.payload.id);
+console.log(cartItems ," MY CART OPTION");
 
   var cuponList = JSON.parse(
     JSON.stringify(useSelector((state) => state.getCupon.cuponList))
   );
-  console.log(cuponList);
+ // console.log(cuponList);
 
   //console.log("cupon list" + cuponList);
   let total = 0;
-  console.log(`first course id in cart = ${cartItems[0]}`);
+  //console.log(`first course id in cart = ${cartItems[0]}`);
   const courseList = useSelector((state) => state.getCourse.courseList);
   let referralBonus = 0;
   referralBonus = parseFloat(
@@ -61,7 +62,7 @@ const CartPage = () => {
   cartItems.forEach((cartItem) => {
     for (let i = 0; i < courseList.length; i++) {
       if (cartItem === courseList[i]._id) {
-        console.log(courseList[i]);
+      //  console.log(courseList[i]);
         cartCoursesList.push(courseList[i]);
         total = parseFloat(courseList[i].price) + parseFloat(total);
       }
@@ -73,7 +74,7 @@ const CartPage = () => {
     total = total - val;
   }
   for (var j = 0; j < cartCoursesList.length; j++) {
-    console.log(cartCoursesList[j]._id);
+   // console.log(cartCoursesList[j]._id);
     if (cartCoursesList[j]._id === remove) {
       cartCoursesList.splice(j, 1);
     }
@@ -90,10 +91,10 @@ const CartPage = () => {
       cuponList[j].useLimit >= cuponList[j].presentCount &&
       cuponList[j].expireDate >= today
     ) {
-      console.log(today + " " + cuponList[j].expireDate);
+     // console.log(today + " " + cuponList[j].expireDate);
       var discount = parseFloat(cuponList[j].discount);
       discount = discount / 100.0;
-      console.log("discafdsf", discount);
+     // console.log("discafdsf", discount);
       total = total - discount * total;
       total = Math.max(total, 0);
       value_a = true;
@@ -105,11 +106,11 @@ const CartPage = () => {
   useEffect(() => {
     dispatch(getCart(`${userID}`));
     dispatch(getCupon());
-  }, [dispatch, userID]);
+  }, [dispatch, userID , remove]);
   const inputHandler = (e) => {
     e.preventDefault();
     setUseCuponCode(e.target.value);
-    console.log(e.target.value);
+ /*    console.log(e.target.value); */
   };
   return (
     <React.Fragment>
@@ -117,7 +118,7 @@ const CartPage = () => {
       <PageHelmet pageTitle="Cart" />
       <main style={{ backgroundColor: "#262626" }}>
         {" "}
-        <Header from="admin" />
+        <Header from="landing" />
         <Breadcrumb from="cart" />
         <div className="ptb--50">
           <div className="row plr--50">
@@ -207,12 +208,12 @@ const CartPage = () => {
                       <input
                         type="text"
                         onChange={inputHandler}
-                        style={{ color: "#b12222" }}
+                        style={{ "color": "#b12222",  "border": "none", "border-bottom": "1px solid" }}
                       />
                       {/*   <h6 style={{ color: "#b12222" }}>৳{referralBonus}</h6> */}
                     </div>
                   </div>
-                  <div className="row d-flex align-items-center ">
+                  <div className="row d-flex align-items-center mt--50">
                     <div className="col">
                       <h4 className="text-white">Total: </h4>
                     </div>
@@ -280,12 +281,12 @@ const CartPage = () => {
                               // goes into redux
                             })
                             .catch((err) => {
-                              console.log(err);
+                             /*  console.log(err); */
                             });
 
                           })
                           .catch((err) => {
-                            console.log(err);
+                          /*   console.log(err); */
                           });
                       }}
                     >

@@ -18,7 +18,7 @@ export const cupon = (cuponCode ,discount,useLimit,expireDate) => (dispatch) => 
       },
     })
     .then((res) => {
-      console.log(res.data+ "piea gechi");
+      //console.log(res.data+ "piea gechi");
       alert("Cupon created succesfully")
       dispatch({
         type: CUPON,
@@ -28,7 +28,7 @@ export const cupon = (cuponCode ,discount,useLimit,expireDate) => (dispatch) => 
       // alert(res.data.message);
     })
     .catch((err) => {
-      console.log(err);
+    //  console.log(err);
       alert("failed try again");
     });
 };
@@ -41,7 +41,7 @@ export const getCupon = () => (dispatch) => {
       }
     })
     .then((res) => {
-      console.log(res+ "piea gechi");
+      //console.log(res+ "piea gechi");
       dispatch({
         type: GET_CUPON,
         payload: res.data,
@@ -50,7 +50,7 @@ export const getCupon = () => (dispatch) => {
       // alert(res.data.message);
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
       alert("failed try again");
     });
 };

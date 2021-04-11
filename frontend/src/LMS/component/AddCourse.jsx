@@ -38,7 +38,7 @@ function AddCourse() {
         </div>
         {/* End Back To Top */}
 
-        <Footer />
+       {/*  <Footer /> */}
       </main>
 
       <AdminDrawer />

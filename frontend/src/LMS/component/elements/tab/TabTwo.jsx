@@ -49,9 +49,9 @@ class TabsTwo extends Component {
     return (
       <div>
         {/* Start Tabs Area */}
-        <div>
+        <div >
           <div className="container">
-            <div className="row">
+            <div className="row" >
               <div className="col-lg-12">
                 <Tabs>
                   <TabList
@@ -225,7 +225,7 @@ class TabsTwo extends Component {
                     <div className="single-tab-content">
                       <div className="row">
                         {/* Start Info Area */}
-                        <div className="col-lg-4 bg_color--6">
+                        <div className="col-lg-4 bg_color--6" style={{ "paddingLeft":"20px"}}>
                           <div className="row">
                             <div className="col-lg-12">
                               <div className="thumbnail pt--20">
@@ -251,7 +251,7 @@ class TabsTwo extends Component {
                                 container
                                 direction="row"
                                 alignItems="center"
-                                justify="center"
+                                /* justify="center" */
                               >
                                 <Grid
                                   item
@@ -269,7 +269,7 @@ class TabsTwo extends Component {
                                 container
                                 direction="row"
                                 alignItems="center"
-                                justify="center"
+                                
                               >
                                 <Grid
                                   item
@@ -287,7 +287,7 @@ class TabsTwo extends Component {
                                 container
                                 direction="row"
                                 alignItems="center"
-                                justify="center"
+                               
                               >
                                 <Grid
                                   item
@@ -305,7 +305,7 @@ class TabsTwo extends Component {
                                 container
                                 direction="row"
                                 alignItems="center"
-                                justify="center"
+                                
                               >
                                 <Grid
                                   item
@@ -324,7 +324,26 @@ class TabsTwo extends Component {
                                 container
                                 direction="row"
                                 alignItems="center"
-                                justify="center"
+                                
+                              >
+                                <Grid
+                                  item
+                                  style={{ marginRight: 10, color: "#f9004c" }}
+                                >
+                                  <LocalOffer />
+                                </Grid>
+                                <Grid item style={{ color: "#fff" }}>
+                                  Referral Bonus:{" "}
+                                   {this.props.refBonus}
+                                </Grid>
+                              </Grid>
+                            </div>
+                            <div className="col-lg-12 pt--20">
+                              <Grid
+                                container
+                                direction="row"
+                                alignItems="center"
+                                
                               >
                                 <Grid
                                   item
@@ -351,24 +370,7 @@ class TabsTwo extends Component {
                                 ) : null}
                               </Grid>
                             </div>
-                            <div className="col-lg-12 ptb--20">
-                              <Grid
-                                container
-                                direction="row"
-                                alignItems="center"
-                                justify="center"
-                              >
-                                <Grid
-                                  item
-                                  style={{ marginRight: 10, color: "#f9004c" }}
-                                >
-                                  <LocalOffer />
-                                </Grid>
-                                <Grid item style={{ color: "#fff" }}>
-                                  Referral Bonus: {this.props.refBonus}
-                                </Grid>
-                              </Grid>
-                            </div>
+
                           </div>
                         </div>
                         {/* End Info Area */}

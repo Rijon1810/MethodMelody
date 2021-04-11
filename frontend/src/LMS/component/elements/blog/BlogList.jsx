@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { postCart } from '../../../../actions/cartAction';
 import { getSelectedCourseId, getSelectedInstructorId } from "../../../../actions/getSelectedIdAction";
 import { postWishListCourse } from '../../../../actions/wishListAction';
+import { ShoppingBasket, AddShoppingCart, FavoriteBorderOutlined } from "@material-ui/icons";
 
 const BLogList = ({courseList } ) => {
 
@@ -62,6 +63,7 @@ const BLogList = ({courseList } ) => {
                     View Course
                   </Link>
                 </div>
+                <div class="col-12 d-flex">
                 <button
                         variant="contained"
                         className="rn-button-style--2 btn-solid"
@@ -76,7 +78,7 @@ const BLogList = ({courseList } ) => {
                           );
                         }}
                       >
-                        Add to cart
+                        <AddShoppingCart/>
                       </button>
                         <button
                         variant="contained"
@@ -92,8 +94,9 @@ const BLogList = ({courseList } ) => {
                           );
                         }}
                       >
-                        Add to wishlist
+                        <FavoriteBorderOutlined/>
                       </button>
+                      </div>
               </div>
             </div>
           </div>

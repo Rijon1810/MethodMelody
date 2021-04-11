@@ -48,7 +48,7 @@ function CreateAccount() {
         </div>
         {/* End Back To Top */}
 
-        <Footer />
+        {/* <Footer /> */}
       </main>
 
       <AdminDrawer />

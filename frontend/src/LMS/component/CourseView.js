@@ -30,12 +30,13 @@ import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
 import { postWishListCourse } from "../../actions/wishListAction";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import Footer from "./Footer.jsx";
+import DownLoadFile, { DownloadFileProps } from "react-downloader-file";
 //custom components
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 import ReactPlayer from "./ReactPlayer";
 import StudentContactForm from "./StudentContactForm.jsx";
-import PlayerApp from './PlayerApp.js';
+import PlayerApp from "./PlayerApp.js";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -383,11 +384,12 @@ export default function CourseView(props) {
             </Modal>
           </div>
           <div onContextMenu={(e) => e.preventDefault()} className="col-lg-9">
-
-            <PlayerApp url={
+            <PlayerApp
+              url={
                 "htpp://localhost:8080/" +
                 selectedCourse.videos[selectedLesson].path
-              }/>
+              }
+            />
             {/* <ReactPlayer url={"https://www.youtube.com/watch?v=cUxRhesT8gY"} /> */}
           </div>
           <div className="col-lg-3">
@@ -411,8 +413,7 @@ export default function CourseView(props) {
                             'Please buy the course first by clicking on the "Get Enrolled!" button to play this lesson'
                           );
                         }
-                      }
-                      else{
+                      } else {
                         alert(
                           'Please login and buy the course first by clicking on the "Get Enrolled!" button to play this lesson'
                         );
@@ -446,6 +447,22 @@ export default function CourseView(props) {
                       <p className="text-white text-justify">
                         {selectedCourse.desc}
                       </p>
+                    </div>
+                    <div className="single-column">
+                      <h3 className="tilte " style={{ color: "#b12222" }}>
+                        Course File
+                      </h3>
+                      {paid === true ? (
+                        <a
+                          href={
+                            "htpp://server.methodmelody.com/" +
+                            selectedCourse.documents[selectedLesson].path
+                          }
+                          download
+                        >
+                          Click to download
+                        </a>
+                      ) : null}
                     </div>
                     {/* Start What You Will Learn Area */}
                     <div className="list-style--1 text-white pt--60">

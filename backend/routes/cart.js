@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Mongoose = require("mongoose");
 const User = require("../models/User.model");
 const Cupon = require("../models/Cupon.model");
+const Course = require("../models/Course.model");
 const Order = require("../models/Order.model");
 const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = "no-reply@methodmelody.com";
@@ -48,13 +49,17 @@ router.route("/success/:userId").post(async (req, res) => {
       {
         const order = await Order.findOne({ _id : orderId});
         order.paid = true;
-        console.log("it ok" ,order);
+       /// console.log("it ok" ,order);
       
         const courses = order.courses;
         const me = await User.findOne({ _id: user})
         me.purchaseHistory = order;
         for(var i=0;i<courses.length ;i++)
         {
+          const cours = await Course.findOne({ _id: courses[i]});
+          //console.log(cours, " courses is ok");
+              cours.sold=cours.sold+1;
+              await cours.save();
             me.course.push(courses[i]);
         }
         await me.save();
