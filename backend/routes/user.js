@@ -56,7 +56,7 @@ router.route("/confirmation/:token").get((req, res) => {
       { $set: { emailVerify: true } },
       { useFindAndModify: false }
     ).catch((err) => res.status(400).json("email not vefied: " + err));
-    res.redirect("http://methodmelody.com/login");
+    res.redirect("http://localhost:3000/login");
   } catch (err) {
     res.send("invalid signature");
   }
