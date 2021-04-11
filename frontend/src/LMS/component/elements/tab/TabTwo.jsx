@@ -1,9 +1,9 @@
 import { Card, Divider, Grid, List } from "@material-ui/core";
 import {
-    AssignmentInd,
-    Event,
-    LocalOffer,
-    MailOutline
+  AssignmentInd,
+  Event,
+  LocalOffer,
+  MailOutline,
 } from "@material-ui/icons";
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -231,7 +231,7 @@ class TabsTwo extends Component {
                                   {this.state.rnPhotoSnap == "" ? (
                                     <img
                                       className="w-100"
-                                      src={`htpp://server.methodmelody.com/${this.props.profile.photo}`}
+                                      src={`htpp://localhost:8080/${this.props.profile.photo}`}
                                       alt="Blog Images"
                                     />
                                   ) : (

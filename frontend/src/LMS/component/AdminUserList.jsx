@@ -13,6 +13,7 @@ import ScrollToTop from "react-scroll-up";
 import { getUser, suspend } from "../../actions/userAction";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
@@ -136,7 +137,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://server.methodmelody.com/${user.photo}`}
+                      image={`htpp://localhost:8080/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -200,7 +201,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://server.methodmelody.com/${user.photo}`}
+                      image={`htpp://localhost:8080/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -264,7 +265,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://server.methodmelody.com/${user.photo}`}
+                      image={`htpp://localhost:8080/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -328,7 +329,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://server.methodmelody.com/${user.photo}`}
+                      image={`htpp://localhost:8080/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -394,7 +395,7 @@ const AdminUserList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://server.methodmelody.com/${user.photo}`}
+                      image={`htpp://localhost:8080/${user.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>

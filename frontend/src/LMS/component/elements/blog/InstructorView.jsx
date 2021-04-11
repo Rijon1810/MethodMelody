@@ -5,19 +5,20 @@ import { SiBandsintown } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ScrollToTop from "react-scroll-up";
-import Slider from "react-slick";
-import { postCart } from "../../../../actions/cartAction";
 import {
-    getSelectedCourseId,
-    getSelectedInstructorId
+  getSelectedCourseId,
+  getSelectedInstructorId,
 } from "../../../../actions/getSelectedIdAction";
+import { getCart, postCart } from "../../../../actions/cartAction";
 import { postWishListCourse } from "../../../../actions/wishListAction";
-/* import { portfolioSlick2 } from "../page-demo/script"; */
-import { portfolioSlick2 } from "../../../page-demo/script";
 import Footer from "../../Footer.jsx";
 import Header from "../../Header.jsx";
 import PageHelmet from "../../Helmet.jsx";
 import Breadcrumb from "../common/Breadcrumb.jsx";
+import Slider from "react-slick";
+/* import { portfolioSlick2 } from "../page-demo/script"; */
+
+import { portfolioSlick2 } from "../../../page-demo/script";
 const InstructorVIew = () => {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
@@ -52,7 +53,7 @@ const InstructorVIew = () => {
                 <div className="thumbnail">
                   <img
                     className="w-100"
-                    src={`https://server.methodmelody.com/${instructor.photo}`}
+                    src={`https://localhost:8080/${instructor.photo}`}
                     alt="About Images"
                   />
                 </div>
@@ -135,7 +136,7 @@ const InstructorVIew = () => {
                         <div className="thumbnail">
                           <Link to="/courseview">
                             <img
-                              src={`https://server.methodmelody.com/${course.thumbnail}`}
+                              src={`https://localhost:8080/${course.thumbnail}`}
                               alt="Blog Images"
                             />
                           </Link>

@@ -158,7 +158,7 @@ const AdminInstructorList = () => {
                           <Link to="/instructorview">
                             <img
                               className="w-100"
-                              src={`htpp://server.methodmelody.com/${instructor.photo}`}
+                              src={`htpp://localhost:8080/${instructor.photo}`}
                               alt="Blog Images"
                             />
                           </Link>
@@ -234,7 +234,7 @@ const AdminInstructorList = () => {
                           <Link to="/instructorview">
                             <img
                               className="w-100"
-                              src={`htpp://server.methodmelody.com/${instructor.photo}`}
+                              src={`htpp://localhost:8080/${instructor.photo}`}
                               alt="Blog Images"
                             />
                           </Link>

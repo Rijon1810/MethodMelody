@@ -135,7 +135,7 @@ router.route("/success/:userId").post(async (req, res) => {
             //console.log(typeof item.toString());
             await axios
               .post(
-                "http://server.methodmelody.com/api/v1/buy",
+                "http://localhost:8080/api/v1/buy",
                 {
                   user: user.toString(),
                   course: item.toString(),
@@ -156,7 +156,7 @@ router.route("/success/:userId").post(async (req, res) => {
               .then(async () => {
                 await axios
                   .post(
-                    "http://server.methodmelody.com/api/v1/cart/remove_all",
+                    "http://localhost:8080/api/v1/cart/remove_all",
                     {
                       user: user.toString(),
                     },
@@ -206,7 +206,7 @@ router.route("/ssl").post((req, res) => {
   const cart = req.body.cart;
   const currency = req.body.currency;
   const user = req.body.cart.id;
-  const success_url = `http://server.methodmelody.com/api/v1/cart/success/${user}`;
+  const success_url = `http://localhost:8080/api/v1/cart/success/${user}`;
 
   let post_body = {};
   post_body["total_amount"] = total_amount;
@@ -216,8 +216,8 @@ router.route("/ssl").post((req, res) => {
   post_body["discount_amount"] = discount_amount;
   post_body["num_of_item"] = num_of_item;
   post_body["success_url"] = success_url;
-  post_body["fail_url"] = "http://server.methodmelody.com/api/v1/cart/fail/";
-  post_body["cancel_url"] = "http://server.methodmelody.com/api/v1/cart/cancel/";
+  post_body["fail_url"] = "http://localhost:8080/api/v1/cart/fail/";
+  post_body["cancel_url"] = "http://localhost:8080/api/v1/cart/cancel/";
   post_body["emi_option"] = 0;
   post_body["cus_name"] = cus_name;
   post_body["cus_email"] = cus_email;

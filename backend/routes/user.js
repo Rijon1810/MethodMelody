@@ -138,7 +138,7 @@ router.route("/passwordreset/:email").post(async (req, res) => {
           pass: "asdzxc12#12",
         },
       });
-      const url = `http://server.methodmelody.com/api/v1/user/confirmation/password/${emailToken}`;
+      const url = `http://localhost:8080/api/v1/user/confirmation/password/${emailToken}`;
       await mailer.sendMail({
         from: EMAIL_ADDRESS,
         to: email,
@@ -418,7 +418,7 @@ router
                       pass: "asdzxc12#12",
                     },
                   });
-                  const url = `http://server.methodmelody.com/api/v1/user/confirmation/${emailToken}`;
+                  const url = `http://localhost:8080/api/v1/user/confirmation/${emailToken}`;
                   await mailer.sendMail({
                     from: EMAIL_ADDRESS,
                     to: email,

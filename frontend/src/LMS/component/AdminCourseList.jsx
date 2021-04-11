@@ -12,6 +12,7 @@ import {
 import axios from "../api/Config";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
@@ -155,7 +156,7 @@ const AdminCourseList = () => {
                           <Link to="/courseview">
                             <img
                               className="w-100"
-                              src={`htpp://server.methodmelody.com/${course.thumbnail}`}
+                              src={`htpp://localhost:8080/${course.thumbnail}`}
                               alt="Blog Images"
                             />
                           </Link>
@@ -255,7 +256,7 @@ const AdminCourseList = () => {
                           <Link to="/courseview">
                             <img
                               className="w-100"
-                              src={`htpp://server.methodmelody.com/${course.thumbnail}`}
+                              src={`htpp://localhost:8080/${course.thumbnail}`}
                               alt="Blog Images"
                             />
                           </Link>

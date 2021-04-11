@@ -1,58 +1,44 @@
+import React, { useState, useEffect } from "react";
+
 import {
-    Button,
-
-    Divider,
-    Grid,
-
-
-
-
-
-
-
-
-
-    List,
-
-
-    ListItem, ListItemIcon,
-    ListItemText, makeStyles,
-
-
-    Menu,
-    MenuItem,
-
-
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableRow, Typography,
-
-
-
-
-
-
-    withStyles
+  Typography,
+  Button,
+  makeStyles,
+  Divider,
+  Grid,
+  Menu,
+  MenuItem,
+  withStyles,
+  Box,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  List,
+  ListItemIcon,
+  ListItemText,
+  ListItem,
 } from "@material-ui/core";
-import {
-    ArrowRight, Check
-} from "@material-ui/icons";
-import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "../api/Config";
-import theme from "../theme";
-import CoursePlayList from "./CoursePlayList";
-import Footer from "./Footer";
+import {
+  ExpandMore,
+  ArrowForwardIos,
+  Check,
+  ArrowRight,
+} from "@material-ui/icons";
+
 import InstructorView from "./InstructorView";
+import CoursePlayList from "./CoursePlayList";
+
+import Footer from "./Footer";
 import Topnav from "./Navbar";
+
+import Axios from "axios";
 import VideoPlayer from "./videoPlayer/VideoPlayer";
 
-
-
-
-
+import theme from "../theme";
+import axios from "../api/Config";
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
@@ -246,7 +232,7 @@ export default function CourseVIew(props) {
           <Grid item container direction="column" lg={8} sm={12}>
             <Grid item>
              {/*  {console.log("player video url:" + video)} */}
-              <VideoPlayer url={"http://server.methodmelody.com/" + video} />
+              <VideoPlayer url={"http://localhost:8080/" + video} />
             </Grid>
 
             <Grid item className={classes.gridContainer}>

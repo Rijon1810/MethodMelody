@@ -1,15 +1,15 @@
 //importing material components
 import { Avatar, Badge, Grid } from "@material-ui/core";
 import {
-    AccountCircleOutlined,
+  AccountCircleOutlined,
 
 
 
-    Dashboard, HomeOutlined, LocalLibraryOutlined,
-    PowerSettingsNewOutlined,
+  Dashboard, HomeOutlined, LocalLibraryOutlined,
+  PowerSettingsNewOutlined,
 
 
-    ShoppingCartOutlined
+  ShoppingCartOutlined
 } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -17,15 +17,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getCart } from "../../actions/cartAction";
 import {
-    getSelectedCourseCategory, getSelectedInstructorId
+  getSelectedCourseCategory, getSelectedInstructorId
 } from "../../actions/getSelectedIdAction";
 import { logOut } from "../../actions/logOutAction";
 import {
-    getCurrentMessageById,
+  getCurrentMessageById,
 
-    getGeneralMessage, getPreviousMessageById,
+  getGeneralMessage, getPreviousMessageById,
 
-    getStudentMessage
+  getStudentMessage
 } from "../../actions/messageAction";
 import { getByStudentType, getByType, getUserCourse } from "../../actions/userAction";
 
@@ -218,7 +218,7 @@ export default function Header(props) {
                                 <Avatar
                                   alt={instructor.name}
                                   src={
-                                    "http://server.methodmelody.com/" + instructor.photo
+                                    "http://localhost:8080/" + instructor.photo
                                   }
                                   style={avatar}
                                 />

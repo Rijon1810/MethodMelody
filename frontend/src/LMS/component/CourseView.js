@@ -1,24 +1,24 @@
 import {
-    Avatar,
-    Backdrop,
-    Fade,
-    IconButton,
-    List,
-    ListItem,
-    ListItemText,
-    makeStyles,
-    Modal
+  Avatar,
+  Backdrop,
+  Fade,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+  Modal,
 } from "@material-ui/core";
 import {
-    Cancel,
-    Description,
-    FilterNone,
-    Lock,
-    OndemandVideo,
-    PlayArrow,
-    Smartphone,
-    Timer,
-    VerifiedUser
+  Cancel,
+  Description,
+  FilterNone,
+  Lock,
+  OndemandVideo,
+  PlayArrow,
+  Smartphone,
+  Timer,
+  VerifiedUser,
 } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
@@ -30,11 +30,13 @@ import { getCurrentVideoIndex } from "../../actions/getSelectedIdAction";
 import { postWishListCourse } from "../../actions/wishListAction";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 import Footer from "./Footer.jsx";
+import DownLoadFile, { DownloadFileProps } from "react-downloader-file";
 //custom components
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
-import PlayerApp from "./PlayerApp.js";
+import ReactPlayer from "./ReactPlayer";
 import StudentContactForm from "./StudentContactForm.jsx";
+import PlayerApp from "./PlayerApp.js";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -251,7 +253,7 @@ export default function CourseView(props) {
                 {" "}
                 <Avatar
                   alt={selectedInstructor.name}
-                  src={"htpp://server.methodmelody.com/" + selectedInstructor.photo}
+                  src={"htpp://localhost:8080/" + selectedInstructor.photo}
                   className={classes.large}
                   // style={avatar}
                 />
@@ -384,7 +386,7 @@ export default function CourseView(props) {
           <div onContextMenu={(e) => e.preventDefault()} className="col-lg-9">
             <PlayerApp
               url={
-                "htpp://server.methodmelody.com/" +
+                "htpp://localhost:8080/" +
                 selectedCourse.videos[selectedLesson].path
               }
             />

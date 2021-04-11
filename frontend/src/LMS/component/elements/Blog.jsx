@@ -1,25 +1,26 @@
 import {
-    Backdrop,
-    Fade,
-    IconButton,
-    makeStyles,
-    Modal
+  Backdrop,
+  Fade,
+  IconButton,
+  makeStyles,
+  Modal,
 } from "@material-ui/core";
+
 import { Cancel } from "@material-ui/icons";
-import React, { useEffect, useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { FiChevronUp } from "react-icons/fi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector , } from "react-redux";
 import { Link } from "react-router-dom";
 import ScrollToTop from "react-scroll-up";
 import Select from "react-select";
 import Slider from "react-slick";
+import { getSelectedCourseCategory } from "../../../actions/getSelectedIdAction";
 import { portfolioSlick2 } from "../../page-demo/script";
 import BlogList from "../elements/blog/BlogList";
 import Pagination from "../elements/common/Pagination";
 import Footer from "../Footer.jsx";
 import Header from "../Header.jsx";
 import Breadcrumb from "./common/Breadcrumb.jsx";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -350,7 +351,7 @@ export default function Blog() {
                         <div className="thumbnail">
                           <Link to="/courseview">
                             <img
-                              src={`https://server.methodmelody.com/${course.photo}`}
+                              src={`https://localhost:8080/${course.photo}`}
                               alt="Blog Images"
                             />
                           </Link>

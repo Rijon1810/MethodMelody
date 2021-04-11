@@ -7,6 +7,7 @@ import { getCupon } from '../../actions/cuponAction';
 import { getUser } from "../../actions/userAction";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
+import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
@@ -123,7 +124,7 @@ const AdminCuponList = () => {
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://server.methodmelody.com/${cupon.photo}`}
+                      image={`htpp://localhost:8080/${cupon.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
