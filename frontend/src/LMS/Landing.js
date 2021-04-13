@@ -1,10 +1,7 @@
 //importing material components
 import { Grid } from "@material-ui/core";
-import { ShoppingCart } from "@material-ui/icons";
+import { FavoriteBorderOutlined, ShoppingBasket, ShoppingCart } from "@material-ui/icons";
 import React, { useEffect } from "react";
-import { ShoppingBasket } from "@material-ui/icons";
-import { AddShoppingCart, FavoriteBorderOutlined } from "@material-ui/icons";
-
 import {
   Accordion,
   AccordionItem,
@@ -42,6 +39,7 @@ import Footer from "./component/Footer.jsx";
 //importing custom components
 import Header from "./component/Header.jsx";
 import { slideSlick } from "./page-demo/script";
+
 
 
 
@@ -125,6 +123,8 @@ export default function Landing() {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
+  
+  const upcomingList = useSelector((state) => state.getCourse.upcomingList);
   const featuredInstructorList = useSelector(
     (state) => state.getInstructor.featuredInstructorList
   );
@@ -432,7 +432,59 @@ export default function Landing() {
           <ServiceTwo />
         </div>
       </div>
+
       {/* End Course Category Area  */}
+      {/* Start upcking Course Area Area */}
+            <div className="rn-blog-area pt--100  mb-dec--30 bg_color--6">
+        <div className="container">
+          <div className="row align-items-end">
+            <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+              <div className="section-title text-left">
+                <h3>Upcoming Courses</h3>
+                <p style={{ color: "#b12222" }}>
+                Upcoming Courses {upcomingList.length} icourses for you.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="portfolio-area ptb--120 ">
+            <div className="portfolio-sacousel-inner mb--55">
+              <div portfolio-slick-activation mt--70 mt_sm--40>
+                <Slider {...portfolioSlick2}>
+                  {upcomingList.map((course) => (
+                    <div
+                      className="portfolio"
+                      key={course._id}
+                    >
+                      <div className="thumbnail-inner">
+                        <div className="thumbnail">
+                          <Link to="/courseview">
+                            <img
+                              src={`https://localhost:8080/${course.thumbnail}`}
+                              alt="Blog Images"
+                            />
+                          </Link>
+                        </div>
+                      </div>
+                      <div className="content">
+                        {/* <p className="blogtype">{instructor.bio}</p> */}
+                        <h4 className="title">
+                          <Link to="/courseview">{course.title}</Link>
+                        </h4>
+
+                        <div className="col-12 d-flex">
+                      </div>
+
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Upcoming courses */}
 
       {/* Start How Platform Works Video */}
       <Grid

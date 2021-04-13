@@ -1,24 +1,16 @@
-import {
-    Card,
-
-
-
-    CardContent, CardMedia, makeStyles
-} from "@material-ui/core";
+import { Card, CardContent, CardMedia, makeStyles } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import ScrollToTop from "react-scroll-up";
 import { getUser, suspend } from "../../actions/userAction";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
-
-
-
+import { withAlert } from "react-alert";
+import { getSelectedUserId } from "../../actions/getSelectedIdAction";
 const useStyles = makeStyles((theme) => ({
   content: {
     marginLeft: "240px",
@@ -45,7 +37,7 @@ const findFeaturedInstructors = (instructors) => {
   return iL;
 };
 
-const AdminUserList = () => {
+const AdminUserList = ({ alert }) => {
   const classes = useStyles();
 
   const courseList = useSelector((state) => state.getCourse.courseList);
@@ -55,15 +47,16 @@ const AdminUserList = () => {
 
   const featuredInstructorList = findFeaturedInstructors(instructorList);
 
- /*  console.log(`featured course list size = ${featuredInstructorList.length}`);
- */
+  /*  console.log(`featured course list size = ${featuredInstructorList.length}`);
+   */
   const dispatch = useDispatch();
 
-  dispatch(getUser());
-
   const [list, setList] = React.useState("featured");
+  const [id, setId] = React.useState("featured");
 
-  useEffect(() => { }, [list]);
+  useEffect(() => {
+    dispatch(getUser());
+  }, [id, dispatch]);
 
   const userList = useSelector((state) => state.getAllUsers.student);
   const subscriberList = useSelector((state) => state.getAllUsers.subscriber);
@@ -74,6 +67,14 @@ const AdminUserList = () => {
   const instructorAccountList = useSelector(
     (state) => state.getAllUsers.getByType_3
   );
+  function clearButton(id) {
+    var x = document.getElementById(id);
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
 
   return (
     <React.Fragment>
@@ -118,17 +119,33 @@ const AdminUserList = () => {
                                 <Link
                                   className="rn-btn text-white"
                                   to="/viewuser"
+                                  onClick={(e) => {
+                                    dispatch(getSelectedUserId(user));
+                                  }}
                                 >
                                   View
                                 </Link>
                               </div>
                             </div>
                             <div className="col-6">
-                              <div className="blog-btn pt--20">
-                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
-                                  Suspend
-                                </Link>
-                              </div>
+                              {user.suspend === false ? (
+                                <div id={user._id} className="blog-btn pt--20">
+                                  <Link
+                                    className="rn-btn text-white"
+                                    to="#"
+                                    onClick={(event) => {
+                                      event.preventDefault();
+                                      dispatch(suspend(user._id));
+                                      alert.show(
+                                        "User suspend successfully!!!"
+                                      );
+                                      clearButton(user._id);
+                                    }}
+                                  >
+                                    Suspend
+                                  </Link>
+                                </div>
+                              ) : null}
                             </div>
                           </div>
                         </div>
@@ -182,17 +199,33 @@ const AdminUserList = () => {
                                 <Link
                                   className="rn-btn text-white"
                                   to="/viewuser"
+                                  onClick={(e) => {
+                                    dispatch(getSelectedUserId(user));
+                                  }}
                                 >
                                   View
                                 </Link>
                               </div>
                             </div>
                             <div className="col-6">
-                              <div className="blog-btn pt--20">
-                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
-                                  Suspend
-                                </Link>
-                              </div>
+                              {user.suspend === false ? (
+                                <div id={user._id} className="blog-btn pt--20">
+                                  <Link
+                                    className="rn-btn text-white"
+                                    to="#"
+                                    onClick={(event) => {
+                                      event.preventDefault();
+                                      dispatch(suspend(user._id));
+                                      alert.show(
+                                        "User suspend successfully!!!"
+                                      );
+                                      clearButton(user._id);
+                                    }}
+                                  >
+                                    Suspend
+                                  </Link>
+                                </div>
+                              ) : null}
                             </div>
                           </div>
                         </div>
@@ -246,17 +279,33 @@ const AdminUserList = () => {
                                 <Link
                                   className="rn-btn text-white"
                                   to="/viewuser"
+                                  onClick={(e) => {
+                                    dispatch(getSelectedUserId(user));
+                                  }}
                                 >
                                   View
                                 </Link>
                               </div>
                             </div>
                             <div className="col-6">
-                              <div className="blog-btn pt--20">
-                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
-                                  Suspend
-                                </Link>
-                              </div>
+                              {user.suspend === false ? (
+                                <div id={user._id} className="blog-btn pt--20">
+                                  <Link
+                                    className="rn-btn text-white"
+                                    to="#"
+                                    onClick={(event) => {
+                                      event.preventDefault();
+                                      dispatch(suspend(user._id));
+                                      alert.show(
+                                        "User suspend successfully!!!"
+                                      );
+                                      clearButton(user._id);
+                                    }}
+                                  >
+                                    Suspend
+                                  </Link>
+                                </div>
+                              ) : null}
                             </div>
                           </div>
                         </div>
@@ -310,17 +359,33 @@ const AdminUserList = () => {
                                 <Link
                                   className="rn-btn text-white"
                                   to="/viewuser"
+                                  onClick={(e) => {
+                                    dispatch(getSelectedUserId(user));
+                                  }}
                                 >
                                   View
                                 </Link>
                               </div>
                             </div>
                             <div className="col-6">
-                              <div className="blog-btn pt--20">
-                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
-                                  Suspend
-                                </Link>
-                              </div>
+                              {user.suspend === false ? (
+                                <div id={user._id} className="blog-btn pt--20">
+                                  <Link
+                                    className="rn-btn text-white"
+                                    to="#"
+                                    onClick={(event) => {
+                                      event.preventDefault();
+                                      dispatch(suspend(user._id));
+                                      alert.show(
+                                        "User suspend successfully!!!"
+                                      );
+                                      clearButton(user._id);
+                                    }}
+                                  >
+                                    Suspend
+                                  </Link>
+                                </div>
+                              ) : null}
                             </div>
                           </div>
                         </div>
@@ -376,17 +441,33 @@ const AdminUserList = () => {
                                 <Link
                                   className="rn-btn text-white"
                                   to="/viewuser"
+                                  onClick={(e) => {
+                                    dispatch(getSelectedUserId(user));
+                                  }}
                                 >
                                   View
                                 </Link>
                               </div>
                             </div>
                             <div className="col-6">
-                              <div className="blog-btn pt--20">
-                                <Link className="rn-btn text-white" to="#" onClick={(() => { dispatch(suspend(user._id)) })}>
-                                  Suspend
-                                </Link>
-                              </div>
+                              {user.suspend === false ? (
+                                <div id={user._id} className="blog-btn pt--20">
+                                  <Link
+                                    className="rn-btn text-white"
+                                    to="#"
+                                    onClick={(event) => {
+                                      event.preventDefault();
+                                      dispatch(suspend(user._id));
+                                      alert.show(
+                                        "User suspend successfully!!!"
+                                      );
+                                      clearButton(user._id);
+                                    }}
+                                  >
+                                    Suspend
+                                  </Link>
+                                </div>
+                              ) : null}
                             </div>
                           </div>
                         </div>
@@ -419,4 +500,4 @@ const AdminUserList = () => {
   );
 };
 
-export default AdminUserList;
+export default withAlert()(AdminUserList);

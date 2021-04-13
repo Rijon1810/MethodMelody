@@ -1,6 +1,7 @@
 import {
   GET_SELECTED_COURSE_ID,
   GET_SELECTED_INSTRUCTOR_ID,
+  GET_SELECTED_USER_ID,
   GET_SELECTED_LESSON_ID,
   GET_SELECTED_COURSE_CATEGORY
 } from "../actions/types";
@@ -8,6 +9,7 @@ import {
 const initialState = {
   getSelectedCourseId: {},
   getSelectedInstructorId: {},
+  getSelectedUserId : {},
   getCurrentVideoIndex: 0,
   getSelectedCourseCategoryList: "",
 };
@@ -23,6 +25,11 @@ const getSelectedIdReducer = (state = initialState, action) => {
       return {
         ...state,
         getSelectedInstructorId: action.payload,
+      };
+    case GET_SELECTED_USER_ID:
+      return {
+        ...state,
+        getSelectedUserId: action.payload,
       };
     case GET_SELECTED_LESSON_ID:
       return {

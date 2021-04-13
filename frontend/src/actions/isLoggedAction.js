@@ -16,6 +16,8 @@ export const isLogged = (data) => (dispatch) => {
         payload: res.data,
         login: true,
       });
+      console.log(" from action",res.data.v_token);
+      
       auth.login(res.data.v_token, res.data.type);
     })
     .catch((res) => {

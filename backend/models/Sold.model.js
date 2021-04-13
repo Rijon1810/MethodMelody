@@ -6,9 +6,10 @@ var SoldSchema = new Schema(
         courseId: { type: Schema.Types.ObjectId },
         dateTime: [{ type: String }],
         ammount: { type: Number, default: 0},
-        user: [{ type: Schema.Types.ObjectId }],
+        instructor_earn: { type: Number, default: 0},
+        user: [{ type: String }],
         sold: { type: Number, default: 1 },
-        instructor: { type: Schema.Types.ObjectId },
+        instructor: { type: String },
     },
     { timestamps: true }
 );

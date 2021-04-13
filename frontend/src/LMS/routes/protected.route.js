@@ -59,7 +59,9 @@ export const ProtectedStudentRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) => {
        // console.log("auth" + auth.isStudent());
+       //console.log(" not work",auth.isAuthenticated());
         if (auth.isStudent() && auth.isAuthenticated()) {
+         
           return <Component {...props} />;
         } else {
           return (

@@ -84,7 +84,7 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = React.useState("");
   const [selectedInstructor, setSelectedInstructor] = React.useState("");
   const [selectedCourseType, setSelectedCourseType] = React.useState("");
-  const upcomingList = useSelector((state) => state.getCourse.upcomingList);
+  //const upcomingList = useSelector((state) => state.getCourse.upcomingList);
   const classes = useStyles();
   const catagory_data = useSelector((state) => state.getCourse.catagoryList);
   const instructorList = useSelector(
@@ -294,6 +294,18 @@ export default function Blog() {
 
       {/* Start Blog Area */}
       <div className="rn-blog-area ptb--60 bg_color--1">
+      <div className="container">
+          <div className="row align-items-end">
+            <div className="col-lg-6 col-md-12 col-sm-12 col-12">
+              <div className="section-title text-left">
+                <h3>All Courses</h3>
+                <p className="theme-gradient">
+                  We have {courseList.length} courses for you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="d-flex flex-row-reverse mb--50">
             <Link className="rn-btn" href="#" onClick={handleOpen}>
@@ -323,7 +335,7 @@ export default function Blog() {
       </div>
       {/* End Back To Top */}
 
-      <div className="rn-blog-area ptb--100  mb-dec--30">
+{/*       <div className="rn-blog-area ptb--100  mb-dec--30">
         <div className="container">
           <div className="row align-items-end">
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
@@ -336,41 +348,10 @@ export default function Blog() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* End course Area */}
-      <div className="rn-blog-area ptb--100  mb-dec--30 bg_color--6">
-        <div className="container">
-          <div className="portfolio-area ptb--120 ">
-            <div className="portfolio-sacousel-inner mb--55">
-              <div portfolio-slick-activation mt--70 mt_sm--40>
-                <Slider {...portfolioSlick2}>
-                  {upcomingList.map((course) => (
-                    <div className="portfolio" key={course._id}>
-                      <div className="thumbnail-inner">
-                        <div className="thumbnail">
-                          <Link to="/courseview">
-                            <img
-                              src={`https://localhost:8080/${course.photo}`}
-                              alt="Blog Images"
-                            />
-                          </Link>
-                        </div>
-                      </div>
-                      <div className="content">
-                        {/* <p className="blogtype">{instructor.bio}</p> */}
-                        <h4 className="title">
-                          <Link to="/courseview">{course.name}</Link>
-                        </h4>
-                      </div>
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       <Footer />
     </div>

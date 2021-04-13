@@ -2,6 +2,7 @@ import axios from "../LMS/api/Config";
 import {
   GET_SELECTED_COURSE_CATEGORY, GET_SELECTED_COURSE_ID,
   GET_SELECTED_INSTRUCTOR_ID,
+  GET_SELECTED_USER_ID,
   GET_SELECTED_LESSON_ID
 } from "./types";
 
@@ -16,6 +17,12 @@ export const getSelectedInstructorId = (instructor) => (dispatch) => {
   dispatch({
     type: GET_SELECTED_INSTRUCTOR_ID,
     payload: instructor,
+  });
+};
+export const getSelectedUserId = (user) => (dispatch) => {
+  dispatch({
+    type: GET_SELECTED_USER_ID,
+    payload: user,
   });
 };
 

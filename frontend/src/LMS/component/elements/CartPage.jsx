@@ -36,7 +36,7 @@ const CartPage = () => {
   const [useCuponCode, setUseCuponCode] = React.useState("");
   const cartItems = useSelector((state) => state.cartInfo.cart);
   const userID = useSelector((state) => state.isLogged.payload.id);
-console.log(cartItems ," MY CART OPTION");
+//console.log(cartItems ," MY CART OPTION");
 
   var cuponList = JSON.parse(
     JSON.stringify(useSelector((state) => state.getCupon.cuponList))
@@ -69,7 +69,7 @@ console.log(cartItems ," MY CART OPTION");
     }
   });
   var subTotal = total;
-  if (referralBonus > 0 && referralBonus) {
+  if (referralBonus > 0) {
     var val = Math.min(referralBonus, total);
     total = total - val;
   }

@@ -296,7 +296,7 @@ router.route(`/login`).post((req, res) => {
                   studentId: docs[0].studentId,
                   createdAt: docs[0].createdAt,
                   updatedAt: docs[0].updatedAt,
-                  v_token: docs[0].v_token,
+                  v_token: token,
                 });
               }
             );
@@ -534,14 +534,15 @@ router
   });
 
 //GET by ID
-router.route("/suspend/:userId").post((req, res) => {
+router
+.use(apiAuth)
+.route("/suspend/:userId")
+.get(async (req, res) => {
   const id = req.params.userId;
-  User.findByIdAndUpdate(
-    id,
-    { $set: { suspend: true } },
-    { useFindAndModify: false }
-  )
-    .then((doc) => {
+  const user =  await User.findOne({ _id : id});
+
+  user.suspend = true;
+  await user.save().then((doc) => {
       if (doc) {
         res.status(200).json(doc);
       } else {

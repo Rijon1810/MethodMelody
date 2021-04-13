@@ -50,9 +50,7 @@ export default function Header(props) {
   const login_data = useSelector((state) => state.isLogged.payload);
   const loginStatus = useSelector((state) => state.isLogged.login);
     
-  useEffect(()=>{
-      
-  },[])
+
   useEffect(() => {
     // dispatch(isLogged());
     // dispatch(logOut());
@@ -60,9 +58,12 @@ export default function Header(props) {
     // dispatch(getSelectedInstructorId());
     // dispatch(getSelectedCourseCategory(""));
     if (loginStatus) {
+      //console.log("Here is user type : ",user_type);
+      //console.log("type  : ",typeof(user_type) );
       dispatch(getCart(`${userId}`));
       dispatch(getUserCourse(`${userId}`));
       if (user_type === 4) {
+        dispatch(getByType(4));
         dispatch(getCurrentMessageById(`${userId}`));
         dispatch(getPreviousMessageById(`${userId}`));
       }
@@ -279,7 +280,7 @@ export default function Header(props) {
                         <Grid item> </Grid>
                       </Grid>
                     </Link>
-                    {user_type == 4 && (
+                    {user_type === 4 && (
                       <ul className="submenu" style={mystyle}>
                         <li>
                           <Link to="/studentpanel">

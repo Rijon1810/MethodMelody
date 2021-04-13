@@ -16,18 +16,21 @@ class CreateInstructorAccountForm extends Component {
       rnInstructorProfileId: "",
     };
   }
-  render() {   
-    const alert = this.props.alert; 
+  render() {
+    const alert = this.props.alert;
     return (
       <div className="contact-form--1">
         <div className="container">
           <div className="row row--35 align-items-start">
             <div className="col-lg-12 order-2 order-lg-1">
               <div className="section-title text-left">
-                <h4 style={{ color: "#b12222" }}>Create New Instructor Account</h4>
+                <h4 style={{ color: "#b12222" }}>
+                  Create New Instructor Account
+                </h4>
               </div>
               <p className="text-muted">
-                All the fields are rquired for successful instructor account creation.
+                All the fields are rquired for successful instructor account
+                creation.
               </p>
               <div className="form-wrapper">
                 <form ref={(el) => (this.form = el)}>
@@ -92,7 +95,9 @@ class CreateInstructorAccountForm extends Component {
                           >
                             {/* <option value={1}>Admin</option>
                             <option value={2}>Content Uploader</option> */}
-                            <option value={3} selected>Instructor</option>
+                            <option value={3} selected>
+                              Instructor
+                            </option>
                           </select>
                         </label>
                       </div>
@@ -137,25 +142,41 @@ class CreateInstructorAccountForm extends Component {
                     value="submit"
                     name="submit"
                     id="mc-embedded-subscribe"
-                    style={{ backgroundColor: "#b12222", color:"#ffffff" , borderBlockStyle:"hidden" }}
+                    style={{
+                      backgroundColor: "#b12222",
+                      color: "#ffffff",
+                      borderBlockStyle: "hidden",
+                    }}
                     onClick={async (event) => {
                       event.preventDefault();
                       const body = new FormData(this.form);
                       for (var pair of body.entries()) {
-                       /// console.log(pair[0] + ", " + pair[1]);
+                        /// console.log(pair[0] + ", " + pair[1]);
                       }
-                    
-                      await this.props.signUp(body);
-                      alert.show(
-                        "Please tell, to check instructor  email to verify instructor account!!"
-                      );
-                    /*   toast("Upload started!!! please wait!!"); */
-                      this.setState({ rnName: "",
-                      rnEmail: "",
-                      rnPassword: "",
-                      rnUserType: 3,
-                      rnInstructorProfileId: "",})
-                     /*  this.props.create_user_status.message === "user added!"
+
+                      if (
+                        this.state.name === "" ||
+                        this.state.rnEmail === "" ||
+                        this.state.rnPassword === "" ||
+                        this.state.rnInstructorProfileId === ""
+                      ) {
+                        alert.show("Please fillup all the required feild!!!");
+                      } else {
+                        await this.props.signUp(body);
+                        alert.show(
+                          "Please tell, to check instructor  email to verify instructor account!!"
+                        );
+                        /*   toast("Upload started!!! please wait!!"); */
+                        this.setState({
+                          rnName: "",
+                          rnEmail: "",
+                          rnPassword: "",
+                          rnUserType: 3,
+                          rnInstructorProfileId: "",
+                        });
+                      }
+
+                      /*  this.props.create_user_status.message === "user added!"
                         ? toast.success("Instructor Created Successfully!", {
                             position: "bottom-center",
                             autoClose: false,

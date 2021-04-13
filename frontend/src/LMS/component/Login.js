@@ -116,7 +116,10 @@ class Login extends Component {
                 </Link>
               </div>
               <div className=" text-right blog-btn mt_sm--10 mt_md--10">
-                <Link to="/forgetpassword" className="btn-transparent rn-btn-dark">
+                <Link
+                  to="/forgetpassword"
+                  className="btn-transparent rn-btn-dark"
+                >
                   <br />
                   <span>Forget Password/password reset?</span>
                 </Link>

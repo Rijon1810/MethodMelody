@@ -228,7 +228,7 @@ class TabsTwo extends Component {
                             <div className="col-lg-12">
                               <div className="thumbnail pt--20">
                                 <Link to="#">
-                                  {this.state.rnPhotoSnap == "" ? (
+                                  {this.state.rnPhotoSnap === "" ? (
                                     <img
                                       className="w-100"
                                       src={`htpp://localhost:8080/${this.props.profile.photo}`}

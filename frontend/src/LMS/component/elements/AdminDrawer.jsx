@@ -205,20 +205,6 @@ export default function PermanentDrawerLeft() {
             </ListItemIcon>
             <ListItemText primary="Create a upcoming Course" style={{ color: "#fff" }} />
           </ListItem>
-          <ListItem
-            button
-            key="addinstructor"
-            onClick={(event) => handleListItemClick(event, 2)}
-            selected={selectedIndex === 2}
-          >
-            <ListItemIcon>
-              <AssignmentInd style={{ color: "#f9004d" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary="Add New Instructor"
-              style={{ color: "#fff" }}
-            />
-          </ListItem>
         </List>
         <Divider style={{ background: "#1d1e24" }} />
         {/* Update Section Start*/}

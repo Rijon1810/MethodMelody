@@ -131,14 +131,13 @@ router.route("/success/:userId").post(async (req, res) => {
           }
 
           cart.cart.forEach(async (item) => {
-           // console.log(user);
             //console.log(typeof item.toString());
             await axios
               .post(
                 "http://localhost:8080/api/v1/buy",
                 {
-                  user: user.toString(),
-                  course: item.toString(),
+                  user: user,
+                  course: item,
                 },
                 {
                   headers: {
@@ -148,10 +147,10 @@ router.route("/success/:userId").post(async (req, res) => {
                 }
               )
               .then((buy) => {
-              //  console.log(buy.data);
+                
               })
               .catch((a) => {
-              //  console.log(a);
+               console.log("ki khobor",a);
               })
               .then(async () => {
                 await axios
@@ -249,7 +248,7 @@ router.route("/ssl").post((req, res) => {
 
 //CART ADD
 router.route("/:userId").get((req, res) => {
-  const user = Mongoose.Types.ObjectId(req.params.userId);
+  const user = req.params.userId;
   User.find({ _id: user })
     .then((doc) => {
       res.status(200).json(doc[0].cart);
@@ -259,8 +258,8 @@ router.route("/:userId").get((req, res) => {
 
 //CART ADD
 router.route("/").post((req, res) => {
-  const user = Mongoose.Types.ObjectId(req.body.user);
-  const course = Mongoose.Types.ObjectId(req.body.course);
+  const user = req.body.user;
+  const course = req.body.course;
 
   User.updateOne(
     { _id: user },

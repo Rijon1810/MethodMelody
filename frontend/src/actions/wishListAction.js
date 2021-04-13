@@ -2,7 +2,7 @@ import axios from "../LMS/api/Config";
 import {getUserCourse} from "./userAction";
 import {
   GET_WISHLIST_BY_ID,
-  POST_WISHLIST
+  /* POST_WISHLIST */
 } from "./types";
 
 

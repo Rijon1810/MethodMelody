@@ -1,15 +1,15 @@
 import axios from "../LMS/api/Config";
 import {
   GET_ALL_USER,
-  GET_USER_COURSE,
-  USER_UPDATE,
-  USER_SUSPEND,
   GET_TYPED_USER_1,
   GET_TYPED_USER_2,
   GET_TYPED_USER_3,
   GET_TYPED_USER_4,
   GET_TYPED_USER_STUDENT,
   GET_TYPED_USER_SUBSCRIBER,
+  GET_USER_COURSE,
+  USER_SUSPEND,
+  USER_UPDATE
 } from "./types";
 
 export const getUser = () => (dispatch) => {
@@ -24,10 +24,10 @@ export const getUser = () => (dispatch) => {
         type: GET_ALL_USER,
         payload: res.data,
       });
-     // console.log(`all users = ${res.data}`);
+      // console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
-     // console.log(err);
+      // console.log(err);
     });
 };
 
@@ -71,10 +71,10 @@ export const getByType = (type) => (dispatch) => {
           break;
       }
 
-    //  console.log(`all users = ${res.data}`);
+      //  console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
-    //  console.log(err);
+      //  console.log(err);
     });
 };
 
@@ -97,10 +97,10 @@ export const getByStudentType = (tag) => (dispatch) => {
           payload: res.data,
         });
       }
-     // console.log(`all users = ${res.data}`);
+      // console.log(`all users = ${res.data}`);
     })
     .catch((err) => {
-     // console.log(err);
+      // console.log(err);
     });
 };
 
@@ -146,17 +146,18 @@ export const updateUser = (data) => async (dispatch) => {
         type: USER_UPDATE,
         payload: "failed",
       });
-     // console.log(err);
+      // console.log(err);
     });
 };
 
-export const suspend = (id) => async (dispatch) => {
- // console.log(`user id for suspension = ${id}`)
-  await axios
-    .post(`user/${id}`, {
+
+export const suspend = (id) => (dispatch) => {
+  //console.log("id id ",id);
+  axios
+    .get(`user/suspend/${id}`,{
       headers: {
         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-        "Content-type": "multipart/form-data",
+        "Content-type": "application/json",
       },
     })
     .then((res) => {
@@ -165,11 +166,11 @@ export const suspend = (id) => async (dispatch) => {
         payload: "suspended",
       });
     })
-    .catch((err) => {
+    .catch((res) => {
       dispatch({
         type: USER_SUSPEND,
         payload: "failed",
       });
-     // console.log(err);
+
     });
 };
