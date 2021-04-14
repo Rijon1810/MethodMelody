@@ -3,7 +3,7 @@ import { Grid } from "@material-ui/core";
 import {
   FavoriteBorderOutlined,
   ShoppingBasket,
-  ShoppingCart,
+  ShoppingCart
 } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import {
@@ -11,10 +11,10 @@ import {
   AccordionItem,
   AccordionItemButton,
   AccordionItemHeading,
-  AccordionItemPanel,
+  AccordionItemPanel
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
-import Testimonial from "../elements/Testimonial";
+import { useAlert } from 'react-alert';
 import { FiChevronUp } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -28,15 +28,16 @@ import {
   getCurrentVideoIndex,
   getSelectedCourseCategory,
   getSelectedCourseId,
-  getSelectedInstructorId,
+  getSelectedInstructorId
 } from "../actions/getSelectedIdAction";
 import {
   getFeaturedInstructor,
-  getInstructor,
+  getInstructor
 } from "../actions/instructorAction";
 // import { getCurrentMessageById, getPreviousMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
 import { postWishListCourse } from "../actions/wishListAction";
+import Testimonial from "../elements/Testimonial";
 import { portfolioSlick2 } from "../page-demo/script";
 import ContactOne from "./component/ContactOne.jsx";
 import CounterOne from "./component/CounterOne.jsx";
@@ -101,6 +102,7 @@ const SlideList = [
 ];
 
 export default function Landing() {
+  const alert = useAlert()
   const [wish, setWish] = React.useState(false);
   const [select, setSelect] = React.useState("");
   const wishList = useSelector(
@@ -214,7 +216,7 @@ export default function Landing() {
                     course: id,
                   })
                 );
-                // alert('Login first to add this course to your Cart')
+                 alert.show('Course added to the cart section')
               }}
             >
               <ShoppingCart />
@@ -394,6 +396,7 @@ export default function Landing() {
                             style={{ width: "100%", marginTop: "50px" }}
                             onClick={async (event) => {
                               setSelect(course._id);
+                              alert.show("Course added to the cart section!!!")
                             }}
                           >
                             <ShoppingBasket />
@@ -410,6 +413,7 @@ export default function Landing() {
                                   course: course._id,
                                 })
                               );
+                              alert.show("Course added to the wishlist section!!!")
                             }}
                           >
                             <FavoriteBorderOutlined />
@@ -441,7 +445,7 @@ export default function Landing() {
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="section-title text-left">
                 <h3>Upcoming Courses</h3>
-                <p style={{ color: "#b12222" }}>
+                <p style={{ color: "#F62222" }}>
                   Upcoming Courses {upcomingList.length} icourses for you.
                 </p>
               </div>
@@ -492,7 +496,7 @@ export default function Landing() {
           {" "}
           <div className="section-title ">
             <h3 className="title fontWeight500 ">How the platform works</h3>
-            <p className="p theme-gradient text-left">
+            <p className="p theme-gradient text-left" style={{ color: "#F62222" }}>
               At a glance video of methodmelody, your next platform for
               practicing music
             </p>

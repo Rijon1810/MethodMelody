@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { postCourse } from "../../actions/courseAction";
 import { getInstructor } from "../../actions/instructorAction";
+import { withAlert } from "react-alert";
 class ContactThree extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +37,7 @@ class ContactThree extends Component {
   formd = new FormData();
 
   render() {
+    const alert = this.props.alert;
     var categoryList = [
       "Guitar",
       "Bass Guitar",
@@ -81,6 +83,7 @@ class ContactThree extends Component {
                           value={this.state.rnSubtitle}
                           onChange={(e) => {
                             this.setState({ rnSubtitle: e.target.value });
+                            
                           }}
                           placeholder="Subtitle *"
                         />
@@ -96,6 +99,7 @@ class ContactThree extends Component {
                           value={this.state.rnCourseHour}
                           onChange={(e) => {
                             this.setState({ rnCourseHour: e.target.value });
+                            
                           }}
                           placeholder="Course Hour *"
                         />
@@ -113,6 +117,7 @@ class ContactThree extends Component {
                           value={this.state.rnPrice}
                           onChange={(e) => {
                             this.setState({ rnPrice: e.target.value });
+                            
                           }}
                           placeholder="Price *"
                         />
@@ -128,6 +133,7 @@ class ContactThree extends Component {
                           value={this.state.rnRequirements}
                           onChange={(e) => {
                             this.setState({ rnRequirements: e.target.value });
+                            
                           }}
                           placeholder="Requirements *"
                         />
@@ -142,7 +148,7 @@ class ContactThree extends Component {
                           id="item06"
                           value={this.state.rnTopic}
                           onChange={(e) => {
-                            this.setState({ rnTopic: e.target.value });
+                            this.setState({ rnTopic: e.target.value });                           
                           }}
                           placeholder="Topics *"
                         />
@@ -160,6 +166,7 @@ class ContactThree extends Component {
                           value={this.state.rnWhoFor}
                           onChange={(e) => {
                             this.setState({ rnWhoFor: e.target.value });
+                            
                           }}
                           placeholder="Who this course is for *"
                         />
@@ -175,6 +182,7 @@ class ContactThree extends Component {
                           value={this.state.rnValidity}
                           onChange={(e) => {
                             this.setState({ rnValidity: e.target.value });
+                            
                           }}
                           // readOnly
                           // disabled
@@ -196,6 +204,7 @@ class ContactThree extends Component {
                             className="form-control"
                             onSelect={(e) => {
                               this.setState({ rnCatagory: e.target.value });
+                              
                             }}
                           >
                             {categoryList.map((category, index) => (
@@ -485,11 +494,13 @@ class ContactThree extends Component {
                             this.setState({ rnprogress: percentage }); // sets the percentage as progress
                           },
                         });
-                        if(res){
+                      
                           this.setState({ rnprogress: 0 }); 
-                        }
+  
                        // while uploading is done resets the progess to 0
                       } catch (error) {
+                        alert.show("Any of the field is not fillup!!!");
+                        this.setState({ rnprogress: 0 }); 
                         console.log(error);
                       }
 
@@ -573,5 +584,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getInstructor, postCourse })(
-  ContactThree
+ withAlert()( ContactThree)
 );
