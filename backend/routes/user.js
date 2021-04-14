@@ -111,7 +111,11 @@ router.route("/confirmation/password/:token").get(async (req, res) => {
                                   Use this password : ${rj} <br><br>
                                   if you have any problem while proceeding with our platform don't forget to give us a feedback in info@methodmelody.com. Your experienc is our first priority. <br>`,
             });
+            res.redirect("http://localhost:3000/password-change-successful");
           });
+        }
+        else{
+          return res.status(400).json({ error: err });
         }
       }
     });

@@ -3,12 +3,10 @@ import React, { useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import ScrollToTop from "react-scroll-up";
-import { getCupon } from '../../actions/couponAction';
-import { getOrder } from '../../actions/orderAction';
+import { getCupon } from '../../actions/cuponAction';
 import { getUser } from "../../actions/userAction";
 import AdminDrawer from "./elements/AdminDrawer.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import PageHelmet from "./Helmet.jsx";
 
@@ -38,7 +36,7 @@ const findFeaturedInstructors = (instructors) => {
   return iL;
 };
 
-const AdminOrderList = () => {
+const AdminCuponList = () => {
   const classes = useStyles();
 
   const courseList = useSelector((state) => state.getCourse.courseList);
@@ -48,11 +46,11 @@ const AdminOrderList = () => {
 
   const featuredInstructorList = findFeaturedInstructors(instructorList);
 
- /*  console.log(`featured course list size = ${featuredInstructorList.length}`); */
+ // console.log(`featured course list size = ${featuredInstructorList.length}`);
 
   const dispatch = useDispatch();
 
-  dispatch(getOrder());
+  dispatch(getUser());
 
   const [list, setList] = React.useState("featured");
 
@@ -61,8 +59,8 @@ const AdminOrderList = () => {
   const userList = useSelector((state) => state.getAllUsers.student);
   const subscriberList = useSelector((state) => state.getAllUsers.subscriber);
   const adminList = useSelector((state) => state.getAllUsers.getByType_1);
-  var orderList = JSON.parse(
-    JSON.stringify(useSelector((state) => state.getOrder.orderList))
+  var cuponList = JSON.parse(
+    JSON.stringify(useSelector((state) => state.getCupon.cuponList))
   );
 
   return (
@@ -82,16 +80,17 @@ const AdminOrderList = () => {
             <div className="row align-items-end">
               <div className="col-lg-6 col-md-12 col-sm-12 col-12">
                 <div className="section-title text-left">
-                  <h3>All Orders</h3>
-                  <p className="theme-gradient">All order Details</p>
+                  <h3>All Coupons</h3>
+                  <p className="theme-gradient">All Created Coupons</p>
                   <p>
-                    All the orders details which is come from the users who purchase course.
+                    You can give this coupons to give the user for purchase any
+                    course with discount.
                   </p>
                 </div>
               </div>
             </div>
             <div className="row mt--60 mt_sm--40 ">
-              {orderList.map((order) => (
+              {cuponList.map((cupon) => (
                 <div className="col-4">
                   <Card className={classes.root} raised="true">
                     <CardContent>
@@ -99,29 +98,32 @@ const AdminOrderList = () => {
                         <div className="col">
                           <div className="row">
                             <h4 className="theme-gradient">
-                              Order Id : {order._id}
+                            Coupon Code : {cupon.cuponCode}
                             </h4>
                           </div>
                           <div className="row text-white">
                             {" "}
-                           Paid : {order.paid ? 'Yes' : 'No'}
+                            Discount : {cupon.discount}
                           </div>
                           <div className="row text-white">
                             {" "}
-                            Amount : {order.amount}
+                            Expire Date : {cupon.expireDate}
                           </div>
                           <div className="row text-white">
                             {" "}
-                            Number of Course in order : {order.courses.length}
+                            Number of used : {cupon.presentCount}
                           </div>
-
+                          <div className="row text-white">
+                            {" "}
+                            Limit of use :{cupon.useLimit}
+                          </div>
                         </div>
                       </div>
                     </CardContent>
 
                     <CardMedia
                       className={classes.cover}
-                      image={`htpp://localhost:8080/${order.photo}`}
+                      image={`htpp://localhost:8080/${cupon.photo}`}
                       title="Live from space album cover"
                     />
                   </Card>
@@ -137,7 +139,7 @@ const AdminOrderList = () => {
             <FiChevronUp />
           </ScrollToTop>
         </div>
-       {/*  <Footer /> */}
+        {/* <Footer /> */}
         {/* End Back To Top */}
       </main>
       <AdminDrawer />
@@ -145,4 +147,4 @@ const AdminOrderList = () => {
   );
 };
 
-export default AdminOrderList;
+export default AdminonList;

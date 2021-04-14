@@ -26,31 +26,31 @@ export const getSelectedUserId = (user) => (dispatch) => {
   });
 };
 
-export const getSelectedCourseCategory = (category,instructor,type) => (dispatch) => {
+export const getSelectedCourseCategory = (category) => (dispatch) => {
   dispatch({
     type: GET_SELECTED_COURSE_CATEGORY,
-    payload: [],
+    payload:category,
   });
-  console.log(`course category locked = ${category}`);
-  let url = `course/search?catagory=${category}&instructor=${instructor}&type=${type}`;
+  //console.log(`course category locked = ${category}`);
+ // let url = `course/search?catagory=${category}&instructor=${instructor}&type=${type}`;
  /*  if(category===""){
     url = `course/search?catagory=`
   } */
-  axios
-    .get(url, {
-      headers: {
-        "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
-      },
-    })
-    .then((res) => {
-      dispatch({
-        type: GET_SELECTED_COURSE_CATEGORY,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+ // axios
+  //  .get(url, {
+  //    headers: {
+   //     "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+   //   },
+  //  })
+  //  .then((res) => {
+   //   dispatch({
+   //     type: GET_SELECTED_COURSE_CATEGORY,
+   //    payload: res.data,
+    //  });
+   // })
+ //   .catch((err) => {
+  //    console.log(err);
+  //  });
 };
 
 export const getCurrentVideoIndex = (videoIndex) => (dispatch) => {

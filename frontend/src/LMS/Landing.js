@@ -1,16 +1,20 @@
 //importing material components
 import { Grid } from "@material-ui/core";
-import { FavoriteBorderOutlined, ShoppingBasket, ShoppingCart } from "@material-ui/icons";
+import {
+  FavoriteBorderOutlined,
+  ShoppingBasket,
+  ShoppingCart,
+} from "@material-ui/icons";
 import React, { useEffect } from "react";
 import {
   Accordion,
   AccordionItem,
-
-
-  AccordionItemButton, AccordionItemHeading,
-  AccordionItemPanel
+  AccordionItemButton,
+  AccordionItemHeading,
+  AccordionItemPanel,
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
+import Testimonial from "../elements/Testimonial";
 import { FiChevronUp } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -22,11 +26,13 @@ import { getCourse } from "../actions/courseAction";
 import { getAnalytics } from "../actions/getAnalyticsAction";
 import {
   getCurrentVideoIndex,
-  getSelectedCourseCategory, getSelectedCourseId,
-  getSelectedInstructorId
+  getSelectedCourseCategory,
+  getSelectedCourseId,
+  getSelectedInstructorId,
 } from "../actions/getSelectedIdAction";
 import {
-  getFeaturedInstructor, getInstructor
+  getFeaturedInstructor,
+  getInstructor,
 } from "../actions/instructorAction";
 // import { getCurrentMessageById, getPreviousMessageById } from "../actions/messageAction";
 import { getUserCourse } from "../actions/userAction";
@@ -39,10 +45,6 @@ import Footer from "./component/Footer.jsx";
 //importing custom components
 import Header from "./component/Header.jsx";
 import { slideSlick } from "./page-demo/script";
-
-
-
-
 
 //constants
 const SlideList = [
@@ -100,7 +102,7 @@ const SlideList = [
 
 export default function Landing() {
   const [wish, setWish] = React.useState(false);
-  const [select, setSelect] = React.useState('');
+  const [select, setSelect] = React.useState("");
   const wishList = useSelector(
     (state) => state.getAllUsers.getUserCourse.wishList
   );
@@ -115,7 +117,7 @@ export default function Landing() {
       currentCourses.push(course_id[0]);
       console.log("current courses id for this user = " + course_id[0]);
     });
-/*     console.log(
+    /*     console.log(
       "number of current courses for this user = " + currentCourses.length
     ); */
   }
@@ -123,7 +125,7 @@ export default function Landing() {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
-  
+
   const upcomingList = useSelector((state) => state.getCourse.upcomingList);
   const featuredInstructorList = useSelector(
     (state) => state.getInstructor.featuredInstructorList
@@ -179,14 +181,14 @@ export default function Landing() {
     //   dispatch(getCurrentMessageById(`${userId}`));
     //   dispatch(getPreviousMessageById(`${userId}`));
     // }
-  }, [dispatch, userId , select]);
+  }, [dispatch, userId, select]);
 
   // view all course handler
   function handleViewAllCourse() {
     history.push("/courses", { courses: "all" });
   }
 
- // console.log(SlideList[0].bgImage);
+  // console.log(SlideList[0].bgImage);
 
   // var titleColor = {"Red": "#b12222"}
 
@@ -206,7 +208,6 @@ export default function Landing() {
               className="rn-btn text-white"
               to="#"
               onClick={async (event) => {
-                
                 dispatch(
                   postCart({
                     user: userId,
@@ -228,7 +229,7 @@ export default function Landing() {
             className="rn-btn text-white"
             to="#"
             onClick={async (event) => {
-              history.push('/login')
+              history.push("/login");
               //alert("Login first to add this course to your Cart");
             }}
           >
@@ -386,35 +387,34 @@ export default function Landing() {
                           </Link>
                         </div>
                         <div className="col-12 d-flex">
-                        <button
-                        variant="contained"
-                        className="rn-button-style--2 btn-solid"
-                        fullWidth={true}
-                        style={{ width: "100%", marginTop: "50px" }}
-                        onClick={async (event) => {
-                          setSelect(course._id)
-                        }}
-                      >
-                        <ShoppingBasket />
-                      </button>
-                        <button
-                        variant="contained"
-                        className="rn-button-style--2 btn-solid"
-                        fullWidth={true}
-                        style={{ width: "100%", marginTop: "50px" }}
-                        onClick={async (event) => {
-                          dispatch(
-                            postWishListCourse({
-                              user: userId,
-                              course: course._id,
-                            })
-                          );
-                        }}
-                      >
-                        <FavoriteBorderOutlined />
-                      </button>
-                      </div>
-
+                          <button
+                            variant="contained"
+                            className="rn-button-style--2 btn-solid"
+                            fullWidth={true}
+                            style={{ width: "100%", marginTop: "50px" }}
+                            onClick={async (event) => {
+                              setSelect(course._id);
+                            }}
+                          >
+                            <ShoppingBasket />
+                          </button>
+                          <button
+                            variant="contained"
+                            className="rn-button-style--2 btn-solid"
+                            fullWidth={true}
+                            style={{ width: "100%", marginTop: "50px" }}
+                            onClick={async (event) => {
+                              dispatch(
+                                postWishListCourse({
+                                  user: userId,
+                                  course: course._id,
+                                })
+                              );
+                            }}
+                          >
+                            <FavoriteBorderOutlined />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -435,14 +435,14 @@ export default function Landing() {
 
       {/* End Course Category Area  */}
       {/* Start upcking Course Area Area */}
-            <div className="rn-blog-area pt--100  mb-dec--30 bg_color--6">
+      <div className="rn-blog-area pt--100  mb-dec--30 bg_color--6">
         <div className="container">
           <div className="row align-items-end">
             <div className="col-lg-6 col-md-12 col-sm-12 col-12">
               <div className="section-title text-left">
                 <h3>Upcoming Courses</h3>
                 <p style={{ color: "#b12222" }}>
-                Upcoming Courses {upcomingList.length} icourses for you.
+                  Upcoming Courses {upcomingList.length} icourses for you.
                 </p>
               </div>
             </div>
@@ -452,10 +452,7 @@ export default function Landing() {
               <div portfolio-slick-activation mt--70 mt_sm--40>
                 <Slider {...portfolioSlick2}>
                   {upcomingList.map((course) => (
-                    <div
-                      className="portfolio"
-                      key={course._id}
-                    >
+                    <div className="portfolio" key={course._id}>
                       <div className="thumbnail-inner">
                         <div className="thumbnail">
                           <Link to="/courseview">
@@ -472,9 +469,7 @@ export default function Landing() {
                           <Link to="/courseview">{course.title}</Link>
                         </h4>
 
-                        <div className="col-12 d-flex">
-                      </div>
-
+                        <div className="col-12 d-flex"></div>
                       </div>
                     </div>
                   ))}
@@ -498,7 +493,8 @@ export default function Landing() {
           <div className="section-title ">
             <h3 className="title fontWeight500 ">How the platform works</h3>
             <p className="p theme-gradient text-left">
-              At a glance video of methodmelody, your next platform for practicing music
+              At a glance video of methodmelody, your next platform for
+              practicing music
             </p>
           </div>
         </Grid>
@@ -540,6 +536,28 @@ export default function Landing() {
         </div>
       </div>
       {/* End CounterUp Area */}
+      {/* Start CounterUp Area */}
+{/*       <div className="rn-counterup-area pt--25 pb--110 bg_color--1">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="section-title text-center">
+                <h3 className="fontWeight500">Our Fun Facts</h3>
+              </div>
+            </div>
+          </div>
+          <CounterOne />
+        </div>
+      </div> */}
+      {/* End CounterUp Area */}
+
+      {/* Start Testimdarnial Area */}
+      <div className="rn-testimonial-area bg_color--5 ptb--120">
+        <div className="container">
+          <Testimonial />
+        </div>
+      </div>
+      {/* End Testimonial Area */}
 
       {/* Start Featured Instructor Area */}
       <div
@@ -651,7 +669,9 @@ export default function Landing() {
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
               <div className="section-title text-left pb--30">
-                <h3 style={{ color: "#b12222" }}>Here are some common Questions.</h3>
+                <h3 style={{ color: "#b12222" }}>
+                  Here are some common Questions.
+                </h3>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import axios from "../LMS/api/Config";
-import { CUPON  , GET_CUPON} from "./types";
+import { CUPON, GET_CUPON } from "./types";
 
-export const cupon = (cuponCode ,discount,useLimit,expireDate) => (dispatch) => {
+export const coupon = (cuponCode ,discount,useLimit,expireDate) => (dispatch) => {
   var data = {
     cuponCode,
     discount,
@@ -10,7 +10,7 @@ export const cupon = (cuponCode ,discount,useLimit,expireDate) => (dispatch) => 
   }
 //  console.log(data);
   axios
-    .post("cart/cupon", data, {
+    .post("cart/coupon", data, {
       headers: {
         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
         "Content-type": "application/json",
@@ -19,7 +19,7 @@ export const cupon = (cuponCode ,discount,useLimit,expireDate) => (dispatch) => 
     })
     .then((res) => {
       //console.log(res.data+ "piea gechi");
-     // alert("Cupon created succesfully")
+      alert("Cupon created succesfully")
       dispatch({
         type: CUPON,
         payload: res.data,
@@ -35,7 +35,7 @@ export const cupon = (cuponCode ,discount,useLimit,expireDate) => (dispatch) => 
 export const getCupon = () => (dispatch) => {
  
   axios
-    .get("cart/cupon/list", {
+    .get("cart/coupon/list", {
       headers: {
         "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
       }

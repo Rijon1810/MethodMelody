@@ -1,12 +1,9 @@
-import { CircularProgress, Grid } from "@material-ui/core";
+import axios from "axios";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { postCourse } from "../../actions/courseAction";
 import { getInstructor } from "../../actions/instructorAction";
-
-
 class ContactThree extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +28,9 @@ class ContactThree extends Component {
       rnBanner: "",
       refBanner: "",
       rnValidity: "",
-      courseType:"",
+      courseType: "",
       rnUploading: false,
+      rnprogress: 0,
     };
   }
   formd = new FormData();
@@ -465,17 +463,46 @@ class ContactThree extends Component {
                       event.preventDefault();
                       this.setState({ rnUploading: true });
                       const body = new FormData(this.form);
-                      toast("Upload started!!! please wait!!");
+                      /* toast("Upload started!!! please wait!!"); */
                       await this.props.postCourse(body);
 
-                      if(this.props.create_course_status === "failed" || this.props.create_course_status.message ===
-                      "Course Added Successfully!"){
-                       
-                        this.setState({ rnUploading: false });
+                      try {
+                        const res = await axios({
+                          baseURL: "http://localhost:8080",
+                          url: "/course/add/",
+                          method: "post",
+                          headers: {
+                            "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                            "Content-type": "multipart/form-data",
+                          },
+                          data: body,
+                          onUploadProgress: (progress) => {
+                            // function for detecting progress of uploading
+                            const { loaded, total } = progress; // gets uploaded file size and total file size
+                            const percentage = Math.floor(
+                              (loaded / total) * 100
+                            ); // converts file size to percentage
+                            this.setState({ rnprogress: percentage }); // sets the percentage as progress
+                          },
+                        });
+                        if(res){
+                          this.setState({ rnprogress: 0 }); 
+                        }
+                       // while uploading is done resets the progess to 0
+                      } catch (error) {
+                        console.log(error);
                       }
 
+                      /*                       if (
+                        this.props.create_course_status === "failed" ||
+                        this.props.create_course_status.message ===
+                          "Course Added Successfully!"
+                      ) {
+                        this.setState({ rnUploading: false });
+                      } */
+
                       // this.setState({ rnUploading: true });
-                      this.props.create_course_status.message ===
+                      /*                       this.props.create_course_status.message ===
                       "Course Added Successfully!"
                         ? toast.success("Course Added Successfully!", {
                             position: "bottom-center",
@@ -494,12 +521,27 @@ class ContactThree extends Component {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                          });
+                          }); */
                     }}
                   >
                     Upload
                   </button>
-                  <ToastContainer
+                  <h3>
+                    Upload Progress: {this.state.rnprogress}%{" "}
+                    {/* Shows upload progress text */}
+                  </h3>
+                  <div className="progress w-100 mt-3">
+                    <div
+                      className="progress-bar"
+                      style={
+                        {
+                          width: `${this.state.rnprogress}%`,
+                        } /* decides the width of progress bar at a given time from progress percentage*/
+                      }
+                    />
+                  </div>
+
+                  {/*                   <ToastContainer
                     position="bottom-center"
                     autoClose={7000}
                     hideProgressBar={false}
@@ -509,14 +551,16 @@ class ContactThree extends Component {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                  />
+                  /> */}
                 </form>
               </div>
             </div>
           </div>
-          <Grid container justify="center">
-            {this.state.rnUploading ? <CircularProgress style={{color: "#b12222"}}/> : null}
-          </Grid>
+          {/*           <Grid container justify="center">
+            {this.state.rnUploading ? (
+              <CircularProgress style={{ color: "#b12222" }} />
+            ) : null}
+          </Grid> */}
         </div>
       </div>
     );

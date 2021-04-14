@@ -2,13 +2,9 @@ import { Box } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { cupon } from "../../actions/cuponAction.js";
-import AdminDrawer from '../component/elements/AdminDrawer.jsx';
+import AdminDrawer from './elements/AdminDrawer.jsx';
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
-//custom components
-import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
-
-
 import PageHelmet from "./Helmet.jsx";
 
 class Cupon extends Component {
@@ -25,10 +21,10 @@ class Cupon extends Component {
   render() {
     return (
       <div>
-        <PageHelmet pageTitle="Create a coupon" />
+        <PageHelmet pageTitle="Create a Cupon" />
 
-        <Header from="coupon" />
-        <Breadcrumb from="coupon" />
+        <Header from="Cupon" />
+        <Breadcrumb from="Cupon" />
 
         <Box display="flex" justifyContent="center" alignItems="center">
           <div className="contact-form--1 col-xl-6 col-lg-6 col-md-10 col-sm-10 ptb--50">
@@ -50,7 +46,7 @@ class Cupon extends Component {
                   onChange={(e) => {
                     this.setState({ cuponCode: e.target.value });
                   }}
-                  placeholder="Enter a coupon code..."
+                  placeholder="Enter a Coupon code..."
                 />
               </label>
               <label htmlFor="item02">
@@ -63,7 +59,7 @@ class Cupon extends Component {
                   onChange={(e) => {
                     this.setState({ discount: e.target.value });
                   }}
-                  placeholder="Enter Discount percentage..."
+                  placeholder="Enter discount percentage..."
                 />
               </label>
               <label htmlFor="item03">
@@ -76,7 +72,7 @@ class Cupon extends Component {
                   onChange={(e) => {
                     this.setState({ expireDate: e.target.value });
                   }}
-                  placeholder="Enter deadline of this coupon.."
+                  placeholder="Enter deadline of this Coupon.."
                 />
               </label>
               <label htmlFor="item04">

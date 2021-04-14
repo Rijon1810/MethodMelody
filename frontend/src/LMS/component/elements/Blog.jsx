@@ -90,6 +90,10 @@ export default function Blog() {
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
+  const catagory_pre = useSelector((state)=> state.getSelectedId.getSelectedCourseCategoryList)
+  console.log("haha",catagory_pre);
+
+ 
   const handleOpen = () => {
     setOpen(true);
   };
@@ -155,8 +159,17 @@ export default function Blog() {
     }
   };
   useEffect(() => {
+
     filterCourses();
   }, [selectedCategory, selectedInstructor, selectedCourseType]);
+
+  useEffect(()=>{
+    if(catagory_pre){
+      setSelectedCategory(catagory_pre);
+      filterCourses();
+    }
+    
+  },[setSelectedCategory,catagory_pre])
 
   const handleInstructorChange = (e) => {
    // console.log("instructor change ", e.value);

@@ -74,16 +74,16 @@ class Footer extends Component {
                         <h4 className="theme-gradient">About</h4>
                         <ul className="ft-link">
                           <li>
-                            <Link to="https://methodmelody.com/about">About Us</Link>
+                            <a href="https://methodmelody.com/about">About Us</a>
                           </li>
                           <li>
-                            <Link to="https://methodmelody.com/privacy">Privacy</Link>
+                            <a href="https://methodmelody.com/privacy">Privacy</a>
                           </li>
                           <li>
-                            <Link to="https://methodmelody.com/terms">Terms</Link>
+                            <a href="https://methodmelody.com/terms">Terms</a>
                           </li>
                           <li>
-                            <Link to="/contact">Support</Link>
+                            <a href="https://methodmelody.com/contact">Support</a>
                           </li>
                         </ul>
                       </div>

@@ -1,5 +1,8 @@
 // React Required
 import React, { Component } from "react";
+//react alert
+import { positions, Provider as AlertProvider, transitions } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -23,10 +26,12 @@ import About from "./elements/About";
 import BlogDetails from "./elements/BlogDetails";
 import Contact from "./elements/Contact";
 import error404 from "./elements/error404";
+import passwordchange from "./elements/passwordchange";
 import PortfolioDetails from "./elements/PortfolioDetails";
 // Element Layout
 import Service from "./elements/Service";
 import ServiceDetails from "./elements/ServiceDetails";
+import signupSuccess from "./elements/signupSuccess";
 import Business from "./home/Business";
 import CorporateBusiness from "./home/CorporateBusiness";
 import CreativeAgency from "./home/CreativeAgency";
@@ -50,12 +55,13 @@ import AddCourse from "./LMS/component/AddCourse.jsx";
 import AddInstructor from "./LMS/component/AddInstructor.jsx";
 import Admin from "./LMS/component/Admin.jsx";
 import AdminCourseList from "./LMS/component/AdminCourseList.jsx";
+import AdminCuponList from "./LMS/component/AdminCuponList.jsx";
 import AdminInstructorList from "./LMS/component/AdminInstructorList.jsx";
 import AdminMessages from "./LMS/component/AdminMessages.jsx";
-import AdminUserList from "./LMS/component/AdminUserList.jsx";
-import AdminCuponList from "./LMS/component/AdminCuponList.jsx";
 import AdminOrderList from "./LMS/component/AdminOrderList.jsx";
+import AdminUserList from "./LMS/component/AdminUserList.jsx";
 import ComingSoon from "./LMS/component/ComingSoonPage.jsx";
+import Cupon from "./LMS/component/Cupon";
 import CourseList from "./LMS/component/CourseList";
 import CourseView from "./LMS/component/CourseView";
 import CreateAccount from "./LMS/component/CreateAccount.jsx";
@@ -65,14 +71,13 @@ import InstructorView from "./LMS/component/elements/blog/InstructorView.jsx";
 import CartPage from "./LMS/component/elements/CartPage.jsx";
 import InstructorPanel from "./LMS/component/elements/InstructorPanel.jsx";
 import StudentPanel from "./LMS/component/elements/StudentPanel";
+import Forgetpassword from "./LMS/component/Forgetpassword";
 // Coustom Components
 import Login from "./LMS/component/Login";
-import Forgetpassword from "./LMS/component/Forgetpassword";
 import Privacy from "./LMS/component/Privacy.jsx";
 import Signup from "./LMS/component/Signup";
-import Upcoming from "./LMS/component/Upcoming";
-import Cupon from "./LMS/component/Cupon";
 import Terms from "./LMS/component/Terms.jsx";
+import Upcoming from "./LMS/component/Upcoming";
 import UpdateCourse from "./LMS/component/UpdateCourse.jsx";
 import UpdateInstructor from "./LMS/component/UpdateInstructor.jsx";
 import UpdateLesson from "./LMS/component/UpdateLesson.jsx";
@@ -82,17 +87,14 @@ import ViewUserProfile from "./LMS/component/ViewUserProfile.jsx";
 // My Home Layout
 import Landing from "./LMS/Landing";
 import {
-  ProtectedAdminRoute,
-  ProtectedInstructorRoute,
-  ProtectedStudentRoute,
+    ProtectedAdminRoute,
+    ProtectedInstructorRoute,
+    ProtectedStudentRoute
 } from "./LMS/routes/protected.route";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
 
 
-//react alert
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
 // optional configuration
 const options = {
   // you can also just use 'bottom center'
@@ -455,6 +457,16 @@ class Root extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/comingsoon`}
             component={ComingSoon}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/password-change-successful`}
+            component={passwordchange}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/registration-successful`}
+            component={signupSuccess}
           />
           <Route path={`${process.env.PUBLIC_URL}/404`} component={error404} />
           <Route component={error404} />

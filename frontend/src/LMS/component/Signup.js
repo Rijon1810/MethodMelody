@@ -223,7 +223,7 @@ class Signup extends Component {
                     alert.show(
                       "Please check your email to verify your account!!"
                     );
-                    this.props.history.push("/login");
+                    this.props.history.push("/registration-successful");
                   }
 
                   // return <Redirect to="/login" />;

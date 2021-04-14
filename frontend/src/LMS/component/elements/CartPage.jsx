@@ -202,7 +202,7 @@ const CartPage = () => {
                   </div>
                   <div className="row d-flex justify-content-end">
                     <div className="col">
-                      <h6 className="text-white">Enter Cupon code: </h6>
+                      <h6 className="text-white">Enter Coupon code: </h6>
                     </div>
                     <div className="col">
                       <input
