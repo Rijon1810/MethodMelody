@@ -250,7 +250,7 @@ const CartPage = () => {
                             .post(
                               "http://localhost:8080/api/v1/cart/ssl/",
                               {
-                                total_amount: "1000",
+                                total_amount: total,
                                 discount_amount: "0",
                                 cus_name: "Shanewas",
                                 cus_phone: "+8801521108012",

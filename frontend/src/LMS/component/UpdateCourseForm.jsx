@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 // import { getInstructor } from "../../actions/instructorAction";
 import {
   updateCourse,
@@ -8,7 +9,7 @@ import {
 } from "../../actions/courseAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { withAlert } from "react-alert";
 class UpdateCourseForm extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +34,7 @@ class UpdateCourseForm extends Component {
       rnBanner: "",
       refBanner: "",
       rnCourse: "",
+      rnprogress: 0,
     };
   }
   componentWillMount() {
@@ -43,6 +45,7 @@ class UpdateCourseForm extends Component {
     this.props.getCourseById(this.props.course_data[0]._id);
   }
   render() {
+    const alert = this.props.alert;
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -374,7 +377,9 @@ class UpdateCourseForm extends Component {
                     <h4 className="title">Update Lesson</h4>
                   </div>
                   <p className="text-muted">
-                    The new videos will replace the previous videos, you can select multiple video files and file names must be same as the lesson name.
+                    The new videos will replace the previous videos, you can
+                    select multiple video files and file names must be same as
+                    the lesson name.
                   </p>
 
                   <div className="row">
@@ -438,9 +443,10 @@ class UpdateCourseForm extends Component {
                           pair[0] == "thumbnail"
                         ) {
                           if (pair[1].name != "") {
-                            console.log(
-                             //pair[0] + ", " + JSON.stringify(pair[1].name)
-                            );
+                            console
+                              .log
+                              //pair[0] + ", " + JSON.stringify(pair[1].name)
+                              ();
                             data.append(pair[0], body.get(pair[0]));
                           }
                         } else if (pair[1]) {
@@ -448,9 +454,38 @@ class UpdateCourseForm extends Component {
                           data.append(pair[0], body.get(pair[0]));
                         }
                       }
-                      toast("Update started!!! please wait!!");
-                      await this.props.updateCourse(id, data);
-                      this.props.create_course_update_status ===
+                      // toast("Update started!!! please wait!!");
+                      // await this.props.updateCourse(id, data);
+                      try {
+                        const res = await axios({
+                          baseURL: "http://localhost:8080",
+                          url: `/api/v1/course/${id}/`,
+                          method: "post",
+                          headers: {
+                            "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
+                            "Content-type": "multipart/form-data",
+                          },
+                          data: data,
+                          onUploadProgress: (progress) => {
+                            // function for detecting progress of uploading
+                            const { loaded, total } = progress; // gets uploaded file size and total file size
+                            const percentage = Math.floor(
+                              (loaded / total) * 100
+                            ); // converts file size to percentage
+                            this.setState({ rnprogress: percentage }); // sets the percentage as progress
+                          },
+                        });
+                        alert.success("Course Added Successfully!!!");
+
+                        this.setState({ rnprogress: 0 });
+
+                        // while uploading is done resets the progess to 0
+                      } catch (error) {
+                        alert.show("Any of the field is not fillup!!!");
+                        this.error({ rnprogress: 0 });
+                        // console.log(error);
+                      }
+                      /*                       this.props.create_course_update_status ===
                       "Course Updated Successfully!"
                         ? toast.success("Course Updated Successfully!", {
                             position: "bottom-center",
@@ -469,12 +504,26 @@ class UpdateCourseForm extends Component {
                           pauseOnHover: true,
                           draggable: true,
                           progress: undefined,
-                        });
+                        }); */
                     }}
                   >
                     Update
                   </button>
-                  <ToastContainer
+                  <h3>
+                    Upload Progress: {this.state.rnprogress}%{" "}
+                    {/* Shows upload progress text */}
+                  </h3>
+                  <div className="progress w-100 mt-3">
+                    <div
+                      className="progress-bar"
+                      style={
+                        {
+                          width: `${this.state.rnprogress}%`,
+                        } /* decides the width of progress bar at a given time from progress percentage*/
+                      }
+                    />
+                  </div>
+                  {/*                   <ToastContainer
                     position="bottom-center"
                     autoClose={7000}
                     hideProgressBar={false}
@@ -484,7 +533,7 @@ class UpdateCourseForm extends Component {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                  />
+                  /> */}
                 </form>
               </div>
             </div>
@@ -506,4 +555,4 @@ export default connect(mapStateToProps, {
   updateCourse,
   getCourse,
   getCourseById,
-})(UpdateCourseForm);
+})(withAlert()(UpdateCourseForm));

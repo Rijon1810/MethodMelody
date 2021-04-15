@@ -9,7 +9,7 @@ import {
   getCourseById, updateCourse
 } from "../../actions/courseAction";
 import axios from "../api/Config";
-
+import { withAlert } from "react-alert";
 
 class UpdateLessonForm extends Component {
   constructor(props) {
@@ -39,6 +39,7 @@ class UpdateLessonForm extends Component {
   };
 
   render() {
+    const alert = this.props.alert;
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -191,7 +192,7 @@ class UpdateLessonForm extends Component {
                               }
                             )
                             .then((res) => {
-                              alert(`lesson status updated successfully`);
+                              alert.success(`lesson status updated successfully`);
                             })
                             .catch((err) => {
                              // console.log(err);
@@ -223,7 +224,7 @@ class UpdateLessonForm extends Component {
                               }
                             )
                             .then((res) => {
-                              alert(`lesson status updated successfully`);
+                              alert.success(`lesson status updated successfully`);
                             })
                             .catch((err) => {
                               //console.log(err);
@@ -255,7 +256,7 @@ class UpdateLessonForm extends Component {
                               }
                             )
                             .then((res) => {
-                              alert(`lesson status updated successfully`);
+                              alert.success(`lesson status updated successfully`);
                             })
                             .catch((err) => {
                              // console.log(err);
@@ -287,4 +288,4 @@ export default connect(mapStateToProps, {
   getCourse,
   updateCourse,
   getCourseById,
-})(UpdateLessonForm);
+})(withAlert()(UpdateLessonForm));

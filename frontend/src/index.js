@@ -61,10 +61,10 @@ import AdminMessages from "./LMS/component/AdminMessages.jsx";
 import AdminOrderList from "./LMS/component/AdminOrderList.jsx";
 import AdminUserList from "./LMS/component/AdminUserList.jsx";
 import ComingSoon from "./LMS/component/ComingSoonPage.jsx";
-import Cupon from "./LMS/component/Cupon";
 import CourseList from "./LMS/component/CourseList";
 import CourseView from "./LMS/component/CourseView";
 import CreateAccount from "./LMS/component/CreateAccount.jsx";
+import Cupon from "./LMS/component/Cupon";
 import AllInstructors from "./LMS/component/elements/AllInstructors.jsx";
 import Blog from "./LMS/component/elements/Blog.jsx";
 import InstructorView from "./LMS/component/elements/blog/InstructorView.jsx";
@@ -87,9 +87,9 @@ import ViewUserProfile from "./LMS/component/ViewUserProfile.jsx";
 // My Home Layout
 import Landing from "./LMS/Landing";
 import {
-    ProtectedAdminRoute,
-    ProtectedInstructorRoute,
-    ProtectedStudentRoute
+  ProtectedAdminRoute,
+  ProtectedInstructorRoute,
+  ProtectedStudentRoute
 } from "./LMS/routes/protected.route";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";

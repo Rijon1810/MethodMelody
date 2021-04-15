@@ -170,7 +170,7 @@ export default function PermanentDrawerLeft() {
             <ListItemIcon>
               <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="Create Cupon" style={{ color: "#fff" }} />
+            <ListItemText primary="Create Coupon" style={{ color: "#fff" }} />
           </ListItem>
           <ListItem
             button
@@ -181,7 +181,7 @@ export default function PermanentDrawerLeft() {
             <ListItemIcon>
               <ImportContacts style={{ color: "#f9004d" }} />
             </ListItemIcon>
-            <ListItemText primary="View Cupon List" style={{ color: "#fff" }} />
+            <ListItemText primary="View Coupon List" style={{ color: "#fff" }} />
           </ListItem>
           <ListItem
             button

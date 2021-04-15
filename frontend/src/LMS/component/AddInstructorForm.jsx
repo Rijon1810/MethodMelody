@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getInstructor, postInstructor } from "../../actions/instructorAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { withAlert} from 'react-alert'
 class AddInstructorForm extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +18,7 @@ class AddInstructorForm extends Component {
     };
   }
   render() {
+    const alert =this.props.alert;
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -185,7 +186,7 @@ class AddInstructorForm extends Component {
                     onClick={async (event) => {
                       event.preventDefault();
                       const body = new FormData(this.form);
-                      toast("Upload started!!! please wait!!");
+                      //toast("Upload started!!! please wait!!");
                       await this.props.postInstructor(body);
                       this.props.getInstructor();
                       this.setState({
@@ -199,29 +200,13 @@ class AddInstructorForm extends Component {
                       });
                       this.props.create_instructor_status.message ===
                       "Instructor Added Successfully!"
-                        ? toast.success("Instructor Added Successfully!", {
-                            position: "bottom-center",
-                            autoClose: false,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                          })
-                        : toast.error("Instructor Add Failed!", {
-                            position: "bottom-center",
-                            autoClose: false,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                          });
+                        ? (alert.success("Instructor Added Successful!!"))
+                        : (alert.error("Instructor Added Failed, Check you fillup all the field!!"));
                     }}
                   >
                     Upload
                   </button>
-                  <ToastContainer
+{/*                   <ToastContainer
                     position="bottom-center"
                     autoClose={7000}
                     hideProgressBar={false}
@@ -231,7 +216,7 @@ class AddInstructorForm extends Component {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                  />
+                  /> */}
                 </form>
               </div>
             </div>
@@ -248,5 +233,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getInstructor, postInstructor })(
-  AddInstructorForm
+  withAlert()(AddInstructorForm)
 );

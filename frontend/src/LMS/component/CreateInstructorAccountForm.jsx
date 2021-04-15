@@ -154,27 +154,12 @@ class CreateInstructorAccountForm extends Component {
                         /// console.log(pair[0] + ", " + pair[1]);
                       }
 
-                      if (
-                        this.state.name === "" ||
-                        this.state.rnEmail === "" ||
-                        this.state.rnPassword === "" ||
-                        this.state.rnInstructorProfileId === ""
-                      ) {
-                        alert.show("Please fillup all the required feild!!!");
-                      } else {
-                        await this.props.signUp(body);
-                        alert.show(
-                          "Please tell, to check instructor  email to verify instructor account!!"
-                        );
-                        /*   toast("Upload started!!! please wait!!"); */
-                        this.setState({
-                          rnName: "",
-                          rnEmail: "",
-                          rnPassword: "",
-                          rnUserType: 3,
-                          rnInstructorProfileId: "",
-                        });
-                      }
+
+                      await this.props.signUp(body);
+                      this.props.create_user_status.message ===
+                      "Instructor Added Successfully!"
+                        ? (alert.success("Instructor Added Successful!!"))
+                        : (alert.error("Instructor Added Failed, Check you fillup all the field!!"));
 
                       /*  this.props.create_user_status.message === "user added!"
                         ? toast.success("Instructor Created Successfully!", {

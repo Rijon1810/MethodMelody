@@ -1,10 +1,9 @@
 import React, { Component } from "react";
+import { withAlert } from "react-alert";
 import { connect } from "react-redux";
-import { getInstructor, postInstructor } from "../../actions/instructorAction";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getInstructor } from "../../actions/instructorAction";
 import { signUp } from "../../actions/signUpAction";
-
 class CreateAccountForm extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +16,7 @@ class CreateAccountForm extends Component {
     };
   }
   render() {
+    const alert = this.props.alert;
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -85,7 +85,7 @@ class CreateAccountForm extends Component {
                           <select
                             className="form-control"
                             name="type"
-                            onSelect={(e) => {
+                            onChange={(e) => {
                               this.setState({ rnUserType: e.target.value });
                             }}
                           >
@@ -139,12 +139,29 @@ class CreateAccountForm extends Component {
                     onClick={async (event) => {
                       event.preventDefault();
                       const body = new FormData(this.form);
-                      for (var pair of body.entries()) {
-                       // console.log(pair[0] + ", " + pair[1]);
+                      /*  toast("Upload started!!! please wait!!"); */
+
+                      if (
+                        this.state.rnName === "" ||
+                        this.state.rnEmail === "" ||
+                        this.state.rnPassword === "" ||
+                        this.state.rnUserType === ""
+                      ) {
+/*                         console.log("  this.state.rnName",   this.state.rnName);
+                        console.log("  this.state.rnName",   this.state.rnEmail);
+                        console.log("  this.state.rnName",   this.state.rnPassword);
+                        console.log("  this.state.rnName",   this.state.rnUserType); */
+                        alert.error("Some field is not fillup!!!");
+                      } else {
+                        try {
+                          await this.props.signUp(body);
+                          alert.success("User added successfully!!!");
+                        } catch (err) {
+                          alert.error("User is not added!!!");
+                        }
                       }
-                      toast("Upload started!!! please wait!!");
-                      await this.props.signUp(body);
-                      this.props.create_user_status.message === "user added!"
+
+                      /*                       this.props.create_user_status.message === "user added!"
                         ? toast.success("Instructor Created Successfully!", {
                             position: "bottom-center",
                             autoClose: false,
@@ -162,12 +179,12 @@ class CreateAccountForm extends Component {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                          });
+                          }); */
                     }}
                   >
                     Submit
                   </button>
-                  <ToastContainer
+                  {/*                   <ToastContainer
                     position="bottom-center"
                     autoClose={7000}
                     hideProgressBar={false}
@@ -177,7 +194,7 @@ class CreateAccountForm extends Component {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                  />
+                  /> */}
                 </form>
               </div>
             </div>
@@ -194,5 +211,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { signUp, getInstructor })(
-  CreateAccountForm
+  withAlert()(CreateAccountForm)
 );

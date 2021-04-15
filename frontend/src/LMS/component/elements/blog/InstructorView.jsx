@@ -1,24 +1,20 @@
   
-import React, { Component } from "react";
-import PageHelmet from "../../Helmet.jsx";
-import { SiBandsintown } from "react-icons/si";
+import React from "react";
+import { FiChevronUp, FiClock } from "react-icons/fi";
 import { GiTeacher } from "react-icons/gi";
-import { FiClock } from "react-icons/fi";
-import { MdDateRange } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { SiBandsintown } from "react-icons/si";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import ScrollToTop from "react-scroll-up";
-import { FiChevronUp } from "react-icons/fi";
-import Header from "../../Header.jsx";
-import Footer from "../../Footer.jsx";
-
-import { connect } from "react-redux";
-
-import Breadcrumb from "../common/Breadcrumb.jsx";
-import { useSelector, useDispatch } from "react-redux";
 import {
   getSelectedCourseId,
-  getSelectedInstructorId,
+  getSelectedInstructorId
 } from "../../../../actions/getSelectedIdAction";
+import Footer from "../../Footer.jsx";
+import Header from "../../Header.jsx";
+import PageHelmet from "../../Helmet.jsx";
+import Breadcrumb from "../common/Breadcrumb.jsx";
+
 
 const InstructorVIew = () => {
   const instructorList = useSelector(
@@ -124,24 +120,24 @@ const InstructorVIew = () => {
               >
                 <div className="blog blog-style--1">
                   <div className="thumbnail">
-                    <a href="/courseview">
+                    <Link to="/courseview">
                       <img
                         className="w-100"
                         src={`http://localhost:8080/${course.thumbnail}`}
                         alt="Blog Images"
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="content">
                     {/* <p className="blogtype">{instructor.bio}</p> */}
                     <h4 className="title">
-                      <a href="/courseview">{course.title}</a>
+                      <Link to="/courseview">{course.title}</Link>
                     </h4>
 
                     <div className="blog-btn">
-                      <a className="rn-btn text-white" href="/courseview">
+                      <Link className="rn-btn text-white" to="/courseview">
                         View Details
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

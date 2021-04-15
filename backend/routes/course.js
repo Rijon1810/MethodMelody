@@ -191,7 +191,7 @@ router
        const instruct = instructor;
 
        const ins = await Instructor.findOne({ _id : cours })
-       console.log(ins);
+      // console.log(ins);
 
          ins.course.push(doc._id);
 

@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { withAlert } from "react-alert";
 import { connect } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { postCourse } from "../../actions/courseAction";
 import { getInstructor } from "../../actions/instructorAction";
-import { withAlert } from "react-alert";
 class ContactThree extends Component {
   constructor(props) {
     super(props);
@@ -83,7 +83,6 @@ class ContactThree extends Component {
                           value={this.state.rnSubtitle}
                           onChange={(e) => {
                             this.setState({ rnSubtitle: e.target.value });
-                            
                           }}
                           placeholder="Subtitle *"
                         />
@@ -99,7 +98,6 @@ class ContactThree extends Component {
                           value={this.state.rnCourseHour}
                           onChange={(e) => {
                             this.setState({ rnCourseHour: e.target.value });
-                            
                           }}
                           placeholder="Course Hour *"
                         />
@@ -117,7 +115,6 @@ class ContactThree extends Component {
                           value={this.state.rnPrice}
                           onChange={(e) => {
                             this.setState({ rnPrice: e.target.value });
-                            
                           }}
                           placeholder="Price *"
                         />
@@ -133,7 +130,6 @@ class ContactThree extends Component {
                           value={this.state.rnRequirements}
                           onChange={(e) => {
                             this.setState({ rnRequirements: e.target.value });
-                            
                           }}
                           placeholder="Requirements *"
                         />
@@ -148,7 +144,7 @@ class ContactThree extends Component {
                           id="item06"
                           value={this.state.rnTopic}
                           onChange={(e) => {
-                            this.setState({ rnTopic: e.target.value });                           
+                            this.setState({ rnTopic: e.target.value });
                           }}
                           placeholder="Topics *"
                         />
@@ -166,7 +162,6 @@ class ContactThree extends Component {
                           value={this.state.rnWhoFor}
                           onChange={(e) => {
                             this.setState({ rnWhoFor: e.target.value });
-                            
                           }}
                           placeholder="Who this course is for *"
                         />
@@ -182,7 +177,6 @@ class ContactThree extends Component {
                           value={this.state.rnValidity}
                           onChange={(e) => {
                             this.setState({ rnValidity: e.target.value });
-                            
                           }}
                           // readOnly
                           // disabled
@@ -204,7 +198,6 @@ class ContactThree extends Component {
                             className="form-control"
                             onSelect={(e) => {
                               this.setState({ rnCatagory: e.target.value });
-                              
                             }}
                           >
                             {categoryList.map((category, index) => (
@@ -473,12 +466,12 @@ class ContactThree extends Component {
                       this.setState({ rnUploading: true });
                       const body = new FormData(this.form);
                       /* toast("Upload started!!! please wait!!"); */
-                      await this.props.postCourse(body);
+                      // await this.props.postCourse(body);
 
                       try {
                         const res = await axios({
                           baseURL: "http://localhost:8080",
-                          url: "/course/add/",
+                          url: "/api/v1/course/add/",
                           method: "post",
                           headers: {
                             "auth-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5ld2FzYWhtZWRAZ21haWwuY29tIiwicGFzc3dvcmQiOiJQb3RhdG83MjYiLCJpYXQiOjE1OTU4NjA3MzYsImV4cCI6MTU5NTg2NDMzNn0.IRPW-1hioz4LZABZrmtYakjmDwORfKnzIWkwK3DzAXc`,
@@ -494,14 +487,18 @@ class ContactThree extends Component {
                             this.setState({ rnprogress: percentage }); // sets the percentage as progress
                           },
                         });
-                      
-                          this.setState({ rnprogress: 0 }); 
-  
-                       // while uploading is done resets the progess to 0
+                        if(res){
+                          alert.success("Course Added Successfully!!!");
+
+                          this.setState({ rnprogress: 0 });
+                        }
+
+
+                        // while uploading is done resets the progess to 0
                       } catch (error) {
-                        alert.show("Any of the field is not fillup!!!");
-                        this.setState({ rnprogress: 0 }); 
-                        console.log(error);
+                        alert.error("Any of the field is not fillup!!!");
+                        this.setState({ rnprogress: 0 });
+                        // console.log(error);
                       }
 
                       /*                       if (
@@ -584,5 +581,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getInstructor, postCourse })(
- withAlert()( ContactThree)
+  withAlert()(ContactThree)
 );

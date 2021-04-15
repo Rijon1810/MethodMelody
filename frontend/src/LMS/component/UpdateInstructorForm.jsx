@@ -1,13 +1,12 @@
 import React, { Component } from "react";
+import { withAlert } from "react-alert";
 import { connect } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
 import {
   getInstructor,
-  updateInstructor,
-  getinstructorById,
-} from "../../actions/instructorAction";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
+  getinstructorById, updateInstructor
+} from "../../actions/instructorAction";
 class UpdateInstructorForm extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +22,7 @@ class UpdateInstructorForm extends Component {
     };
   }
   render() {
+    const alert = this.props.alert;
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -212,44 +212,16 @@ class UpdateInstructorForm extends Component {
                           data.append(pair[0], body.get(pair[0]));
                         }
                       }
-                      toast("Upload started!!! please wait!!");
                       await this.props.updateInstructor(id, body);
                      // console.log(this.props.instructor_update_status);
                       this.props.instructor_update_status ===
                       "Instructor Updated Successfully!"
-                        ? toast.success("Instructor Updated Successfully!", {
-                            position: "bottom-center",
-                            autoClose: false,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                          })
-                        : toast.error("Instructor Update Failed!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
+                        ? (alert.success("Instructor Update Successfully"))
+                        : ((alert.error("Instructor Update Failed")));
                     }}
                   >
                     Submit
                   </button>
-                  <ToastContainer
-                    position="bottom-center"
-                    autoClose={7000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                  />
                 </form>
               </div>
             </div>
@@ -269,4 +241,4 @@ export default connect(mapStateToProps, {
   getInstructor,
   updateInstructor,
   getinstructorById,
-})(UpdateInstructorForm);
+})(withAlert()(UpdateInstructorForm));

@@ -2,19 +2,19 @@ import { Box } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { cupon } from "../../actions/cuponAction.js";
-import AdminDrawer from '../component/elements/AdminDrawer.jsx';
+import AdminDrawer from "../component/elements/AdminDrawer.jsx";
 import Breadcrumb from "./elements/common/Breadcrumb.jsx";
 //custom components
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
-
+import { withAlert } from "react-alert";
 
 import PageHelmet from "./Helmet.jsx";
 
 class Cupon extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       cuponCode: "",
       discount: "",
@@ -23,6 +23,7 @@ class Cupon extends Component {
     };
   }
   render() {
+    const alert = this.props.alert;
     return (
       <div>
         <PageHelmet pageTitle="Create a coupon" />
@@ -36,7 +37,7 @@ class Cupon extends Component {
               <div className="col-8">
                 <h3 className="title ">Create a new Coupon.</h3>
 
-                <p>Please enter all the information for create a  Coupon</p>
+                <p>Please enter all the information for create a Coupon</p>
               </div>
             </div>
 
@@ -71,7 +72,7 @@ class Cupon extends Component {
                   type="date"
                   name="expirdeDate"
                   id="item03"
-             /*      max={new Date().toISOString().split("T")[0]} */
+                  /*      max={new Date().toISOString().split("T")[0]} */
                   value={this.state.expireDate}
                   onChange={(e) => {
                     this.setState({ expireDate: e.target.value });
@@ -92,7 +93,7 @@ class Cupon extends Component {
                   placeholder="Enter the limit of use!"
                 />
               </label>
-       
+
               <button
                 className="rn-button-style--2 btn-solid"
                 type="submit"
@@ -101,17 +102,34 @@ class Cupon extends Component {
                 id="mc-embedded-subscribe"
                 onClick={async (event) => {
                   event.preventDefault();
-/*                   var fd = new FormData();
+                  /*                   var fd = new FormData();
                   fd.append("cuponCode", this.state.cuponCode);
                   fd.append("discount", this.state.discount);
                   fd.append("useLimit", this.state.useLimit);
                   fd.append("expireDate", this.state.expireDate); */
-                //  console.log(this.state.cuponCode);
-                //  console.log(this.state.discount);
-                //  console.log(this.state.useLimit);
-                 // console.log(this.state.expireDate);
-                  await this.props.cupon(this.state.cuponCode,this.state.discount,this.state.useLimit,this.state.expireDate);
-                  this.props.history.push("/cupon");
+                  if (
+                    this.state.cuponCode === "" ||
+                    this.state.discount === "" ||
+                    this.state.useLimit === "" ||
+                    this.state.expireDate === ""
+                  ) {
+                    alert.show("Any of the field is not fillup!!");
+                  } else {
+                    await this.props.cupon(
+                      this.state.cuponCode,
+                      this.state.discount,
+                      this.state.useLimit,
+                      this.state.expireDate
+                    );
+                    this.props.history.push("/cupon");
+                    alert.show("Coupon Created Successfully");
+                    this.setState({
+                      cuponCode: "",
+                      discount: "",
+                      useLimit: "",
+                      expireDate: "",
+                    });
+                  }
                 }}
               >
                 Create
@@ -121,7 +139,7 @@ class Cupon extends Component {
         </Box>
         <AdminDrawer />
 
-       {/*  <Footer /> */}
+        {/*  <Footer /> */}
       </div>
     );
   }
@@ -131,4 +149,4 @@ const mapStateToProps = (state) => ({
   create_user_status: state.isLogged.payload,
 });
 
-export default connect(mapStateToProps, { cupon })(Cupon);
+export default connect(mapStateToProps, { cupon })(withAlert()(Cupon));

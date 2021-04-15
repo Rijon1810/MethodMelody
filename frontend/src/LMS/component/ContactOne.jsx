@@ -7,7 +7,7 @@ import { postMessage } from "../../actions/messageAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link} from 'react-router-dom'
-
+import { withAlert } from "react-alert";
 class ContactOne extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +18,7 @@ class ContactOne extends Component {
     };
   }
   render() {
+    const alert = this.props.alert;
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -84,18 +85,31 @@ class ContactOne extends Component {
                     id="mc-embedded-subscribe"
                     onClick={async (event) => {
                       event.preventDefault();
-                      await this.props.postMessage({
-                        name: this.state.rnName,
-                        email: this.state.rnEmail,
-                        message: this.state.rnMessage,
-                      });
+
+                      if(this.state.rnName==="" || this.state.rnEmail==="" || this.state.rnMessage==="")
+                      {
+                        alert.show("Any of the field is not fillup!!")
+                      }
+                      else{
+                        await this.props.postMessage({
+                          name: this.state.rnName,
+                          email: this.state.rnEmail,
+                          message: this.state.rnMessage,
+                        });
+                        alert.show("Message sent Successfully!!")
+                        this.setState({ rnName: "", rnEmail: "", rnMessage: "" });
+
+                      }
+
                     /*   console.log(this.state.rnName);
                       console.log(this.state.rnEmail);
                       console.log(this.state.rnMessage); */
 
-                      this.setState({ rnName: "", rnEmail: "", rnMessage: "" });
+                     
 
-                      this.props.posted_message_status === "post complete"
+
+
+/*                       this.props.posted_message_status === "post complete"
                         ? toast.success("Message sent!!", {
                             position: "bottom-center",
                             autoClose: false,
@@ -113,12 +127,12 @@ class ContactOne extends Component {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                          });
+                          }); */
                     }}
                   >
                     Submit
                   </button>
-                  <ToastContainer
+{/*                   <ToastContainer
                     position="bottom-center"
                     autoClose={7000}
                     hideProgressBar={false}
@@ -128,7 +142,7 @@ class ContactOne extends Component {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                  />
+                  /> */}
                 </form>
               </div>
             </div>
@@ -143,4 +157,4 @@ const mapStateToProps = (state) => ({
   posted_message_status: state.Messages.postConfirm,
 });
 
-export default connect(mapStateToProps, { postMessage })(ContactOne);
+export default connect(mapStateToProps, { postMessage })(withAlert()(ContactOne));

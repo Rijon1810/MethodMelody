@@ -5,10 +5,10 @@ import { postCart } from '../../../../actions/cartAction';
 import { getSelectedCourseId, getSelectedInstructorId } from "../../../../actions/getSelectedIdAction";
 import { postWishListCourse } from '../../../../actions/wishListAction';
 import { ShoppingBasket, AddShoppingCart, FavoriteBorderOutlined } from "@material-ui/icons";
-
+import { useAlert } from 'react-alert';
 const BLogList = ({courseList } ) => {
 
-  
+  const alert = useAlert()
   const instructorList = useSelector(
     (state) => state.getInstructor.instructorList
   );
@@ -76,6 +76,7 @@ const BLogList = ({courseList } ) => {
                               course: course._id,
                             })
                           );
+                          alert.show("Course added to the cart section!!!")
                         }}
                       >
                         <AddShoppingCart/>
@@ -92,6 +93,7 @@ const BLogList = ({courseList } ) => {
                               course: course._id,
                             })
                           );
+                          alert.show("Course added to the wishlist section!!!")
                         }}
                       >
                         <FavoriteBorderOutlined/>

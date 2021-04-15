@@ -30,7 +30,7 @@ router.route("/success/:userId").post(async (req, res) => {
     },
   })
     .then(async (doc) => {
-      console.log("I from ssl commezr",doc.data);
+      //console.log("I from ssl commezr",doc.data);
       const cuponCode = doc.data.value_b;
       const codeUseOrNot = doc.data.value_a;
       if(codeUseOrNot==="true")

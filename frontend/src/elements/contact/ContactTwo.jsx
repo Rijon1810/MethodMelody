@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-
+import { withAlert } from "react-alert";
 //custom components
-
 import { connect } from "react-redux";
-import { postMessage } from "../../actions/messageAction";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { postMessage } from "../../actions/messageAction";
 
 class ContactTwo extends Component {
   constructor(props) {
@@ -17,6 +15,7 @@ class ContactTwo extends Component {
     };
   }
   render() {
+    const alert = this.props.alert;
     return (
       <div className="contact-form--1">
         <div className="container">
@@ -83,49 +82,25 @@ class ContactTwo extends Component {
                     onClick={async (event) => {
                       event.preventDefault();
                       
-                      let submitted = await this.props.postMessage({
-                        name: this.state.rnName,
-                        email: this.state.rnEmail,
-                        message: this.state.rnMessage,
-                      });
-                      function isEmpty (obj) {
-                        for (var k in obj) 
-                           if (obj.hasOwnProperty(k))
-                               return false;
-                        return true;
-                    }
-                      
-                      if (isEmpty(submitted)) {
-                        toast.success("Message sent!!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
+                      if(this.state.rnName==="" || this.state.rnEmail==="" || this.state.rnMessage==="")
+                      {
+                        alert.show("Any of the field is not fillup!!")
+                      }
+                      else{
+                        await this.props.postMessage({
+                          name: this.state.rnName,
+                          email: this.state.rnEmail,
+                          message: this.state.rnMessage,
                         });
-                        this.setState({ 
-                          rnMessage: ' ' ,
-                          rnEmail : ' ',
-                          rnName: ' '
-                      });
-                      } else {
-                        toast.error("Failed sending message!!", {
-                          position: "bottom-center",
-                          autoClose: false,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
+                        alert.show("Message sent Successfully!!")
+                        this.setState({ rnName: "", rnEmail: "", rnMessage: "" });
+
                       }
                     }}
                   >
                     Submit
                   </button>
-                  <ToastContainer
+{/*                   <ToastContainer
                     position="bottom-center"
                     autoClose={7000}
                     hideProgressBar={false}
@@ -135,7 +110,7 @@ class ContactTwo extends Component {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                  />
+                  /> */}
                 </form>
               </div>
             </div>
@@ -148,4 +123,4 @@ class ContactTwo extends Component {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, { postMessage })(ContactTwo);
+export default connect(mapStateToProps, { postMessage })(withAlert()(ContactTwo));

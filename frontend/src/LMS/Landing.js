@@ -34,7 +34,7 @@ import {
   getFeaturedInstructor,
   getInstructor
 } from "../actions/instructorAction";
-// import { getCurrentMessageById, getPreviousMessageById } from "../actions/messageAction";
+// import { getCurrentMessageById, getPreviousMessageById } from "../actions/Contact Us.Action";
 import { getUserCourse } from "../actions/userAction";
 import { postWishListCourse } from "../actions/wishListAction";
 import Testimonial from "../elements/Testimonial";

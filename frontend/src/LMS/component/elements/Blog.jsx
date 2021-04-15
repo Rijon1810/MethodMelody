@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Blog() {
+
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [selectedCategory, setSelectedCategory] = React.useState("");
